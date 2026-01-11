@@ -1,0 +1,21 @@
+{
+  "name": "2026.es.pycon.org",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.10.0",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.8",
+    "tailwindcss": "^4.1.18"
+  }
+}

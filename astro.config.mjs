@@ -7,7 +7,6 @@ export default defineConfig({
 });
 
 //CONFIG WITH REAL DOMAIN
-// astro.config.mjs
 // export default defineConfig({
 //   site: 'https://2026.es.pycon.org',
 //   base: '/',

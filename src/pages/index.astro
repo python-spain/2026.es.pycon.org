@@ -3,8 +3,46 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="PyCon 2026" description="PyCon conference 2026">
-  <main class="container mx-auto px-4 py-10">
-    <h1 class="text-5xl font-bold text-center mb-6">PyConf 2026</h1>
-    <p class="text-center text-slate-300 text-xl">made with Astro 🚀</p>
+  <main class="container mx-auto px-4 py-10 flex flex-col items-center gap-6">
+    <h1 class="text-5xl font-bold">PyConES 2026</h1>
+    <h2 class="text-5xl font-bold">Barcelona</h2>
+    <p class="text-slate-300 text-xl">6, 7 y 8 de Noviembre</p>
   </main>
 </Layout>
+
+<script>
+  import { animate, stagger, splitText } from 'animejs'
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const h1 = document.querySelector('h1')
+    if (!h1) return
+
+    const { chars } = splitText(h1, {
+      words: false,
+      chars: true,
+    })
+
+    let isAnimating = false
+
+    h1.addEventListener('mouseenter', () => {
+      if (isAnimating) return
+      isAnimating = true
+
+      animate(chars, {
+        y: [
+          { to: '-2.75rem', ease: 'outExpo', duration: 600 },
+          { to: 0, ease: 'outBounce', duration: 800, delay: 100 },
+        ],
+        rotate: {
+          from: '-1turn',
+        },
+        delay: stagger(50),
+        ease: 'inOutCirc',
+        loop: false,
+        complete: () => {
+          isAnimating = false
+        },
+      })
+    })
+  })
+</script>

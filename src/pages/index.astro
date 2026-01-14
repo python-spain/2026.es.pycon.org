@@ -11,38 +11,51 @@ import Layout from '../layouts/Layout.astro'
 </Layout>
 
 <script>
-  import { animate, stagger, splitText } from 'animejs'
+  import { createSpring, createTimeline, stagger, createScope, text, animate } from 'animejs'
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const h1 = document.querySelector('h1')
-    if (!h1) return
+  createScope({
+    root: 'main',
+    defaults: {
+      ease: 'outQuad',
+    },
+  }).add((scope) => {
+    const { root, methods } = scope
 
-    const { chars } = splitText(h1, {
-      words: false,
-      chars: true,
+    text.split('h1', {
+      chars: {
+        class: 'char',
+        clone: 'top',
+        wrap: 'clip',
+      },
     })
 
-    let isAnimating = false
+    const ease = createSpring({ stiffness: 70, damping: 11 })
 
-    h1.addEventListener('mouseenter', () => {
-      if (isAnimating) return
-      isAnimating = true
-
-      animate(chars, {
-        y: [
-          { to: '-2.75rem', ease: 'outExpo', duration: 600 },
-          { to: 0, ease: 'outBounce', duration: 800, delay: 100 },
-        ],
-        rotate: {
-          from: '-1turn',
+    scope.add('onEnter', () => {
+      createTimeline().add(
+        '.char > span',
+        {
+          y: '100%',
+          composition: 'blend',
+          ease,
         },
-        delay: stagger(50),
-        ease: 'inOutCirc',
-        loop: false,
-        complete: () => {
-          isAnimating = false
-        },
-      })
+        stagger(10, { use: 'data-char', from: 'random' }),
+      )
     })
+
+    scope.add('onLeave', () => {
+      createTimeline().add(
+        '.char > span',
+        {
+          y: '0%',
+          composition: 'blend',
+          ease,
+        },
+        stagger(10, { use: 'data-char', from: 'random' }),
+      )
+    })
+
+    root.addEventListener('pointerenter', methods.onEnter)
+    root.addEventListener('pointerleave', methods.onLeave)
   })
 </script>

@@ -1,65 +1,62 @@
 ---
 // Import ClientRouter for smooth transitions (SPA feel) without React
 // Note: In Astro 4 it was called ViewTransitions, in Astro 5 Beta it's ClientRouter
-import { ClientRouter } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions'
 
 // 1. TypeScript: Define the Props this Layout will accept
 interface Props {
-	title: string;
-	description?: string; // Optional (?)
+  title: string
+  description?: string // Optional (?)
 }
 
 // 2. Extract props with default values
-const { 
-	title, 
-	description = "Landing page created with Astro and Tailwind CSS" 
-} = Astro.props;
+const { title, description = 'Landing page created with Astro and Tailwind CSS' } = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		
-		<title>{title}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
 
-		<ClientRouter />
-	</head>
-	
-	<body class="bg-slate-900 text-white antialiased">
-		<slot />
-	</body>
+    <title>{title}</title>
+
+    <ClientRouter />
+  </head>
+
+  <body class="bg-slate-900 text-white antialiased">
+    <slot />
+  </body>
 </html>
 
 <style is:global>
-	/* Global CSS styles (Vanilla CSS) */
-	
-	:root {
-		/* If you want to define native CSS variables */
-		--accent: 136, 58, 234;
-	}
+  /* Global CSS styles (Vanilla CSS) */
 
-	html {
-		font-family: system-ui, sans-serif;
-		scroll-behavior: smooth; /* Smooth scroll when navigating by anchors (#) */
-	}
+  :root {
+    /* If you want to define native CSS variables */
+    --accent: 136, 58, 234;
+  }
 
-	/* Scrollbar customization (optional, Midudev style) */
-	::-webkit-scrollbar {
-		width: 10px;
-	}
-	::-webkit-scrollbar-track {
-		background: #0f172a;
-	}
-	::-webkit-scrollbar-thumb {
-		background: #334155;
-		border-radius: 5px;
-	}
-	::-webkit-scrollbar-thumb:hover {
-		background: #475569;
-	}
+  html {
+    font-family: system-ui, sans-serif;
+    scroll-behavior: smooth; /* Smooth scroll when navigating by anchors (#) */
+  }
+
+  /* Scrollbar customization (optional, Midudev style) */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0f172a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+  }
 </style>

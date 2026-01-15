@@ -2,7 +2,10 @@
 import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title="PyCon 2026" description="PyCon conference 2026">
+<Layout
+  title="PyConES 2026 - Barcelona"
+  description="PyConES, la conferencia de Python más importante de España"
+>
   <main class="container mx-auto px-4 py-10 flex flex-col items-center gap-6">
     <h1 class="text-5xl font-bold">PyConES 2026</h1>
     <h2 class="text-5xl font-bold">Barcelona</h2>
@@ -11,7 +14,7 @@ import Layout from '../layouts/Layout.astro'
 </Layout>
 
 <script>
-  import { createSpring, createTimeline, stagger, createScope, text, animate } from 'animejs'
+  import { createTimeline, stagger, createScope, splitText } from 'animejs'
 
   createScope({
     root: 'main',
@@ -21,41 +24,38 @@ import Layout from '../layouts/Layout.astro'
   }).add((scope) => {
     const { root, methods } = scope
 
-    text.split('h1', {
-      chars: {
-        class: 'char',
-        clone: 'top',
-        wrap: 'clip',
-      },
-    })
-
-    const ease = createSpring({ stiffness: 70, damping: 11 })
+    const { chars } = splitText('h1', { chars: true, words: { wrap: 'clip' } })
+    let isAnimating = false
 
     scope.add('onEnter', () => {
-      createTimeline().add(
-        '.char > span',
-        {
-          y: '100%',
-          composition: 'blend',
-          ease,
-        },
-        stagger(10, { use: 'data-char', from: 'random' }),
-      )
-    })
+      if (isAnimating) {
+        return
+      }
 
-    scope.add('onLeave', () => {
-      createTimeline().add(
-        '.char > span',
-        {
-          y: '0%',
-          composition: 'blend',
-          ease,
+      isAnimating = true
+
+      createTimeline({
+        defaults: { ease: 'out(3)', duration: 750 },
+        onComplete: () => {
+          isAnimating = false
         },
-        stagger(10, { use: 'data-char', from: 'random' }),
+      }).add(
+        chars,
+        {
+          y: [{ to: ['100%', '0%'] }],
+        },
+        stagger(50),
       )
     })
 
     root.addEventListener('pointerenter', methods.onEnter)
-    root.addEventListener('pointerleave', methods.onLeave)
   })
 </script>
+
+<style>
+  h1:before {
+    content: 'PyConES 2026';
+    position: absolute;
+    color: rgba(255, 255, 255, 0.4);
+  }
+</style>

@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 // CONF WITHOUT REAL DOMAIN
 export default defineConfig({
   site: 'https://python-spain.github.io',
-  base: '/',
+  base: '/2026.es.pycon.org',
   vite: {
     plugins: [tailwindcss()],
   },

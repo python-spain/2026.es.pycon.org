@@ -1,61 +1,116 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import '@fontsource-variable/jetbrains-mono'
 ---
 
-<Layout
-  title="PyConES 2026 - Barcelona"
-  description="PyConES, la conferencia de Python más importante de España"
->
-  <main class="container mx-auto px-4 py-10 flex flex-col items-center gap-6">
-    <h1 class="text-5xl font-bold">PyConES 2026</h1>
-    <h2 class="text-5xl font-bold">Barcelona</h2>
-    <p class="text-slate-300 text-xl">6, 7 y 8 de Noviembre</p>
+<Layout title="PyConES 2026">
+  <main class="min-h-screen flex flex-col justify-center items-center text-center px-4">
+    <div class="relative z-10 max-w-3xl">
+      <h1
+        class="text-4xl md:text-7xl font-bold text-white font-mono tracking-tighter cursor-default"
+        data-value="PYCON ES 2026"
+      >
+        PYCON ES 2026
+      </h1>
+
+      <h2 class="mt-4 text-xl md:text-2xl text-green-400 font-mono h-8">
+        &gt; <span id="subtitle">Initialising system...</span><span class="animate-pulse">_</span>
+      </h2>
+
+      <div
+        id="actions"
+        class="mt-12 flex flex-col md:flex-row gap-6 justify-center items-center opacity-0 transition-opacity duration-1000 ease-in"
+      >
+        <button
+          id="sponsor-btn"
+          class="group relative px-7 py-2 bg-green-500 text-black font-mono font-bold text-lg hover:bg-green-400 transition-all duration-300 shadow-[0_0_15px_rgba(34,197,94,0.5)] hover:shadow-[0_0_25px_rgba(34,197,94,0.8)] cursor-pointer"
+        >
+          <span
+            class="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-20 transition-opacity pointer-events-none"
+          ></span>
+          <span id="sponsor-text">&lt; BECOME A SPONSOR /&gt;</span>
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"
+    >
+    </div>
   </main>
 </Layout>
 
 <script>
-  import { createTimeline, stagger, createScope, splitText } from 'animejs'
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+'
 
-  createScope({
-    root: 'main',
-    defaults: {
-      ease: 'outQuad',
-    },
-  }).add((scope) => {
-    const { root, methods } = scope
+  let interval: number | null = null
 
-    const { chars } = splitText('h1', { chars: true, words: { wrap: 'clip' } })
-    let isAnimating = false
+  const runMatrixEffect = (element: HTMLElement) => {
+    let iteration = 0
 
-    scope.add('onEnter', () => {
-      if (isAnimating) {
-        return
+    clearInterval(interval as number)
+
+    const originalText = element.dataset.value || ''
+
+    interval = window.setInterval(() => {
+      element.innerText = originalText
+        .split('')
+        .map((letter, index) => {
+          if (index < iteration) {
+            return originalText[index]
+          }
+          return letters[Math.floor(Math.random() * letters.length)]
+        })
+        .join('')
+
+      if (iteration >= originalText.length) {
+        clearInterval(interval as number)
       }
 
-      isAnimating = true
-
-      createTimeline({
-        defaults: { ease: 'out(3)', duration: 750 },
-        onComplete: () => {
-          isAnimating = false
-        },
-      }).add(
-        chars,
-        {
-          y: [{ to: ['100%', '0%'] }],
-        },
-        stagger(50),
-      )
-    })
-
-    root.addEventListener('pointerenter', methods.onEnter)
-  })
-</script>
-
-<style>
-  h1:before {
-    content: 'PyConES 2026';
-    position: absolute;
-    color: rgba(255, 255, 255, 0.4);
+      iteration += 1 / 3
+    }, 30)
   }
-</style>
+
+  const init = () => {
+    const h1 = document.querySelector('h1')
+    const subtitle = document.querySelector('#subtitle')
+    const actions = document.querySelector('#actions')
+
+    if (h1) {
+      runMatrixEffect(h1)
+      h1.onmouseover = () => runMatrixEffect(h1)
+    }
+
+    if (subtitle) {
+      setTimeout(() => {
+        subtitle.textContent = 'Sede UB | 6-8 Nov 2026'
+        if (actions) {
+          actions.classList.remove('opacity-0')
+        }
+      }, 1500)
+    }
+
+    //COPY MAIL
+    const sponsorBtn = document.getElementById('sponsor-btn')
+    const sponsorText = document.getElementById('sponsor-text')
+
+    if (sponsorBtn && sponsorText) {
+      sponsorBtn.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText('sponsors@2026.es.pycon.org')
+          const originalText = sponsorText.innerText
+          sponsorText.innerText = '[ EMAIL COPIED! ]'
+          setTimeout(() => {
+            sponsorText.innerText = originalText
+          }, 2000)
+        } catch (err) {
+          console.error('Failed to copy', err)
+          window.location.href = 'mailto:sponsors@2026.es.pycon.org'
+        }
+      }
+    }
+  }
+  //not needed now
+  document.addEventListener('astro:page-load', init)
+  init()
+</script>

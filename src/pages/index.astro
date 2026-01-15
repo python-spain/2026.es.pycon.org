@@ -2,9 +2,60 @@
 import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title="PyCon 2026" description="PyCon conference 2026">
-  <main class="container mx-auto px-4 py-10">
-    <h1 class="text-5xl font-bold text-center mb-6">PyConf 2026</h1>
-    <p class="text-center text-slate-300 text-xl">made with Astro 🚀</p>
+<Layout
+  title="PyConES 2026 - Barcelona"
+  description="PyConES, la conferencia de Python más importante de España"
+>
+  <main class="container mx-auto px-4 py-10 flex flex-col items-center gap-6">
+    <h1 class="text-5xl font-bold">PyConES 2026</h1>
+    <h2 class="text-5xl font-bold">Barcelona</h2>
+    <p class="text-slate-300 text-xl">6, 7 y 8 de Noviembre</p>
   </main>
 </Layout>
+
+<script>
+  import { createTimeline, stagger, createScope, splitText } from 'animejs'
+
+  createScope({
+    root: 'main',
+    defaults: {
+      ease: 'outQuad',
+    },
+  }).add((scope) => {
+    const { root, methods } = scope
+
+    const { chars } = splitText('h1', { chars: true, words: { wrap: 'clip' } })
+    let isAnimating = false
+
+    scope.add('onEnter', () => {
+      if (isAnimating) {
+        return
+      }
+
+      isAnimating = true
+
+      createTimeline({
+        defaults: { ease: 'out(3)', duration: 750 },
+        onComplete: () => {
+          isAnimating = false
+        },
+      }).add(
+        chars,
+        {
+          y: [{ to: ['100%', '0%'] }],
+        },
+        stagger(50),
+      )
+    })
+
+    root.addEventListener('pointerenter', methods.onEnter)
+  })
+</script>
+
+<style>
+  h1:before {
+    content: 'PyConES 2026';
+    position: absolute;
+    color: rgba(255, 255, 255, 0.4);
+  }
+</style>

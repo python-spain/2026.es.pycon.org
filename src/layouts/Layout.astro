@@ -1,16 +1,14 @@
 ---
-// Import ClientRouter for smooth transitions (SPA feel) without React
-// Note: In Astro 4 it was called ViewTransitions, in Astro 5 Beta it's ClientRouter
+import '../style/global.css'
+
 import { ClientRouter } from 'astro:transitions'
 
-// 1. TypeScript: Define the Props this Layout will accept
 interface Props {
   title: string
   description?: string // Optional (?)
 }
 
-// 2. Extract props with default values
-const { title, description = 'Landing page created with Astro and Tailwind CSS' } = Astro.props
+const { title, description = 'PyconES 2026' } = Astro.props
 ---
 
 <!doctype html>
@@ -27,7 +25,9 @@ const { title, description = 'Landing page created with Astro and Tailwind CSS' 
     <ClientRouter />
   </head>
 
-  <body class="bg-slate-900 text-white antialiased">
+  <body
+    class="bg-slate-900 text-white antialiased h-screen flex flex-col justify-center bg-linear-to-r from-gray to-blue-900 bg-radial"
+  >
     <slot />
   </body>
 </html>

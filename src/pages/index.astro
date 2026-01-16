@@ -33,7 +33,7 @@ import { SPONSORS_EMAIL } from './constants'
           id="sponsor-btn"
           type="button"
           data-email={SPONSORS_EMAIL}
-          aria-label="Copiar email de contacto para patrocinadores"
+          aria-describedby="sponsor-hint"
           class="group relative px-7 py-2 bg-green-500 text-black font-mono font-bold text-lg hover:bg-green-400 transition-all duration-300 shadow-[0_0_15px_rgba(34,197,94,0.5)] hover:shadow-[0_0_25px_rgba(34,197,94,0.8)] cursor-pointer focus:outline-none focus:ring-4 focus:ring-green-300/50 rounded-sm"
         >
           <span
@@ -41,9 +41,19 @@ import { SPONSORS_EMAIL } from './constants'
           ></span>
 
           <span id="sponsor-text">
-            <span aria-hidden="true">&lt; </span>BECOME A SPONSOR<span aria-hidden="true"> /&gt;</span>
+            <span aria-hidden="true">&lt; </span lang='en'>BECOME A SPONSOR<span aria-hidden="true"> /&gt;</span>
           </span>
+          <span id="sponsor-hint" class="sr-only">Copia el email de contacto para patrocinadores</span>
         </button>
+
+        <div
+          id="copy-confirmation"
+          role="status"
+          tabindex="-1"
+          class="hidden px-7 py-2 text-green-400 font-mono font-bold text-lg focus:outline-none focus:ring-4 focus:ring-green-300/50 rounded-sm"
+        >
+          <span aria-hidden="true">[ </span lang='en'>EMAIL COPIED!<span aria-hidden="true"> ]</span>
+        </div>
       </div>
     </div>
 
@@ -113,23 +123,24 @@ import { SPONSORS_EMAIL } from './constants'
 
     // COPY MAIL LOGIC
     const sponsorBtn = document.getElementById('sponsor-btn')
-    const sponsorText = document.getElementById('sponsor-text')
+    const copyConfirmation = document.getElementById('copy-confirmation')
     const email = sponsorBtn?.dataset.email as string
 
-    if (sponsorBtn && sponsorText && email) {
+    if (sponsorBtn && copyConfirmation && email) {
       sponsorBtn.onclick = async () => {
         try {
           await navigator.clipboard.writeText(email)
 
-          const originalHTML = sponsorText.innerHTML
-          sponsorText.innerHTML =
-            '<span aria-hidden="true">[ </span>EMAIL COPIED!<span aria-hidden="true"> ]</span>'
-
-          sponsorBtn.setAttribute('aria-label', 'Email copiado exitosamente')
+          // Hide button, show confirmation
+          sponsorBtn.classList.add('hidden')
+          copyConfirmation.classList.remove('hidden')
+          copyConfirmation.focus()
 
           setTimeout(() => {
-            sponsorText.innerHTML = originalHTML
-            sponsorBtn.setAttribute('aria-label', 'Copiar email de contacto para patrocinadores')
+            // Hide confirmation, show button and restore focus
+            copyConfirmation.classList.add('hidden')
+            sponsorBtn.classList.remove('hidden')
+            sponsorBtn.focus()
           }, 2000)
         } catch (err) {
           console.error('Failed to copy', err)

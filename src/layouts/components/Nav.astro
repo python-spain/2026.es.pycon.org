@@ -1,0 +1,220 @@
+---
+import { getEntry } from 'astro:content'
+
+// load menu data
+const menuData = await getEntry('menu', 'main')
+
+if (!menuData) {
+  throw new Error('No se encontró el archivo src/content/menu/main.json')
+}
+
+const { items } = menuData.data
+---
+
+<header class="fixed top-0 w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/10">
+  <div class="container mx-auto px-4 h-20 flex items-center justify-between">
+    <a
+      href="/"
+      class="text-2xl font-bold font-mono tracking-tighter text-white focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1 outline-none"
+    >
+      PyCon<span class="text-blue-500">ES</span>
+    </a>
+
+    <button
+      id="mobile-menu-btn"
+      class="lg:hidden text-white p-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+      aria-label="Abrir menú principal"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+    >
+      <svg class="w-8 h-8 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          class="menu-icon-path"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+
+    <nav
+      id="nav-menu"
+      class="hidden absolute top-20 left-0 w-full bg-slate-900 lg:static lg:w-auto lg:bg-transparent lg:flex lg:items-center p-4 lg:p-0 border-b border-white/10 lg:border-none shadow-xl lg:shadow-none transition-all duration-300"
+      aria-label="Menú principal"
+    >
+      <ul class="flex flex-col lg:flex-row gap-2 lg:gap-8">
+        {
+          items.map((item, index) => (
+            /* group for hover and focus */
+            <li class="relative group">
+              {item.children ? (
+                <div class="dropdown-wrapper">
+                  <button
+                    id={`dbtn-${index}`}
+                    class="dropdown-btn flex items-center gap-1 w-full text-left text-slate-300 hover:text-white focus:text-white font-medium py-2 lg:py-0 transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                    aria-expanded="false"
+                    aria-controls={`dmenu-${index}`}
+                    aria-haspopup="true"
+                  >
+                    {item.label}
+                    <svg
+                      class="w-4 h-4 transition-transform duration-200 lg:group-hover:rotate-180 icon-chevron"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+
+                  <ul
+                    id={`dmenu-${index}`}
+                    class="dropdown-menu hidden lg:absolute lg:top-full lg:left-0 lg:w-64 bg-slate-800 lg:bg-slate-900 border border-white/10 rounded-lg p-2 mt-2 lg:mt-4 shadow-2xl transition-all duration-200 z-50"
+                  >
+                    {item.children.map((child) => (
+                      <li>
+                        <a
+                          href={child.href}
+                          class="block px-4 py-3 rounded-md hover:bg-white/5 focus:bg-white/10 text-white font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 inset-ring"
+                        >
+                          {child.label}
+                          {child.description && (
+                            <span class="block text-sm text-slate-400 mt-0.5">{child.description}</span>
+                          )}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <a
+                  href={item.href}
+                  class="block text-slate-300 hover:text-white focus:text-white font-medium py-2 lg:py-0 transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                >
+                  {item.label}
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* ACCESSIBILITY DESKTOP:
+    We use :focus-within together with :hover. 
+    This allows the menu to be automatically displayed when the user tabs into the parent button, 
+    without the need for extra JS.
+  */
+  @media (min-width: 1024px) {
+    .dropdown-menu {
+      display: block; /* Occupies space in the DOM but visually hidden */
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    /* Shows if there is HOVER or if the FOCUS is inside the <li> parent */
+    li.group:hover .dropdown-menu,
+    li.group:focus-within .dropdown-menu {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* icon rotation */
+    li.group:focus-within .icon-chevron {
+      transform: rotate(180deg);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const mobileBtn = document.getElementById('mobile-menu-btn')
+    const navMenu = document.getElementById('nav-menu')
+    const dropdownBtns = document.querySelectorAll('.dropdown-btn')
+
+    // --- Mobile menu logic ---
+    mobileBtn?.addEventListener('click', () => {
+      const isHidden = navMenu?.classList.contains('hidden')
+
+      // Toggle visibility
+      navMenu?.classList.toggle('hidden')
+
+      // Update ARIA (Crucial for screen readers)
+      const isExpanded = !isHidden
+      mobileBtn.setAttribute('aria-expanded', String(isExpanded))
+      mobileBtn.setAttribute('aria-label', isExpanded ? 'Close menu' : 'Open menu')
+
+      // Change icon (optional visual)
+      const path = mobileBtn.querySelector('path')
+      if (isExpanded) {
+        path?.setAttribute('d', 'M6 18L18 6M6 6l12 12') // X shape
+      } else {
+        path?.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7') // Hamburger
+      }
+    })
+
+    // --- Dropdown logic (Mobile and Keyboard) ---
+    dropdownBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        // In desktop, let CSS :focus-within handle visibility,
+        // but in mobile we need JS.
+        // Or if we want to toggle with click in desktop also:
+        const menu = btn.nextElementSibling
+        const icon = btn.querySelector('.icon-chevron')
+
+        // Determine current state
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true'
+
+        // Visual logic for mobile (class hidden)
+        if (window.innerWidth < 1024) {
+          menu?.classList.toggle('hidden')
+          icon?.classList.toggle('rotate-180')
+        }
+
+        // Update ARIA always
+        btn.setAttribute('aria-expanded', String(!isExpanded))
+      })
+    })
+
+    // --- Close with ESCAPE (WCAG 1.4.13) ---
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        // Close mobile menu if open
+        if (navMenu && !navMenu.classList.contains('hidden') && window.innerWidth < 1024) {
+          mobileBtn?.click()
+          mobileBtn?.focus() // Return focus to button
+        }
+
+        // Close dropdowns if focus is inside one (Desktop)
+        const activeElement = document.activeElement as HTMLElement
+        if (activeElement && activeElement.closest('.group')) {
+          // Remove focus from active element to stop :focus-within from applying
+          // and return focus to the main menu button
+          const parentBtn = activeElement.closest('.group')?.querySelector('.dropdown-btn') as HTMLElement
+          parentBtn?.focus()
+          //Optional: force close if using JS classes for desktop
+        }
+      }
+    })
+
+    // Click outside
+    document.addEventListener('click', (e) => {
+      if (!navMenu?.contains(e.target as Node) && !mobileBtn?.contains(e.target as Node)) {
+        if (!navMenu?.classList.contains('hidden') && window.innerWidth < 1024) {
+          mobileBtn?.click() // Reuse the click logic to cleanly close
+        }
+      }
+    })
+  })
+</script>

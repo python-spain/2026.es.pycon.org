@@ -1,10 +1,18 @@
 # 2026.es.pycon.org
-Pagina web para Pycon ES 2026
+
+Website for the most important Python event in Spain in the year 2026.
+
+## Requirements
+
+- Node.js v22.0.0 (see `.nvmrc`)
+- pnpm
+- [pre-commit](https://pre-commit.com/)
 
 ## Installation
 
 ```bash
 pnpm install
+pre-commit install
 ```
 
 ## Development
@@ -25,7 +33,3 @@ pnpm build
 pnpm preview
 ```
 
-## Requirements
-
-- Node.js v22.0.0 (see `.nvmrc`)
-- pnpm

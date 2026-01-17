@@ -1,6 +1,6 @@
 # 2026.es.pycon.org
 
-Website for the most important Python event in Spain in the year 2026.
+Website for the most important Python [event](https://2026.es.pycon.org/) in Spain in the year 2026.
 
 ## Requirements
 

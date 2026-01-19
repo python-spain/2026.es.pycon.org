@@ -15,14 +15,14 @@ const { items } = menuData.data
   <div class="container mx-auto px-4 h-20 flex items-center justify-between">
     <a
       href="/"
-      class="text-2xl font-bold font-mono tracking-tighter text-white focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1 outline-none"
+      class="text-2xl font-bold font-mono tracking-tighter text-white rounded px-2 py-1 outline-none transition-all focus-visible:bg-white/10 focus-visible:text-blue-400"
     >
       PyCon<span class="text-blue-500">ES</span>
     </a>
 
     <button
       id="mobile-menu-btn"
-      class="lg:hidden text-white p-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+      class="lg:hidden text-white p-2 rounded outline-none transition-colors focus-visible:bg-white/15 focus-visible:text-blue-300"
       aria-label="Abrir menú principal"
       aria-expanded="false"
       aria-controls="nav-menu"
@@ -51,7 +51,7 @@ const { items } = menuData.data
                 <div class="dropdown-wrapper">
                   <button
                     id={`dbtn-${index}`}
-                    class="dropdown-btn flex items-center gap-1 w-full text-left text-slate-300 hover:text-white focus:text-white font-medium py-2 lg:py-0 transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                    class="dropdown-btn flex items-center gap-1 w-full text-left text-slate-300 hover:text-white font-medium py-2 lg:py-0 transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
                     aria-expanded="false"
                     aria-controls={`dmenu-${index}`}
                     aria-haspopup="true"
@@ -75,17 +75,19 @@ const { items } = menuData.data
 
                   <ul
                     id={`dmenu-${index}`}
-                    class="dropdown-menu hidden lg:absolute lg:top-full lg:left-0 lg:w-64 bg-slate-800 lg:bg-slate-900 border border-white/10 rounded-lg p-2 mt-2 lg:mt-4 shadow-2xl transition-all duration-200 z-50"
+                    class="dropdown-menu hidden lg:absolute lg:top-full lg:left-0 lg:w-64 bg-slate-800 bg-slate-900 rounded-lg p-2 mt-2 lg:mt-4 shadow-2xl transition-all duration-200 z-50"
                   >
                     {item.children.map((child) => (
                       <li>
                         <a
                           href={child.href}
-                          class="block px-4 py-3 rounded-md hover:bg-white/5 focus:bg-white/10 text-white font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 inset-ring"
+                          class="block px-4 py-3 rounded-md text-white font-medium transition-colors outline-none hover:bg-white/5 focus-visible:bg-blue-600 focus-visible:text-white"
                         >
                           {child.label}
                           {child.description && (
-                            <span class="block text-sm text-slate-400 mt-0.5">{child.description}</span>
+                            <span class="block text-sm text-slate-400 mt-0.5 group-focus-visible:text-blue-100">
+                              {child.description}
+                            </span>
                           )}
                         </a>
                       </li>
@@ -93,9 +95,10 @@ const { items } = menuData.data
                   </ul>
                 </div>
               ) : (
+                /* STANDARD LINKS: Focus uses text color + underline */
                 <a
                   href={item.href}
-                  class="block text-slate-300 hover:text-white focus:text-white font-medium py-2 lg:py-0 transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  class="block text-slate-300 hover:text-white font-medium py-2 lg:py-0 transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
                 >
                   {item.label}
                 </a>

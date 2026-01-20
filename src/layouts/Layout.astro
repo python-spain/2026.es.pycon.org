@@ -1,11 +1,11 @@
 ---
 import '../style/global.css'
-import '@fontsource-variable/jetbrains-mono'
+import '@fontsource-variable/outfit'
 import { ClientRouter } from 'astro:transitions'
 
 interface Props {
   title: string
-  description?: string // Optional (?)
+  description?: string
 }
 
 const { title, description = 'PyconES 2026' } = Astro.props
@@ -17,7 +17,7 @@ const { title, description = 'PyconES 2026' } = Astro.props
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/2026.es.pycon.org/favicon.svg" />
+    <link rel="icon" type="image/png" href="/logoBAD.png" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
@@ -26,37 +26,23 @@ const { title, description = 'PyconES 2026' } = Astro.props
   </head>
 
   <body
-    class="bg-slate-900 text-white antialiased h-screen flex flex-col justify-center bg-linear-to-r from-gray to-blue-900 bg-radial"
+    class="bg-[#1C1514] text-white antialiased h-screen flex flex-col justify-center overflow-hidden selection:bg-pycon-orange selection:text-white"
   >
-    <slot />
+    <div
+      class="absolute inset-0 z-0 opacity-[0.03] pointer-events-none mix-blend-overlay"
+      style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 34px 34px;"
+    >
+    </div>
+
+    <div class="relative z-10 w-full h-full flex flex-col justify-center items-center">
+      <slot />
+    </div>
   </body>
 </html>
 
 <style is:global>
-  /* Global CSS styles (Vanilla CSS) */
-
-  :root {
-    /* If you want to define native CSS variables */
-    --accent: 136, 58, 234;
-  }
-
   html {
-    font-family: system-ui, sans-serif;
-    scroll-behavior: smooth; /* Smooth scroll when navigating by anchors (#) */
-  }
-
-  /* Scrollbar customization (optional, Midudev style) */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #0f172a;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #334155;
-    border-radius: 5px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    font-family: 'Outfit Variable', system-ui, sans-serif;
+    scroll-behavior: smooth;
   }
 </style>

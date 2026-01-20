@@ -10,42 +10,38 @@ import { SPONSORS_EMAIL } from './constants'
       <img src="/logoBAD.png" alt="PyConES 2026" class="w-32 h-auto" />
 
       <h1
-        class="font-sans font-bold tracking-tighter leading-none select-none text-white flex flex-col items-center"
+        class="font-sans font-bold tracking-tighter leading-none text-white flex flex-col items-center"
         aria-label="PyCon Barcelona 2026"
       >
-        <div class="text-8xl md:text-9xl flex items-baseline relative z-10 ml-[-0.05em]">
-          <span>p</span>
-
+        <div class="text-8xl md:text-9xl flex items-baseline relative z-10 ml-[-0.05em]" aria-hidden="true">
+          <span>P</span>
           <span class="relative mx-[1px]">
             y
             <span
               class="absolute top-[62%] left-[10%] w-[50%] h-[10%] bg-[#1C1514] -rotate-45 pointer-events-none block"
             ></span>
           </span>
-
-          <span>c</span>
-
+          <span>C</span>
           <span class="relative mx-[2px]">
             o
             <span
               class="absolute top-[35%] left-[42%] w-[12%] h-[50%] bg-white rotate-[30deg] rounded-sm pointer-events-none block"
             ></span>
           </span>
-
-          <span>n</span>
+          <span>nES</span>
         </div>
 
-        <div class="flex items-center justify-center gap-4 mt-2 w-full pl-2">
+        <div class="flex items-center justify-center gap-4 mt-2 w-full pl-2" aria-hidden="true">
           <span class="text-3xl md:text-5xl font-medium tracking-[0.2em] uppercase text-white">
             Barcelona
           </span>
-
           <div class="flex flex-col text-sm md:text-base font-bold leading-[0.85] text-white/90 text-left">
             <span class="text-2xl -mb-2">20</span>
             <span class="text-2xl">26</span>
           </div>
         </div>
       </h1>
+
       <div
         class="mt-8 flex items-center gap-3 text-lg md:text-xl font-medium tracking-widest uppercase text-white/90"
       >
@@ -56,28 +52,36 @@ import { SPONSORS_EMAIL } from './constants'
         <span class="w-1.5 h-1.5 rounded-full bg-[#F06449]"></span>
       </div>
 
-      <div id="actions" class="mt-12 animate-fade-in opacity-0">
+      <div
+        id="actions"
+        class="mt-12 opacity-0 motion-safe:animate-fade-in motion-reduce:opacity-100 relative"
+      >
         <button
           id="sponsor-btn"
           type="button"
           data-email={SPONSORS_EMAIL}
-          class="group px-7 py-3 bg-white text-[#1C1514] font-sans font-bold text-lg rounded-full hover:bg-[#F06449] hover:text-white transition-all duration-300 shadow-lg cursor-pointer flex items-center gap-2"
+          class="group px-7 py-3 bg-white text-[#1C1514] font-sans font-bold text-lg rounded-full
+                 hover:bg-[#F06449] hover:text-white transition-all duration-300 shadow-lg cursor-pointer
+                 flex items-center gap-2
+                 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#F06449]/50"
         >
-          <span>BECOME A SPONSOR</span>
+          <span id="btn-text">BECOME A SPONSOR</span>
         </button>
-        <div id="copy-confirmation" class="hidden text-[#F06449] font-sans font-bold mt-4">
-          ¡Email copiado al portapapeles!
-        </div>
+
+        <div id="copy-status" role="status" class="sr-only" aria-live="polite"></div>
       </div>
     </div>
   </main>
 </Layout>
 
 <style>
-  .animate-fade-in {
-    animation: fadeIn 1s ease-out forwards;
-    animation-delay: 0.5s;
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-fade-in {
+      animation: fadeIn 1s ease-out forwards;
+      animation-delay: 0.5s;
+    }
   }
+
   @keyframes fadeIn {
     to {
       opacity: 1;
@@ -88,18 +92,26 @@ import { SPONSORS_EMAIL } from './constants'
 <script>
   const init = () => {
     const sponsorBtn = document.getElementById('sponsor-btn')
-    const copyConfirmation = document.getElementById('copy-confirmation')
+    const btnText = document.getElementById('btn-text')
+    const statusRegion = document.getElementById('copy-status')
+
     const email = sponsorBtn?.dataset.email || 'sponsors@es.python.org'
 
-    if (sponsorBtn && copyConfirmation && email) {
+    if (sponsorBtn && btnText && statusRegion) {
       sponsorBtn.onclick = async () => {
         try {
           await navigator.clipboard.writeText(email)
-          sponsorBtn.classList.add('hidden')
-          copyConfirmation.classList.remove('hidden')
+
+          const originalText = btnText.innerText
+
+          btnText.innerText = '¡Email Copiado!'
+          sponsorBtn.classList.add('bg-[#F06449]', 'text-white')
+          statusRegion.innerText = 'Email copiado al portapapeles'
+
           setTimeout(() => {
-            copyConfirmation.classList.add('hidden')
-            sponsorBtn.classList.remove('hidden')
+            btnText.innerText = originalText
+            sponsorBtn.classList.remove('bg-[#F06449]', 'text-white')
+            statusRegion.innerText = ''
           }, 2000)
         } catch (err) {
           window.location.href = `mailto:${email}`

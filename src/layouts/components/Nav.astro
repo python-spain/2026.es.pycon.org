@@ -1,7 +1,8 @@
 ---
 import { getEntry } from 'astro:content'
+import { Astronav, MenuItems, MenuIcon } from 'astro-navbar'
+import { ClientRouter } from 'astro:transitions'
 
-// load menu data
 const menuData = await getEntry('menu', 'main')
 
 if (!menuData) {
@@ -9,196 +10,248 @@ if (!menuData) {
 }
 
 const { items } = menuData.data
+const currentPath = Astro.url.pathname
+
+// FIX: Función segura que no falla si el item no tiene href
+function isItemActive(href?: string | null) {
+  if (!href || !currentPath) return false
+  const normalize = (path: string) => path.replace(/\/$/, '')
+  return normalize(currentPath) === normalize(href)
+}
 ---
 
-<header class="fixed top-0 w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/10">
+<ClientRouter />
+
+<header class="fixed top-0 w-full z-[100] bg-slate-900/95 backdrop-blur-md border-b border-white/10">
   <div class="container mx-auto px-4 h-20 flex items-center justify-between">
-    <a
-      href="/"
-      class="text-2xl font-bold font-mono text-white focus-visible:ring-2 focus-visible:ring-blue-400 rounded outline-none"
-    >
-      PyCon<span class="text-blue-500">ES</span>
-    </a>
+    <Astronav>
+      <div class="flex w-full lg:w-auto items-center justify-between">
+        <a
+          href="/"
+          class="text-2xl font-bold font-mono tracking-tighter text-white rounded px-2 py-1 outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+          aria-label="PyCon ES - Ir al inicio"
+        >
+          PyCon<span class="text-blue-500">ES</span>
+        </a>
 
-    <button
-      id="mobile-menu-btn"
-      class="lg:hidden text-white p-2 rounded focus-visible:ring-2 focus-visible:ring-blue-400 outline-none"
-      aria-label="Abrir menú principal"
-      aria-expanded="false"
-      aria-controls="nav-menu"
-    >
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          class="menu-icon-path"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16m-7 6h7"></path>
-      </svg>
-    </button>
+        <div class="block lg:hidden">
+          <button
+            id="mobile-menu-trigger"
+            aria-label="Alternar menú móvil"
+            class="rounded p-1 text-white hover:bg-white/10 outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+          >
+            <MenuIcon class="w-8 h-8 pointer-events-none" />
+          </button>
+        </div>
+      </div>
 
-    <nav
-      id="nav-menu"
-      class="hidden absolute top-20 left-0 w-full bg-slate-900 lg:static lg:w-auto lg:bg-transparent lg:flex lg:items-center p-4 lg:p-0 border-b border-white/10 lg:border-none shadow-xl lg:shadow-none"
-    >
-      <ul class="flex flex-col lg:flex-row gap-2 lg:gap-8">
-        {
-          items.map((item, index) => (
-            <li class="relative">
-              {item.children ? (
-                <div class="dropdown-wrapper group">
-                  <button
-                    id={`dbtn-${index}`}
-                    class="dropdown-btn flex items-center gap-1 w-full text-left text-slate-300 hover:text-white font-medium py-2 lg:py-0 transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
-                    aria-expanded="false"
-                    aria-controls={`dmenu-${index}`}
-                    aria-haspopup="true"
-                  >
-                    {item.label}
-                    <svg
-                      class="w-4 h-4 transition-transform duration-200 icon-chevron"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
+      <MenuItems class="hidden lg:flex w-full lg:w-auto">
+        <ul class="flex flex-col lg:flex-row gap-2 lg:gap-8 mt-4 lg:mt-0 pb-4 lg:pb-0">
+          {
+            items.map((item) => {
+              const active = isItemActive(item.href)
 
-                  {/* Dropdown Menu */}
-                  <ul
-                    id={`dmenu-${index}`}
-                    class="dropdown-menu hidden lg:absolute lg:top-full lg:left-0 lg:w-64 bg-slate-900 rounded-lg p-2 mt-2 lg:mt-4 shadow-2xl border border-white/10"
-                  >
-                    {item.children.map((child) => (
-                      <li>
-                        <a
-                          href={child.href}
-                          class="block px-4 py-3 rounded-md text-white font-medium hover:bg-white/5 focus-visible:bg-blue-600 focus-visible:text-white outline-none"
+              return (
+                <li class="relative group">
+                  {item.children ? (
+                    <>
+                      <button
+                        type="button"
+                        class="dropdown-btn flex items-center gap-1 w-full text-left font-medium py-2 lg:py-0 transition-colors rounded outline-none focus-visible:ring-2 focus-visible:ring-blue-400 text-slate-300 hover:text-white"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                      >
+                        {item.label}
+                        <svg
+                          class="arrow-icon w-4 h-4 transition-transform duration-200 pointer-events-none"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
                         >
-                          {child.label}
-                          {child.description && (
-                            <span class="block text-sm text-slate-400 mt-0.5">{child.description}</span>
-                          )}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
-                <a
-                  href={item.href}
-                  class="block text-slate-300 hover:text-white font-medium py-2 lg:py-0 transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
-                >
-                  {item.label}
-                </a>
-              )}
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+
+                      <div class="dropdown-content hidden absolute top-full left-0 w-64 pt-2 z-50">
+                        <div class="bg-slate-900 rounded-lg p-2 shadow-xl border border-white/10 ring-1 ring-black/5">
+                          <ul>
+                            {item.children.map((child) => (
+                              <li>
+                                <a
+                                  href={child.href}
+                                  class="block px-4 py-3 rounded-md text-white font-medium transition-colors hover:bg-white/5 outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-slate-800"
+                                >
+                                  {child.label}
+                                  {child.description && (
+                                    <span class="block text-sm text-slate-400 mt-0.5 pointer-events-none">
+                                      {child.description}
+                                    </span>
+                                  )}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <a
+                      href={item.href}
+                      class:list={[
+                        'block font-medium py-2 lg:py-0 transition-colors rounded outline-none focus-visible:ring-2 focus-visible:ring-blue-400',
+                        active ? 'text-white cursor-default' : 'text-slate-300 hover:text-white',
+                      ]}
+                      aria-current={active ? 'page' : undefined}
+                    >
+                      {item.label}
+                    </a>
+                  )}
+                </li>
+              )
+            })
+          }
+        </ul>
+      </MenuItems>
+    </Astronav>
   </div>
 </header>
 
+<style>
+  /* NOTA: Hemos eliminado la apertura por :hover (CSS) intencionalmente.
+     Esto asegura que el comportamiento de Toggle (abrir/cerrar) mediante click
+     sea consistente y no entre en conflicto con el estado del ratón.
+  */
+
+  /* Clases de estado que el JS activará/desactivará */
+  .show-dropdown {
+    display: block !important;
+    animation: fadeIn 0.15s ease-out forwards;
+  }
+
+  .rotate-arrow {
+    transform: rotate(180deg);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
 <script>
-  // Improved logic to comply with WAI-ARIA and the Bootstrap pattern
-  document.addEventListener('astro:page-load', () => {
-    const mobileBtn = document.getElementById('mobile-menu-btn')
-    const navMenu = document.getElementById('nav-menu')
+  function setupInteractiveMenu() {
     const dropdownBtns = document.querySelectorAll('.dropdown-btn')
 
-    // Helper function to close all dropdowns
-    const closeAllDropdowns = () => {
-      dropdownBtns.forEach((btn) => {
-        btn.setAttribute('aria-expanded', 'false')
-        btn.nextElementSibling?.classList.add('hidden')
-        btn.querySelector('.icon-chevron')?.classList.remove('rotate-180')
+    // Función centralizada para limpiar todo el estado (cerrar todo)
+    const closeAll = () => {
+      document.querySelectorAll('.dropdown-content').forEach((el) => el.classList.remove('show-dropdown'))
+      document.querySelectorAll('.arrow-icon').forEach((el) => el.classList.remove('rotate-arrow'))
+      document.querySelectorAll('.dropdown-btn').forEach((el) => el.setAttribute('aria-expanded', 'false'))
+    }
+
+    // 1. GESTIÓN DE DROPDOWNS (Click Toggle)
+    dropdownBtns.forEach((btn) => {
+      // Clonamos para eliminar listeners antiguos (Crucial para ClientRouter)
+      const newBtn = btn.cloneNode(true) as HTMLElement
+      btn.parentNode?.replaceChild(newBtn, btn)
+
+      newBtn.addEventListener('click', (e) => {
+        e.stopPropagation() // Evitar que el evento suba y cierre inmediatamente
+
+        // 1. Guardamos el estado actual ANTES de cerrar todo
+        const wasExpanded = newBtn.getAttribute('aria-expanded') === 'true'
+
+        // 2. Cerramos todos los menús (limpieza general)
+        closeAll()
+
+        // 3. Lógica Toggle:
+        // Si NO estaba abierto, lo abrimos.
+        // Si SÍ estaba abierto, no hacemos nada (ya lo cerró closeAll), logrando el efecto de cerrar.
+        if (!wasExpanded) {
+          const content = newBtn.nextElementSibling as HTMLElement
+          const arrow = newBtn.querySelector('.arrow-icon')
+
+          if (content) {
+            content.classList.add('show-dropdown')
+            newBtn.setAttribute('aria-expanded', 'true')
+            arrow?.classList.add('rotate-arrow')
+          }
+        }
+      })
+    })
+
+    // 2. CERRAR AL HACER CLICK FUERA
+    const handleOutsideClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      // Si el click NO es dentro de un grupo (dropdown), cerramos todo
+      if (!target.closest('.group')) {
+        closeAll()
+      }
+    }
+
+    // Gestión limpia de eventos globales (Evita duplicados en navegación)
+    document.removeEventListener('click', handleOutsideClick)
+    document.addEventListener('click', handleOutsideClick)
+
+    // 3. TECLA ESCAPE (Accesibilidad)
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeAll()
+        // Devolver foco al botón que estaba abierto
+        const openBtn = document.querySelector('.dropdown-btn[aria-expanded="true"]') as HTMLElement
+        if (openBtn) openBtn.focus()
+      }
+    }
+    document.removeEventListener('keydown', handleEsc)
+    document.addEventListener('keydown', handleEsc)
+
+    // 4. MÓVIL (Lógica Toggle para AstroNavbar)
+    const mobileBtn = document.getElementById('mobile-menu-trigger')
+    if (mobileBtn) {
+      const newMobileBtn = mobileBtn.cloneNode(true) as HTMLElement
+      mobileBtn.parentNode?.replaceChild(newMobileBtn, mobileBtn)
+
+      newMobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation()
+        const menu =
+          document.querySelector('.astronav-items') || document.querySelector('nav > div:last-child')
+        if (menu) {
+          menu.classList.toggle('hidden')
+          menu.classList.toggle('flex')
+        }
       })
     }
 
-    // 1. Mobile Toggle
-    mobileBtn?.addEventListener('click', (e) => {
-      e.stopPropagation()
-      const isHidden = navMenu?.classList.contains('hidden')
-      navMenu?.classList.toggle('hidden')
-      const isExpanded = !isHidden
-      mobileBtn.setAttribute('aria-expanded', String(isExpanded))
-      mobileBtn.setAttribute('aria-label', isExpanded ? 'Cerrar menú' : 'Abrir menú')
+    // 5. ANTI-FLICKER (Solo si es el mismo enlace)
+    const links = document.querySelectorAll('a[href]')
+    links.forEach((link) => {
+      const newLink = link.cloneNode(true) as HTMLAnchorElement
+      link.parentNode?.replaceChild(newLink, link)
 
-      const path = mobileBtn.querySelector('path')
-      if (isExpanded) {
-        path?.setAttribute('d', 'M6 18L18 6M6 6l12 12')
-      } else {
-        path?.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7')
-      }
-    })
-
-    // 2. Dropdown Logic (Desktop & Mobile)
-    dropdownBtns.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation() // Prevent immediate closing by click outside
-        const menu = btn.nextElementSibling
-        const icon = btn.querySelector('.icon-chevron')
-        const isExpanded = btn.getAttribute('aria-expanded') === 'true'
-
-        // If desktop, close other menus before opening this one
-        if (window.innerWidth >= 1024 && !isExpanded) {
-          closeAllDropdowns()
-        }
-
-        // Toggle state
-        if (isExpanded) {
-          btn.setAttribute('aria-expanded', 'false')
-          menu?.classList.add('hidden')
-          icon?.classList.remove('rotate-180')
-        } else {
-          btn.setAttribute('aria-expanded', 'true')
-          menu?.classList.remove('hidden')
-          icon?.classList.add('rotate-180')
-        }
-      })
-
-      // Arrow support (optional but recommended by reviewer)
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault() // Prevent scroll
-          if (btn.getAttribute('aria-expanded') === 'false') btn.click()
-          // Move focus to first element of submenu
-          const firstLink = btn.nextElementSibling?.querySelector('a') as HTMLElement
-          firstLink?.focus()
+      newLink.addEventListener('click', (e) => {
+        // Solo prevenimos la acción si vamos EXACTAMENTE a la misma página
+        if (newLink.href === window.location.href) {
+          e.preventDefault()
         }
       })
     })
+  }
 
-    // 3. Click Outside (Close all)
-    document.addEventListener('click', (e) => {
-      const target = e.target as Node
-      if (!navMenu?.contains(target) && !mobileBtn?.contains(target)) {
-        // Close mobile menu
-        if (!navMenu?.classList.contains('hidden') && window.innerWidth < 1024) {
-          mobileBtn?.click()
-        }
-        // Close desktop dropdowns
-        closeAllDropdowns()
-      }
-    })
+  // Ejecución inicial
+  setupInteractiveMenu()
 
-    // 4. ESC Key (Strict WCAG requirement)
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeAllDropdowns()
-        // If mobile menu is open, close it
-        if (navMenu && !navMenu.classList.contains('hidden') && window.innerWidth < 1024) {
-          mobileBtn?.click()
-          mobileBtn?.focus()
-        }
-      }
-    })
-  })
+  // Re-ejecución en navegación SPA (View Transitions)
+  document.addEventListener('astro:page-load', setupInteractiveMenu)
 </script>

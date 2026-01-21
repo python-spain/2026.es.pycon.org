@@ -1,0 +1,21 @@
+---
+import { Accordion } from 'accessible-astro-components'
+import NavDropdown from './NavDropdown.astro'
+import NavItem from './NavItem.astro'
+
+const { items } = Astro.props
+---
+
+<div class="block lg:hidden w-full px-4 pb-4">
+  <Accordion>
+    {
+      items.map((item: any) =>
+        item.children ? (
+          <NavDropdown item={item} />
+        ) : (
+          <NavItem item={item} class="text-lg font-medium text-slate-200 hover:text-white py-2" />
+        ),
+      )
+    }
+  </Accordion>
+</div>

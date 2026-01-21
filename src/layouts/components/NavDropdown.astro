@@ -1,0 +1,121 @@
+---
+import { AccordionItem, Link } from 'accessible-astro-components'
+
+const { item } = Astro.props
+---
+
+<AccordionItem header={item.label} variant="chevron" title={item.label} class="nav-dropdown group relative">
+  <ul class="dropdown-content flex flex-col gap-2 p-2">
+    {
+      item.children.map((child: any) => (
+        <li>
+          <Link
+            href={child.href}
+            class="block px-4 py-1 rounded-md text-white font-medium hover:bg-white/5 focus-visible:bg-blue-600 focus-visible:text-white outline-none"
+            aria-current={Astro.url.pathname === child.href ? 'page' : undefined}
+          >
+            {child.label}
+            {child.description && (
+              <span class="block text-sm text-slate-400 mt-0.5">{child.description}</span>
+            )}
+          </Link>
+        </li>
+      ))
+    }
+  </ul>
+</AccordionItem>
+
+<script>
+  // Close dropdowns when clicking outside (Desktop only)
+  document.addEventListener('click', (event) => {
+    // Only run on desktop where we treat these as dropdowns
+    if (window.innerWidth < 1024) return
+
+    const target = event.target as HTMLElement
+    const dropdowns = document.querySelectorAll('.nav-dropdown details[open]')
+
+    dropdowns.forEach((details) => {
+      if (!details.contains(target)) {
+        details.removeAttribute('open')
+      }
+    })
+  })
+</script>
+
+<style is:global>
+  /* Fix spacing on mobile */
+  .nav-dropdown details {
+    margin-bottom: 0 !important;
+    border: none !important;
+  }
+
+  .nav-dropdown summary {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /*
+    Desktop Override Styles for AccordionItem
+    This makes it float like a dropdown on large screens
+    while behaving like a normal accordion on mobile.
+  */
+  @media (min-width: 1024px) {
+    .nav-dropdown .accordion__header {
+      background: transparent;
+      border: none;
+      padding: 0;
+      color: #cbd5e1; /* text-slate-300 */
+      font-weight: 500;
+      width: 100%;
+      cursor: pointer;
+      transition: color 0.15s ease-in-out;
+    }
+
+    /* Active state (when open) AND Hover state AND Focus state */
+    .nav-dropdown details[open] > summary .heading,
+    .nav-dropdown details summary:focus .heading,
+    .nav-dropdown details summary:focus-visible .heading,
+    .nav-dropdown details summary:hover .heading,
+    .nav-dropdown details[open] > summary .accordion__header,
+    .nav-dropdown .accordion__header:hover,
+    .nav-dropdown .accordion__header:focus,
+    .nav-dropdown .accordion__header:focus-visible {
+      color: white !important;
+    }
+
+    /* Hide the default background of accordion content */
+    .nav-dropdown .content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 16rem; /* w-64 */
+      background-color: #0f172a; /* bg-slate-900 */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      z-index: 50;
+      padding: 0;
+      margin-top: 1rem;
+      display: none; /* Key fix: hide by default in absolute mode */
+    }
+
+    /* Ensure content is visible when expanded */
+    .nav-dropdown details[open] .content {
+      display: block;
+      animation: fadeIn 0.1s ease-in-out;
+    }
+    .content {
+      margin-top: none;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+</style>

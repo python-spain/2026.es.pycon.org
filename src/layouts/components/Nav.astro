@@ -1,5 +1,7 @@
 ---
 import { getEntry } from 'astro:content'
+import NavMobile from './NavMobile.astro'
+import NavDesktop from './NavDesktop.astro'
 
 // load menu data
 const menuData = await getEntry('menu', 'main')
@@ -39,95 +41,32 @@ const { items } = menuData.data
 
     <nav
       id="nav-menu"
-      class="hidden absolute top-20 left-0 w-full bg-slate-900 lg:static lg:w-auto lg:bg-transparent lg:flex lg:items-center p-4 lg:p-0 border-b border-white/10 lg:border-none shadow-xl lg:shadow-none"
+      class="hidden absolute top-20 left-0 w-full bg-slate-900 lg:static lg:w-auto lg:bg-transparent lg:flex lg:items-center border-b border-white/10 lg:border-none shadow-xl lg:shadow-none overflow-y-auto max-h-[calc(100vh-5rem)] lg:overflow-visible lg:max-h-full"
     >
-      <ul class="flex flex-col lg:flex-row gap-2 lg:gap-8">
-        {
-          items.map((item, index) => (
-            <li class="relative">
-              {item.children ? (
-                <div class="dropdown-wrapper group">
-                  <button
-                    id={`dbtn-${index}`}
-                    class="dropdown-btn flex items-center gap-1 w-full text-left text-slate-300 hover:text-white font-medium py-2 lg:py-0 transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
-                    aria-expanded="false"
-                    aria-controls={`dmenu-${index}`}
-                    aria-haspopup="true"
-                  >
-                    {item.label}
-                    <svg
-                      class="w-4 h-4 transition-transform duration-200 icon-chevron"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
+      {/* Mobile Menu Structure using Accordion */}
+      <NavMobile items={items} />
 
-                  {/* Dropdown Menu */}
-                  <ul
-                    id={`dmenu-${index}`}
-                    class="dropdown-menu hidden lg:absolute lg:top-full lg:left-0 lg:w-64 bg-slate-900 rounded-lg p-2 mt-2 lg:mt-4 shadow-2xl border border-white/10"
-                  >
-                    {item.children.map((child) => (
-                      <li>
-                        <a
-                          href={child.href}
-                          class="block px-4 py-3 rounded-md text-white font-medium hover:bg-white/5 focus-visible:bg-blue-600 focus-visible:text-white outline-none"
-                        >
-                          {child.label}
-                          {child.description && (
-                            <span class="block text-sm text-slate-400 mt-0.5">{child.description}</span>
-                          )}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
-                <a
-                  href={item.href}
-                  class="block text-slate-300 hover:text-white font-medium py-2 lg:py-0 transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
-                >
-                  {item.label}
-                </a>
-              )}
-            </li>
-          ))
-        }
-      </ul>
+      {/* Desktop Menu Structure */}
+      <NavDesktop items={items} />
     </nav>
   </div>
 </header>
 
 <script>
-  // Improved logic to comply with WAI-ARIA and the Bootstrap pattern
+  // Simple logic for the mobile hamburger button toggle
+  // The dropdown logic is now handled internally by Accordion components
   document.addEventListener('astro:page-load', () => {
     const mobileBtn = document.getElementById('mobile-menu-btn')
     const navMenu = document.getElementById('nav-menu')
-    const dropdownBtns = document.querySelectorAll('.dropdown-btn')
 
-    // Helper function to close all dropdowns
-    const closeAllDropdowns = () => {
-      dropdownBtns.forEach((btn) => {
-        btn.setAttribute('aria-expanded', 'false')
-        btn.nextElementSibling?.classList.add('hidden')
-        btn.querySelector('.icon-chevron')?.classList.remove('rotate-180')
-      })
-    }
-
-    // 1. Mobile Toggle
     mobileBtn?.addEventListener('click', (e) => {
       e.stopPropagation()
       const isHidden = navMenu?.classList.contains('hidden')
       navMenu?.classList.toggle('hidden')
-      const isExpanded = !isHidden
+      // If it WAS hidden, it is NOW expanded (true).
+      // If it WAS NOT hidden, it is NOW closed (false).
+      const isExpanded = isHidden
+
       mobileBtn.setAttribute('aria-expanded', String(isExpanded))
       mobileBtn.setAttribute('aria-label', isExpanded ? 'Cerrar menú' : 'Abrir menú')
 
@@ -139,65 +78,16 @@ const { items } = menuData.data
       }
     })
 
-    // 2. Dropdown Logic (Desktop & Mobile)
-    dropdownBtns.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation() // Prevent immediate closing by click outside
-        const menu = btn.nextElementSibling
-        const icon = btn.querySelector('.icon-chevron')
-        const isExpanded = btn.getAttribute('aria-expanded') === 'true'
-
-        // If desktop, close other menus before opening this one
-        if (window.innerWidth >= 1024 && !isExpanded) {
-          closeAllDropdowns()
-        }
-
-        // Toggle state
-        if (isExpanded) {
-          btn.setAttribute('aria-expanded', 'false')
-          menu?.classList.add('hidden')
-          icon?.classList.remove('rotate-180')
-        } else {
-          btn.setAttribute('aria-expanded', 'true')
-          menu?.classList.remove('hidden')
-          icon?.classList.add('rotate-180')
-        }
-      })
-
-      // Arrow support (optional but recommended by reviewer)
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault() // Prevent scroll
-          if (btn.getAttribute('aria-expanded') === 'false') btn.click()
-          // Move focus to first element of submenu
-          const firstLink = btn.nextElementSibling?.querySelector('a') as HTMLElement
-          firstLink?.focus()
-        }
-      })
-    })
-
-    // 3. Click Outside (Close all)
+    // Click Outside to close mobile menu
     document.addEventListener('click', (e) => {
       const target = e.target as Node
-      if (!navMenu?.contains(target) && !mobileBtn?.contains(target)) {
-        // Close mobile menu
-        if (!navMenu?.classList.contains('hidden') && window.innerWidth < 1024) {
-          mobileBtn?.click()
-        }
-        // Close desktop dropdowns
-        closeAllDropdowns()
-      }
-    })
-
-    // 4. ESC Key (Strict WCAG requirement)
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeAllDropdowns()
-        // If mobile menu is open, close it
-        if (navMenu && !navMenu.classList.contains('hidden') && window.innerWidth < 1024) {
-          mobileBtn?.click()
-          mobileBtn?.focus()
-        }
+      if (
+        window.innerWidth < 1024 &&
+        !navMenu?.contains(target) &&
+        !mobileBtn?.contains(target) &&
+        !navMenu?.classList.contains('hidden')
+      ) {
+        mobileBtn?.click()
       }
     })
   })

@@ -1,0 +1,10 @@
+---
+import NavDropdown from './NavDropdown.astro'
+import NavItem from './NavItem.astro'
+
+const { items } = Astro.props
+---
+
+<ul class="hidden lg:flex lg:flex-row gap-2 lg:gap-8 items-center">
+  {items.map((item: any) => (item.children ? <NavDropdown item={item} /> : <NavItem item={item} />))}
+</ul>

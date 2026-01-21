@@ -2,6 +2,7 @@
 import '../style/global.css'
 import '@fontsource-variable/jetbrains-mono'
 import { ClientRouter } from 'astro:transitions'
+import { SkipLink } from 'accessible-astro-components'
 import Nav from './components/Nav.astro'
 
 interface Props {
@@ -28,12 +29,8 @@ const { title, description = 'PyconES 2026' } = Astro.props
 
   <body
     class="bg-slate-900 text-white antialiased h-screen flex flex-col justify-center bg-linear-to-r from-gray to-blue-900 bg-radial"
-    ><a
-      href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 bg-blue-600 text-white px-4 py-2 rounded shadow-lg font-bold"
-    >
-      Saltar al contenido principal
-    </a>
+  >
+    <SkipLink />
     <Nav />
     <main id="main-content" class="flex-grow">
       <slot />

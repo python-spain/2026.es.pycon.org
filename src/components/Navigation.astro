@@ -111,20 +111,14 @@ const { items } = menuData.data
     >
       <ul class="menu flex flex-col gap-2">
         {
-          items.map((item, index) => (
-            <li class:list={['menu-item', { 'has-dropdown': item.children }]}>
+          items.map((item) => (
+            <li class="menu-item">
               {item.children ? (
-                <>
-                  <button
-                    id={`mobile-dropdown-btn-${index}`}
-                    class="dropdown-trigger flex items-center gap-1 w-full text-left text-slate-300 hover:text-white font-medium py-2 transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    aria-controls={`mobile-dropdown-menu-${index}`}
-                  >
+                <details class="mobile-details">
+                  <summary class="flex items-center justify-between gap-1 w-full text-slate-300 hover:text-white font-medium py-2 transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4 cursor-pointer list-none">
                     {item.label}
                     <svg
-                      class="w-4 h-4 transition-transform duration-200"
+                      class="w-4 h-4 transition-transform duration-200 chevron-icon"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -137,25 +131,20 @@ const { items } = menuData.data
                         d="M19 9l-7 7-7-7"
                       />
                     </svg>
-                  </button>
-                  <ul
-                    id={`mobile-dropdown-menu-${index}`}
-                    class="submenu pl-4 mt-2"
-                    role="menu"
-                  >
+                  </summary>
+                  <ul class="pl-4 mt-2 flex flex-col gap-1">
                     {item.children.map((child) => (
-                      <li role="none">
+                      <li>
                         <a
                           href={child.href}
-                          class="submenu-item block px-4 py-3 rounded-md text-white font-medium transition-colors outline-none hover:bg-white/5 focus-visible:bg-blue-600 focus-visible:text-white"
-                          role="menuitem"
+                          class="block px-4 py-3 rounded-md text-white font-medium transition-colors outline-none hover:bg-white/5 focus-visible:bg-blue-600 focus-visible:text-white"
                         >
                           {child.label}
                         </a>
                       </li>
                     ))}
                   </ul>
-                </>
+                </details>
               ) : (
                 <a
                   href={item.href}
@@ -450,13 +439,17 @@ const { items } = menuData.data
     display: block;
   }
 
-  /* Dropdown menus in mobile */
-  .mobile-menu .submenu {
+  /* Mobile details/summary styling */
+  .mobile-details summary {
+    list-style: none;
+  }
+
+  .mobile-details summary::-webkit-details-marker {
     display: none;
   }
 
-  .mobile-menu .dropdown-trigger.show + .submenu {
-    display: block;
+  .mobile-details[open] .chevron-icon {
+    transform: rotate(180deg);
   }
 
   /* Desktop dropdown styles */

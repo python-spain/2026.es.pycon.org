@@ -516,10 +516,10 @@ const socialLinks = [
           <table class="pricing-table w-full border-collapse min-w-[900px]">
             <thead>
               <tr>
-                <th class="w-[200px] p-4 text-center border-b border-white/10 align-bottom pb-6">Beneficios</th>
+                <th scope="col" class="w-[200px] p-4 text-center border-b border-white/10 align-bottom pb-6">Beneficios</th>
                 {
                   tiers.map((t) => (
-                    <th class="p-4 text-center border-b border-white/10 align-bottom pb-6">
+                    <th scope="col" class="p-4 text-center border-b border-white/10 align-bottom pb-6">
                       <div class="text-2xl mb-1">{t.emoji}</div>
                       <div class="text-xl font-bold" style={`color: ${t.color}`}>
                         {t.name}
@@ -546,9 +546,9 @@ const socialLinks = [
                     </tr>
                     {category.rows.map((row) => (
                       <tr>
-                        <td class="p-4 text-left border-b border-white/10 text-gray-400 sticky left-0 bg-[#0a0a0a] border-r border-[#333] z-10 text-sm">
+                        <th scope="row" class="p-4 text-left border-b border-white/10 text-gray-400 sticky left-0 bg-[#0a0a0a] border-r border-[#333] z-10 text-sm font-normal">
                           {row.label}
-                        </td>
+                        </th>
                         {row.data.map((val) => (
                           <td
                             class:list={[

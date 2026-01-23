@@ -563,7 +563,19 @@ const socialLinks = [
                               },
                             ]}
                           >
-                            {val}
+                            {val === '✅' ? (
+                              <>
+                                <span aria-hidden="true">✅</span>
+                                <span class="sr-only">Incluido</span>
+                              </>
+                            ) : val === '🚫' ? (
+                              <>
+                                <span aria-hidden="true">🚫</span>
+                                <span class="sr-only">No incluido</span>
+                              </>
+                            ) : (
+                              val
+                            )}
                           </td>
                         ))}
                       </tr>

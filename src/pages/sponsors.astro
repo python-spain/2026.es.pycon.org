@@ -519,14 +519,18 @@ const socialLinks = [
                 <th scope="col" class="w-[200px] p-4 text-center border-b border-white/10 align-bottom pb-6">Beneficios</th>
                 {
                   tiers.map((t) => (
-                    <th scope="col" class="p-4 text-center border-b border-white/10 align-bottom pb-6">
-                      <div class="text-2xl mb-1">{t.emoji}</div>
-                      <div class="text-xl font-bold" style={`color: ${t.color}`}>
+                    <th
+                      scope="col"
+                      class="p-4 text-center border-b border-white/10 align-bottom pb-6"
+                      aria-label={`Plan ${t.name}. Precio ${t.price.replace('€', ' euros')}. ${t.limit}.`}
+                    >
+                      <div class="text-2xl mb-1" aria-hidden="true">{t.emoji}</div>
+                      <div class="text-xl font-bold" style={`color: ${t.color}`} aria-hidden="true">
                         {t.name}
                       </div>
-                      <div class="text-white text-2xl font-bold my-1">{t.price}</div>
-                      <div class="text-gray-500 text-xs font-normal">(sin IVA)</div>
-                      <div class="text-gray-500 text-sm font-normal">{t.limit}</div>
+                      <div class="text-white text-2xl font-bold my-1" aria-hidden="true">{t.price}</div>
+                      <div class="text-gray-500 text-xs font-normal" aria-hidden="true">(sin IVA)</div>
+                      <div class="text-gray-500 text-sm font-normal" aria-hidden="true">{t.limit}</div>
                     </th>
                   ))
                 }

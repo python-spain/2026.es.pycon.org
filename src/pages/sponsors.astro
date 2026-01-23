@@ -543,12 +543,14 @@ const socialLinks = [
                 benefitCategories.map((category) => (
                   <>
                     <tr>
-                      <td
+                      <th
+                        scope="row"
                         colspan="6"
                         class="p-4 text-left font-bold text-green-400 bg-[#0f0f0f] border-b border-white/10"
+                        aria-label={category.category}
                       >
-                        {category.category}
-                      </td>
+                        <span aria-hidden="true">{category.category}</span>
+                      </th>
                     </tr>
                     {category.rows.map((row) => (
                       <tr>

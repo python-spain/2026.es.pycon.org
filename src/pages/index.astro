@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import '@fontsource-variable/jetbrains-mono'
-import { SPONSORS_EMAIL } from './constants'
+import { SPONSORS_EMAIL, SPONSORS_SUBJECT } from './constants'
 ---
 
 <Layout title="PyConES 2026">
@@ -29,6 +29,7 @@ import { SPONSORS_EMAIL } from './constants'
         id="actions"
         class="mt-12 flex flex-col md:flex-row gap-6 justify-center items-center opacity-0 transition-opacity duration-1000 ease-in"
       >
+      <a href={`mailto:${SPONSORS_EMAIL}?subject=${encodeURIComponent(SPONSORS_SUBJECT)}`}>
         <button
           id="sponsor-btn"
           type="button"
@@ -49,6 +50,7 @@ import { SPONSORS_EMAIL } from './constants'
           </span>
           <span id="sponsor-hint" class="sr-only">Copia el email de contacto para patrocinadores</span>
         </button>
+        </a>
 
         <div
           id="copy-confirmation"
@@ -129,33 +131,6 @@ import { SPONSORS_EMAIL } from './constants'
       }, 1500)
     }
 
-    // COPY MAIL LOGIC
-    const sponsorBtn = document.getElementById('sponsor-btn')
-    const copyConfirmation = document.getElementById('copy-confirmation')
-    const email = sponsorBtn?.dataset.email as string
-
-    if (sponsorBtn && copyConfirmation && email) {
-      sponsorBtn.onclick = async () => {
-        try {
-          await navigator.clipboard.writeText(email)
-
-          // Hide button, show confirmation
-          sponsorBtn.classList.add('hidden')
-          copyConfirmation.classList.remove('hidden')
-          copyConfirmation.focus()
-
-          setTimeout(() => {
-            // Hide confirmation, show button and restore focus
-            copyConfirmation.classList.add('hidden')
-            sponsorBtn.classList.remove('hidden')
-            sponsorBtn.focus()
-          }, 2000)
-        } catch (err) {
-          console.error('Failed to copy', err)
-          window.location.href = `mailto:${email}`
-        }
-      }
-    }
   }
 
   //not needed now

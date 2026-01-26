@@ -1,0 +1,94 @@
+---
+import { getEntry } from 'astro:content'
+import NavMobile from './NavMobile.astro'
+import NavDesktop from './NavDesktop.astro'
+
+// load menu data
+const menuData = await getEntry('menu', 'main')
+
+if (!menuData) {
+  throw new Error('No se encontró el archivo src/content/menu/main.json')
+}
+
+const { items } = menuData.data
+---
+
+<header class="fixed top-0 w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/10">
+  <div class="container mx-auto px-4 h-20 flex items-center justify-between">
+    <a
+      href="/"
+      class="text-2xl font-bold font-mono text-white focus-visible:ring-2 focus-visible:ring-blue-400 rounded outline-none"
+    >
+      PyCon<span class="text-blue-500">ES</span>
+    </a>
+
+    <button
+      id="mobile-menu-btn"
+      class="lg:hidden text-white p-2 rounded focus-visible:ring-2 focus-visible:ring-blue-400 outline-none"
+      aria-label="Abrir menú principal"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+    >
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          class="menu-icon-path"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+
+    <nav
+      id="nav-menu"
+      class="hidden absolute top-20 left-0 w-full bg-slate-900 lg:static lg:w-auto lg:bg-transparent lg:flex lg:items-center border-b border-white/10 lg:border-none shadow-xl lg:shadow-none overflow-y-auto max-h-[calc(100vh-5rem)] lg:overflow-visible lg:max-h-full"
+    >
+      {/* Mobile Menu Structure using Accordion */}
+      <NavMobile items={items} />
+
+      {/* Desktop Menu Structure */}
+      <NavDesktop items={items} />
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Simple logic for the mobile hamburger button toggle
+  // The dropdown logic is now handled internally by Accordion components
+  document.addEventListener('astro:page-load', () => {
+    const mobileBtn = document.getElementById('mobile-menu-btn')
+    const navMenu = document.getElementById('nav-menu')
+
+    mobileBtn?.addEventListener('click', (e) => {
+      e.stopPropagation()
+      const isHidden = navMenu?.classList.contains('hidden')
+      navMenu?.classList.toggle('hidden')
+      // If it WAS hidden, it is NOW expanded (true).
+      // If it WAS NOT hidden, it is NOW closed (false).
+      const isExpanded = isHidden
+
+      mobileBtn.setAttribute('aria-expanded', String(isExpanded))
+      mobileBtn.setAttribute('aria-label', isExpanded ? 'Cerrar menú' : 'Abrir menú')
+
+      const path = mobileBtn.querySelector('path')
+      if (isExpanded) {
+        path?.setAttribute('d', 'M6 18L18 6M6 6l12 12')
+      } else {
+        path?.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7')
+      }
+    })
+
+    // Click Outside to close mobile menu
+    document.addEventListener('click', (e) => {
+      const target = e.target as Node
+      if (
+        window.innerWidth < 1024 &&
+        !navMenu?.contains(target) &&
+        !mobileBtn?.contains(target) &&
+        !navMenu?.classList.contains('hidden')
+      ) {
+        mobileBtn?.click()
+      }
+    })
+  })
+</script>

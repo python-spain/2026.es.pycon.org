@@ -1,0 +1,18 @@
+---
+import { Link } from 'accessible-astro-components'
+
+const { item, class: className } = Astro.props
+---
+
+<li class="relative">
+  <Link
+    href={item.href}
+    class:list={[
+      'block text-slate-300 hover:text-white font-medium transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4',
+      className,
+    ]}
+    aria-current={Astro.url.pathname === item.href ? 'page' : undefined}
+  >
+    {item.label}
+  </Link>
+</li>

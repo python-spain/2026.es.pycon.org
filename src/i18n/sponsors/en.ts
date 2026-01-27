@@ -177,7 +177,7 @@ export const en = {
       {
         name: 'Bronze',
         emoji: '🟤',
-        price: '€1,000',
+        price: 'Price €1,000',
         limit: 'Unlimited',
         color: '#d97706',
         bg: 'rgba(180, 83, 9, 0.1)',
@@ -185,7 +185,7 @@ export const en = {
       {
         name: 'Silver',
         emoji: '⚪',
-        price: '€3,000',
+        price: 'Price €3,000',
         limit: '10 avail.',
         color: '#9ca3af',
         bg: 'rgba(107, 114, 128, 0.1)',
@@ -201,7 +201,7 @@ export const en = {
       {
         name: 'Platinum',
         emoji: '🏆',
-        price: '€8,000',
+        price: 'Price €8,000',
         limit: '3 avail.',
         color: '#4ade80',
         bg: 'rgba(34, 197, 94, 0.1)',
@@ -209,62 +209,66 @@ export const en = {
       {
         name: 'Main',
         emoji: '🏰',
-        price: 'Custom',
+        price: 'Price Custom',
         limit: '1 avail.',
         color: '#c084fc',
         bg: 'rgba(168, 85, 247, 0.1)',
       },
     ],
   },
-  benefitCategories: [
-    {
-      category: '🔢 Availability',
-      rows: [
-        { label: 'Limit number', data: ['Unlimited', '10', '6', '3', '1'] },
-        { label: 'Extra paperwork', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
-      ],
-    },
-    {
-      category: '🏢 Venue Space',
-      rows: [{ label: 'Stand/booth', data: ['🚫', '🚫', 'Small', 'Medium', 'Large'] }],
-    },
-    {
-      category: '🙋🏽‍♀️ Conference Tickets',
-      rows: [
-        { label: 'Included tickets', data: ['1', '2', '5', '12', 'Custom'] },
-        { label: 'Speakers dinner (2p)', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
-      ],
-    },
-    {
-      category: '🌟 Brand Visibility',
-      rows: [
-        { label: 'Logo on web', data: ['Small', 'Small', 'Medium', 'Large', 'Header'] },
-        { label: 'Social Media post', data: ['1', '1', '2', '2', '2'] },
-        { label: 'Gift/brochure', data: ['🚫', 'Gift table', 'Stand', 'Stand', 'Stand'] },
-        { label: 'Logo on signage', data: ['🚫', 'Small', 'Medium', 'Large', 'Header'] },
-        { label: 'Logo on comms', data: ['🚫', 'Small', 'Medium', 'Large', 'Header'] },
-        { label: 'Add-ons availability', data: ['🚫', '✅', '✅', '✅', '✅'] },
-        { label: 'Logo in edited videos', data: ['🚫', '🚫', 'Small', 'Medium', 'Large'] },
-        { label: 'Room naming/decor', data: ['🚫', '🚫', '🚫', 'Secondary', 'Main'] },
-        { label: 'Logo on lanyards', data: ['🚫', '🚫', '🚫', '🚫', '✅'] },
-      ],
-    },
-    {
-      category: '📢 Content',
-      rows: [
-        { label: 'Sponsored talk', data: ['🚫', '🚫', '🚫', 'Secondary', 'Main'] },
-        { label: 'Promotional video', data: ['🚫', '🚫', '🚫', '1 time', '3 times'] },
-        { label: 'Opening speech (5 min)', data: ['🚫', '🚫', '🚫', '🚫', '✅'] },
-      ],
-    },
-    {
-      category: '🔎 Recruitment',
-      rows: [
-        { label: 'Job offers on web', data: ['🚫', '1', '4', '8', '8'] },
-        { label: 'Job offers via email', data: ['🚫', '🚫', '🚫', 'Shared', 'Exclusive'] },
-      ],
-    },
-  ],
+  benefitCategories: {
+    included: 'Included',
+    notIncluded: 'Not included',
+    items: [
+      {
+        category: '🔢 Availability',
+        rows: [
+          { label: 'Limit number', data: ['Unlimited', '10', '6', '3', '1'] },
+          { label: 'Extra paperwork', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
+        ],
+      },
+      {
+        category: '🏢 Venue Space',
+        rows: [{ label: 'Stand/booth', data: ['🚫', '🚫', 'Small', 'Medium', 'Large'] }],
+      },
+      {
+        category: '🙋🏽‍♀️ Conference Tickets',
+        rows: [
+          { label: 'Included tickets', data: ['1', '2', '5', '12', 'Custom'] },
+          { label: 'Speakers dinner (2p)', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
+        ],
+      },
+      {
+        category: '🌟 Brand Visibility',
+        rows: [
+          { label: 'Logo on web', data: ['Small', 'Small', 'Medium', 'Large', 'Header'] },
+          { label: 'Social Media post', data: ['1', '1', '2', '2', '2'] },
+          { label: 'Gift/brochure', data: ['🚫', 'Gift table', 'Stand', 'Stand', 'Stand'] },
+          { label: 'Logo on signage', data: ['🚫', 'Small', 'Medium', 'Large', 'Header'] },
+          { label: 'Logo on comms', data: ['🚫', 'Small', 'Medium', 'Large', 'Header'] },
+          { label: 'Add-ons availability', data: ['🚫', '✅', '✅', '✅', '✅'] },
+          { label: 'Logo in edited videos', data: ['🚫', '🚫', 'Small', 'Medium', 'Large'] },
+          { label: 'Room naming/decor', data: ['🚫', '🚫', '🚫', 'Secondary', 'Main'] },
+          { label: 'Logo on lanyards', data: ['🚫', '🚫', '🚫', '🚫', '✅'] },
+        ],
+      },
+      {
+        category: '📢 Content',
+        rows: [
+          { label: 'Sponsored talk', data: ['🚫', '🚫', '🚫', 'Secondary', 'Main'] },
+          { label: 'Promotional video', data: ['🚫', '🚫', '🚫', '1 time', '3 times'] },
+          { label: 'Opening speech (5 min)', data: ['🚫', '🚫', '🚫', '🚫', '✅'] },
+        ],
+      },
+      {
+        category: '🔎 Recruitment',
+        rows: [
+          { label: 'Job offers on web', data: ['🚫', '1', '4', '8', '8'] },
+          { label: 'Job offers via email', data: ['🚫', '🚫', '🚫', 'Shared', 'Exclusive'] },
+        ],
+      },
+    ],
+  },
   benefitDetails: {
     title: 'Benefit Details',
     items: [

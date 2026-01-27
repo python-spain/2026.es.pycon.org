@@ -177,7 +177,7 @@ export const ca = {
       {
         name: 'Bronze',
         emoji: '🟤',
-        price: '1.000€',
+        price: 'Preu 1.000€',
         limit: 'Ilimitat',
         color: '#d97706',
         bg: 'rgba(180, 83, 9, 0.1)',
@@ -185,7 +185,7 @@ export const ca = {
       {
         name: 'Plata',
         emoji: '⚪',
-        price: '3.000€',
+        price: 'Preu 3.000€',
         limit: '10 disp.',
         color: '#9ca3af',
         bg: 'rgba(107, 114, 128, 0.1)',
@@ -193,7 +193,7 @@ export const ca = {
       {
         name: 'Or',
         emoji: '🌟',
-        price: '6.000€',
+        price: 'Preu 6.000€',
         limit: '6 disp.',
         color: '#facc15',
         bg: 'rgba(234, 179, 8, 0.1)',
@@ -201,7 +201,7 @@ export const ca = {
       {
         name: 'Platí',
         emoji: '🏆',
-        price: '8.000€',
+        price: 'Preu 8.000€',
         limit: '3 disp.',
         color: '#4ade80',
         bg: 'rgba(34, 197, 94, 0.1)',
@@ -209,62 +209,66 @@ export const ca = {
       {
         name: 'Principal',
         emoji: '🏰',
-        price: 'Personalitzat',
+        price: 'Preu Personalitzat',
         limit: '1 disp.',
         color: '#c084fc',
         bg: 'rgba(168, 85, 247, 0.1)',
       },
     ],
   },
-  benefitCategories: [
-    {
-      category: '🔢 Disponibilitat',
-      rows: [
-        { label: 'Número límit', data: ['Ilimitat', '10', '6', '3', '1'] },
-        { label: 'Paperassa extra', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
-      ],
-    },
-    {
-      category: '🏢 Espai a l’esdeveniment',
-      rows: [{ label: 'Stand/booth', data: ['🚫', '🚫', 'Petit', 'Mitjà', 'Gran'] }],
-    },
-    {
-      category: '🙋🏽‍♀️ Entrades conferència',
-      rows: [
-        { label: 'Entrades incloses', data: ['1', '2', '5', '12', 'Personalitzat'] },
-        { label: 'Accés a sopar ponents (2p)', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
-      ],
-    },
-    {
-      category: '🌟 Visibilitat de marca',
-      rows: [
-        { label: 'Logo a la web', data: ['Petit', 'Petit', 'Mitjà', 'Gran', 'Capçalera'] },
-        { label: 'Publicació a XXSS', data: ['1', '1', '2', '2', '2'] },
-        { label: 'Obsequi/fullet', data: ['🚫', 'Taula obsequis', 'Stand', 'Stand', 'Stand'] },
-        { label: 'Logo en cartelleria', data: ['🚫', 'Petit', 'Mitjà', 'Gran', 'Capçalera'] },
-        { label: 'Logo en comunicacions', data: ['🚫', 'Petit', 'Mitjà', 'Gran', 'Capçalera'] },
-        { label: 'Disponibilitat add-ons', data: ['🚫', '✅', '✅', '✅', '✅'] },
-        { label: 'Logo en vídeos editats', data: ['🚫', '🚫', 'Petit', 'Mitjà', 'Gran'] },
-        { label: 'Nom/decoració a la sala', data: ['🚫', '🚫', '🚫', 'Secundària', 'Principal'] },
-        { label: 'Logo en lanyards', data: ['🚫', '🚫', '🚫', '🚫', '✅'] },
-      ],
-    },
-    {
-      category: '📢 Contingut',
-      rows: [
-        { label: 'Xerrada patrocinada', data: ['🚫', '🚫', '🚫', 'Secundària', 'Principal'] },
-        { label: 'Vídeo promocional', data: ['🚫', '🚫', '🚫', '1 vegada', '3 vegades'] },
-        { label: 'Intervenció obertura (5 min)', data: ['🚫', '🚫', '🚫', '🚫', '✅'] },
-      ],
-    },
-    {
-      category: '🔎 Reclutament',
-      rows: [
-        { label: 'Ofertes de feina a la web', data: ['🚫', '1', '4', '8', '8'] },
-        { label: 'Ofertes de feina per mail', data: ['🚫', '🚫', '🚫', 'Compartit', 'Exclusiu'] },
-      ],
-    },
-  ],
+  benefitCategories: {
+    items: [
+      {
+        category: '🔢 Disponibilitat',
+        rows: [
+          { label: 'Número límit', data: ['Ilimitat', '10', '6', '3', '1'] },
+          { label: 'Paperassa extra', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
+        ],
+      },
+      {
+        category: '🏢 Espai a l’esdeveniment',
+        rows: [{ label: 'Stand/booth', data: ['🚫', '🚫', 'Petit', 'Mitjà', 'Gran'] }],
+      },
+      {
+        category: '🙋🏽‍♀️ Entrades conferència',
+        rows: [
+          { label: 'Entrades incloses', data: ['1', '2', '5', '12', 'Personalitzat'] },
+          { label: 'Accés a sopar ponents (2p)', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
+        ],
+      },
+      {
+        category: '🌟 Visibilitat de marca',
+        rows: [
+          { label: 'Logo a la web', data: ['Petit', 'Petit', 'Mitjà', 'Gran', 'Capçalera'] },
+          { label: 'Publicació a XXSS', data: ['1', '1', '2', '2', '2'] },
+          { label: 'Obsequi/fullet', data: ['🚫', 'Taula obsequis', 'Stand', 'Stand', 'Stand'] },
+          { label: 'Logo en cartelleria', data: ['🚫', 'Petit', 'Mitjà', 'Gran', 'Capçalera'] },
+          { label: 'Logo en comunicacions', data: ['🚫', 'Petit', 'Mitjà', 'Gran', 'Capçalera'] },
+          { label: 'Disponibilitat add-ons', data: ['🚫', '✅', '✅', '✅', '✅'] },
+          { label: 'Logo en vídeos editats', data: ['🚫', '🚫', 'Petit', 'Mitjà', 'Gran'] },
+          { label: 'Nom/decoració a la sala', data: ['🚫', '🚫', '🚫', 'Secundària', 'Principal'] },
+          { label: 'Logo en lanyards', data: ['🚫', '🚫', '🚫', '🚫', '✅'] },
+        ],
+      },
+      {
+        category: '📢 Contingut',
+        rows: [
+          { label: 'Xerrada patrocinada', data: ['🚫', '🚫', '🚫', 'Secundària', 'Principal'] },
+          { label: 'Vídeo promocional', data: ['🚫', '🚫', '🚫', '1 vegada', '3 vegades'] },
+          { label: 'Intervenció obertura (5 min)', data: ['🚫', '🚫', '🚫', '🚫', '✅'] },
+        ],
+      },
+      {
+        category: '🔎 Reclutament',
+        rows: [
+          { label: 'Ofertes de feina a la web', data: ['🚫', '1', '4', '8', '8'] },
+          { label: 'Ofertes de feina per mail', data: ['🚫', '🚫', '🚫', 'Compartit', 'Exclusiu'] },
+        ],
+      },
+    ],
+    included: 'Inclòs',
+    notIncluded: 'No inclòs',
+  },
   benefitDetails: {
     title: 'Detalls dels beneficis',
     items: [

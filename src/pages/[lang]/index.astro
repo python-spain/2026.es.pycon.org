@@ -34,7 +34,7 @@ const t = texts[(lang || 'es') as keyof typeof texts]
         aria-busy="true"
       >
         <span aria-hidden="true" class="select-none">&gt;</span>
-        <span id="subtitle">{t['index.initializing']}</span>
+        <span id="subtitle" data-final-text={t['index.subtitle']}>{t['index.initializing']}</span>
         <span class="animate-pulse motion-reduce:animate-none" aria-hidden="true">_</span>
       </h2>
 
@@ -123,7 +123,7 @@ const t = texts[(lang || 'es') as keyof typeof texts]
   const init = () => {
     const matrixText = document.getElementById('matrix-text')
     const h1 = document.querySelector('h1')
-    const subtitle = document.querySelector('#subtitle')
+    const subtitle = document.getElementById('subtitle')
     const actions = document.querySelector('#actions')
 
     if (matrixText && h1) {
@@ -133,7 +133,10 @@ const t = texts[(lang || 'es') as keyof typeof texts]
 
     if (subtitle) {
       setTimeout(() => {
-        subtitle.textContent = 'Sede UB Barcelona | 6-8 Nov 2026'
+        const finalText = subtitle.dataset.finalText
+        if (finalText) {
+          subtitle.textContent = finalText
+        }
         const container = document.getElementById('subtitle-container')
         if (container) {
           container.setAttribute('aria-busy', 'false')

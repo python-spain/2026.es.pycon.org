@@ -284,7 +284,7 @@ const {
                     <th
                       scope="col"
                       class="p-4 text-center border-b border-white/10 align-bottom pb-6"
-                      aria-label={`Plan ${t.name}. Precio ${t.price.replace('€', ' euros')}. ${t.limit}.`}
+                      aria-label={`Plan ${t.name}. ${t.price.replace('€', ' euros')}. ${t.limit}.`}
                     >
                       <div class="text-2xl mb-1" aria-hidden="true">
                         {t.emoji}
@@ -308,7 +308,7 @@ const {
             </thead>
             <tbody>
               {
-                benefitCategories.map((category) => (
+                benefitCategories.items.map((category) => (
                   <>
                     <tr>
                       <th
@@ -341,12 +341,12 @@ const {
                             {val === '✅' ? (
                               <>
                                 <span aria-hidden="true">✅</span>
-                                <span class="sr-only">Incluido</span>
+                                <span class="sr-only">{benefitCategories.included}</span>
                               </>
                             ) : val === '🚫' ? (
                               <>
                                 <span aria-hidden="true">🚫</span>
-                                <span class="sr-only">No incluido</span>
+                                <span class="sr-only">{benefitCategories.notIncluded}</span>
                               </>
                             ) : (
                               val

@@ -177,7 +177,7 @@ export const es = {
       {
         name: 'Bronce',
         emoji: '🟤',
-        price: '1.000€',
+        price: 'Precio 1.000€',
         limit: 'Ilimitado',
         color: '#d97706',
         bg: 'rgba(180, 83, 9, 0.1)',
@@ -185,7 +185,7 @@ export const es = {
       {
         name: 'Plata',
         emoji: '⚪',
-        price: '3.000€',
+        price: 'Precio 3.000€',
         limit: '10 disp.',
         color: '#9ca3af',
         bg: 'rgba(107, 114, 128, 0.1)',
@@ -193,7 +193,7 @@ export const es = {
       {
         name: 'Oro',
         emoji: '🌟',
-        price: '6.000€',
+        price: 'Precio 6.000€',
         limit: '6 disp.',
         color: '#facc15',
         bg: 'rgba(234, 179, 8, 0.1)',
@@ -201,7 +201,7 @@ export const es = {
       {
         name: 'Platino',
         emoji: '🏆',
-        price: '8.000€',
+        price: 'Precio 8.000€',
         limit: '3 disp.',
         color: '#4ade80',
         bg: 'rgba(34, 197, 94, 0.1)',
@@ -209,62 +209,66 @@ export const es = {
       {
         name: 'Principal',
         emoji: '🏰',
-        price: 'Personalizado',
+        price: 'Precio Personalizado',
         limit: '1 disp.',
         color: '#c084fc',
         bg: 'rgba(168, 85, 247, 0.1)',
       },
     ],
   },
-  benefitCategories: [
-    {
-      category: '🔢 Disponibilidad',
-      rows: [
-        { label: 'Número límite', data: ['Ilimitado', '10', '6', '3', '1'] },
-        { label: 'Papeleo extra', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
-      ],
-    },
-    {
-      category: '🏢 Espacio en el evento',
-      rows: [{ label: 'Stand/booth', data: ['🚫', '🚫', 'Pequeño', 'Mediano', 'Grande'] }],
-    },
-    {
-      category: '🙋🏽‍♀️ Entradas conferencia',
-      rows: [
-        { label: 'Entradas incluidas', data: ['1', '2', '5', '12', 'Personalizado'] },
-        { label: 'Acceso a cena ponentes (2p)', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
-      ],
-    },
-    {
-      category: '🌟 Visibilidad de marca',
-      rows: [
-        { label: 'Logo en web', data: ['Pequeño', 'Pequeño', 'Mediano', 'Grande', 'Cabecera'] },
-        { label: 'Publicación en RRSS', data: ['1', '1', '2', '2', '2'] },
-        { label: 'Obsequio/folleto', data: ['🚫', 'Mesa obsequios', 'Stand', 'Stand', 'Stand'] },
-        { label: 'Logo en cartelería', data: ['🚫', 'Pequeño', 'Mediano', 'Grande', 'Cabecera'] },
-        { label: 'Logo en comunicaciones', data: ['🚫', 'Pequeño', 'Mediano', 'Grande', 'Cabecera'] },
-        { label: 'Disponibilidad add-ons', data: ['🚫', '✅', '✅', '✅', '✅'] },
-        { label: 'Logo en vídeos editados', data: ['🚫', '🚫', 'Pequeño', 'Mediano', 'Grande'] },
-        { label: 'Nombre/decoración en sala', data: ['🚫', '🚫', '🚫', 'Secundaria', 'Principal'] },
-        { label: 'Logo en lanyards', data: ['🚫', '🚫', '🚫', '🚫', '✅'] },
-      ],
-    },
-    {
-      category: '📢 Contenido',
-      rows: [
-        { label: 'Charla patrocinada', data: ['🚫', '🚫', '🚫', 'Secundaria', 'Principal'] },
-        { label: 'Video promocional', data: ['🚫', '🚫', '🚫', '1 vez', '3 veces'] },
-        { label: 'Intervención apertura (5 min)', data: ['🚫', '🚫', '🚫', '🚫', '✅'] },
-      ],
-    },
-    {
-      category: '🔎 Reclutamiento',
-      rows: [
-        { label: 'Ofertas de trabajo en web', data: ['🚫', '1', '4', '8', '8'] },
-        { label: 'Ofertas de trabajo por mail', data: ['🚫', '🚫', '🚫', 'Compartido', 'Exclusivo'] },
-      ],
-    },
-  ],
+  benefitCategories: {
+    included: 'Incluido',
+    notIncluded: 'No incluido',
+    items: [
+      {
+        category: '🔢 Disponibilidad',
+        rows: [
+          { label: 'Número límite', data: ['Ilimitado', '10', '6', '3', '1'] },
+          { label: 'Papeleo extra', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
+        ],
+      },
+      {
+        category: '🏢 Espacio en el evento',
+        rows: [{ label: 'Stand/booth', data: ['🚫', '🚫', 'Pequeño', 'Mediano', 'Grande'] }],
+      },
+      {
+        category: '🙋🏽‍♀️ Entradas conferencia',
+        rows: [
+          { label: 'Entradas incluidas', data: ['1', '2', '5', '12', 'Personalizado'] },
+          { label: 'Acceso a cena ponentes (2p)', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
+        ],
+      },
+      {
+        category: '🌟 Visibilidad de marca',
+        rows: [
+          { label: 'Logo en web', data: ['Pequeño', 'Pequeño', 'Mediano', 'Grande', 'Cabecera'] },
+          { label: 'Publicación en RRSS', data: ['1', '1', '2', '2', '2'] },
+          { label: 'Obsequio/folleto', data: ['🚫', 'Mesa obsequios', 'Stand', 'Stand', 'Stand'] },
+          { label: 'Logo en cartelería', data: ['🚫', 'Pequeño', 'Mediano', 'Grande', 'Cabecera'] },
+          { label: 'Logo en comunicaciones', data: ['🚫', 'Pequeño', 'Mediano', 'Grande', 'Cabecera'] },
+          { label: 'Disponibilidad add-ons', data: ['🚫', '✅', '✅', '✅', '✅'] },
+          { label: 'Logo en vídeos editados', data: ['🚫', '🚫', 'Pequeño', 'Mediano', 'Grande'] },
+          { label: 'Nombre/decoración en sala', data: ['🚫', '🚫', '🚫', 'Secundaria', 'Principal'] },
+          { label: 'Logo en lanyards', data: ['🚫', '🚫', '🚫', '🚫', '✅'] },
+        ],
+      },
+      {
+        category: '📢 Contenido',
+        rows: [
+          { label: 'Charla patrocinada', data: ['🚫', '🚫', '🚫', 'Secundaria', 'Principal'] },
+          { label: 'Video promocional', data: ['🚫', '🚫', '🚫', '1 vez', '3 veces'] },
+          { label: 'Intervención apertura (5 min)', data: ['🚫', '🚫', '🚫', '🚫', '✅'] },
+        ],
+      },
+      {
+        category: '🔎 Reclutamiento',
+        rows: [
+          { label: 'Ofertas de trabajo en web', data: ['🚫', '1', '4', '8', '8'] },
+          { label: 'Ofertas de trabajo por mail', data: ['🚫', '🚫', '🚫', 'Compartido', 'Exclusivo'] },
+        ],
+      },
+    ],
+  },
   benefitDetails: {
     title: 'Detalles de los beneficios',
     items: [

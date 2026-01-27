@@ -270,19 +270,19 @@ export const es = {
     items: [
       {
         title: 'Papeleo extra',
-        desc: 'Por defecto sólo se proporcionará una factura enviada por mail, certificado de titularidad de cuenta bancaria, y acuerdo de patrocinio.',
+        desc: 'Por defecto sólo se proporcionará una factura enviada por mail, certificado de titularidad de cuenta bancaria, y acuerdo de patrocinio. Cualquier otra gestión como darse de alta en un portal de proveedores, aportar más documentación, etc. se considerará "papeleo extra". Si tienes dudas, consúltanos.',
       },
       {
         title: 'Stand/booth',
-        desc: 'Todos los stands se situarán en la misma zona principal, en el patio de la Facultat de Matemàtiques i Informàtica.',
+        desc: 'Todos los stands se situarán en la misma zona principal, en el patio de la Facultat de Matemàtiques i Informàtica, donde se encuentran las salas donde se impartirán las charlas. Los tamaños de stand son potencias de dos: el mediano es el doble que el pequeño, y el grande es el doble que el mediano. Os proporcionaremos mesas y sillas, y un par de puntos de luz. Los stands se montarán el sábado por la mañana y se desmontarán el domingo por la tarde.',
       },
       {
         title: 'Entradas incluidas',
-        desc: 'Al comprar el paquete te enviaremos un código para canjear por este número de entradas.',
+        desc: 'Al comprar el paquete te enviaremos un código para canjear por este número de entradas, sin coste adicional. Es muy importante que lo canjeéis antes de la fecha límite de venta de entradas, incluyendo los nombres y otros detalles de las personas que asistirán.',
       },
       {
         title: 'Acceso a cena de ponentes',
-        desc: 'Cada año celebramos una cena especial con todas las personas ponentes y la organización.',
+        desc: 'Para evitar desperdicios, los obsequios y folletos sólo estarán en los stands y mesas de patrocinadores, no en las bolsas de bienvenida. Si no tienes derecho a stand, podrás dejar tus folletos/obsequios en una mesa compartida en la zona principal.',
       },
       {
         title: 'Obsequio/folleto',
@@ -290,15 +290,15 @@ export const es = {
       },
       {
         title: 'Nombre/decoración en sala',
-        desc: 'Tu marca en una de las salas donde se imparten las charlas. La sala llevará tu nombre.',
+        desc: 'Tu marca en una de las salas donde se imparten las charlas. La sala llevará tu nombre, tanto en la cartelería como en la agenda. Podrás poner un rollup permanente en la misma. La sala principal es la de las keynotes y charlas plenarias.',
       },
       {
         title: 'Logo en lanyards',
-        desc: 'Consigue máxima visibilidad con tu logo en la cinta de la acreditación.',
+        desc: 'Consigue máxima visibilidad con tu logo en la cinta de la acreditación que llevarán colgada todas las personas asistentes.',
       },
       {
         title: 'Charla patrocinada',
-        desc: 'Una ocasión inigualable para demostrar a todo el mundo el tipo de cosas que hacéis en vuestra empresa.',
+        desc: 'UUna ocasión inigualable para demostrar a todo el mundo el tipo de cosas que hacéis en vuestra empresa.',
       },
       {
         title: 'Video promocional',
@@ -306,7 +306,7 @@ export const es = {
       },
       {
         title: 'Ofertas de trabajo por mail',
-        desc: 'Podrás enviar tus ofertas de trabajo a todas las personas asistentes que hayan aceptado recibirlas.',
+        desc: 'Podrás enviar tus ofertas de trabajo a todas las personas asistentes que hayan aceptado explícitamente recibirlas. Las ofertas compartidas se enviarán en un email todas juntas, y la exclusiva en un email separado.',
       },
     ],
   },
@@ -321,7 +321,7 @@ export const es = {
       name: 'Cena ponentes y organización',
       price: '2.000€',
       available: 'Disponibilidad: 2',
-      desc: 'Tu marca en la cena exclusiva para ponentes y organización.',
+      desc: 'Tu marca en la cena exclusiva para ponentes y organización.Incluye entrada para 2 personas.',
     },
     {
       name: 'Evento social',
@@ -339,36 +339,44 @@ export const es = {
       name: 'Django Girls',
       price: '1.500€',
       available: 'Disponibilidad: 1',
-      desc: 'Tu marca en el Taller Django Girls.',
+      desc: 'Tu marca en el Taller Django Girls (orientado a la diversidad y principiantes).',
     },
     {
       name: 'Becas diversidad',
       price: '300€',
       available: 'Disponibilidad: 7',
-      desc: 'Mención especial durante la presentación de inicio.',
+      desc: 'Mención especial durante la presentación de inicio y aparición en el sitio web indicando la cantidad de becas que están auspiciando.',
     },
   ],
   pythonSpainPoints: {
     title: 'Sobre Python España',
-    body: 'La Asociación Python España es la entidad sin ánimo de lucro que está detrás de la PyConES y que vertebra la comunidad de Python en nuestro país.',
+    body: 'La Asociación Python España es la entidad sin ánimo de lucro que está detrás de la PyConES y que vertebra la comunidad de Python en nuestro país. Nuestro objetivo es simple: promover el uso del lenguaje y apoyar a las personas que lo utilizan. Somos una organización gestionada por voluntarios. Todo lo que recaudamos se reinvierte directamente en el ecosistema.',
     items: [
       {
         icon: '🌍',
         title: 'COMUNIDAD',
-        desc: 'Damos soporte legal, fiscal y de infraestructura a los grupos locales.',
+        desc: 'Damos soporte legal, fiscal y de infraestructura a los grupos locales de Python en toda España (Madrid, Barcelona, Valencia, Vigo, etc.). Les ayudamos a que puedan centrarse en lo importante: compartir conocimiento.',
       },
-      { icon: '📢', title: 'EVENTOS', desc: 'Organizamos la PyConES, el evento de referencia del sector.' },
+      {
+        icon: '📢',
+        title: 'EVENTOS',
+        desc: 'Organizamos la PyConES, el evento de referencia del sector. Pero también apoyamos otros encuentros, hackathons y talleres que mantienen la comunidad activa durante todo el año.',
+      },
       {
         icon: '🤝',
         title: 'DIVERSIDAD E INCLUSIÓN',
-        desc: 'Creemos que la tecnología es para todos. Destinamos presupuesto a becas.',
+        desc: 'Creemos que la tecnología es para todos. Destinamos una parte importante del presupuesto a becas financieras para facilitar la asistencia de grupos subrepresentados y estudiantes a nuestros eventos.',
       },
-      { icon: '⚖️', title: 'INFRAESTRUCTURA', desc: 'Actuamos como paraguas legal para la comunidad.' },
+      {
+        icon: '⚖️',
+        title: 'INFRAESTRUCTURA',
+        desc: 'Actuamos como paraguas legal para la comunidad. Gestionamos los recursos, protegemos la marca y aseguramos que haya un entorno seguro y profesional para el desarrollo de la tecnología en España..',
+      },
     ],
   },
   socialLinks: {
     title: 'Síguenos en redes',
-    links: [
+    items: [
       { icon: '🦋', label: 'Bluesky', url: 'https://bsky.app/profile/pycones.bsky.social' },
       { icon: '🐙', label: 'GitHub', url: 'https://github.com/python-spain' },
       { icon: '🐘', label: 'Mastodon', url: 'https://fosstodon.org/@pycones' },
@@ -378,7 +386,7 @@ export const es = {
   },
   contact: {
     title: '¿Te apuntas?',
-    body: 'Te lo ponemos fácil. Escríbenos contándonos qué nivel de patrocinio te interesa o qué presupuesto tenéis en mente.',
+    body: 'Te lo ponemos fácil. Escríbenos contándonos qué nivel de patrocinio te interesa o qué presupuesto tenéis en mente. Nosotros te guiaremos en el proceso, resolveremos tus dudas y veremos cómo encajar tu marca de la mejor forma posible.',
     email: 'contactar por mail',
   },
 } as const

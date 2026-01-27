@@ -1,9 +1,3 @@
-export const languages = {
-  es: 'Español',
-  en: 'English',
-  ca: 'Català',
-}
-
 export const texts = {
   es: {
     'index.initializing': 'Inicializando sistema...',

@@ -7,7 +7,6 @@ import { texts } from '../../i18n/home'
 export function getStaticPaths() {
   return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }, { params: { lang: 'ca' } }]
 }
-console.log('AQUI', Astro.params)
 
 interface Props {
   lang?: string

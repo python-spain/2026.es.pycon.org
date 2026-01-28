@@ -6,28 +6,28 @@ export const ca = {
   },
   about: {
     title: 'Sobre la PyConES',
-    body: 'Sigues part de la major conferència de Python d’Espanya. Organitzada per la comunitat, per i per a experts/es.',
+    body: 'Sigues part de la conferència més important de Python d’Espanya. Organitzada per la comunitat, per i per a experts/es.',
   },
   location: {
     title: 'Barcelona i l’esdeveniment',
     where: 'ON: BARCELONA',
-    body: ' Ens reunirem al cèntric i emblemàtic',
+    body: 'Ens reunirem al cèntric i emblemàtic',
     bodyStrong: 'Edifici Històric de la Universitat de Barcelona',
     bodyEnd:
       'no és només un dels principals pols tecnològics d’Europa, sinó que compta amb una comunitat local excepcional.',
     body2:
-      'La ciutat ho posa fàcil: arribar a la conferència és senzill, moure’s és ràpid i hi ha opcions d’allotjament de sobra a prop de l’esdeveniment. I després de les xerrades, res millor que gaudir de Barcelona i del mar.',
+      'La ciutat ho posa fàcil: arribar a la conferència és senzill, moure’s és ràpid i hi ha opcions d’allotjament de sobra a prop de l’esdeveniment. I després de les xerrades, res millor mer a gaudir de Barcelona i del mar.',
   },
   when: {
     title: 'QUAN: 6-8 DE NOVEMBRE, 2026',
     friday: 'Divendres: ',
     fridayStrong: 'Arrenquem amb els tallers. Primera presa de contacte, bon moment per trencar el gel.',
     fridayEm: 'Nota: Aquest dia no hi haurà zona d’stands.',
-    saturday: 'Dissabte:',
+    saturday: 'Dissabte: ',
     saturdayBody:
-      'El dia fort. Obertura de l’esdeveniment, Keynotes, xerrades principals i la major quantitat d’assistents. Al vespre: Sopar Oficial de Ponents.',
-    sunday: 'Diumenge:',
-    sundayBody: 'Més xerrades, "xerrades llampec" i el comiat final.',
+      'El dia fort. Obertura de l’esdeveniment, Keynotes, xerrades principals i la quantitat més gran d’assistents. Al vespre: Sopar Oficial de Ponents.',
+    sunday: 'Diumenge: ',
+    sundayBody: 'Més xerrades, "lightning talks" i el comiat final.',
   },
   stats: {
     title: 'La PyConES en números',
@@ -73,7 +73,7 @@ export const ca = {
     body1:
       'La PyConES és l’esdeveniment més important de Python a Espanya. És un punt de trobada anual on es reuneix una audiència diversa i molt participativa: des d’estudiants i perfils junior fins a CTOs i core developers.',
     body2:
-      'El 2026, Barcelona acollirà un programa ple de contingut d’alt nivell: tallers pràctics, més de 80 xerrades, keynotes internacionals i, sobretot, molta xerrada de passadís. És el lloc on es defineix el futur de la comunitat local i neixen les properes col·laboracions.',
+      'El 2026, Barcelona acollirà un programa ple de contingut d’alt nivell: tallers pràctics, més de 80 xerrades, keynotes internacionals i, sobretot, molta xerrada de passadís. És el lloc on es defineix el futur de la comunitat local i neixen les següents col·laboracions.',
   },
   whySponsor: {
     title: 'Per què patrocinar?',
@@ -95,13 +95,13 @@ export const ca = {
       },
       {
         icon: '❤️',
-        title: 'RECOZZA LA COMUNITAT',
+        title: 'RECOLZA LA COMUNITAT',
         desc: 'En patrocinar, fas possible que aquest esdeveniment existeixi. Retornes valor a l’ecosistema Python que la teva empresa utilitza diàriament i és quelcom que els assistents recordaran.',
       },
       {
         icon: '⚖️',
         title: 'IMPULSA LA DIVERSITAT',
-        desc: 'El teu patrocini ajuda a finançar beques i entrades per a persones amb menys recursos o col·lectius poc representats. És una forma tangible de demostrar els valors ètics de la teva empresa i contribuir a que la tecnologia sigui més accessible per a tothom. Python és per a tothom.',
+        desc: 'El teu patrocini ajuda a finançar beques i entrades per a persones amb menys recursos o col·lectius poc representats. És una forma tangible de demostrar els valors ètics de la teva empresa i contribuir al fet que la tecnologia sigui més accessible per a tothom. Python és per a tothom.',
       },
     ],
   },
@@ -118,7 +118,7 @@ export const ca = {
         name: 'Nerea Luis',
         role: 'Doctora en Intel·ligència Artificial i Divulgadora Tecnològica',
         quote:
-          'Com a apassionada de la IA i la divulgació, sé de primera mà que el futur tecnològic no s’escriu només amb codi o amb IA, sinó amb comunitat. La PyConES és el lloc on aquest talent es troba, comparteix i creix. Patrocinar aquest esdeveniment no és només posar un logo; és apostar i formar part de l’ecosistema divers de la conferència que està liderant els propers passos del sector tecnològic. Seguim impulsant i promovent que aquests espais existeixin perquè tots ens beneficiem del coneixement generat.',
+          'Com a apassionada de la IA i la divulgació, sé de primera mà que el futur tecnològic no s’escriu només amb codi o amb IA, sinó amb comunitat. La PyConES és el lloc on aquest talent es troba, comparteix i creix. Patrocinar aquest esdeveniment no és només posar un logo; és apostar i formar part de l’ecosistema divers de la conferència que està liderant els següents passos del sector tecnològic. Continuem impulsant i promovent que aquests espais existeixin perquè tots ens beneficiem del coneixement generat.',
       },
       {
         name: 'Kraken',
@@ -178,7 +178,7 @@ export const ca = {
         name: 'Bronze',
         emoji: '🟤',
         price: 'Preu 1.000€',
-        limit: 'Ilimitat',
+        limit: 'Il·limitat',
         color: '#d97706',
         bg: 'rgba(180, 83, 9, 0.1)',
       },
@@ -221,7 +221,7 @@ export const ca = {
       {
         category: '🔢 Disponibilitat',
         rows: [
-          { label: 'Número límit', data: ['Ilimitat', '10', '6', '3', '1'] },
+          { label: 'Número límit', data: ['Il·limitat', '10', '6', '3', '1'] },
           { label: 'Paperassa extra', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
         ],
       },
@@ -278,7 +278,7 @@ export const ca = {
       },
       {
         title: 'Stand/booth',
-        desc: 'Tots els stands se situaran a la mateixa zona principal, al pati de la Facultat de Matemàtiques i Informàtica, on es troben les sales on s’impartiran les xerrades. Les mides de l’stand són potències de dos: el mitjà és el doble que el petit, i el gran és el doble que el mitjà. Us proporcionarem taules i cadires, i un parell de punts de llum. Els stands es muntaran el dissabte al matí i es desmuntaran el diumenge a la tarda.',
+        desc: 'Tots els stands se situaran a la mateixa zona principal, al pati de la Facultat de Matemàtiques i Informàtica, on es troben les sales on s’impartiran les xerrades. Les mides de l’stand són potències de dos: el mitjà és el doble que el petit, i el gran és el doble que el mitjà. Us proporcionarem taules i cadires, i un parell de punts de llum. Els stands es muntaran dissabte al matí i es desmuntaran diumenge a la tarda.',
       },
       {
         title: 'Entrades incloses',
@@ -364,7 +364,7 @@ export const ca = {
       {
         icon: '📢',
         title: 'ESDEVENIMENTS',
-        desc: 'Organitzem la PyConES, l’esdeveniment de referència del sector. Però també recolzem altres trobades, hackathons i tallers que mantenen la comunitat activa durant tot l’any.',
+        desc: 'Organitzem la PyConES, l’esdeveniment de referència del sector. Però també donem suport a altres trobades, hackathons i tallers que mantenen la comunitat activa durant tot l’any.',
       },
       {
         icon: '🤝',
@@ -390,7 +390,7 @@ export const ca = {
   },
   contact: {
     title: 'T’hi apuntes?',
-    body: 'T’ho posem fàcil. Escriu-nos explicant-nos quin nivell de patrocini t’interessa o quin pressupost teniu en ment. Nosaltres et guiarem en el procés, resoldrem els teus dubtes i veurem com encaixar la teva marca de la millor forma possible.',
+    body: 'T’ho posem fàcil. Escriu-nos explicant-nos quin nivell de patrocini t’interessa o quin pressupost teniu al cap. Nosaltres et guiarem en el procés, resoldrem els teus dubtes i veurem com encaixar la teva marca de la millor forma possible.',
     email: 'contactar per mail',
   },
 } as const

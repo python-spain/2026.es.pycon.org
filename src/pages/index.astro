@@ -1,7 +1,25 @@
 ---
-import Page from './[lang]/index.astro'
-
-export const prerender = false
 ---
 
-<Page lang="es" />
+<script is:inline>
+  // Get browser language
+  const lang = navigator.language.split('-')[0]
+  const supported = ['es', 'en', 'ca']
+  const target = supported.includes(lang) ? lang : 'es'
+  
+  // Redirect immediately
+  window.location.href = `/${target}/`
+</script>
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting...</title>
+    <noscript>
+      <meta http-equiv="refresh" content="0;url=/es/" />
+    </noscript>
+  </head>
+  <body> </body>
+</html>

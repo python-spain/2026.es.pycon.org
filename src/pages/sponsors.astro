@@ -277,7 +277,7 @@ const socialLinks = [
 ---
 
 <Layout title="Oportunidades de Patrocinio - PyConES 2026">
-  <div class="page-wrapper text-[#e5e5e5] font-sans min-h-screen w-full absolute top-0 left-0 z-10">
+  <div class="page-wrapper text-[#e5e5e5] font-sans min-h-screen w-full absolute top-0 left-0 z-10 overflow-x-hidden">
     <div class="container-custom max-w-[1200px] mx-auto px-4 py-8">
       <!-- Header -->
       <div class="text-center mb-16 pt-16">
@@ -519,10 +519,10 @@ const socialLinks = [
         <h2 class="text-center text-3xl font-bold mb-8">Paquetes de patrocinio</h2>
 
         <div class="table-scroll overflow-x-auto pb-4 mb-8 border border-[#333] rounded-lg bg-[#0a0a0a]">
-          <table class="pricing-table w-full border-collapse min-w-[900px]">
+          <table class="pricing-table w-full border-separate border-spacing-0 min-w-[900px]">
             <thead>
               <tr>
-                <th scope="col" class="w-[200px] p-4 text-center border-b border-white/10 align-bottom pb-6">Beneficios</th>
+                <th scope="col" class="w-[200px] p-4 text-center border-b border-white/10 align-bottom pb-6 sticky left-0 bg-[#0a0a0a] border-r border-[#333] z-10">Beneficios</th>
                 {
                   tiers.map((t) => (
                     <th
@@ -549,12 +549,12 @@ const socialLinks = [
                     <tr>
                       <th
                         scope="row"
-                        colspan="6"
-                        class="p-4 text-left font-bold text-green-400 bg-[#0f0f0f] border-b border-white/10"
+                        class="p-4 text-left font-bold text-green-400 bg-[#0f0f0f] border-b border-white/10 sticky left-0 z-10"
                         aria-label={category.category}
                       >
                         <span aria-hidden="true">{category.category}</span>
                       </th>
+                      <td colspan="5" class="bg-[#0f0f0f] border-b border-white/10"></td>
                     </tr>
                     {category.rows.map((row) => (
                       <tr>

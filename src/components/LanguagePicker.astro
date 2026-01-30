@@ -25,10 +25,10 @@ const getPathForLang = (lang) => {
 }
 ---
 
-<ul class="flex gap-2 p-2 pr-4 justify-end text-green-400 font-mono">
+<ul class="flex gap-6 p-2 pr-6 justify-end text-green-400 font-mono">
   {
     languages.map((lang) => (
-      <li class="flex items-center gap-3">
+      <li>
         <a
           href={getPathForLang(lang.code)}
           aria-current={lang.code === currentLang ? 'true' : 'false'}

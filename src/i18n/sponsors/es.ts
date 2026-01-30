@@ -174,6 +174,7 @@ export const es = {
   tiers: {
     title: 'Paquetes de patrocinio',
     column1: 'Beneficios',
+    no_taxes: 'sense IVA',
     items: [
       {
         name: 'Bronce',

@@ -1,4 +1,5 @@
 ---
+import LanguagePicker from '../components/LanguagePicker.astro';
 import '../style/global.css'
 import '@fontsource-variable/jetbrains-mono'
 import { ClientRouter } from 'astro:transitions'
@@ -9,6 +10,7 @@ interface Props {
 }
 const { lang } = Astro.params || { lang: 'es' }
 const { title, description = 'PyconES 2026' } = Astro.props
+
 ---
 
 <!doctype html>
@@ -28,7 +30,13 @@ const { title, description = 'PyconES 2026' } = Astro.props
   <body
     class="bg-slate-900 text-white antialiased h-screen flex flex-col justify-center bg-linear-to-r from-gray to-blue-900 bg-radial"
   >
+
+    <nav>
+      <LanguagePicker />
+    </nav>
+
     <slot />
+    
   </body>
 </html>
 

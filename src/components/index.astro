@@ -1,9 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import '@fontsource-variable/jetbrains-mono'
-import { SPONSORS_EMAIL, SPONSORS_SUBJECT } from '../pages/constants'
 import { texts } from '../i18n/home'
-import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getRelativeLocaleUrl } from 'astro:i18n'
 
 interface Props {
   lang: string
@@ -38,11 +37,10 @@ const t = texts[lang as keyof typeof texts]
         id="actions"
         class="mt-12 flex flex-col md:flex-row gap-6 justify-center items-center opacity-0 transition-opacity duration-1000 ease-in"
       >
-        <a href={`mailto:${SPONSORS_EMAIL}?subject=${encodeURIComponent(SPONSORS_SUBJECT)}`}>
+        <a href={getRelativeLocaleUrl(lang, 'sponsors')}>
           <button
             id="sponsor-btn"
             type="button"
-            data-email={SPONSORS_EMAIL}
             aria-describedby="sponsor-hint"
             class="group relative px-7 py-2 bg-green-500 text-black font-mono font-bold text-lg hover:bg-green-400 transition-all duration-300 shadow-[0_0_15px_rgba(34,197,94,0.5)] hover:shadow-[0_0_25px_rgba(34,197,94,0.8)] cursor-pointer focus:outline-none focus:ring-4 focus:ring-green-300/50 rounded-sm"
           >
@@ -57,26 +55,8 @@ const t = texts[lang as keyof typeof texts]
                 /&gt;</span
               >
             </span>
-            <span id="sponsor-hint" class="sr-only">{t['index.copy_hint']}</span>
           </button>
         </a>
-
-        <div
-          id="copy-confirmation"
-          role="status"
-          tabindex="-1"
-          class="hidden px-7 py-2 text-green-400 font-mono font-bold text-lg rounded-sm"
-        >
-          <span aria-hidden="true"> &lt;!-- </span><span lang="en">{t['index.copied']}</span><span
-            aria-hidden="true"
-          >
-            --&gt;</span
-          >
-        </div>
-
-        <!-- Justo to Testing getRelativeLocaleUrl  -->
-        <a href={getRelativeLocaleUrl(lang, 'sponsors')}>Sponsors</a>
-
       </div>
     </div>
 

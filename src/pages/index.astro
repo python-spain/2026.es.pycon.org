@@ -1,7 +1,5 @@
 ---
-
 import IndexPage from '../components/index.astro'
-
 ---
 
 <script is:inline>
@@ -9,13 +7,11 @@ import IndexPage from '../components/index.astro'
   const lang = navigator.language.split('-')[0]
   const supported = ['es', 'en', 'ca']
   const target = supported.includes(lang) ? lang : 'es'
-  
+
   // Redirect immediately
-  if (target !== 'es')
-  {
+  if (target !== 'es') {
     window.location.href = `/${target}/`
   }
-  
 </script>
 
-<IndexPage lang='es' />
+<IndexPage lang="es" />

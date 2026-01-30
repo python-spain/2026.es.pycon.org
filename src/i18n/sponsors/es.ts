@@ -20,13 +20,13 @@ export const es = {
   },
   when: {
     title: 'CUÁNDO: 6-8 DE NOVIEMBRE, 2026',
-    friday: 'Viernes: ',
+    friday: 'Viernes',
     fridayStrong: 'Arrancamos con los talleres. Primera toma de contacto, buen momento para romper el hielo.',
     fridayEm: 'Nota: Este día no habrá zona de stands.',
-    saturday: 'Sábado:',
+    saturday: 'Sábado',
     saturdayBody:
       'El día fuerte. Apertura del evento, Keynotes, charlas principales y la mayor cantidad de asistentes. Por la noche: Cena Oficial de Ponentes.',
-    sunday: 'Domingo:',
+    sunday: 'Domingo',
     sundayBody: 'Más charlas, "charlas relámpago" y la despedida final.',
   },
   stats: {

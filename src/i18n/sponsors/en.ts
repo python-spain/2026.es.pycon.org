@@ -20,13 +20,13 @@ export const en = {
   },
   when: {
     title: 'WHEN: NOVEMBER 6-8, 2026',
-    friday: 'Friday: ',
+    friday: 'Friday',
     fridayStrong: 'We start with workshops. First contact, a great time to break the ice.',
     fridayEm: 'Note: There will be no booth area on this day.',
-    saturday: 'Saturday:',
+    saturday: 'Saturday',
     saturdayBody:
       'The main day. Event opening, Keynotes, main tracks, and the highest number of attendees. In the evening: Official Speakers’ Dinner.',
-    sunday: 'Sunday:',
+    sunday: 'Sunday',
     sundayBody: 'More talks, "lightning talks," and the final farewell.',
   },
   stats: {

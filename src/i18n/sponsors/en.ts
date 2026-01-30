@@ -1,4 +1,5 @@
 export const en = {
+  title: 'Sponsorship Opportunities - PyConES 2026',
   hero: {
     date: 'BARCELONA, NOVEMBER 6-8',
     title: 'PyConES 2026',

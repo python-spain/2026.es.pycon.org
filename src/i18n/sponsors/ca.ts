@@ -286,11 +286,11 @@ export const ca = {
       },
       {
         title: 'Accés a sopar de ponents',
-        desc: 'Per evitar residus, els obsequis i fullets només estaran als stands i taules de patrocinadors, no a les bosses de benvinguda. Si no tens dret a stand, podràs deixar els teus fullets/obsequis en una taula compartida a la zona principal.',
+        desc: 'Cada any celebrem un sopar especial amb totes les persones ponents i l’organització. Aquest any volem convidar també els patrocinadors. És una ocasió exclusiva per conèixer millor les persones més actives de la comunitat, on podreu trobar grans talents. Per motius d’espai, només s’admet un màxim de 2 persones per patrocinador.',
       },
       {
         title: 'Obsequi/fullet',
-        desc: 'Per evitar residus, els obsequis i fullets només estaran als stands i taules de patrocinadors.',
+        desc: 'Per evitar desaprofitaments, hem decidit que els obsequis i fullets només estiguin als stands i taules de patrocinadors, no a les bosses de benvinguda. Si no tens dret a stand, podràs deixar els teus fullets/obsequis en una taula compartida a la zona principal.',
       },
       {
         title: 'Nom/decoració a la sala',

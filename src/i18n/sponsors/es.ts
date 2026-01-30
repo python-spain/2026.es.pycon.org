@@ -286,11 +286,11 @@ export const es = {
       },
       {
         title: 'Acceso a cena de ponentes',
-        desc: 'Para evitar desperdicios, los obsequios y folletos sólo estarán en los stands y mesas de patrocinadores, no en las bolsas de bienvenida. Si no tienes derecho a stand, podrás dejar tus folletos/obsequios en una mesa compartida en la zona principal.',
+        desc: 'Cada año celebramos una cena especial con todas las personas ponentes y la organización. Este año queremos invitar también a patrocinadores. Es una ocasión exclusiva para conocer mejor a las personas más activas de la comunidad, donde podréis encontrar grandes talentos. Por motivos de espacio, sólo admitimos un máximo de 2 personas por patrocinador.',
       },
       {
         title: 'Obsequio/folleto',
-        desc: 'Para evitar desperdicios, los obsequios y folletos sólo estarán en los stands y mesas de patrocinadores.',
+        desc: 'Para evitar desperdicios, hemos decidido que los obsequios y folletos sólo estén en los stands y mesas de patrocinadores, no en las bolsas de bienvenida. Si no tienes derecho a stand, podrás dejar tus folletos/obsequios en una mesa compartida en la zona principal.',
       },
       {
         title: 'Nombre/decoración en sala',
@@ -302,7 +302,7 @@ export const es = {
       },
       {
         title: 'Charla patrocinada',
-        desc: 'UUna ocasión inigualable para demostrar a todo el mundo el tipo de cosas que hacéis en vuestra empresa.',
+        desc: 'Una ocasión inigualable para demostrar a todo el mundo el tipo de cosas que hacéis en vuestra empresa.',
       },
       {
         title: 'Video promocional',

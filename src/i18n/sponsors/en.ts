@@ -286,11 +286,11 @@ export const en = {
       },
       {
         title: 'Speakers’ Dinner Access',
-        desc: 'To avoid waste, gifts and brochures will only be at sponsor stands and tables, not in welcome bags. If you don’t have a stand, you can leave materials on a shared table in the main area.',
+        desc: 'Every year we hold a special dinner with all the speakers and the organizers. This year, we also want to invite sponsors. It is an exclusive occasion to better get to know the most active members of the community, where you can find great talents. Due to space constraints, we only allow a maximum of 2 people per sponsor.',
       },
       {
         title: 'Gift/Brochure',
-        desc: 'To avoid waste, gifts and brochures will only be available at stands and sponsor tables.',
+        desc: 'To avoid waste, we have decided that gifts and brochures will only be available at sponsor booths and tables, not in the welcome bags. If you are not entitled to a booth, you can leave your brochures/gifts on a shared table in the main area.',
       },
       {
         title: 'Room Naming/Decoration',

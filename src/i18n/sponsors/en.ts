@@ -193,7 +193,7 @@ export const en = {
       {
         name: 'Gold',
         emoji: '🌟',
-        price: '€6,000',
+        price: 'Price €6,000',
         limit: '6 avail.',
         color: '#facc15',
         bg: 'rgba(234, 179, 8, 0.1)',

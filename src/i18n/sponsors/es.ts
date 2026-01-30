@@ -374,7 +374,7 @@ export const es = {
       {
         icon: '⚖️',
         title: 'INFRAESTRUCTURA',
-        desc: 'Actuamos como paraguas legal para la comunidad. Gestionamos los recursos, protegemos la marca y aseguramos que haya un entorno seguro y profesional para el desarrollo de la tecnología en España..',
+        desc: 'Actuamos como paraguas legal para la comunidad. Gestionamos los recursos, protegemos la marca y aseguramos que haya un entorno seguro y profesional para el desarrollo de la tecnología en España.',
       },
     ],
   },

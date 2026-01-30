@@ -16,7 +16,7 @@ export const ca = {
     bodyEnd:
       'no és només un dels principals pols tecnològics d’Europa, sinó que compta amb una comunitat local excepcional.',
     body2:
-      'La ciutat ho posa fàcil: arribar a la conferència és senzill, moure’s és ràpid i hi ha opcions d’allotjament de sobra a prop de l’esdeveniment. I després de les xerrades, res millor mer a gaudir de Barcelona i del mar.',
+      'La ciutat ho posa fàcil: arribar a la conferència és senzill, moure’s és ràpid i hi ha opcions d’allotjament de sobra a prop de l’esdeveniment. I després de les xerrades, res millor que gaudir de Barcelona i del mar.',
   },
   when: {
     title: 'QUAN: 6-8 DE NOVEMBRE, 2026',

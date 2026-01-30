@@ -1,5 +1,5 @@
-import { defineConfig } from 'astro/config';
-import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from 'astro/config'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   site: 'https://2026.es.pycon.org',
@@ -7,5 +7,12 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-});
-
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en', 'ca'],
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: false
+    },
+  },
+})

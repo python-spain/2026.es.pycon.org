@@ -1,0 +1,466 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { SPONSORS_EMAIL } from '../constants'
+import { texts } from '../../i18n/sponsors'
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }, { params: { lang: 'ca' } }]
+}
+
+const { lang } = Astro.params
+
+const t = texts[(lang || 'es') as keyof typeof texts]
+console.error('DEBUG -> Contenido de textsHERO:', t.hero)
+
+const {
+  hero,
+  about,
+  stats,
+  objectives,
+  whatis,
+  audience,
+  location,
+  when,
+  whySponsor,
+  benefitCategories,
+  benefitDetails,
+  addons,
+  pythonSpainPoints,
+  socialLinks,
+  tiers,
+  testimonials,
+  interests,
+  pastSponsors,
+  collaborators,
+  contact,
+} = t
+---
+
+<Layout title="Oportunidades de Patrocinio - PyConES 2026">
+  <div
+    class="page-wrapper text-[#e5e5e5] font-sans min-h-screen w-full absolute top-0 left-0 z-10 overflow-x-hidden"
+  >
+    <div class="container-custom max-w-[1200px] mx-auto px-4 py-8">
+      <!-- Hero -->
+      <div class="text-center mb-16 pt-16">
+        <span class="text-green-400 font-mono px-2 py-1 rounded text-md"> {hero.date} </span>
+        <h1 class="text-4xl md:text-5xl font-extrabold my-4 leading-tight">
+          {hero.title}<br />{hero.subtitle}
+        </h1>
+      </div>
+
+      <!-- About -->
+      <section class="mb-20">
+        <div class="bg-[#111] p-8 rounded-lg border border-[#333] text-center">
+          <h2 class="text-2xl font-bold mb-4">{about.title}</h2>
+          <p class="text-gray-400 text-lg max-w-[700px] mx-auto">{about.body}</p>
+        </div>
+      </section>
+
+      <!-- Stats -->
+      <section class="mb-20">
+        <h2 class="text-center text-2xl font-bold mb-8">{stats.title}</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {
+            stats.items.map((stat) => (
+              <div class="bg-[#111] p-4 rounded-lg border border-[#333] text-center">
+                <div class="text-3xl mb-2">{stat.icon}</div>
+                <div class="text-2xl font-bold text-green-400">{stat.value}</div>
+                <div class="text-sm text-gray-400">{stat.label}</div>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Alcanza tus objetivos -->
+      <section class="mb-20">
+        <h2 class="text-center text-2xl font-bold mb-8">{objectives.title}</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {
+            objectives.items.map((obj) => (
+              <div class="bg-[#111] p-6 rounded-lg border border-[#333] text-center">
+                <div class="text-xl font-bold text-green-400 mb-2">{obj.title}</div>
+                <div class="text-gray-400">{obj.desc}</div>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Location -->
+      <section class="mb-20">
+        <h2 class="text-center text-2xl font-bold mb-8">{location.title}</h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-[#111] p-6 rounded-lg border border-[#333]">
+            <h3 class="text-xl font-bold text-green-400 mb-4">📍 {location.where}</h3>
+            <p class="text-gray-400 mb-4">
+              {location.body}
+              <strong class="text-white">{location.bodyStrong}</strong>
+              {location.bodyEnd}
+            </p>
+            <p class="text-gray-400">
+              {location.body2}
+            </p>
+          </div>
+
+          <div class="bg-[#111] p-6 rounded-lg border border-[#333]">
+            <h3 class="text-xl font-bold text-green-400 mb-4">📅 {when.title}</h3>
+            <div class="space-y-3 text-gray-400">
+              <p>
+                <strong class="text-white">{when.friday} </strong>{when.fridayStrong}
+                <em>{when.fridayEm}</em>
+              </p>
+              <p>
+                <strong class="text-white">{when.saturday}:</strong>
+                {when.saturdayBody}
+              </p>
+              <p>
+                <strong class="text-white">{when.sunday}:</strong>
+                {when.sundayBody}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Qué es PyConES -->
+      <section class="mb-20">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-[#111] p-6 rounded-lg border border-[#333]">
+            <h3 class="text-xl font-bold text-green-400 mb-4">{whatis.title}</h3>
+            <p class="text-gray-400 mb-4">
+              {whatis.body1}
+            </p>
+            <p class="text-gray-400">
+              {whatis.body2}
+            </p>
+          </div>
+
+          <div class="bg-[#111] p-6 rounded-lg border border-[#333]">
+            <h3 class="text-xl font-bold text-green-400 mb-4">{whySponsor.title}</h3>
+            <div class="space-y-4">
+              {
+                whySponsor.items.map((item) => (
+                  <div class="flex gap-3">
+                    <span class="text-xl">{item.icon}</span>
+                    <div>
+                      <strong class="text-white">{item.title}:</strong>
+                      <span class="text-gray-400 text-sm"> {item.desc}</span>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Perfil de asistentes -->
+      <section class="mb-20">
+        <h2 class="text-center text-2xl font-bold mb-8">{audience.title}</h2>
+
+        <div class="bg-[#111] p-8 rounded-lg border border-[#333] mb-6">
+          <h3 class="mb-6 font-mono text-white">{audience.seniority}</h3>
+
+          <div class="flex w-full h-12 rounded-md overflow-hidden mb-4">
+            <div class="w-[20%] bg-gray-700 text-gray-300 grid place-items-center text-xs font-bold">
+              🌱 JUNIOR 20%
+            </div>
+            <div class="w-[60%] bg-green-400 text-black grid place-items-center text-sm font-bold">
+              🚀 SENIOR / PRO 60%
+            </div>
+            <div class="w-[20%] bg-gray-700 text-gray-300 grid place-items-center text-xs font-bold">
+              🧠 EXPERT 20%
+            </div>
+          </div>
+          <p class="text-center text-gray-400 italic">
+            {audience.quote}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          {
+            audience.items.map((item) => (
+              <div class="bg-[#111] p-4 rounded-lg border border-[#333] text-center">
+                <div class="text-2xl mb-1">{item.icon}</div>
+                <div class="text-xl font-bold text-green-400">{item.value}</div>
+                <div class="text-xs text-gray-400">{item.label}</div>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="bg-[#111] p-8 rounded-lg border border-[#333]">
+          <h3 class="mb-6 font-mono text-white">{interests.title}</h3>
+          <div class="space-y-3">
+            {
+              interests.items.map((interest) => (
+                <div class="flex items-center gap-4">
+                  <div class="w-32 text-sm text-gray-400">{interest.label}</div>
+                  <div class="flex-1 h-8 bg-[#222] rounded overflow-hidden">
+                    <div
+                      class="h-full bg-green-400 flex items-center justify-end pr-2 text-black text-sm font-bold"
+                      style={`width: ${interest.width}`}
+                    >
+                      {interest.pc}
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonios -->
+      <section class="mb-20">
+        <h2 class="text-center text-2xl font-bold mb-8">{testimonials.title}</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          {
+            testimonials.items.map((t) => (
+              <figure class="bg-[#111] p-6 rounded-lg border border-[#333]">
+                <blockquote class="text-gray-400 italic mb-4">
+                  <p>"{t.quote}"</p>
+                </blockquote>
+                <figcaption class="flex items-center gap-3">
+                  <div
+                    class="w-12 h-12 bg-green-400/20 rounded-full flex items-center justify-center text-green-400 font-bold"
+                    aria-hidden="true"
+                  >
+                    {t.name[0]}
+                  </div>
+                  <div>
+                    <cite class="font-bold text-white not-italic">{t.name}</cite>
+                    <div class="text-sm text-gray-500">{t.role}</div>
+                  </div>
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Patrocinadores anteriores -->
+      <section class="mb-20">
+        <h2 class="text-center text-2xl font-bold mb-8">
+          {pastSponsors.title}
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {
+            pastSponsors.items.map((sponsor) => (
+              <div class="bg-white p-5 rounded-lg flex items-center justify-center hover:shadow-lg hover:scale-[1.02] transition-all group h-28">
+                <img src={sponsor.logo} alt={sponsor.name} class="max-h-20 max-w-[85%] object-contain" />
+              </div>
+            ))
+          }
+        </div>
+
+        <h3 class="text-center text-xl font-bold mt-12 mb-6">{collaborators.title}</h3>
+        <div class="flex flex-wrap justify-center gap-3">
+          {
+            collaborators.items.map((collab) => (
+              <div class="bg-[#111] px-4 py-2 rounded border border-green-400/30 text-sm text-green-400">
+                {collab}
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Paquetes de patrocinio -->
+      <section class="mb-20">
+        <h2 class="text-center text-3xl font-bold mb-8">{tiers.title}</h2>
+
+        <div class="table-scroll overflow-x-auto pb-4 mb-8 border border-[#333] rounded-lg bg-[#0a0a0a]">
+          <table class="pricing-table w-full border-separate border-spacing-0 min-w-[900px]">
+            <thead>
+              <tr>
+                <th
+                  scope="col"
+                  class="w-[200px] p-4 text-center border-b border-white/10 align-bottom pb-6 sticky left-0 bg-[#0a0a0a] border-r border-[#333] z-10"
+                  >{tiers.column1}</th
+                >
+                {
+                  tiers.items.map((t) => (
+                    <th
+                      scope="col"
+                      class="p-4 text-center border-b border-white/10 align-bottom pb-6"
+                      aria-label={`Plan ${t.name}. ${t.price.replace('€', ' euros')}. ${t.limit}.`}
+                    >
+                      <div class="text-2xl mb-1" aria-hidden="true">
+                        {t.emoji}
+                      </div>
+                      <div class="text-xl font-bold" style={`color: ${t.color}`} aria-hidden="true">
+                        {t.name}
+                      </div>
+                      <div class="text-white text-2xl font-bold my-1" aria-hidden="true">
+                        {t.price}
+                      </div>
+                      <div class="text-gray-500 text-xs font-normal" aria-hidden="true">
+                        (sin IVA)
+                      </div>
+                      <div class="text-gray-500 text-sm font-normal" aria-hidden="true">
+                        {t.limit}
+                      </div>
+                    </th>
+                  ))
+                }
+              </tr>
+            </thead>
+            <tbody>
+              {
+                benefitCategories.items.map((category) => (
+                  <>
+                    <tr>
+                      <th
+                        scope="row"
+                        class="p-4 text-left font-bold text-green-400 bg-[#0f0f0f] border-b border-white/10 sticky left-0 z-10"
+                        aria-label={category.category}
+                      >
+                        <span aria-hidden="true">{category.category}</span>
+                      </th>
+                      <td colspan="5" class="bg-[#0f0f0f] border-b border-white/10" />
+                    </tr>
+                    {category.rows.map((row) => (
+                      <tr>
+                        <th
+                          scope="row"
+                          class="p-4 text-left border-b border-white/10 text-gray-400 sticky left-0 bg-[#0a0a0a] border-r border-[#333] z-10 text-sm font-normal"
+                        >
+                          {row.label}
+                        </th>
+                        {row.data.map((val) => (
+                          <td
+                            class:list={[
+                              'p-4 text-center border-b border-white/10 text-sm',
+                              {
+                                'text-green-400': val === '✅',
+                                'text-red-400/60': val === '🚫',
+                              },
+                            ]}
+                          >
+                            {val === '✅' ? (
+                              <>
+                                <span aria-hidden="true">✅</span>
+                                <span class="sr-only">{benefitCategories.included}</span>
+                              </>
+                            ) : val === '🚫' ? (
+                              <>
+                                <span aria-hidden="true">🚫</span>
+                                <span class="sr-only">{benefitCategories.notIncluded}</span>
+                              </>
+                            ) : (
+                              val
+                            )}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Detalles de beneficios -->
+      <section class="mb-20">
+        <h2 class="text-center text-2xl font-bold mb-8">{benefitDetails.title}</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          {
+            benefitDetails.items.map((detail) => (
+              <div class="bg-[#111] p-4 rounded-lg border border-[#333]">
+                <h4 class="font-bold text-green-400 mb-2">{detail.title}</h4>
+                <p class="text-gray-400 text-sm">{detail.desc}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Add-ons -->
+      <section class="mb-20">
+        <h2 class="text-center text-2xl font-bold mb-8">Add-ons</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {
+            addons.map((addon) => (
+              <div class="bg-[#111] p-5 border border-[#333] rounded-lg">
+                <div class="flex justify-between items-start mb-2">
+                  <div class="font-bold text-white">{addon.name}</div>
+                  <div class="text-green-400 font-bold">{addon.price}</div>
+                </div>
+                <div class="text-gray-400 text-sm mb-2">{addon.desc}</div>
+                <div class="text-xs text-gray-500"> {addon.available}</div>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Sobre Python España -->
+      <section class="mb-20">
+        <h2 class="text-center text-2xl font-bold mb-8">{pythonSpainPoints.title}</h2>
+        <div class="bg-[#111] p-8 rounded-lg border border-[#333] mb-6">
+          <p class="text-gray-400 text-center max-w-[800px] mx-auto mb-8">
+            {pythonSpainPoints.body}
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            {
+              pythonSpainPoints.items.map((point) => (
+                <div class="flex gap-3">
+                  <span class="text-2xl">{point.icon}</span>
+                  <div>
+                    <strong class="text-green-400">{point.title}</strong>
+                    <p class="text-gray-400 text-sm mt-1">{point.desc}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="text-center mb-20">
+        <div class="bg-linear-to-r from-green-400/10 to-purple-400/10 p-12 rounded-lg border border-[#333]">
+          <h2 class="text-3xl font-bold mb-4">{contact.title}</h2>
+          <p class="text-gray-400 max-w-[600px] mx-auto mb-8">
+            {contact.body}
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href={`mailto:${SPONSORS_EMAIL}?subject=${encodeURIComponent('Interés de patrocinio para PyConES 2026')}`}
+              class="bg-green-400 text-black font-bold px-8 py-4 no-underline rounded text-lg uppercase inline-block hover:bg-green-300 transition-colors"
+            >
+              {contact.email}
+            </a>
+          </div>
+          <p class="mt-6 text-gray-500">{SPONSORS_EMAIL}</p>
+        </div>
+      </section>
+
+      <!-- Social links -->
+      <section class="text-center pb-16">
+        <h3 class="text-xl font-bold mb-6">{socialLinks.title}</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          {
+            socialLinks.items.map((link) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 bg-[#111] px-4 py-2 rounded border border-[#333] hover:border-green-400 transition-colors text-gray-400 hover:text-green-400"
+              >
+                <span>{link.icon}</span>
+                <span>{link.label}</span>
+              </a>
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

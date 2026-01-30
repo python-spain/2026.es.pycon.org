@@ -121,10 +121,10 @@ export const en = {
           'As an AI and communication enthusiast, I know firsthand that the technological future is not written only with code or AI, but with community. PyConES is where that talent meets, shares, and grows. Sponsoring this event is not just about putting up a logo; it is about betting on and being part of the diverse ecosystem of the conference leading the next steps in the tech sector.',
       },
       {
-        name: 'Kraken',
-        role: 'Sponsor',
+        name: 'Clara Gómez',
+        role: 'Kraken Talent Lead',
         quote:
-          'Sponsoring PyCon Spain has been a fantastic experience for Kraken. It allowed us to connect with very talented people, share our mission and culture, and engage with potential candidates in a much more organic and authentic way. At the same time, our engineering team was able to present and attend highly interesting talks.',
+          'Sponsoring PyCon Spain has been a great experience for Kraken. It gave us the opportunity to connect with talented people, share our mission and culture, and engage with potential candidates in a much more organic and authentic way. At the same time, our engineering team was able to attend and host inspiring talks and meaningful conversations, helping us build relationships that we believe will last well beyond the event.',
       },
       {
         name: 'Pablo Galindo Salgado',

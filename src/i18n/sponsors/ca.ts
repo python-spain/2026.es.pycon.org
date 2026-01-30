@@ -121,8 +121,8 @@ export const ca = {
           'Com a apassionada de la IA i la divulgació, sé de primera mà que el futur tecnològic no s’escriu només amb codi o amb IA, sinó amb comunitat. La PyConES és el lloc on aquest talent es troba, comparteix i creix. Patrocinar aquest esdeveniment no és només posar un logo; és apostar i formar part de l’ecosistema divers de la conferència que està liderant els següents passos del sector tecnològic. Continuem impulsant i promovent que aquests espais existeixin perquè tots ens beneficiem del coneixement generat.',
       },
       {
-        name: 'Kraken',
-        role: 'Sponsor',
+        name: 'Clara Gómez',
+        role: 'Talent Lead en Kraken',
         quote:
           'Patrocinar PyCon España ha estat una experiència fantàstica per a Kraken. Ens ha permès connectar amb persones amb molt de talent, compartir la nostra missió i cultura, i relacionar-nos amb potencials candidats d’una forma molt més orgànica i autèntica. Al mateix temps, el nostre equip d’enginyeria va poder presentar i assistir a xerrades i trobades de gran interès, posant les bases per a relacions que creiem que perduraran més enllà de l’esdeveniment.',
       },

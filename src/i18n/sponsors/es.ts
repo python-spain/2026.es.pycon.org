@@ -112,12 +112,14 @@ export const es = {
       {
         name: 'Antoni Aloy',
         role: 'Nagarro co-founder',
+        photo: '/quotes/antoni-aloy.jpg',
         quote:
           'La PyconES forma parte de nuestra historia como APSL y ahora Nagarro. Hemos patrocinado y participado en este evento desde sus inicios hasta el día de hoy. Hemos conocido gente maravillosa y una comunidad abierta e integradora, en un evento hecho por y para la comunidad.',
       },
       {
         name: 'Nerea Luis',
         role: 'Doctora en Inteligencia Artificial y Divulgadora Tecnológica',
+        photo: '/quotes/nerea-luis.jpg',
         quote:
           'Como apasionada de la IA y la divulgación, sé de primera mano que el futuro tecnológico no se escribe solo con código o con IA, sino con comunidad. La PyConES es el lugar donde ese talento se encuentra, comparte y crece. Patrocinar este evento no es solo poner un logo; es apostar y formar parte del ecosistema diverso de la conferencia que está liderando los próximos pasos del sector tecnológico. Sigamos impulsando y promoviendo que estos espacios existan para que todos nos beneficiemos del conocimiento generado.',
       },
@@ -130,6 +132,7 @@ export const es = {
       {
         name: 'Pablo Galindo Salgado',
         role: 'Desarrollador core de Python',
+        photo: '/quotes/pablo-galindo.jpg',
         quote:
           'PyConES es el corazón de la comunidad Python en España. Un lugar donde compartir, aprender y conectar con personas apasionadas con Python. Es donde nació mi camino en open source y siempre será especial para mí. Para mí, volver siempre es volver a casa.',
       },

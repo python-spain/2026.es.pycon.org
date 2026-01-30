@@ -112,12 +112,14 @@ export const en = {
       {
         name: 'Antoni Aloy',
         role: 'Nagarro co-founder',
+        photo: '/quotes/antoni-aloy.jpg',
         quote:
           'PyconES is part of our history as APSL and now Nagarro. We have sponsored and participated in this event from its beginnings until today. We have met wonderful people and an open and inclusive community, in an event made by and for the community.',
       },
       {
         name: 'Nerea Luis',
         role: 'PhD in Artificial Intelligence and Tech Communicator',
+        photo: '/quotes/nerea-luis.jpg',
         quote:
           'As an AI and communication enthusiast, I know firsthand that the technological future is not written only with code or AI, but with community. PyConES is where that talent meets, shares, and grows. Sponsoring this event is not just about putting up a logo; it is about betting on and being part of the diverse ecosystem of the conference leading the next steps in the tech sector.',
       },
@@ -130,6 +132,7 @@ export const en = {
       {
         name: 'Pablo Galindo Salgado',
         role: 'Python Core Developer',
+        photo: '/quotes/pablo-galindo.jpg',
         quote:
           'PyConES is the heart of the Python community in Spain. A place to share, learn, and connect with people passionate about Python. It is where my journey in open source began and it will always be special to me. For me, coming back is always like coming home.',
       },

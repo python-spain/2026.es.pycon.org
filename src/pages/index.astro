@@ -1,4 +1,7 @@
 ---
+
+import IndexPage from '../components/index.astro'
+
 ---
 
 <script is:inline>
@@ -8,18 +11,11 @@
   const target = supported.includes(lang) ? lang : 'es'
   
   // Redirect immediately
-  window.location.href = `/${target}/`
+  if (target !== 'es')
+  {
+    window.location.href = `/${target}/`
+  }
+  
 </script>
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="robots" content="noindex" />
-    <title>Redirigiendo...</title>
-    <noscript>
-      <meta http-equiv="refresh" content="0;url=/es/" />
-    </noscript>
-  </head>
-  <body> </body>
-</html>
+<IndexPage lang='es' />

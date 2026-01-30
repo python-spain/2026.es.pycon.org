@@ -13,6 +13,7 @@ const t = texts[(lang || 'es') as keyof typeof texts]
 console.error('DEBUG -> Contenido de textsHERO:', t.hero)
 
 const {
+  title,
   hero,
   about,
   stats,
@@ -36,7 +37,7 @@ const {
 } = t
 ---
 
-<Layout title="Oportunidades de Patrocinio - PyConES 2026">
+<Layout title={title}>
   <div
     class="page-wrapper text-[#e5e5e5] font-sans min-h-screen w-full absolute top-0 left-0 z-10 overflow-x-hidden"
   >

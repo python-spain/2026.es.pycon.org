@@ -1,39 +1,42 @@
 ---
 // Idiomas disponibles
 const languages = [
-  { code: "es", label: "es" },
-  { code: "en", label: "en" },
-  { code: "ca", label: "ca" },];
+  { code: 'es', label: 'es' },
+  { code: 'en', label: 'en' },
+  { code: 'ca', label: 'ca' },
+]
 
 // Idioma actual detectado desde la URL
-const pathname = Astro.url.pathname;
-const currentLang = pathname.split("/")[1] || "es";
+const pathname = Astro.url.pathname
+const currentLang = pathname.split('/')[1] || 'es'
 
 // Función para construir la URL destino
 const getPathForLang = (lang) => {
-  const parts = pathname.split("/").filter(Boolean);
+  const parts = pathname.split('/').filter(Boolean)
 
   // Si ya hay idioma, lo reemplaza
-  if (languages.some(l => l.code === parts[0])) {
-    parts[0] = lang;
+  if (languages.some((l) => l.code === parts[0])) {
+    parts[0] = lang
   } else {
-    parts.unshift(lang);
+    parts.unshift(lang)
   }
 
-  return "/" + parts.join("/");
-};
+  return '/' + parts.join('/')
+}
 ---
 
-<ul class="language-picker">
-  {languages.map(lang => (
-    <li class="flex items-center gap-3">
+<ul class="flex gap-2 p-2 pr-4 justify-end text-green-400 font-mono">
+  {
+    languages.map((lang) => (
+      <li class="flex items-center gap-3">
         <a
-        href={getPathForLang(lang.code)}
-        aria-current={lang.code === currentLang ? "true" : "false"}
-        class="underline"
+          href={getPathForLang(lang.code)}
+          aria-current={lang.code === currentLang ? 'true' : 'false'}
+          class={lang.code === currentLang ? 'font-bold underline underline-offset-4' : ''}
         >
-        {lang.label}
+          {lang.label}
         </a>
-    </li>
-  ))}
+      </li>
+    ))
+  }
 </ul>

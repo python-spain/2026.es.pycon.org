@@ -37,7 +37,9 @@ const {
 ---
 
 <Layout title="Oportunidades de Patrocinio - PyConES 2026">
-  <div class="page-wrapper text-[#e5e5e5] font-sans min-h-screen w-full absolute top-0 left-0 z-10 overflow-x-hidden">
+  <div
+    class="page-wrapper text-[#e5e5e5] font-sans min-h-screen w-full absolute top-0 left-0 z-10 overflow-x-hidden"
+  >
     <div class="container-custom max-w-[1200px] mx-auto px-4 py-8">
       <!-- Hero -->
       <div class="text-center mb-16 pt-16">
@@ -249,11 +251,7 @@ const {
           {
             pastSponsors.items.map((sponsor) => (
               <div class="bg-white p-5 rounded-lg flex items-center justify-center hover:shadow-lg hover:scale-[1.02] transition-all group h-28">
-                <img
-                  src={sponsor.logo}
-                  alt={sponsor.name}
-                  class="max-h-20 max-w-[85%] object-contain"
-                />
+                <img src={sponsor.logo} alt={sponsor.name} class="max-h-20 max-w-[85%] object-contain" />
               </div>
             ))
           }
@@ -279,8 +277,10 @@ const {
           <table class="pricing-table w-full border-separate border-spacing-0 min-w-[900px]">
             <thead>
               <tr>
-                <th scope="col" class="w-[200px] p-4 text-center border-b border-white/10 align-bottom pb-6 sticky left-0 bg-[#0a0a0a] border-r border-[#333] z-10"
-                >{tiers.column1}</th
+                <th
+                  scope="col"
+                  class="w-[200px] p-4 text-center border-b border-white/10 align-bottom pb-6 sticky left-0 bg-[#0a0a0a] border-r border-[#333] z-10"
+                  >{tiers.column1}</th
                 >
                 {
                   tiers.items.map((t) => (
@@ -321,7 +321,7 @@ const {
                       >
                         <span aria-hidden="true">{category.category}</span>
                       </th>
-                      <td colspan="5" class="bg-[#0f0f0f] border-b border-white/10"></td>
+                      <td colspan="5" class="bg-[#0f0f0f] border-b border-white/10" />
                     </tr>
                     {category.rows.map((row) => (
                       <tr>

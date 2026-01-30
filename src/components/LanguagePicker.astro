@@ -1,0 +1,39 @@
+---
+// Idiomas disponibles
+const languages = [
+  { code: "es", label: "es" },
+  { code: "en", label: "en" },
+  { code: "ca", label: "ca" },];
+
+// Idioma actual detectado desde la URL
+const pathname = Astro.url.pathname;
+const currentLang = pathname.split("/")[1] || "es";
+
+// Función para construir la URL destino
+const getPathForLang = (lang) => {
+  const parts = pathname.split("/").filter(Boolean);
+
+  // Si ya hay idioma, lo reemplaza
+  if (languages.some(l => l.code === parts[0])) {
+    parts[0] = lang;
+  } else {
+    parts.unshift(lang);
+  }
+
+  return "/" + parts.join("/");
+};
+---
+
+<ul class="language-picker">
+  {languages.map(lang => (
+    <li class="flex items-center gap-3">
+        <a
+        href={getPathForLang(lang.code)}
+        aria-current={lang.code === currentLang ? "true" : "false"}
+        class="underline"
+        >
+        {lang.label}
+        </a>
+    </li>
+  ))}
+</ul>

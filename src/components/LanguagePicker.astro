@@ -1,10 +1,19 @@
 ---
+import { texts } from '../i18n/components/LanguagePicker'
+
 // Idiomas disponibles
 const languages = [
-  { code: 'es', label: 'es' },
-  { code: 'en', label: 'en' },
-  { code: 'ca', label: 'ca' },
+  { code: 'es', label: 'es', ariadesc: 'Idioma español' },
+  { code: 'en', label: 'en', ariadesc: 'English language' },
+  { code: 'ca', label: 'ca', ariadesc: 'Idioma català' },
 ]
+
+interface Props {
+  lang: string
+}
+
+const { lang = 'es' } = Astro.params
+const t = texts[lang as keyof typeof texts]
 
 // Idioma actual detectado desde la URL
 const pathname = Astro.url.pathname
@@ -25,13 +34,16 @@ const getPathForLang = (lang) => {
 }
 ---
 
-<ul class="flex gap-6 p-2 pr-6 justify-end text-green-400 font-mono">
+<ul aria-label={t['alttext']} class="flex gap-6 p-2 pr-6 justify-end text-green-400 font-mono">
   {
     languages.map((lang) => (
       <li>
         <a
           href={getPathForLang(lang.code)}
-          aria-current={lang.code === currentLang ? 'true' : 'false'}
+          hreflang={lang.code}
+          aria-current={lang.code === currentLang ? 'page' : undefined}
+          aria-label={lang.ariadesc}
+          lang={lang.code}
           class={lang.code === currentLang ? 'font-bold underline underline-offset-4' : ''}
         >
           {lang.label}

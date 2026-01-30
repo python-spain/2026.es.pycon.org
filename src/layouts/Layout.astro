@@ -28,7 +28,7 @@ const { title, description = 'PyconES 2026' } = Astro.props
 
   <body class="bg-slate-900 text-white antialiased h-screen bg-linear-to-r from-gray to-blue-900 bg-radial">
     <nav class="relative z-11">
-      <LanguagePicker />
+      <LanguagePicker lang={lang} />
     </nav>
 
     <main class="flex flex-col justify-center">

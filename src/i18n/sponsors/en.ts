@@ -173,6 +173,7 @@ export const en = {
   tiers: {
     title: 'Sponsorship Packages',
     column1: 'Benefits',
+    no_taxes: 'VAT not included',
     items: [
       {
         name: 'Bronze',

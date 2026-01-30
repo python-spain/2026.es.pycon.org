@@ -173,6 +173,7 @@ export const ca = {
   tiers: {
     title: 'Paquets de patrocini',
     column1: 'Beneficis',
+    no_taxes: 'sense IVA',
     items: [
       {
         name: 'Bronze',

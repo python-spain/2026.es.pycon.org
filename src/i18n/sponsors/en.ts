@@ -126,6 +126,7 @@ export const en = {
       {
         name: 'Clara Gómez',
         role: 'Kraken Talent Lead',
+        photo: '/quotes/clara-gomez.jpg',
         quote:
           'Sponsoring PyCon Spain has been a great experience for Kraken. It gave us the opportunity to connect with talented people, share our mission and culture, and engage with potential candidates in a much more organic and authentic way. At the same time, our engineering team was able to attend and host inspiring talks and meaningful conversations, helping us build relationships that we believe will last well beyond the event.',
       },

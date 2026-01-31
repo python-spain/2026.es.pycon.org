@@ -126,6 +126,7 @@ export const es = {
       {
         name: 'Clara Gómez',
         role: 'Talent Lead en Kraken',
+        photo: '/quotes/clara-gomez.jpg',
         quote:
           'Patrocinar PyCon España ha sido una experiencia fantástica para Kraken. Nos ha permitido conectar con personas con mucho talento, compartir nuestra misión y cultura, y relacionarnos con potenciales candidatos de una forma mucho más orgánica y auténtica. Al mismo tiempo, nuestro equipo de ingeniería pudo presentar y asistir a charlas y encuentros de gran interés, sentando las bases para relaciones que creemos que perdurarán más allá del evento.',
       },

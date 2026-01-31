@@ -10,7 +10,6 @@ export function getStaticPaths() {
 const { lang } = Astro.params
 
 const t = texts[(lang || 'es') as keyof typeof texts]
-console.error('DEBUG -> Contenido de textsHERO:', t.hero)
 
 const {
   title,
@@ -226,11 +225,22 @@ const {
                   <p>"{t.quote}"</p>
                 </blockquote>
                 <figcaption class="flex items-center gap-3">
-                  <div
-                    class="w-12 h-12 bg-green-400/20 rounded-full flex items-center justify-center text-green-400 font-bold"
-                    aria-hidden="true"
-                  >
-                    {t.name[0]}
+                  <div class="w-12 h-12 bg-green-400/20 rounded-full overflow-hidden flex items-center justify-center">
+                    {t.photo ? (
+                      <img
+                        src={t.photo}
+                        alt={`${t.name} photo`}
+                        width="48"
+                        height="48"
+                        loading="lazy"
+                        decoding="async"
+                        class="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span class="text-green-400 font-bold" aria-hidden="true">
+                        {t.name[0]}
+                      </span>
+                    )}
                   </div>
                   <div>
                     <cite class="font-bold text-white not-italic">{t.name}</cite>

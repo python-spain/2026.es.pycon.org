@@ -173,7 +173,12 @@ export const en = {
   },
   collaborators: {
     title: 'Collaborating Institutions',
-    items: ['University of Barcelona', 'Python España', 'EuroPython Society', 'Python Software Foundation'],
+    items: [
+      { name: 'University of Barcelona', logo: '/collaborators/ub.png' },
+      { name: 'Python España', logo: '/collaborators/python-espana.png' },
+      { name: 'EuroPython Society', logo: '/collaborators/europython.png' },
+      { name: 'Python Software Foundation', logo: '/collaborators/psf.png' },
+    ],
   },
   tiers: {
     title: 'Sponsorship Packages',
@@ -387,11 +392,11 @@ export const en = {
   socialLinks: {
     title: 'Follow us',
     items: [
-      { icon: '🦋', label: 'Bluesky', url: 'https://bsky.app/profile/pycones.bsky.social' },
+      { icon: '🦋', label: 'Bluesky', url: 'https://bsky.app/profile/es.pycon.org' },
       { icon: '🐙', label: 'GitHub', url: 'https://github.com/python-spain' },
       { icon: '🐘', label: 'Mastodon', url: 'https://fosstodon.org/@pycones' },
-      { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/company/python-espa%C3%B1a/' },
-      { icon: '📸', label: 'Instagram', url: 'https://www.instagram.com/paborrego.fotografia/' },
+      { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/company/pycones' },
+      { icon: '📸', label: 'Instagram', url: 'https://www.instagram.com/pycon_es' },
     ],
   },
   contact: {

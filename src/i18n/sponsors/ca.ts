@@ -173,7 +173,12 @@ export const ca = {
   },
   collaborators: {
     title: 'Institucions col·laboradores',
-    items: ['Universitat de Barcelona', 'Python España', 'EuroPython Society', 'Python Software Foundation'],
+    items: [
+      { name: 'Universitat de Barcelona', logo: '/collaborators/ub.png' },
+      { name: 'Python España', logo: '/collaborators/python-espana.png' },
+      { name: 'EuroPython Society', logo: '/collaborators/europython.png' },
+      { name: 'Python Software Foundation', logo: '/collaborators/psf.png' },
+    ],
   },
   tiers: {
     title: 'Paquets de patrocini',

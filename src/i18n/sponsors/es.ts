@@ -12,7 +12,7 @@ export const es = {
   location: {
     title: 'Barcelona y el evento',
     where: 'DÓNDE: BARCELONA',
-    body: ' Nos reuniremos en el céntrico y emblemático',
+    body: 'Nos reuniremos en el céntrico y emblemático',
     bodyStrong: 'Edificio Histórico de la Universidad de Barcelona',
     bodyEnd:
       'no es solo uno de los principales polos tecnológicos de Europa, sino que cuenta con una comunidad local excepcional.',
@@ -173,12 +173,17 @@ export const es = {
   },
   collaborators: {
     title: 'Instituciones colaboradoras',
-    items: ['Universitat de Barcelona', 'Python España', 'EuroPython Society', 'Python Software Foundation'],
+    items: [
+      { name: 'Universitat de Barcelona', logo: '/collaborators/ub.png' },
+      { name: 'Python España', logo: '/collaborators/python-espana.png' },
+      { name: 'EuroPython Society', logo: '/collaborators/europython.png' },
+      { name: 'Python Software Foundation', logo: '/collaborators/psf.png' },
+    ],
   },
   tiers: {
     title: 'Paquetes de patrocinio',
     column1: 'Beneficios',
-    no_taxes: 'sense IVA',
+    no_taxes: 'sin IVA',
     items: [
       {
         name: 'Bronce',
@@ -331,7 +336,7 @@ export const es = {
       name: 'Cena ponentes y organización',
       price: '2.000€',
       available: 'Disponibilidad: 2',
-      desc: 'Tu marca en la cena exclusiva para ponentes y organización.Incluye entrada para 2 personas.',
+      desc: 'Tu marca en la cena exclusiva para ponentes y organización. Incluye entrada para 2 personas.',
     },
     {
       name: 'Evento social',
@@ -387,11 +392,11 @@ export const es = {
   socialLinks: {
     title: 'Síguenos en redes',
     items: [
-      { icon: '🦋', label: 'Bluesky', url: 'https://bsky.app/profile/pycones.bsky.social' },
+      { icon: '🦋', label: 'Bluesky', url: 'https://bsky.app/profile/es.pycon.org' },
       { icon: '🐙', label: 'GitHub', url: 'https://github.com/python-spain' },
       { icon: '🐘', label: 'Mastodon', url: 'https://fosstodon.org/@pycones' },
-      { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/company/python-espa%C3%B1a/' },
-      { icon: '📸', label: 'Instagram', url: 'https://www.instagram.com/paborrego.fotografia/' },
+      { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/company/pycones' },
+      { icon: '📸', label: 'Instagram', url: 'https://www.instagram.com/pycon_es' },
     ],
   },
   contact: {

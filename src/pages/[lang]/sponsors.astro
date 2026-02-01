@@ -220,12 +220,18 @@ const {
         <div class="grid md:grid-cols-2 gap-6">
           {
             testimonials.items.map((t) => (
-              <figure class="bg-[#111] p-6 rounded-lg border border-[#333]">
-                <blockquote class="text-gray-400 italic mb-4">
-                  <p>"{t.quote}"</p>
+              <figure class="bg-[#111] p-6 rounded-lg border border-[#333] border-l-4 border-l-green-400 flex flex-col h-full relative">
+                <span
+                  class="absolute top-4 left-4 text-5xl text-green-400/20 font-serif leading-none select-none"
+                  aria-hidden="true"
+                >
+                  "
+                </span>
+                <blockquote class="text-gray-400 italic pl-6">
+                  <p>{t.quote}</p>
                 </blockquote>
-                <figcaption class="flex items-center gap-3">
-                  <div class="w-12 h-12 bg-green-400/20 rounded-full overflow-hidden flex items-center justify-center">
+                <figcaption class="flex items-center gap-3 mt-auto pt-4">
+                  <div class="w-12 h-12 shrink-0 bg-green-400/20 rounded-full overflow-hidden shadow-lg shadow-black/50 flex items-end justify-center">
                     {t.photo ? (
                       <img
                         src={t.photo}
@@ -269,11 +275,11 @@ const {
         </div>
 
         <h3 class="text-center text-xl font-bold mt-12 mb-6">{collaborators.title}</h3>
-        <div class="flex flex-wrap justify-center gap-3">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {
             collaborators.items.map((collab) => (
-              <div class="bg-[#111] px-4 py-2 rounded border border-green-400/30 text-sm text-green-400">
-                {collab}
+              <div class="bg-white p-5 rounded-lg flex items-center justify-center hover:shadow-lg hover:scale-[1.02] transition-all h-24">
+                <img src={collab.logo} alt={collab.name} class="max-h-16 max-w-[85%] object-contain" />
               </div>
             ))
           }

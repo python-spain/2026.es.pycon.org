@@ -1,16 +1,18 @@
 ---
 import { i18n } from 'astro:config/client'
 import IndexPage from '../components/index.astro'
+
+const locales = i18n.locales
+const defaultLocale = i18n.defaultLocale
 ---
 
-<script is:inline>
+<script is:inline define:vars={{ locales, defaultLocale }}>
   // Get browser language
   const lang = navigator.language.split('-')[0]
-  const supported = i18n.locales
-  const target = supported.includes(lang) ? lang : i18n.defaultLocale
+  const target = locales.includes(lang) ? lang : defaultLocale
 
   // Redirect immediately
-  if (target !== i18n.defaultLocale) {
+  if (target !== defaultLocale) {
     window.location.href = `/${target}/`
   }
 </script>

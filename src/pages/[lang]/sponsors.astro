@@ -164,17 +164,18 @@ const {
         <div class="bg-[#111] p-8 rounded-lg border border-[#333] mb-6">
           <h3 class="mb-6 font-mono text-white">{audience.seniority}</h3>
 
-          <div class="flex w-full h-12 rounded-md overflow-hidden mb-4">
-            <div class="w-[20%] bg-gray-700 text-gray-300 grid place-items-center text-xs font-bold">
+          <div class="grid grid-cols-1 w-full rounded-md mb-4 sm:grid-cols-3">
+            <div class="bg-gray-700 text-gray-300 text-xs font-bold rounded-tl rounded-bl flex items-center justify-center py-4">
               🌱 JUNIOR 20%
             </div>
-            <div class="w-[60%] bg-green-400 text-black grid place-items-center text-sm font-bold">
+            <div class="bg-green-400 text-black text-sm font-bold flex items-center justify-center py-4">
               🚀 SENIOR / PRO 60%
             </div>
-            <div class="w-[20%] bg-gray-700 text-gray-300 grid place-items-center text-xs font-bold">
+            <div class="bg-gray-700 text-gray-300 text-xs font-bold rounded-tr rounded-br flex items-center justify-center py-4">
               🧠 EXPERT 20%
             </div>
           </div>
+
           <p class="text-center text-gray-400 italic">
             {audience.quote}
           </p>

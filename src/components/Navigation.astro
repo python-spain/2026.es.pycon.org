@@ -1,0 +1,531 @@
+---
+import ResponsiveToggle from './ResponsiveToggle.astro'
+import LanguagePicker from './LanguagePicker.astro'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import { menuTexts } from '../i18n/menu'
+
+// Get current language from URL
+const lang = Astro.url.pathname.split('/')[1] || 'es'
+const validLangs = ['es', 'en', 'ca'] as const
+type Lang = (typeof validLangs)[number]
+const currentLang: Lang = validLangs.includes(lang as Lang) ? (lang as Lang) : 'es'
+
+// Helper to check if a URL is external
+const isExternal = (href: string) => href.startsWith('http://') || href.startsWith('https://')
+
+/**
+ * Navigation Component
+ *
+ * @description An accessible navigation component with full keyboard support
+ * Based on accessible-astro-starter patterns with PyCon ES styling
+ *
+ * Keyboard behaviors:
+ * - ArrowLeft/ArrowRight: Navigate between top-level menu items
+ * - ArrowDown: Open dropdown and navigate down through items
+ * - ArrowUp: Navigate up through dropdown items
+ * - Escape: Close dropdown/mobile menu and return focus
+ * - Tab: Standard tab navigation, closes dropdown on last item
+ */
+
+// Load menu data for current language
+const { items } = menuTexts[currentLang]
+---
+
+<div
+  id="main-navigation"
+  class="fixed top-0 w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/10"
+>
+  <div class="container mx-auto px-4 h-20 flex items-center justify-between">
+    <!-- Logo -->
+    <a
+      href={getRelativeLocaleUrl(currentLang, '/')}
+      class="text-2xl font-bold font-mono tracking-tighter text-white rounded px-2 py-1 outline-none transition-all focus-visible:bg-white/10 focus-visible:text-blue-400"
+    >
+      PyCon<span class="text-blue-500">ES</span>
+    </a>
+
+    <div class="wrapper flex items-center gap-4">
+      <!-- Desktop Navigation -->
+      <nav class="desktop-menu hidden lg:block" aria-label="Navegación principal">
+        <ul class="menu flex gap-8">
+          {
+            items.map((item, index) => (
+              <li class:list={['menu-item', { 'has-dropdown': item.children }]}>
+                {item.children ? (
+                  <>
+                    <button
+                      id={`dropdown-btn-${index}`}
+                      class="dropdown-trigger flex items-center gap-1 text-slate-300 hover:text-white font-medium transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      aria-controls={`dropdown-menu-${index}`}
+                    >
+                      {item.label}
+                      <svg
+                        class="w-4 h-4 transition-transform duration-200"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                    <ul
+                      id={`dropdown-menu-${index}`}
+                      class="submenu lg:absolute lg:top-full lg:left-0 lg:w-64 bg-slate-800 rounded-lg p-2 mt-2 lg:mt-4 shadow-2xl z-50"
+                      role="menu"
+                    >
+                      {item.children.map((child) => (
+                        <li role="none">
+                          <a
+                            href={
+                              isExternal(child.href)
+                                ? child.href
+                                : getRelativeLocaleUrl(currentLang, child.href)
+                            }
+                            class="submenu-item block px-4 py-3 rounded-md text-white font-medium transition-colors outline-none hover:bg-white/5 focus-visible:bg-blue-600 focus-visible:text-white"
+                            role="menuitem"
+                            {...(isExternal(child.href)
+                              ? { target: '_blank', rel: 'noopener noreferrer' }
+                              : {})}
+                          >
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <a
+                    href={isExternal(item.href) ? item.href : getRelativeLocaleUrl(currentLang, item.href)}
+                    class="block text-slate-300 hover:text-white font-medium transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
+                    {...(isExternal(item.href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    {item.label}
+                  </a>
+                )}
+              </li>
+            ))
+          }
+
+          <!-- Language Picker (Desktop) -->
+          <li class="menu-item">
+            <LanguagePicker variant="desktop" />
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Toggle -->
+      <ResponsiveToggle />
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav
+      class="mobile-menu absolute top-20 left-0 w-full bg-slate-900 p-4 border-b border-white/10 shadow-xl lg:hidden"
+      aria-label="Navegación principal móvil"
+    >
+      <ul class="menu flex flex-col gap-2">
+        {
+          items.map((item) => (
+            <li class="menu-item">
+              {item.children ? (
+                <details class="mobile-details">
+                  <summary class="flex items-center justify-between gap-1 w-full text-slate-300 hover:text-white font-medium py-2 transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4 cursor-pointer list-none">
+                    {item.label}
+                    <svg
+                      class="w-4 h-4 transition-transform duration-200 chevron-icon"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </summary>
+                  <ul class="pl-4 mt-2 flex flex-col gap-1">
+                    {item.children.map((child) => (
+                      <li>
+                        <a
+                          href={
+                            isExternal(child.href)
+                              ? child.href
+                              : getRelativeLocaleUrl(currentLang, child.href)
+                          }
+                          class="block px-4 py-3 rounded-md text-white font-medium transition-colors outline-none hover:bg-white/5 focus-visible:bg-blue-600 focus-visible:text-white"
+                          {...(isExternal(child.href)
+                            ? { target: '_blank', rel: 'noopener noreferrer' }
+                            : {})}
+                        >
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              ) : (
+                <a
+                  href={isExternal(item.href) ? item.href : getRelativeLocaleUrl(currentLang, item.href)}
+                  class="block text-slate-300 hover:text-white font-medium py-2 transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
+                  {...(isExternal(item.href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  {item.label}
+                </a>
+              )}
+            </li>
+          ))
+        }
+
+        <!-- Language Picker (Mobile) -->
+        <li class="menu-item">
+          <LanguagePicker variant="mobile" />
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    // Variables
+    const mainNav = document.querySelector('#main-navigation') as HTMLElement | null
+    if (!mainNav) return
+
+    const mainMenu = mainNav.querySelector('.desktop-menu ul.menu') as HTMLUListElement | null
+    const dropdownMenus = [
+      ...document.querySelectorAll('.has-dropdown .dropdown-trigger'),
+    ] as HTMLButtonElement[]
+
+    // Functions
+
+    /**
+     * Sets the active menu item based on current URL
+     */
+    const setActiveMenuItem = (): void => {
+      const allMenus = mainNav.querySelectorAll('nav > ul')
+      const currentPathname = window.location.pathname
+
+      allMenus.forEach((menu) => {
+        const menuItems = [...menu.querySelectorAll('a:not([rel*="external"])')] as HTMLAnchorElement[]
+
+        menuItems.forEach((menuItem) => {
+          // Remove any existing active state
+          menuItem.classList.remove('is-active')
+          menuItem.removeAttribute('aria-current')
+
+          const itemPathname = menuItem.pathname.replace(/\/$/, '') // Remove trailing slash
+          const currentPath = currentPathname.replace(/\/$/, '')
+
+          if (itemPathname === currentPath || (itemPathname === '' && currentPath === '')) {
+            menuItem.classList.add('is-active')
+            menuItem.setAttribute('aria-current', 'page')
+          }
+        })
+      })
+    }
+
+    /**
+     * Check if element is outside viewport
+     */
+    const isOutOfViewport = (element: Element): boolean => {
+      const elementBounds = element.getBoundingClientRect()
+      return elementBounds.right > (window.innerWidth || document.documentElement.clientWidth)
+    }
+
+    /**
+     * Open a dropdown menu
+     */
+    const openDropdownMenu = (dropdownButton: HTMLButtonElement): void => {
+      const dropdownList = dropdownButton.parentNode?.querySelector('ul') as HTMLUListElement | null
+      if (!dropdownList) return
+
+      dropdownButton.classList.add('show')
+      dropdownButton.setAttribute('aria-expanded', 'true')
+
+      // Rotate chevron icon
+      const icon = dropdownButton.querySelector('svg')
+      if (icon) {
+        icon.style.transform = 'rotate(180deg)'
+      }
+
+      // Adjust position if out of viewport
+      if (isOutOfViewport(dropdownList)) {
+        dropdownList.style.left = 'auto'
+        dropdownList.style.right = '0'
+      }
+    }
+
+    /**
+     * Close a dropdown menu
+     */
+    const closeDropdownMenu = (dropdownButton: HTMLButtonElement): void => {
+      dropdownButton.classList.remove('show')
+      dropdownButton.setAttribute('aria-expanded', 'false')
+
+      // Reset chevron icon
+      const icon = dropdownButton.querySelector('svg')
+      if (icon) {
+        icon.style.transform = ''
+      }
+    }
+
+    /**
+     * Close all dropdown menus
+     */
+    const closeAllDropdownMenus = (): void => {
+      dropdownMenus.forEach((menu) => closeDropdownMenu(menu))
+    }
+
+    /**
+     * Toggle dropdown menu on click
+     */
+    const toggleDropdownMenu = (event: MouseEvent): void => {
+      const target = event.target as HTMLElement
+      const button = target.closest('.dropdown-trigger') as HTMLButtonElement | null
+      if (!button) return
+
+      if (button.getAttribute('aria-expanded') === 'false') {
+        closeAllDropdownMenus()
+        openDropdownMenu(button)
+      } else {
+        closeDropdownMenu(button)
+      }
+    }
+
+    // Execution
+
+    /**
+     * Keyboard navigation for main menu
+     * Implements WCAG 2.1 keyboard accessibility patterns
+     */
+    mainMenu?.addEventListener('keydown', (event: KeyboardEvent) => {
+      const element = event.target as Element
+      const currentMenuItem = element.closest('li.menu-item')
+      const menuItems = [...mainMenu.querySelectorAll(':scope > .menu-item')] as HTMLLIElement[]
+      const currentDropdownButton = element.closest(
+        '.has-dropdown .dropdown-trigger',
+      ) as HTMLButtonElement | null
+      const currentDropdownMenuItem = element.closest('.has-dropdown ul li') as HTMLLIElement | null
+      const currentIndex = currentMenuItem ? menuItems.findIndex((item) => item === currentMenuItem) : -1
+
+      const key = event.key
+      let targetItem: Element | null = null
+
+      // Check if we're inside a submenu (dropdown item)
+      const isInsideSubmenu = currentDropdownMenuItem !== null
+
+      // ArrowRight: Move to next top-level menu item
+      if (key === 'ArrowRight') {
+        if (currentMenuItem) {
+          // Close any open dropdown when navigating away
+          closeAllDropdownMenus()
+          const nextIndex = currentIndex === menuItems.length - 1 ? 0 : currentIndex + 1
+          targetItem = menuItems[nextIndex]
+        }
+      }
+
+      // ArrowLeft: Move to previous top-level menu item
+      if (key === 'ArrowLeft') {
+        if (currentMenuItem) {
+          // Close any open dropdown when navigating away
+          closeAllDropdownMenus()
+          const prevIndex = currentIndex === 0 ? menuItems.length - 1 : currentIndex - 1
+          targetItem = menuItems[prevIndex]
+        }
+      }
+
+      // Escape: Close dropdown and return to first menu item
+      if (key === 'Escape') {
+        targetItem = menuItems[0]
+        closeAllDropdownMenus()
+      }
+
+      // Handle dropdown button keyboard interactions (only if NOT inside a submenu)
+      // ArrowLeft/ArrowRight already handled above and will close + move
+      if (currentDropdownButton && !isInsideSubmenu) {
+        const nextElement = currentDropdownButton.nextElementSibling as Element | null
+        if (nextElement) {
+          const firstDropdownItem = nextElement.querySelector('li')
+
+          // ArrowDown, Enter, Space: Open dropdown and focus first item
+          if (key === 'ArrowDown' || key === 'Enter' || key === ' ') {
+            event.preventDefault()
+            openDropdownMenu(currentDropdownButton)
+            targetItem = firstDropdownItem
+          }
+        }
+
+        // Escape: Close this dropdown
+        if (key === 'Escape') {
+          closeDropdownMenu(currentDropdownButton)
+        }
+      }
+
+      // Handle navigation within dropdown menu (submenu)
+      if (isInsideSubmenu) {
+        const currentDropdownList = currentDropdownMenuItem.parentNode as Element | null
+        if (currentDropdownList) {
+          const dropdownMenuItems = [...currentDropdownList.querySelectorAll('li')] as HTMLLIElement[]
+          const dropdownIndex = dropdownMenuItems.findIndex((item) => item === currentDropdownMenuItem)
+
+          // ArrowDown: Move to next dropdown item (circular)
+          if (key === 'ArrowDown') {
+            event.preventDefault()
+            const nextIndex = dropdownIndex === dropdownMenuItems.length - 1 ? 0 : dropdownIndex + 1
+            targetItem = dropdownMenuItems[nextIndex]
+          }
+
+          // ArrowUp: Move to previous dropdown item (circular)
+          if (key === 'ArrowUp') {
+            event.preventDefault()
+            const prevIndex = dropdownIndex === 0 ? dropdownMenuItems.length - 1 : dropdownIndex - 1
+            targetItem = dropdownMenuItems[prevIndex]
+          }
+
+          // Escape: Close dropdown and focus parent button
+          if (key === 'Escape') {
+            const parentDropdownButton =
+              currentDropdownList.previousElementSibling as HTMLButtonElement | null
+            if (parentDropdownButton) {
+              targetItem = parentDropdownButton.parentElement
+              closeAllDropdownMenus()
+            }
+          }
+
+          // Tab: Close dropdown on last item
+          if (key === 'Tab' && !event.shiftKey) {
+            const parentDropdownButton =
+              currentDropdownList.previousElementSibling as HTMLButtonElement | null
+            if (parentDropdownButton && dropdownIndex === dropdownMenuItems.length - 1) {
+              closeDropdownMenu(parentDropdownButton)
+            }
+          }
+        }
+      }
+
+      // Focus the target item
+      if (targetItem) {
+        const focusableElement = targetItem.querySelector('a, button') as HTMLElement | null
+        if (focusableElement) {
+          // Use double requestAnimationFrame to ensure CSS transition has started
+          // and element is visible (visibility: visible) before focusing
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              focusableElement.focus()
+            })
+          })
+        }
+      }
+    })
+
+    // Add click handlers to dropdown buttons
+    dropdownMenus.forEach((dropdownMenu) => {
+      dropdownMenu.addEventListener('click', toggleDropdownMenu as EventListener)
+    })
+
+    // Close dropdowns when clicking outside
+    window.addEventListener('click', (event: MouseEvent) => {
+      const element = event.target as Element
+      if (!element.closest('.has-dropdown') && !element.classList.contains('submenu-item')) {
+        closeAllDropdownMenus()
+      }
+    })
+
+    // Close mobile menu on Escape
+    document.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        const mobileMenu = document.querySelector('.mobile-menu')
+        const responsiveToggle = document.querySelector('.responsive-toggle')
+
+        if (mobileMenu?.classList.contains('show')) {
+          mobileMenu.classList.remove('show')
+          if (responsiveToggle) {
+            responsiveToggle.setAttribute('aria-expanded', 'false')
+            responsiveToggle.setAttribute('aria-label', 'Abrir menú de navegación')
+            const text = responsiveToggle.querySelector('span')
+            const icon = responsiveToggle.querySelector('svg')
+            if (text) text.textContent = 'Menú'
+            if (icon) {
+              icon.innerHTML = `<path d="M2 1.667h24m-24 8h24m-24 8h24" stroke="currentColor" stroke-width="2.667" stroke-linecap="round" stroke-linejoin="round"/>`
+            }
+            ;(responsiveToggle as HTMLElement).focus()
+          }
+        }
+      }
+    })
+
+    // Initialize active menu item
+    setActiveMenuItem()
+  })
+</script>
+
+<style>
+  /* Mobile menu hidden by default */
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-menu.show {
+    display: block;
+  }
+
+  /* Mobile details/summary styling */
+  .mobile-details summary {
+    list-style: none;
+  }
+
+  .mobile-details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-details[open] .chevron-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Desktop dropdown styles */
+  @media (min-width: 1024px) {
+    .desktop-menu .has-dropdown {
+      position: relative;
+    }
+
+    .desktop-menu .submenu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .desktop-menu .dropdown-trigger.show + .submenu {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Active menu item styling */
+  .is-active {
+    color: white;
+    font-weight: 600;
+  }
+
+  /* Underline on hover/focus for dropdown triggers */
+  .dropdown-trigger:where(:hover, :focus-visible),
+  .dropdown-trigger.show {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+</style>

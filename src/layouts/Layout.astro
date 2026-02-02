@@ -1,5 +1,5 @@
 ---
-import LanguagePicker from '../components/LanguagePicker.astro'
+import Nav from '../components/Nav.astro'
 import '../style/global.css'
 import '@fontsource-variable/jetbrains-mono'
 import { ClientRouter } from 'astro:transitions'
@@ -26,12 +26,12 @@ const { title, description = 'PyconES 2026' } = Astro.props
     <ClientRouter />
   </head>
 
-  <body class="bg-slate-900 text-white antialiased h-screen bg-linear-to-r from-gray to-blue-900 bg-radial">
-    <nav class="relative z-11">
-      <LanguagePicker lang={lang} />
-    </nav>
+  <body
+    class="bg-slate-900 text-white antialiased min-h-screen bg-linear-to-r from-gray to-blue-900 bg-radial"
+  >
+    <Nav />
 
-    <main class="flex flex-col justify-center">
+    <main class="flex flex-col justify-center pt-20">
       <slot />
     </main>
   </body>

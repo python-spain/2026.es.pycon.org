@@ -1,4 +1,5 @@
 ---
+import LanguagePicker from '../components/LanguagePicker.astro'
 import '../style/global.css'
 import '@fontsource-variable/jetbrains-mono'
 import { ClientRouter } from 'astro:transitions'
@@ -7,16 +8,16 @@ interface Props {
   title: string
   description?: string // Optional (?)
 }
-
+const { lang } = Astro.params || { lang: 'es' }
 const { title, description = 'PyconES 2026' } = Astro.props
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang as string}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/2026.es.pycon.org/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
@@ -25,10 +26,14 @@ const { title, description = 'PyconES 2026' } = Astro.props
     <ClientRouter />
   </head>
 
-  <body
-    class="bg-slate-900 text-white antialiased h-screen flex flex-col justify-center bg-linear-to-r from-gray to-blue-900 bg-radial"
-  >
-    <slot />
+  <body class="bg-slate-900 text-white antialiased h-screen bg-linear-to-r from-gray to-blue-900 bg-radial">
+    <nav class="relative z-11">
+      <LanguagePicker lang={lang} />
+    </nav>
+
+    <main class="flex flex-col justify-center">
+      <slot />
+    </main>
   </body>
 </html>
 

@@ -1,164 +1,20 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import '@fontsource-variable/jetbrains-mono'
-import { SPONSORS_EMAIL } from './constants'
+import { i18n } from 'astro:config/client'
+import IndexPage from '../components/index.astro'
+
+const locales = i18n.locales
+const defaultLocale = i18n.defaultLocale
 ---
 
-<Layout title="PyConES 2026">
-  <main class="min-h-screen flex flex-col justify-center items-center text-center px-4">
-    <div class="relative z-10 max-w-3xl">
-      <h1
-        class="text-4xl md:text-7xl font-bold text-white font-mono tracking-tighter cursor-default"
-        aria-label="PyConES 2026"
-      >
-        <span aria-hidden="true" data-value="PyConES 2026" id="matrix-text"> PyConES 2026 </span>
-      </h1>
+<script is:inline define:vars={{ locales, defaultLocale }}>
+  // Get browser language
+  const lang = navigator.language.split('-')[0]
+  const target = locales.includes(lang) ? lang : defaultLocale
 
-      <h2
-        id="subtitle-container"
-        class="mt-4 text-xl md:text-2xl text-green-400 font-mono h-8 flex justify-center items-center gap-2"
-        aria-live="polite"
-        aria-busy="true"
-      >
-        <span aria-hidden="true" class="select-none">&gt;</span>
-        <span id="subtitle">Initialising system...</span>
-        <span class="animate-pulse motion-reduce:animate-none" aria-hidden="true">_</span>
-      </h2>
-
-      <div
-        id="actions"
-        class="mt-12 flex flex-col md:flex-row gap-6 justify-center items-center opacity-0 transition-opacity duration-1000 ease-in"
-      >
-        <button
-          id="sponsor-btn"
-          type="button"
-          data-email={SPONSORS_EMAIL}
-          aria-describedby="sponsor-hint"
-          class="group relative px-7 py-2 bg-green-500 text-black font-mono font-bold text-lg hover:bg-green-400 transition-all duration-300 shadow-[0_0_15px_rgba(34,197,94,0.5)] hover:shadow-[0_0_25px_rgba(34,197,94,0.8)] cursor-pointer focus:outline-none focus:ring-4 focus:ring-green-300/50 rounded-sm"
-        >
-          <span
-            class="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-20 transition-opacity pointer-events-none"
-          ></span>
-
-          <span id="sponsor-text">
-            <span aria-hidden="true">&lt; </span><span lang="en">BECOME A SPONSOR</span><span
-              aria-hidden="true"
-            >
-              /&gt;</span
-            >
-          </span>
-          <span id="sponsor-hint" class="sr-only">Copia el email de contacto para patrocinadores</span>
-        </button>
-
-        <div
-          id="copy-confirmation"
-          role="status"
-          tabindex="-1"
-          class="hidden px-7 py-2 text-green-400 font-mono font-bold text-lg rounded-sm"
-        >
-          <span aria-hidden="true"> &lt;!-- </span><span lang="en">EMAIL COPIED!</span><span
-            aria-hidden="true"
-          >
-            --&gt;</span
-          >
-        </div>
-      </div>
-    </div>
-
-    <div
-      aria-hidden="true"
-      class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"
-    >
-    </div>
-  </main>
-</Layout>
-
-<script>
-  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+'
-
-  let interval: number | null = null
-
-  const runMatrixEffect = (element: HTMLElement) => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) return
-
-    let iteration = 0
-    clearInterval(interval as number)
-    const originalText = element.dataset.value || ''
-
-    interval = window.setInterval(() => {
-      element.innerText = originalText
-        .split('')
-        .map((_, index) => {
-          if (index < iteration) {
-            return originalText[index]
-          }
-          return letters[Math.floor(Math.random() * letters.length)]
-        })
-        .join('')
-
-      if (iteration >= originalText.length) {
-        clearInterval(interval as number)
-      }
-
-      iteration += 1 / 3
-    }, 30)
+  // Redirect immediately
+  if (target !== defaultLocale) {
+    window.location.href = `/${target}/`
   }
-
-  const init = () => {
-    const matrixText = document.getElementById('matrix-text')
-    const h1 = document.querySelector('h1')
-    const subtitle = document.querySelector('#subtitle')
-    const actions = document.querySelector('#actions')
-
-    if (matrixText && h1) {
-      runMatrixEffect(matrixText)
-      h1.onmouseover = () => runMatrixEffect(matrixText)
-    }
-
-    if (subtitle) {
-      setTimeout(() => {
-        subtitle.textContent = 'Sede UB Barcelona | 6-8 Nov 2026'
-        const container = document.getElementById('subtitle-container')
-        if (container) {
-          container.setAttribute('aria-busy', 'false')
-        }
-        if (actions) {
-          actions.classList.remove('opacity-0')
-        }
-      }, 1500)
-    }
-
-    // COPY MAIL LOGIC
-    const sponsorBtn = document.getElementById('sponsor-btn')
-    const copyConfirmation = document.getElementById('copy-confirmation')
-    const email = sponsorBtn?.dataset.email as string
-
-    if (sponsorBtn && copyConfirmation && email) {
-      sponsorBtn.onclick = async () => {
-        try {
-          await navigator.clipboard.writeText(email)
-
-          // Hide button, show confirmation
-          sponsorBtn.classList.add('hidden')
-          copyConfirmation.classList.remove('hidden')
-          copyConfirmation.focus()
-
-          setTimeout(() => {
-            // Hide confirmation, show button and restore focus
-            copyConfirmation.classList.add('hidden')
-            sponsorBtn.classList.remove('hidden')
-            sponsorBtn.focus()
-          }, 2000)
-        } catch (err) {
-          console.error('Failed to copy', err)
-          window.location.href = `mailto:${email}`
-        }
-      }
-    }
-  }
-
-  //not needed now
-  document.addEventListener('astro:page-load', init)
-  init()
 </script>
+
+<IndexPage lang={i18n.defaultLocale} />

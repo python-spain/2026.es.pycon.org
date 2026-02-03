@@ -55,7 +55,7 @@ const { items } = menuTexts[currentLang]
                   <>
                     <button
                       id={`dropdown-btn-${index}`}
-                      class="dropdown-trigger flex items-center gap-1 text-slate-300 hover:text-white font-medium transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
+                      class="dropdown-trigger flex items-center gap-1 text-slate-300 hover:text-white font-medium transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4 uppercase"
                       aria-expanded="false"
                       aria-haspopup="true"
                       aria-controls={`dropdown-menu-${index}`}
@@ -104,7 +104,7 @@ const { items } = menuTexts[currentLang]
                 ) : (
                   <a
                     href={isExternal(item.href) ? item.href : getRelativeLocaleUrl(currentLang, item.href)}
-                    class="block text-slate-300 hover:text-white font-medium transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
+                    class="block text-slate-300 hover:text-white font-medium transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4 uppercase"
                     {...(isExternal(item.href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                   >
                     {item.label}

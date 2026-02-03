@@ -1,0 +1,21 @@
+---
+import Navigation from './Navigation.astro'
+
+/**
+ * Nav Component
+ *
+ * @description Main navigation wrapper that uses the accessible Navigation component
+ * This component provides professional-level accessibility following WCAG 2.1 guidelines
+ *
+ * Keyboard behaviors (inherited from Navigation.astro):
+ * - ArrowLeft/ArrowRight: Navigate between top-level menu items
+ * - ArrowDown: Open dropdown and navigate down through items
+ * - ArrowUp: Navigate up through dropdown items
+ * - Escape: Close dropdown/mobile menu and return focus to trigger
+ * - Tab: Standard tab navigation with proper focus management
+ */
+---
+
+<header>
+  <Navigation />
+</header>

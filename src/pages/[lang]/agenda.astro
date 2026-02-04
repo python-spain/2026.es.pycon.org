@@ -1,0 +1,17 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Schedule from '@/components/agenda.tsx';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }, { params: { lang: 'ca' } }]
+}
+
+const { lang } = Astro.params;
+
+const response = await fetch('https://pretalx.com/pycones-2025/schedule/widgets/schedule.json')
+const scheduleData = await response.json()
+---
+
+<Layout title="Agenda | PyConES 2025">
+    <Schedule client:load lang={lang} scheduleData={scheduleData} />
+</Layout>

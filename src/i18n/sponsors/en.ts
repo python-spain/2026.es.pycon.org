@@ -52,22 +52,42 @@ export const en = {
   interests: {
     title: 'Interests',
     items: [
-      { label: 'DATA & AI 🤖', pc: '40%', width: '40%' },
-      { label: 'WEB & BACKEND 💻', pc: '30%', width: '30%' },
-      { label: 'DEVOPS & CLOUD ☁️', pc: '20%', width: '20%' },
-      { label: 'OTHERS 🔧', pc: '10%', width: '10%' },
+      { label: 'ML & AI 🤖', pc: '29%' },
+      { label: 'DATA SCIENCE 📊', pc: '17%' },
+      { label: 'SOFTWARE ENG 🏗️', pc: '14%' },
+      { label: 'WEB DEV 💻', pc: '10%' },
+      { label: 'COMMUNITY 🤝', pc: '7%' },
+      { label: 'DEVOPS & CLOUD ☁️', pc: '7%' },
+      { label: 'OTHERS 🔧', pc: '16%' },
     ],
   },
   audience: {
-    title: 'Attendee Profile',
+    title: 'Program Profile',
     seniority: 'Seniority Level',
     items: [
-      { icon: '💼', value: '72%', label: 'Open to job offers' },
-      { icon: '🔑', value: '35%', label: 'Decision makers in their company' },
-      { icon: '💜', value: '25%', label: 'Women and non-binary' },
-      { icon: '🌍', value: '10%', label: 'International visitors' },
+      {
+        icon: '💼',
+        value: '81%',
+        label: 'Active Professionals',
+      },
+      {
+        icon: '💜',
+        value: '33%',
+        label: 'Women and Non-Binary',
+      },
+      {
+        icon: '🔑',
+        value: '26%',
+        label: 'Management & Leads',
+      },
+      {
+        icon: '🌍',
+        value: '13%',
+        label: 'English Track Content',
+      },
     ],
-    quote: 'A mature audience: 80% of the content is focused on intermediate-advanced profiles.',
+    quote:
+      'A technical deep-dive: 62% of the schedule is dedicated to Intermediate and Advanced complexity sessions.',
   },
   whatis: {
     title: 'What is PyConES?',

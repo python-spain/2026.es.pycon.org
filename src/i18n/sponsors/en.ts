@@ -52,13 +52,13 @@ export const en = {
   interests: {
     title: 'Interests',
     items: [
-      { label: 'ML & AI 🤖', pc: '29%' },
-      { label: 'DATA SCIENCE 📊', pc: '17%' },
-      { label: 'SOFTWARE ENG 🏗️', pc: '14%' },
-      { label: 'WEB DEV 💻', pc: '10%' },
-      { label: 'COMMUNITY 🤝', pc: '7%' },
-      { label: 'DEVOPS & CLOUD ☁️', pc: '7%' },
-      { label: 'OTHERS 🔧', pc: '16%' },
+      { label: 'ML & AI', emoji: '🤖', pc: '29%' },
+      { label: 'DATA SCIENCE', emoji: '📊', pc: '17%' },
+      { label: 'SOFTWARE ENG', emoji: '🏗️', pc: '14%' },
+      { label: 'WEB DEV', emoji: '💻', pc: '10%' },
+      { label: 'COMMUNITY', emoji: '🤝', pc: '7%' },
+      { label: 'DEVOPS & CLOUD', emoji: '☁️', pc: '7%' },
+      { label: 'OTHERS', emoji: '🔧', pc: '16%' },
     ],
   },
   audience: {

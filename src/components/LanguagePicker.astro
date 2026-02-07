@@ -39,7 +39,7 @@ const getPathForLang = (lang) => {
           href={getPathForLang(lang)}
           hreflang={lang}
           aria-current={lang === currentLang ? 'page' : undefined}
-          aria-label={t['labelariadesc']}
+          aria-label={t['labelariadesc'][lang]}
           lang={lang}
           class={lang === currentLang ? 'font-bold underline underline-offset-4' : ''}
         >

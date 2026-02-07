@@ -2,16 +2,16 @@ export const texts = {
   es: {
     alttext: 'Selector de idioma',
     label: { es: 'es', en: 'en', ca: 'ca' },
-    labelariadesc: 'Idioma español',
+    labelariadesc: { es: 'Idioma español', en: 'English language', ca: 'Idioma català' },
   },
   en: {
     alttext: 'Language selector',
     label: { es: 'es', en: 'en', ca: 'ca' },
-    labelariadesc: 'English language',
+    labelariadesc: { es: 'Idioma español', en: 'English language', ca: 'Idioma català' },
   },
   ca: {
     alttext: "Selector d'idioma",
     label: { es: 'es', en: 'en', ca: 'ca' },
-    labelariadesc: 'Idioma català',
+    labelariadesc: { es: 'Idioma español', en: 'English language', ca: 'Idioma català' },
   },
 } as const

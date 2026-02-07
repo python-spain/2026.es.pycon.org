@@ -87,7 +87,7 @@ export const ca = {
       },
     ],
     quote:
-      "Immersió tècnica: el 62% de l'agenda està dedicada a sessions de complexitat Intermèdia i Avançada.",
+      "Immersió tècnica: el 62% de les xerrades son de nivells intermedi i avançat.",
   },
   whatis: {
     title: 'Què és PyConES?',

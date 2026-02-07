@@ -87,7 +87,7 @@ export const en = {
       },
     ],
     quote:
-      'A technical deep-dive: 62% of the schedule is dedicated to Intermediate and Advanced complexity sessions.',
+      'A technical deep-dive: 62% of the talks are for Intermediate and Advanced levels.',
   },
   whatis: {
     title: 'What is PyConES?',

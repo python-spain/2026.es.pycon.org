@@ -87,7 +87,7 @@ export const es = {
       },
     ],
     quote:
-      'Inmersión técnica: el 62% de la agenda está dedicada a sesiones de complejidad Intermedia y Avanzada.',
+      'Inmersión técnica: el 62% de las charlas son de niveles intermedio y avanzado.',
   },
   whatis: {
     title: '¿Qué es PyConES?',

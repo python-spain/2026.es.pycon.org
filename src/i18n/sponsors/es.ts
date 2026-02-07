@@ -78,7 +78,7 @@ export const es = {
       {
         icon: '🔑',
         value: '26%',
-        label: 'Dirección y Leads',
+        label: 'Dirección y Tech Leads',
       },
       {
         icon: '🌍',
@@ -86,8 +86,7 @@ export const es = {
         label: 'Contenido en inglés',
       },
     ],
-    quote:
-      'Inmersión técnica: el 62% de las charlas son de niveles intermedio y avanzado.',
+    quote: 'Inmersión técnica: el 62% de las charlas son de niveles intermedio y avanzado.',
   },
   whatis: {
     title: '¿Qué es PyConES?',

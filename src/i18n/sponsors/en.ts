@@ -78,7 +78,7 @@ export const en = {
       {
         icon: '🔑',
         value: '26%',
-        label: 'Management & Leads',
+        label: 'Management & Tech Leads',
       },
       {
         icon: '🌍',
@@ -86,8 +86,7 @@ export const en = {
         label: 'English Track Content',
       },
     ],
-    quote:
-      'A technical deep-dive: 62% of the talks are for Intermediate and Advanced levels.',
+    quote: 'A technical deep-dive: 62% of the talks are for Intermediate and Advanced levels.',
   },
   whatis: {
     title: 'What is PyConES?',

@@ -78,7 +78,7 @@ export const ca = {
       {
         icon: '🔑',
         value: '26%',
-        label: 'Direcció i Leads',
+        label: 'Direcció i Tech Leads',
       },
       {
         icon: '🌍',
@@ -86,8 +86,7 @@ export const ca = {
         label: 'Contingut en anglès',
       },
     ],
-    quote:
-      "Immersió tècnica: el 62% de les xerrades son de nivells intermedi i avançat.",
+    quote: 'Immersió tècnica: el 62% de les xerrades son de nivells intermedi i avançat.',
   },
   whatis: {
     title: 'Què és PyConES?',

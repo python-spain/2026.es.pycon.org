@@ -52,22 +52,41 @@ export const es = {
   interests: {
     title: 'Intereses',
     items: [
-      { label: 'DATA & AI 🤖', pc: '40%', width: '40%' },
-      { label: 'WEB & BACKEND 💻', pc: '30%', width: '30%' },
-      { label: 'DEVOPS & CLOUD ☁️', pc: '20%', width: '20%' },
-      { label: 'OTROS 🔧', pc: '10%', width: '10%' },
+      { label: 'ML & IA', emoji: '🤖', pc: '29%' },
+      { label: 'DATA SCIENCE', emoji: '📊', pc: '17%' },
+      { label: 'ING. SOFTWARE', emoji: '🏗️', pc: '14%' },
+      { label: 'DESARROLLO WEB', emoji: '💻', pc: '10%' },
+      { label: 'COMUNIDAD', emoji: '🤝', pc: '7%' },
+      { label: 'DEVOPS & CLOUD', emoji: '☁️', pc: '7%' },
+      { label: 'OTROS', emoji: '🔧', pc: '16%' },
     ],
   },
   audience: {
-    title: 'Perfil de asistentes',
+    title: 'Perfil del programa',
     seniority: 'Nivel de Seniority',
     items: [
-      { icon: '💼', value: '72%', label: 'Abiertos a ofertas de trabajo' },
-      { icon: '🔑', value: '35%', label: 'Toman decisiones en su empresa' },
-      { icon: '💜', value: '25%', label: 'Mujeres y no-binarios' },
-      { icon: '🌍', value: '10%', label: 'Visitantes internacionales' },
+      {
+        icon: '💼',
+        value: '81%',
+        label: 'Profesionales en activo',
+      },
+      {
+        icon: '💜',
+        value: '33%',
+        label: 'Mujeres y personas no binarias',
+      },
+      {
+        icon: '🔑',
+        value: '26%',
+        label: 'Dirección y Tech Leads',
+      },
+      {
+        icon: '🌍',
+        value: '13%',
+        label: 'Contenido en inglés',
+      },
     ],
-    quote: 'Una audiencia madura: El 80% del contenido está enfocado a perfiles intermedio-avanzado.',
+    quote: 'Inmersión técnica: el 62% de las charlas son de niveles intermedio y avanzado.',
   },
   whatis: {
     title: '¿Qué es PyConES?',

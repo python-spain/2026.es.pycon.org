@@ -2,6 +2,7 @@
 import LanguagePicker from '../components/LanguagePicker.astro'
 import '../style/global.css'
 import '@fontsource-variable/jetbrains-mono'
+import '@fontsource-variable/outfit'
 import { ClientRouter } from 'astro:transitions'
 
 interface Props {
@@ -29,7 +30,7 @@ const { title, description = 'PyconES 2026' } = Astro.props
     <ClientRouter />
   </head>
 
-  <body class="bg-slate-900 text-white antialiased h-screen bg-linear-to-r from-gray to-blue-900 bg-radial">
+  <body class="bg-pycon-black text-white antialiased h-screen bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-[#2a2a28] via-pycon-black to-pycon-black">
     <nav class="relative z-11">
       <LanguagePicker lang={lang} />
     </nav>
@@ -43,13 +44,8 @@ const { title, description = 'PyconES 2026' } = Astro.props
 <style is:global>
   /* Global CSS styles (Vanilla CSS) */
 
-  :root {
-    /* If you want to define native CSS variables */
-    --accent: 136, 58, 234;
-  }
-
   html {
-    font-family: system-ui, sans-serif;
+    font-family: 'Outfit Variable', sans-serif;
     scroll-behavior: smooth; /* Smooth scroll when navigating by anchors (#) */
   }
 
@@ -58,13 +54,13 @@ const { title, description = 'PyconES 2026' } = Astro.props
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #0f172a;
+    background: #1d1d1b;
   }
   ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #555554;
     border-radius: 5px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: #8e8e8d;
   }
 </style>

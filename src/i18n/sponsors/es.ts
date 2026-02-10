@@ -188,6 +188,7 @@ export const es = {
       { name: 'PWC', editions: 1, logo: '/sponsors/logo_pwc.png' },
       { name: 'Datadog', editions: 1, logo: '/sponsors/datadog.png' },
       { name: 'Twilio', editions: 1, logo: '/sponsors/twilio.png' },
+      { name: 'E-Frontiers', editions: 3, logo: '/sponsors/efrontiers.png' },
     ].sort((a, b) => b.editions - a.editions),
   },
   collaborators: {

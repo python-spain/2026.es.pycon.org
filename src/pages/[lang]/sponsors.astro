@@ -37,21 +37,15 @@ const {
 ---
 
 <Layout title={title}>
-  <div
-    class="page-wrapper min-h-screen w-full absolute top-0 left-0 z-10 overflow-x-hidden"
-  >
+  <div class="page-wrapper min-h-screen w-full absolute top-0 left-0 z-10 overflow-x-hidden">
     <div class="container-custom max-w-[1200px] mx-auto px-4 py-8 text-white">
       <!-- Hero -->
       <div class="text-center mb-12">
-        <img
-          src="/images/logo-vertical-alt-color-dark.svg"
-          alt="PyconES 2026"
-          class="h-50 mx-auto mb-4"
-        />
+        <img src="/images/logo-vertical-alt-color-dark.svg" alt="PyconES 2026" class="h-50 mx-auto mb-4" />
         <div class="flex flex-col items-center">
-          <span class=" font-medium
+          <span class="font-medium
          px-2 -mt-3 rounded text-sm"> {hero.date} </span>
-          <h1 class="mt-24 text-2xl  md:text-3xl font-extrabold leading-tight">
+          <h1 class="mt-24 text-2xl md:text-3xl font-extrabold leading-tight">
             {hero.subtitle}
           </h1>
         </div>
@@ -103,7 +97,7 @@ const {
         <div class="grid md:grid-cols-2 gap-6">
           <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
             <h3 class="text-xl font-bold mb-4">📍 {location.where}</h3>
-            <p class=" mb-4">
+            <p class="mb-4">
               {location.body}
               <strong>{location.bodyStrong}</strong>
               {location.bodyEnd}
@@ -138,7 +132,7 @@ const {
         <div class="grid md:grid-cols-2 gap-6">
           <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
             <h3 class="text-xl font-bold mb-4">{whatis.title}</h3>
-            <p class=" mb-4">
+            <p class="mb-4">
               {whatis.body1}
             </p>
             <p class="">
@@ -170,7 +164,7 @@ const {
         <h2 class="text-center text-2xl font-bold mb-8">{audience.title}</h2>
 
         <div class="bg-white text-pycon-black p-8 rounded-lg border border-white/10 mb-6">
-          <h3 class="mb-6 font-mono ">{audience.seniority}</h3>
+          <h3 class="mb-6 font-mono">{audience.seniority}</h3>
 
           <div
             role="img"
@@ -352,7 +346,7 @@ const {
         <div class="table-scroll overflow-x-auto pb-4 mb-8 border border-white/10 rounded-lg bg-pycon-black">
           <table class="pricing-table w-full border-separate border-spacing-0 min-w-[900px]">
             <thead>
-              <tr class="bg-pycon-black ">
+              <tr class="bg-pycon-black">
                 <th
                   scope="col"
                   class="w-[200px] p-4 text-center border-b border-r border-white/10 align-bottom pb-6 sticky left-0 z-10"
@@ -501,9 +495,9 @@ const {
 
       <!-- CTA -->
       <section class="text-center text-white mb-20">
-        <div class="bg-pycon-red/10 p-12 rounded-lg   ">
+        <div class="bg-pycon-red/10 p-12 rounded-lg">
           <h2 class="text-3xl font-bold mb-4">{contact.title}</h2>
-          <p class=" max-w-[600px] mx-auto mb-8">
+          <p class="max-w-[600px] mx-auto mb-8">
             {contact.body}
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">

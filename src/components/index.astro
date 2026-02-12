@@ -15,16 +15,18 @@ const t = texts[lang as keyof typeof texts]
 <Layout title="PyConES 2026">
   <main class="min-h-screen flex flex-col justify-center items-center text-center px-4">
     <div class="relative z-10 max-w-3xl">
-      <h1
-        class="text-4xl md:text-7xl font-bold text-white font-outfit tracking-tighter cursor-default"
-        aria-label="PyConES 2026"
-      >
-        <span aria-hidden="true" data-value="PyConES 2026" id="matrix-text"> PyConES 2026 </span>
+      <h1> 
+        <img
+          src="/images/logo-vertical-yellow-light.svg"
+          alt="PyconES Barcelona 2026"
+          class="h-80 mx-auto mb-4"
+        />
       </h1>
+
 
       <h2
         id="subtitle-container"
-        class="mt-4 text-xl md:text-2xl text-pycon-yellow font-mono h-8 flex justify-center items-center gap-2"
+        class="mt-4 text-xl md:text-2xl text-pycon-red font-mono h-8 flex justify-center items-center gap-2"
         aria-live="polite"
         aria-busy="true"
       >
@@ -60,11 +62,7 @@ const t = texts[lang as keyof typeof texts]
       </div>
     </div>
 
-    <div
-      aria-hidden="true"
-      class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"
-    >
-    </div>
+   
   </main>
 </Layout>
 

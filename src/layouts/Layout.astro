@@ -2,6 +2,7 @@
 import LanguagePicker from '../components/LanguagePicker.astro'
 import '../style/global.css'
 import '@fontsource-variable/jetbrains-mono'
+import '@fontsource-variable/outfit'
 import { ClientRouter } from 'astro:transitions'
 
 interface Props {
@@ -18,7 +19,10 @@ const { title, description = 'PyconES 2026' } = Astro.props
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/2026.es.pycon.org/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
@@ -26,12 +30,16 @@ const { title, description = 'PyconES 2026' } = Astro.props
     <ClientRouter />
   </head>
 
-  <body class="bg-slate-900 text-white antialiased h-screen bg-linear-to-r from-gray to-blue-900 bg-radial">
-    <nav class="relative z-11">
+  <body class="bg-pycon-black font-outfit text-pycon-white antialiased h-screen relative">
+    <div
+      class="fixed inset-0 bg-[url('/images/symbol-black-dark.svg')] bg-size-[80vh] bg-position-[140%_120%] bg-no-repeat opacity-30 pointer-events-none blur-xs"
+    >
+    </div>
+    <nav class="relative z-10">
       <LanguagePicker lang={lang} />
     </nav>
 
-    <main class="flex flex-col justify-center">
+    <main class="relative z-10 flex flex-col justify-center">
       <slot />
     </main>
   </body>
@@ -40,13 +48,8 @@ const { title, description = 'PyconES 2026' } = Astro.props
 <style is:global>
   /* Global CSS styles (Vanilla CSS) */
 
-  :root {
-    /* If you want to define native CSS variables */
-    --accent: 136, 58, 234;
-  }
-
   html {
-    font-family: system-ui, sans-serif;
+    font-family: 'Outfit Variable', sans-serif;
     scroll-behavior: smooth; /* Smooth scroll when navigating by anchors (#) */
   }
 
@@ -55,13 +58,13 @@ const { title, description = 'PyconES 2026' } = Astro.props
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #0f172a;
+    background: #1d1d1b;
   }
   ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #555554;
     border-radius: 5px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: #8e8e8d;
   }
 </style>

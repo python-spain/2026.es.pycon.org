@@ -1,7 +1,7 @@
 export const es = {
   title: 'Oportunidades de patrocinio - PyConES 2026',
   hero: {
-    date: 'BARCELONA, 6-8 NOVIEMBRE',
+    date: '6-8 NOVIEMBRE',
     title: 'PyConES 2026',
     subtitle: 'Oportunidades de patrocinio',
   },

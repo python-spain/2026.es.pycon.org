@@ -1,7 +1,7 @@
 export const ca = {
   title: 'Oportunitats de patrocini - PyConES 2026',
   hero: {
-    date: 'BARCELONA, 6-8 NOVEMBRE',
+    date: ' 6-8 NOVEMBRE',
     title: 'PyConES 2026',
     subtitle: 'Oportunitats de patrocini',
   },

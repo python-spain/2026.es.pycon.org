@@ -1,7 +1,7 @@
 export const en = {
   title: 'Sponsorship Opportunities - PyConES 2026',
   hero: {
-    date: 'BARCELONA, NOVEMBER 6-8',
+    date: 'NOVEMBER, 6th-8th',
     title: 'PyConES 2026',
     subtitle: 'Sponsorship Opportunities',
   },

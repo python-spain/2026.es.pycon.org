@@ -7,13 +7,14 @@ const languages = i18n.locales as string[]
 
 interface Props {
   variant?: 'desktop' | 'mobile'
+  lang: string
 }
 
-const { variant = 'desktop' } = Astro.props
+const { variant = 'desktop', lang } = Astro.props
 
 // Idioma actual detectado desde la URL
 const pathname = Astro.url.pathname
-const currentLang = pathname.split('/')[1] || i18n.defaultLocale
+const currentLang = lang || pathname.split('/')[1] || i18n.defaultLocale
 const t = texts[currentLang as keyof typeof texts] || texts['es']
 
 // Función para construir la URL destino
@@ -29,12 +30,13 @@ const getPathForLang = (targetLang: string) => {
 
   return '/' + parts.join('/')
 }
+
 ---
 
 {
   variant === 'desktop' ? (
     <div
-      class="lang-picker flex items-center gap-1 border-l border-white/20 pl-6 ml-2"
+      class="lang-picker flex items-center gap-1 border-l border-white/20 pl-6 ml-2 text-pycon-orange-100 text-lg font-outfit"
       role="group"
       aria-label={t['alttext']}
     >

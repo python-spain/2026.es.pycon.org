@@ -4,6 +4,12 @@ import LanguagePicker from './LanguagePicker.astro'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 import { menuTexts } from '../i18n/menu'
 
+interface MenuItem {
+  label: string
+  href: string
+  children?: MenuItem[]
+}
+  
 // Get current language from URL
 const lang = Astro.url.pathname.split('/')[1] || 'es'
 const validLangs = ['es', 'en', 'ca'] as const
@@ -116,7 +122,7 @@ const { items } = menuTexts[currentLang]
 
           <!-- Language Picker (Desktop) -->
           <li class="menu-item">
-            <LanguagePicker variant="desktop" />
+            <LanguagePicker variant="desktop" lang={currentLang} />
           </li>
         </ul>
       </nav>
@@ -188,7 +194,7 @@ const { items } = menuTexts[currentLang]
 
         <!-- Language Picker (Mobile) -->
         <li class="menu-item">
-          <LanguagePicker variant="mobile" />
+          <LanguagePicker variant="mobile" lang={currentLang} />
         </li>
       </ul>
     </nav>

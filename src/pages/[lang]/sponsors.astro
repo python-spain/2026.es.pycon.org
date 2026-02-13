@@ -37,23 +37,25 @@ const {
 ---
 
 <Layout title={title}>
-  <div
-    class="page-wrapper text-[#e5e5e5] font-sans min-h-screen w-full absolute top-0 left-0 z-10 overflow-x-hidden"
-  >
-    <div class="container-custom max-w-[1200px] mx-auto px-4 py-8">
+  <div class="page-wrapper min-h-screen w-full absolute top-0 left-0 z-10 overflow-x-hidden">
+    <div class="container-custom max-w-[1200px] mx-auto px-4 py-8 text-white">
       <!-- Hero -->
-      <div class="text-center mb-16 pt-16">
-        <span class="text-green-400 font-mono px-2 py-1 rounded text-md"> {hero.date} </span>
-        <h1 class="text-4xl md:text-5xl font-extrabold my-4 leading-tight">
-          {hero.title}<br />{hero.subtitle}
-        </h1>
+      <div class="text-center mb-12">
+        <img src="/images/logo-vertical-alt-color-dark.svg" alt="PyconES 2026" class="h-50 mx-auto mb-4" />
+        <div class="flex flex-col items-center">
+          <span class="font-medium
+         px-2 -mt-3 rounded text-sm"> {hero.date} </span>
+          <h1 class="mt-24 text-2xl md:text-3xl font-extrabold leading-tight">
+            {hero.subtitle}
+          </h1>
+        </div>
       </div>
 
       <!-- About -->
       <section class="mb-20">
-        <div class="bg-[#111] p-8 rounded-lg border border-[#333] text-center">
-          <h2 class="text-2xl font-bold mb-4">{about.title}</h2>
-          <p class="text-gray-400 text-lg max-w-[700px] mx-auto">{about.body}</p>
+        <div class="bg-white p-8 rounded-2xl text-center">
+          <h2 class="text-pycon-red text-2xl font-bold mb-4">{about.title}</h2>
+          <p class="text-lg text-pycon-black max-w-[700px] mx-auto">{about.body}</p>
         </div>
       </section>
 
@@ -62,11 +64,11 @@ const {
         <h2 class="text-center text-2xl font-bold mb-8">{stats.title}</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {
-            stats.items.map((stat) => (
-              <div class="bg-[#111] p-4 rounded-lg border border-[#333] text-center">
+            stats.items.map((stat:{icon:string, value:string, label:string}) => (
+              <div class="bg-white text-pycon-black p-4 rounded-lg border border-white/10 text-center">
                 <div class="text-3xl mb-2">{stat.icon}</div>
-                <div class="text-2xl font-bold text-green-400">{stat.value}</div>
-                <div class="text-sm text-gray-400">{stat.label}</div>
+                <div class="text-2xl font-bold ">{stat.value}</div>
+                <div class="text-sm">{stat.label}</div>
               </div>
             ))
           }
@@ -79,9 +81,9 @@ const {
         <div class="grid md:grid-cols-3 gap-6">
           {
             objectives.items.map((obj) => (
-              <div class="bg-[#111] p-6 rounded-lg border border-[#333] text-center">
-                <div class="text-xl font-bold text-green-400 mb-2">{obj.title}</div>
-                <div class="text-gray-400">{obj.desc}</div>
+              <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10 text-center">
+                <div class="text-xl font-bold mb-2">{obj.title}</div>
+                <div>{obj.desc}</div>
               </div>
             ))
           }
@@ -93,31 +95,31 @@ const {
         <h2 class="text-center text-2xl font-bold mb-8">{location.title}</h2>
 
         <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-[#111] p-6 rounded-lg border border-[#333]">
-            <h3 class="text-xl font-bold text-green-400 mb-4">📍 {location.where}</h3>
-            <p class="text-gray-400 mb-4">
+          <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
+            <h3 class="text-xl font-bold mb-4">📍 {location.where}</h3>
+            <p class="mb-4">
               {location.body}
-              <strong class="text-white">{location.bodyStrong}</strong>
+              <strong>{location.bodyStrong}</strong>
               {location.bodyEnd}
             </p>
-            <p class="text-gray-400">
+            <p class="">
               {location.body2}
             </p>
           </div>
 
-          <div class="bg-[#111] p-6 rounded-lg border border-[#333]">
-            <h3 class="text-xl font-bold text-green-400 mb-4">📅 {when.title}</h3>
-            <div class="space-y-3 text-gray-400">
+          <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
+            <h3 class="text-xl font-bold mb-4">📅 {when.title}</h3>
+            <div class="space-y-3">
               <p>
-                <strong class="text-white">{when.friday}: </strong>{when.fridayStrong}
+                <strong>{when.friday}: </strong>{when.fridayStrong}
                 <em>{when.fridayEm}</em>
               </p>
               <p>
-                <strong class="text-white">{when.saturday}: </strong>
+                <strong>{when.saturday}: </strong>
                 {when.saturdayBody}
               </p>
               <p>
-                <strong class="text-white">{when.sunday}: </strong>
+                <strong>{when.sunday}: </strong>
                 {when.sundayBody}
               </p>
             </div>
@@ -128,26 +130,26 @@ const {
       <!-- Qué es PyConES -->
       <section class="mb-20">
         <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-[#111] p-6 rounded-lg border border-[#333]">
-            <h3 class="text-xl font-bold text-green-400 mb-4">{whatis.title}</h3>
-            <p class="text-gray-400 mb-4">
+          <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
+            <h3 class="text-xl font-bold mb-4">{whatis.title}</h3>
+            <p class="mb-4">
               {whatis.body1}
             </p>
-            <p class="text-gray-400">
+            <p class="">
               {whatis.body2}
             </p>
           </div>
 
-          <div class="bg-[#111] p-6 rounded-lg border border-[#333]">
-            <h3 class="text-xl font-bold text-green-400 mb-4">{whySponsor.title}</h3>
+          <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
+            <h3 class="text-xl font-bold mb-4">{whySponsor.title}</h3>
             <div class="space-y-4">
               {
                 whySponsor.items.map((item) => (
                   <div class="flex gap-3">
                     <span class="text-xl">{item.icon}</span>
                     <div>
-                      <strong class="text-white">{item.title}:</strong>
-                      <span class="text-gray-400 text-sm"> {item.desc}</span>
+                      <strong>{item.title}:</strong>
+                      <span class="text-sm"> {item.desc}</span>
                     </div>
                   </div>
                 ))
@@ -161,8 +163,8 @@ const {
       <section class="mb-20">
         <h2 class="text-center text-2xl font-bold mb-8">{audience.title}</h2>
 
-        <div class="bg-[#111] p-8 rounded-lg border border-[#333] mb-6">
-          <h3 class="mb-6 font-mono text-white">{audience.seniority}</h3>
+        <div class="bg-white text-pycon-black p-8 rounded-lg border border-white/10 mb-6">
+          <h3 class="mb-6 font-mono">{audience.seniority}</h3>
 
           <div
             role="img"
@@ -172,66 +174,66 @@ const {
           >
             <div
               style="width: 38%"
-              class="h-full min-w-[2rem] bg-gray-600 text-gray-200 text-xs font-bold flex items-center justify-center"
+              class="h-full min-w-8 bg-pycon-yellow text-pycon-black text-xs font-bold flex items-center justify-center"
             >
               38%
             </div>
             <div
               style="width: 57%"
-              class="h-full min-w-[2rem] bg-green-400 text-black text-xs font-bold flex items-center justify-center"
+              class="h-full min-w-8 bg-pycon-orange text-pycon-black text-xs font-bold flex items-center justify-center"
             >
               57%
             </div>
             <div
               style="width: 5%"
-              class="h-full min-w-[2rem] bg-gray-500 text-gray-200 text-xs font-bold flex items-center justify-center"
+              class="h-full min-w-8 bg-pycon-red text-xs font-bold flex items-center justify-center"
             >
               5%
             </div>
           </div>
           <div class="flex flex-wrap justify-center gap-x-4 gap-y-1 mb-4">
-            <div class="flex items-center gap-2 text-sm text-gray-300">
-              <div class="w-3 h-3 rounded-sm flex-shrink-0 bg-gray-600"></div>
+            <div class="flex items-center gap-2 text-sm text-pycon-black">
+              <div class="w-3 h-3 rounded-sm shrink-0 bg-pycon-yellow"></div>
               <span><span aria-hidden="true">🌱</span> JUNIOR 38%</span>
             </div>
-            <div class="flex items-center gap-2 text-sm text-gray-300">
-              <div class="w-3 h-3 rounded-sm flex-shrink-0 bg-green-400"></div>
+            <div class="flex items-center gap-2 text-sm text-pycon-black">
+              <div class="w-3 h-3 rounded-sm shrink-0 bg-pycon-orange"></div>
               <span><span aria-hidden="true">🚀</span> SENIOR / PRO 57%</span>
             </div>
-            <div class="flex items-center gap-2 text-sm text-gray-300">
-              <div class="w-3 h-3 rounded-sm flex-shrink-0 bg-gray-500"></div>
+            <div class="flex items-center gap-2 text-sm text-pycon-black">
+              <div class="w-3 h-3 rounded-sm shrink-0 bg-pycon-red"></div>
               <span><span aria-hidden="true">🧠</span> EXPERT 5%</span>
             </div>
           </div>
 
-          <p class="text-center text-gray-400 italic">
+          <p class="text-center text-gray-700 italic">
             {audience.quote}
           </p>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           {
-            audience.items.map((item) => (
-              <div class="bg-[#111] p-4 rounded-lg border border-[#333] text-center">
+            audience.items.map((item:{icon:string, value:string, label:string}) => (
+              <div class="bg-white p-4 rounded-lg border border-white/10 text-center">
                 <div class="text-2xl mb-1">{item.icon}</div>
-                <div class="text-xl font-bold text-green-400">{item.value}</div>
-                <div class="text-xs text-gray-400">{item.label}</div>
+                <div class="text-lg font-bold text-pycon-black">{item.value}</div>
+                <div class="text-md text-gray-700">{item.label}</div>
               </div>
             ))
           }
         </div>
 
-        <div class="bg-[#111] p-8 rounded-lg border border-[#333]">
-          <h3 class="mb-6 font-mono text-white">{interests.title}</h3>
+        <div class="bg-white text-pycon-black p-8 rounded-lg border border-white/10">
+          <h3 class="mb-6 font-mono text-pycon-black">{interests.title}</h3>
           {
             (() => {
-              const colors = ['#4ade80', '#60a5fa', '#c084fc', '#fbbf24', '#f472b6', '#22d3ee', '#fb923c']
+              const colors = ['#ff8200', '#fca09c', '#ffc72c', '#fff1ca;', '#ffdfbf', '#fa716b', '#fb923c']
               return (
                 <>
                   <div class="flex w-full h-12 rounded-lg overflow-hidden" aria-hidden="true">
-                    {interests.items.map((interest, i) => (
+                    {interests.items.map((interest:{pc:string, label:string, emoji:string}, i:number) => (
                       <div
-                        class="h-full min-w-[2rem] flex items-center justify-center text-black font-bold text-xs"
+                        class="h-full min-w-8 flex items-center justify-center text-pycon-black font-bold text-xs"
                         style={`width: ${interest.pc}; background-color: ${colors[i]};`}
                       >
                         {interest.pc}
@@ -239,10 +241,10 @@ const {
                     ))}
                   </div>
                   <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-2 mt-4">
-                    {interests.items.map((interest, i) => (
-                      <div class="flex items-center gap-2 text-sm text-gray-300">
+                    {interests.items.map((interest:{pc:string, label:string, emoji:string}, i:number) => (
+                      <div class="flex items-center gap-2 text-sm text-pycon-black">
                         <div
-                          class="w-3 h-3 rounded-sm flex-shrink-0"
+                          class="w-3 h-3 rounded-sm shrink-0"
                           style={`background-color: ${colors[i]};`}
                           aria-hidden="true"
                         />
@@ -270,19 +272,19 @@ const {
         <h2 class="text-center text-2xl font-bold mb-8">{testimonials.title}</h2>
         <div class="grid md:grid-cols-2 gap-6">
           {
-            testimonials.items.map((t) => (
-              <figure class="bg-[#111] p-6 rounded-lg border border-[#333] border-l-4 border-l-green-400 flex flex-col h-full relative">
+            testimonials.items.map((t:{quote:string, name:string, role:string, photo:string}) => (
+              <figure class="bg-white text-pycon-black p-6 rounded-lg border border-white/10 border-l-4 border-l-pycon-orange flex flex-col h-full relative">
                 <span
-                  class="absolute top-4 left-4 text-5xl text-green-400/20 font-serif leading-none select-none"
+                  class="absolute top-4 left-4 text-5xl text-pycon-yellow font-serif leading-none select-none"
                   aria-hidden="true"
                 >
                   "
                 </span>
-                <blockquote class="text-gray-400 italic pl-6">
+                <blockquote class="text-gray-600 italic pl-6">
                   <p>{t.quote}</p>
                 </blockquote>
                 <figcaption class="flex items-center gap-3 mt-auto pt-4">
-                  <div class="w-12 h-12 shrink-0 bg-green-400/20 rounded-full overflow-hidden shadow-lg shadow-black/50 flex items-end justify-center">
+                  <div class="w-12 h-12 shrink-0 bg-pycon-yellow/20 rounded-full overflow-hidden shadow-lg shadow-black/50 flex items-end justify-center">
                     {t.photo ? (
                       <img
                         src={t.photo}
@@ -294,13 +296,13 @@ const {
                         class="w-full h-full object-cover"
                       />
                     ) : (
-                      <span class="text-green-400 font-bold" aria-hidden="true">
+                      <span class="text-pycon-yellow-75 font-bold" aria-hidden="true">
                         {t.name[0]}
                       </span>
                     )}
                   </div>
                   <div>
-                    <cite class="font-bold text-white not-italic">{t.name}</cite>
+                    <cite class="font-bold text-pycon-red not-italic">{t.name}</cite>
                     <div class="text-sm text-gray-500">{t.role}</div>
                   </div>
                 </figcaption>
@@ -317,7 +319,7 @@ const {
         </h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {
-            pastSponsors.items.map((sponsor) => (
+            pastSponsors.items.map((sponsor:{logo:string, name:string}) => (
               <div class="bg-white p-5 rounded-lg flex items-center justify-center hover:shadow-lg hover:scale-[1.02] transition-all group h-28">
                 <img src={sponsor.logo} alt={sponsor.name} class="max-h-20 max-w-[85%] object-contain" />
               </div>
@@ -328,7 +330,7 @@ const {
         <h3 class="text-center text-xl font-bold mt-12 mb-6">{collaborators.title}</h3>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {
-            collaborators.items.map((collab) => (
+            collaborators.items.map((collab:{logo:string, name:string}) => (
               <div class="bg-white p-5 rounded-lg flex items-center justify-center hover:shadow-lg hover:scale-[1.02] transition-all h-24">
                 <img src={collab.logo} alt={collab.name} class="max-h-16 max-w-[85%] object-contain" />
               </div>
@@ -341,17 +343,17 @@ const {
       <section class="mb-20">
         <h2 class="text-center text-3xl font-bold mb-8">{tiers.title}</h2>
 
-        <div class="table-scroll overflow-x-auto pb-4 mb-8 border border-[#333] rounded-lg bg-[#0a0a0a]">
+        <div class="table-scroll overflow-x-auto pb-4 mb-8 border border-white/10 rounded-lg bg-pycon-black">
           <table class="pricing-table w-full border-separate border-spacing-0 min-w-[900px]">
             <thead>
-              <tr>
+              <tr class="bg-pycon-black">
                 <th
                   scope="col"
-                  class="w-[200px] p-4 text-center border-b border-white/10 align-bottom pb-6 sticky left-0 bg-[#0a0a0a] border-r border-[#333] z-10"
+                  class="w-[200px] p-4 text-center border-b border-r border-white/10 align-bottom pb-6 sticky left-0 z-10"
                   >{tiers.column1}</th
                 >
                 {
-                  tiers.items.map((t) => (
+                  tiers.items.map((t:{name:string, price:string, limit:string, emoji:string, color:string}) => (
                     <th
                       scope="col"
                       class="p-4 text-center border-b border-white/10 align-bottom pb-6"
@@ -366,10 +368,10 @@ const {
                       <div class="text-white text-2xl font-bold my-1" aria-hidden="true">
                         {t.price}
                       </div>
-                      <div class="text-gray-500 text-xs font-normal" aria-hidden="true">
+                      <div class="text-white text-xs font-normal" aria-hidden="true">
                         ({tiers.no_taxes})
                       </div>
-                      <div class="text-gray-500 text-sm font-normal" aria-hidden="true">
+                      <div class="text-white text-sm font-normal" aria-hidden="true">
                         {t.limit}
                       </div>
                     </th>
@@ -384,28 +386,28 @@ const {
                     <tr>
                       <th
                         scope="row"
-                        class="p-4 text-left font-bold text-green-400 bg-[#0f0f0f] border-b border-white/10 sticky left-0 z-10"
+                        class="p-4 text-left font-bold text-pycon-orange-75 bg-pycon-black border-b border-white/10 sticky left-0 z-10"
                         aria-label={category.category}
                       >
                         <span aria-hidden="true">{category.category}</span>
                       </th>
-                      <td colspan="5" class="bg-[#0f0f0f] border-b border-white/10" />
+                      <td colspan="5" class="bg-pycon-black border-b border-white/10" />
                     </tr>
                     {category.rows.map((row) => (
                       <tr>
                         <th
                           scope="row"
-                          class="p-4 text-left border-b border-white/10 text-gray-400 sticky left-0 bg-[#0a0a0a] border-r border-[#333] z-10 text-sm font-normal"
+                          class="p-4 text-left border-b border-r border-white/10 text-white sticky left-0 bg-pycon-black z-10 text-sm font-normal"
                         >
                           {row.label}
                         </th>
-                        {row.data.map((val) => (
+                        {row.data.map((val:string) => (
                           <td
                             class:list={[
                               'p-4 text-center border-b border-white/10 text-sm',
                               {
-                                'text-green-400': val === '✅',
-                                'text-red-400/60': val === '🚫',
+                                'text-pycon-yellow': val === '✅',
+                                'text-pycon-red': val === '🚫',
                               },
                             ]}
                           >
@@ -439,10 +441,10 @@ const {
         <h2 class="text-center text-2xl font-bold mb-8">{benefitDetails.title}</h2>
         <div class="grid md:grid-cols-2 gap-4">
           {
-            benefitDetails.items.map((detail) => (
-              <div class="bg-[#111] p-4 rounded-lg border border-[#333]">
-                <h4 class="font-bold text-green-400 mb-2">{detail.title}</h4>
-                <p class="text-gray-400 text-sm">{detail.desc}</p>
+            benefitDetails.items.map((detail:{title:string, desc:string}) => (
+              <div class="bg-white p-4 rounded-lg border border-white/10">
+                <h4 class="font-bold text-pycon-black mb-2">{detail.title}</h4>
+                <p class="text-gray-600 text-sm">{detail.desc}</p>
               </div>
             ))
           }
@@ -454,13 +456,13 @@ const {
         <h2 class="text-center text-2xl font-bold mb-8">Add-ons</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {
-            addons.map((addon) => (
-              <div class="bg-[#111] p-5 border border-[#333] rounded-lg">
+            addons.map((addon:{name:string, price:string, desc:string, available:string}) => (
+              <div class="bg-white p-5 border border-white/10 rounded-lg">
                 <div class="flex justify-between items-start mb-2">
-                  <div class="font-bold text-white">{addon.name}</div>
-                  <div class="text-green-400 font-bold">{addon.price}</div>
+                  <div class="font-bold text-pycon-red">{addon.name}</div>
+                  <div class="text-pycon-red font-bold">{addon.price}</div>
                 </div>
-                <div class="text-gray-400 text-sm mb-2">{addon.desc}</div>
+                <div class="text-gray-600 text-sm mb-2">{addon.desc}</div>
                 <div class="text-xs text-gray-500"> {addon.available}</div>
               </div>
             ))
@@ -471,18 +473,18 @@ const {
       <!-- Sobre Python España -->
       <section class="mb-20">
         <h2 class="text-center text-2xl font-bold mb-8">{pythonSpainPoints.title}</h2>
-        <div class="bg-[#111] p-8 rounded-lg border border-[#333] mb-6">
-          <p class="text-gray-400 text-center max-w-[800px] mx-auto mb-8">
+        <div class="bg-white p-8 rounded-lg border border-white/10 mb-6">
+          <p class="text-gray-600 text-center max-w-[800px] mx-auto mb-8">
             {pythonSpainPoints.body}
           </p>
           <div class="grid md:grid-cols-2 gap-6">
             {
-              pythonSpainPoints.items.map((point) => (
+              pythonSpainPoints.items.map((point:{icon:string, title:string, desc:string}) => (
                 <div class="flex gap-3">
                   <span class="text-2xl">{point.icon}</span>
                   <div>
-                    <strong class="text-green-400">{point.title}</strong>
-                    <p class="text-gray-400 text-sm mt-1">{point.desc}</p>
+                    <strong class="text-pycon-red">{point.title}</strong>
+                    <p class="text-gray-600 text-sm mt-1">{point.desc}</p>
                   </div>
                 </div>
               ))
@@ -492,21 +494,21 @@ const {
       </section>
 
       <!-- CTA -->
-      <section class="text-center mb-20">
-        <div class="bg-linear-to-r from-green-400/10 to-purple-400/10 p-12 rounded-lg border border-[#333]">
+      <section class="text-center text-white mb-20">
+        <div class="bg-pycon-red/10 p-12 rounded-lg">
           <h2 class="text-3xl font-bold mb-4">{contact.title}</h2>
-          <p class="text-gray-400 max-w-[600px] mx-auto mb-8">
+          <p class="max-w-[600px] mx-auto mb-8">
             {contact.body}
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
               href={`mailto:${SPONSORS_EMAIL}?subject=${encodeURIComponent('Interés de patrocinio para PyConES 2026')}`}
-              class="bg-green-400 text-black font-bold px-8 py-4 no-underline rounded text-lg uppercase inline-block hover:bg-green-300 transition-colors"
+              class="bg-pycon-orange text-pycon-black font-bold px-8 py-4 no-underline rounded text-lg uppercase inline-block hover:bg-pycon-orange-75 transition-colors"
             >
               {contact.email}
             </a>
           </div>
-          <p class="mt-6 text-gray-500">{SPONSORS_EMAIL}</p>
+          <p class="mt-6 text-white">{SPONSORS_EMAIL}</p>
         </div>
       </section>
 
@@ -515,12 +517,12 @@ const {
         <h3 class="text-xl font-bold mb-6">{socialLinks.title}</h3>
         <div class="flex flex-wrap justify-center gap-4">
           {
-            socialLinks.items.map((link) => (
+            socialLinks.items.map((link:{url:string, label:string, icon:string}) => (
               <a
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center gap-2 bg-[#111] px-4 py-2 rounded border border-[#333] hover:border-green-400 transition-colors text-gray-400 hover:text-green-400"
+                class="flex items-center gap-2 bg-white px-4 py-2 rounded border border-white/10 hover:border-pycon-yellow transition-colors text-gray-600 hover:text-pycon-yellow"
               >
                 <span>{link.icon}</span>
                 <span>{link.label}</span>

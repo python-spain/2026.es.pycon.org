@@ -7,13 +7,14 @@ const languages = i18n.locales as string[]
 
 interface Props {
   variant?: 'desktop' | 'mobile'
+  lang: string
 }
 
-const { variant = 'desktop' } = Astro.props
+const { variant = 'desktop', lang } = Astro.props
 
 // Idioma actual detectado desde la URL
 const pathname = Astro.url.pathname
-const currentLang = pathname.split('/')[1] || i18n.defaultLocale
+const currentLang = lang || pathname.split('/')[1] || i18n.defaultLocale
 const t = texts[currentLang as keyof typeof texts] || texts['es']
 
 // Función para construir la URL destino
@@ -34,7 +35,7 @@ const getPathForLang = (targetLang: string) => {
 {
   variant === 'desktop' ? (
     <div
-      class="lang-picker flex items-center gap-1 border-l border-white/20 pl-6 ml-2"
+      class="lang-picker flex items-center gap-1 border-l border-white/20 pl-6 ml-2 text-pycon-orange-100 text-lg font-outfit"
       role="group"
       aria-label={t['alttext']}
     >
@@ -42,14 +43,14 @@ const getPathForLang = (targetLang: string) => {
         <a
           href={getPathForLang(lang)}
           hreflang={lang}
+          aria-label={t['labelariadesc'][lang]}
           lang={lang}
           aria-current={lang === currentLang ? 'page' : undefined}
-          aria-label={`${t['labelariadesc']} ${t.label[lang as keyof typeof t.label]}`}
           class:list={[
-            'px-2 py-1 text-sm font-mono rounded transition-colors outline-none',
+            'px-2 py-1 text-sm font-outfit rounded transition-colors outline-none',
             lang === currentLang
-              ? 'text-blue-400 font-bold'
-              : 'text-slate-400 hover:text-white focus-visible:text-blue-400',
+              ? 'text-pycon-red-100 font-bold underline'
+              : 'text-pycon-orange-500 hover:text-white focus-visible:text-pycon-red-500',
           ]}
         >
           {t.label[lang as keyof typeof t.label]}
@@ -68,7 +69,7 @@ const getPathForLang = (targetLang: string) => {
             aria-current={lang === currentLang ? 'page' : undefined}
             aria-label={`${t['labelariadesc']} ${t.label[lang as keyof typeof t.label]}`}
             class:list={[
-              'px-3 py-2 text-sm font-mono rounded transition-colors outline-none',
+              'px-3 py-2 text-sm font-outfit rounded transition-colors outline-none',
               lang === currentLang
                 ? 'bg-blue-600 text-white font-bold'
                 : 'bg-white/5 text-slate-300 hover:bg-white/10 focus-visible:bg-blue-600 focus-visible:text-white',

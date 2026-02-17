@@ -1,7 +1,7 @@
 export const ca = {
   title: 'Oportunitats de patrocini - PyConES 2026',
   hero: {
-    date: 'BARCELONA, 6-8 NOVEMBRE',
+    date: ' 6-8 NOVEMBRE',
     title: 'PyConES 2026',
     subtitle: 'Oportunitats de patrocini',
   },
@@ -52,22 +52,41 @@ export const ca = {
   interests: {
     title: 'Interessos',
     items: [
-      { label: 'DATA & AI 🤖', pc: '40%', width: '40%' },
-      { label: 'WEB & BACKEND 💻', pc: '30%', width: '30%' },
-      { label: 'DEVOPS & CLOUD ☁️', pc: '20%', width: '20%' },
-      { label: 'ALTRES 🔧', pc: '10%', width: '10%' },
+      { label: 'ML & IA', emoji: '🤖', pc: '29%' },
+      { label: 'DATA SCIENCE', emoji: '📊', pc: '17%' },
+      { label: 'ENG. SOFTWARE', emoji: '🏗️', pc: '14%' },
+      { label: 'DESENV. WEB', emoji: '💻', pc: '10%' },
+      { label: 'COMUNITAT', emoji: '🤝', pc: '7%' },
+      { label: 'DEVOPS & CLOUD', emoji: '☁️', pc: '7%' },
+      { label: 'ALTRES', emoji: '🔧', pc: '16%' },
     ],
   },
   audience: {
-    title: 'Perfil d’assistents',
+    title: 'Perfil del programa',
     seniority: 'Nivell de Seniority',
     items: [
-      { icon: '💼', value: '72%', label: 'Oberts a ofertes de feina' },
-      { icon: '🔑', value: '35%', label: 'Prenen decisions a la seva empresa' },
-      { icon: '💜', value: '25%', label: 'Dones i no-binaris' },
-      { icon: '🌍', value: '10%', label: 'Visitants internacionals' },
+      {
+        icon: '💼',
+        value: '81%',
+        label: 'Professionals en actiu',
+      },
+      {
+        icon: '💜',
+        value: '33%',
+        label: 'Dones i persones no binàries',
+      },
+      {
+        icon: '🔑',
+        value: '26%',
+        label: 'Direcció i Tech Leads',
+      },
+      {
+        icon: '🌍',
+        value: '13%',
+        label: 'Contingut en anglès',
+      },
     ],
-    quote: 'Una audiència madura: El 80% del contingut està enfocat a perfils intermedi-avançat.',
+    quote: 'Immersió tècnica: el 62% de les xerrades son de nivells intermedi i avançat.',
   },
   whatis: {
     title: 'Què és PyConES?',
@@ -169,6 +188,7 @@ export const ca = {
       { name: 'PWC', editions: 1, logo: '/sponsors/logo_pwc.png' },
       { name: 'Datadog', editions: 1, logo: '/sponsors/datadog.png' },
       { name: 'Twilio', editions: 1, logo: '/sponsors/twilio.png' },
+      { name: 'E-Frontiers', editions: 3, logo: '/sponsors/efrontiers.png' },
     ].sort((a, b) => b.editions - a.editions),
   },
   collaborators: {

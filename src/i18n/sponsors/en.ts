@@ -1,7 +1,7 @@
 export const en = {
   title: 'Sponsorship Opportunities - PyConES 2026',
   hero: {
-    date: 'BARCELONA, NOVEMBER 6-8',
+    date: 'NOVEMBER, 6th-8th',
     title: 'PyConES 2026',
     subtitle: 'Sponsorship Opportunities',
   },
@@ -52,22 +52,41 @@ export const en = {
   interests: {
     title: 'Interests',
     items: [
-      { label: 'DATA & AI 🤖', pc: '40%', width: '40%' },
-      { label: 'WEB & BACKEND 💻', pc: '30%', width: '30%' },
-      { label: 'DEVOPS & CLOUD ☁️', pc: '20%', width: '20%' },
-      { label: 'OTHERS 🔧', pc: '10%', width: '10%' },
+      { label: 'ML & AI', emoji: '🤖', pc: '29%' },
+      { label: 'DATA SCIENCE', emoji: '📊', pc: '17%' },
+      { label: 'SOFTWARE ENG', emoji: '🏗️', pc: '14%' },
+      { label: 'WEB DEV', emoji: '💻', pc: '10%' },
+      { label: 'COMMUNITY', emoji: '🤝', pc: '7%' },
+      { label: 'DEVOPS & CLOUD', emoji: '☁️', pc: '7%' },
+      { label: 'OTHERS', emoji: '🔧', pc: '16%' },
     ],
   },
   audience: {
-    title: 'Attendee Profile',
+    title: 'Program Profile',
     seniority: 'Seniority Level',
     items: [
-      { icon: '💼', value: '72%', label: 'Open to job offers' },
-      { icon: '🔑', value: '35%', label: 'Decision makers in their company' },
-      { icon: '💜', value: '25%', label: 'Women and non-binary' },
-      { icon: '🌍', value: '10%', label: 'International visitors' },
+      {
+        icon: '💼',
+        value: '81%',
+        label: 'Active Professionals',
+      },
+      {
+        icon: '💜',
+        value: '33%',
+        label: 'Women and Non-Binary',
+      },
+      {
+        icon: '🔑',
+        value: '26%',
+        label: 'Management & Tech Leads',
+      },
+      {
+        icon: '🌍',
+        value: '13%',
+        label: 'English Track Content',
+      },
     ],
-    quote: 'A mature audience: 80% of the content is focused on intermediate-advanced profiles.',
+    quote: 'A technical deep-dive: 62% of the talks are for Intermediate and Advanced levels.',
   },
   whatis: {
     title: 'What is PyConES?',
@@ -169,6 +188,7 @@ export const en = {
       { name: 'PWC', editions: 1, logo: '/sponsors/logo_pwc.png' },
       { name: 'Datadog', editions: 1, logo: '/sponsors/datadog.png' },
       { name: 'Twilio', editions: 1, logo: '/sponsors/twilio.png' },
+      { name: 'E-Frontiers', editions: 3, logo: '/sponsors/efrontiers.png' },
     ].sort((a, b) => b.editions - a.editions),
   },
   collaborators: {

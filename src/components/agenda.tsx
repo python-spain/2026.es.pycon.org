@@ -171,7 +171,7 @@ export default function Schedule({ lang = 'es', scheduleData }: ScheduleProps) {
             key={day}
             onClick={() => setActiveDay(day)}
             className={`px-4 py-2 text-sm md:px-6 md:py-2 md:text-base rounded-lg font-bold transition ${
-              activeDay === day ? 'bg-green-400 text-black' : 'text-gray-400 hover:bg-[#222]'
+              activeDay === day ? 'bg-pycon-yellow text-pycon-black' : 'text-gray-400 hover:bg-[#222]'
             }`}
           >
             {new Date(day).toLocaleDateString(lang, {
@@ -188,7 +188,7 @@ export default function Schedule({ lang = 'es', scheduleData }: ScheduleProps) {
           <FilterIcon />
           Filtros
           {(selectedTracks.length > 0 || selectedLangs.length > 0 || searchQuery) && (
-            <span className="flex items-center justify-center w-5 h-5 bg-green-500 text-black text-xs font-bold rounded-full">
+            <span className="flex items-center justify-center w-5 h-5 bg-pycon-yellow text-pycon-black text-xs font-bold rounded-full">
               {selectedTracks.length + selectedLangs.length + (searchQuery ? 1 : 0)}
             </span>
           )}
@@ -206,7 +206,7 @@ export default function Schedule({ lang = 'es', scheduleData }: ScheduleProps) {
 
           return (
             <div key={room.id} className="shrink-0 flex flex-col gap-4 snap-start">
-              <h2 className="text-xl font-bold border-b border-[#333] pb-2 flex items-center gap-2 sticky top-0 bg-black z-10 py-2 text-green-400">
+              <h2 className="text-xl font-bold border-b border-[#333] pb-2 flex items-center gap-2 sticky top-0 bg-black z-10 py-2 text-pycon-yellow">
                 {getLocalizedText(room.name, lang)}
               </h2>
 
@@ -275,7 +275,7 @@ function SessionCard({
       }`}
     >
       <div className="flex justify-between items-start">
-        <span className="font-mono text-green-400 font-bold text-sm bg-[#222] px-2 py-0.5 rounded">
+        <span className="font-mono text-pycon-yellow font-bold text-sm bg-[#222] px-2 py-0.5 rounded">
           {new Date(session.start).toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',
@@ -374,7 +374,7 @@ function FilterModal({
         open
       >
         <div className="flex justify-between items-center p-4 border-b border-[#333]">
-          <h3 className="text-xl font-bold">Filters</h3>
+          <h3 className="text-xl font-bold">{lang === 'es' ? 'Filtros' : 'Filters'}</h3>
           <button onClick={onClose} className="text-gray-400 hover:text-white text-2xl leading-none">
             &times;
           </button>
@@ -410,7 +410,9 @@ function FilterModal({
 
           {/* Languages */}
           <div className="flex flex-col gap-2">
-            <label className="text-sm uppercase font-bold text-gray-500 tracking-wider">Languages</label>
+            <label className="text-sm uppercase font-bold text-gray-500 tracking-wider">
+              {lang === 'es' ? 'Idiomas' : 'Languages'}
+            </label>
             <div className="flex flex-wrap gap-2">
               {[
                 { code: 'en', label: 'English' },
@@ -437,15 +439,17 @@ function FilterModal({
 
           {/* Search */}
           <div className="flex flex-col gap-2">
-            <label className="text-sm uppercase font-bold text-gray-500 tracking-wider">Search</label>
+            <label className="text-sm uppercase font-bold text-gray-500 tracking-wider">
+              {lang === 'es' ? 'Búsqueda' : 'Search'}
+            </label>
             <div className="relative group">
               <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-white transition-colors" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search titles, speakers..."
-                className="w-full bg-[#181818] border border-[#333] text-white rounded-lg py-2.5 pl-10 pr-4 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all placeholder:text-gray-600"
+                placeholder={lang === 'es' ? 'Buscar por título, ponente...' : 'Search titles, speakers...'}
+                className="w-full bg-[#181818] border border-[#333] text-white rounded-lg py-2.5 pl-10 pr-4 focus:outline-none focus:border-pycon-yellow focus:ring-1 focus:ring-pycon-yellow transition-all placeholder:text-gray-600"
               />
             </div>
           </div>
@@ -456,13 +460,13 @@ function FilterModal({
             onClick={clearFilters}
             className="px-4 py-2 rounded-lg font-bold text-gray-400 hover:text-white transition-colors"
           >
-            Clear all
+            {lang === 'es' ? 'Borrar filtros' : 'Clear all'}
           </button>
           <button
             onClick={onClose}
-            className="flex-1 px-4 py-2 rounded-lg font-bold bg-green-500 text-black hover:bg-green-400 transition-colors shadow-[0_0_15px_rgba(74,222,128,0.2)]"
+            className="flex-1 px-4 py-2 rounded-lg font-bold bg-pycon-yellow text-pycon-black hover:bg-pycon-yellow-75 transition-colors shadow-[0_0_15px_rgba(255,199,44,0.4)]"
           >
-            Show {resultCount} results
+            {lang === 'es' ? `Mostrar ${resultCount} resultados` : `Show ${resultCount} results`}
           </button>
         </div>
       </dialog>

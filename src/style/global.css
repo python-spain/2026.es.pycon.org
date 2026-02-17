@@ -1,1 +1,57 @@
 @import 'tailwindcss';
+
+@theme {
+  /* Fonts */
+  --font-mono: 'Outfit Variable', sans-serif;
+  --font-outfit: 'Outfit Variable', sans-serif;
+
+  --font-size-xs: 0.875rem;
+  --font-size-sm: 1rem;
+  --font-size-base: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 1.875rem;
+  --font-size-3xl: 2.25rem;
+  --font-size-4xl: 2.625rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.375rem;
+  --font-size-7xl: 3.75rem;
+  --font-size-8xl: 4.5rem;
+  --font-size-9xl: 6rem;
+
+  /* Font Weights */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* Colors */
+  --color-pycon-yellow: #ffc72c;
+  --color-pycon-yellow-100: #ffc72c;
+  --color-pycon-yellow-75: #ffd560;
+  --color-pycon-yellow-50: #ffe395;
+  --color-pycon-yellow-25: #fff1ca;
+
+  --color-pycon-orange: #ff8200;
+  --color-pycon-orange-100: #ff8200;
+  --color-pycon-orange-75: #ffa13f;
+  --color-pycon-orange-50: #ffc07f;
+  --color-pycon-orange-25: #ffdfbf;
+
+  --color-pycon-red: #f9423a;
+  --color-pycon-red-100: #f9423a;
+  --color-pycon-red-75: #fa716b;
+  --color-pycon-red-50: #fca09c;
+  --color-pycon-red-25: #fdcfcd;
+
+  --color-pycon-black: #1d1d1b;
+  --color-pycon-black-100: #1d1d1b;
+  --color-pycon-black-75: #555554;
+  --color-pycon-black-50: #8e8e8d;
+  --color-pycon-black-25: #c6c6c6;
+}

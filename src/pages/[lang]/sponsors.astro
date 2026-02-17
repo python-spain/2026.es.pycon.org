@@ -52,7 +52,7 @@ const {
       </div>
 
       <!-- About -->
-      <section class="mb-20">
+      <section id="about" class="mb-20">
         <div class="bg-white p-8 rounded-2xl text-center">
           <h2 class="text-pycon-red text-2xl font-bold mb-4">{about.title}</h2>
           <p class="text-lg text-pycon-black max-w-[700px] mx-auto">{about.body}</p>
@@ -60,7 +60,7 @@ const {
       </section>
 
       <!-- Stats -->
-      <section class="mb-20">
+      <section id="stats" class="mb-20">
         <h2 class="text-center text-2xl font-bold mb-8">{stats.title}</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {
@@ -91,7 +91,7 @@ const {
       </section>
 
       <!-- Location -->
-      <section class="mb-20">
+      <section id="location" class="mb-20">
         <h2 class="text-center text-2xl font-bold mb-8">{location.title}</h2>
 
         <div class="grid md:grid-cols-2 gap-6">
@@ -164,7 +164,7 @@ const {
         <h2 class="text-center text-2xl font-bold mb-8">{audience.title}</h2>
 
         <div class="bg-white text-pycon-black p-8 rounded-lg border border-white/10 mb-6">
-          <h3 class="mb-6 font-mono">{audience.seniority}</h3>
+          <h3 class="mb-6 font-outfit">{audience.seniority}</h3>
 
           <div
             role="img"
@@ -224,7 +224,7 @@ const {
         </div>
 
         <div class="bg-white text-pycon-black p-8 rounded-lg border border-white/10">
-          <h3 class="mb-6 font-mono text-pycon-black">{interests.title}</h3>
+          <h3 class="mb-6 font-outfit text-pycon-black">{interests.title}</h3>
           {
             (() => {
               const colors = ['#ff8200', '#fca09c', '#ffc72c', '#fff1ca;', '#ffdfbf', '#fa716b', '#fb923c']
@@ -272,7 +272,7 @@ const {
       </section>
 
       <!-- Testimonios -->
-      <section class="mb-20">
+      <section id="testimonials" class="mb-20">
         <h2 class="text-center text-2xl font-bold mb-8">{testimonials.title}</h2>
         <div class="grid md:grid-cols-2 gap-6">
           {

@@ -14,8 +14,14 @@ import Navigation from './Navigation.astro'
  * - Escape: Close dropdown/mobile menu and return focus to trigger
  * - Tab: Standard tab navigation with proper focus management
  */
+
+interface Props {
+  lang?: string
+}
+
+const { lang } = Astro.props
 ---
 
 <header>
-  <Navigation />
+  <Navigation lang={lang} />
 </header>

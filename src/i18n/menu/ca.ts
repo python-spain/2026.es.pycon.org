@@ -23,7 +23,24 @@ export const ca = {
     },
     {
       label: 'Patrocinis',
-      href: '/sponsors',
+      children: [
+        {
+          label: 'Sobre la PyConES',
+          href: '/sponsors#about',
+        },
+        {
+          label: 'En números',
+          href: '/sponsors#stats',
+        },
+        {
+          label: 'Lloc',
+          href: '/sponsors#location',
+        },
+        {
+          label: 'Opinions',
+          href: '/sponsors#testimonials',
+        },
+      ],
     },
     {
       label: 'Edicions Anteriors',

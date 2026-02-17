@@ -23,7 +23,24 @@ export const en = {
     },
     {
       label: 'Sponsorship',
-      href: '/sponsors',
+      children: [
+        {
+          label: 'About',
+          href: '/sponsors#about',
+        },
+        {
+          label: 'Stats',
+          href: '/sponsors#stats',
+        },
+        {
+          label: 'Location',
+          href: '/sponsors#location',
+        },
+        {
+          label: 'Testimonials',
+          href: '/sponsors#testimonials',
+        },
+      ],
     },
     {
       label: 'Past Editions',

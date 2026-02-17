@@ -9,15 +9,31 @@ interface MenuItem {
   href: string
   children?: MenuItem[]
 }
-  
-// Get current language from URL
-const lang = Astro.url.pathname.split('/')[1] || 'es'
+
+interface Props {
+  lang?: string
+}
+
+const { lang: propLang } = Astro.props
+
+// Get current language from URL if prop not provided
+const urlLang = Astro.url.pathname.split('/')[1] || 'es'
+const rawLang = propLang || urlLang
 const validLangs = ['es', 'en', 'ca'] as const
 type Lang = (typeof validLangs)[number]
-const currentLang: Lang = validLangs.includes(lang as Lang) ? (lang as Lang) : 'es'
+const currentLang: Lang = validLangs.includes(rawLang as Lang) ? (rawLang as Lang) : 'es'
 
 // Helper to check if a URL is external
 const isExternal = (href: string) => href.startsWith('http://') || href.startsWith('https://')
+
+// Helper to get localized URL with hash support
+const getLocalizedUrl = (lang: string, href: string) => {
+  if (isExternal(href)) return href
+
+  const [path, hash] = href.split('#')
+  const localizedPath = getRelativeLocaleUrl(lang, path)
+  return hash ? `${localizedPath}#${hash}` : localizedPath
+}
 
 /**
  * Navigation Component
@@ -45,9 +61,9 @@ const { items } = menuTexts[currentLang]
     <!-- Logo -->
     <a
       href={getRelativeLocaleUrl(currentLang, '/')}
-      class="text-2xl font-bold font-mono tracking-tighter text-white rounded px-2 py-1 outline-none transition-all focus-visible:bg-white/10 focus-visible:text-blue-400"
+      class="text-2xl font-bold font-outfit tracking-tighter text-white rounded px-2 py-1 outline-none transition-all focus-visible:bg-white/10 focus-visible:text-pycon-orange"
     >
-      PyCon<span class="text-blue-500">ES</span>
+      PyCon<span class="text-pycon-orange">ES</span>
     </a>
 
     <div class="wrapper flex items-center gap-4">
@@ -61,7 +77,7 @@ const { items } = menuTexts[currentLang]
                   <>
                     <button
                       id={`dropdown-btn-${index}`}
-                      class="dropdown-trigger flex items-center gap-1 text-slate-300 hover:text-white font-medium transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
+                      class="dropdown-trigger flex items-center gap-1 text-white hover:text-pycon-orange font-medium transition-colors rounded outline-none focus-visible:text-pycon-orange focus-visible:underline decoration-2 underline-offset-4"
                       aria-expanded="false"
                       aria-haspopup="true"
                       aria-controls={`dropdown-menu-${index}`}
@@ -90,12 +106,8 @@ const { items } = menuTexts[currentLang]
                       {item.children.map((child) => (
                         <li role="none">
                           <a
-                            href={
-                              isExternal(child.href)
-                                ? child.href
-                                : getRelativeLocaleUrl(currentLang, child.href)
-                            }
-                            class="submenu-item block px-4 py-3 rounded-md text-white font-medium transition-colors outline-none hover:bg-white/5 focus-visible:bg-blue-600 focus-visible:text-white"
+                            href={getLocalizedUrl(currentLang, child.href)}
+                            class="submenu-item block px-4 py-3 rounded-md text-white font-medium transition-colors outline-none hover:text-pycon-orange hover:bg-white/5 focus-visible:bg-pycon-orange focus-visible:text-white"
                             role="menuitem"
                             {...(isExternal(child.href)
                               ? { target: '_blank', rel: 'noopener noreferrer' }
@@ -109,8 +121,8 @@ const { items } = menuTexts[currentLang]
                   </>
                 ) : (
                   <a
-                    href={isExternal(item.href) ? item.href : getRelativeLocaleUrl(currentLang, item.href)}
-                    class="block text-slate-300 hover:text-white font-medium transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
+                    href={getLocalizedUrl(currentLang, item.href)}
+                    class="block text-white hover:text-pycon-orange font-medium transition-colors rounded outline-none focus-visible:text-pycon-orange focus-visible:underline decoration-2 underline-offset-4"
                     {...(isExternal(item.href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                   >
                     {item.label}
@@ -142,7 +154,7 @@ const { items } = menuTexts[currentLang]
             <li class="menu-item">
               {item.children ? (
                 <details class="mobile-details">
-                  <summary class="flex items-center justify-between gap-1 w-full text-slate-300 hover:text-white font-medium py-2 transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4 cursor-pointer list-none">
+                  <summary class="flex items-center justify-between gap-1 w-full text-white hover:text-pycon-orange font-medium py-2 transition-colors rounded outline-none focus-visible:text-pycon-orange focus-visible:underline decoration-2 underline-offset-4 cursor-pointer list-none">
                     {item.label}
                     <svg
                       class="w-4 h-4 transition-transform duration-200 chevron-icon"
@@ -163,12 +175,8 @@ const { items } = menuTexts[currentLang]
                     {item.children.map((child) => (
                       <li>
                         <a
-                          href={
-                            isExternal(child.href)
-                              ? child.href
-                              : getRelativeLocaleUrl(currentLang, child.href)
-                          }
-                          class="block px-4 py-3 rounded-md text-white font-medium transition-colors outline-none hover:bg-white/5 focus-visible:bg-blue-600 focus-visible:text-white"
+                          href={getLocalizedUrl(currentLang, child.href)}
+                          class="block px-4 py-3 rounded-md text-white font-medium transition-colors outline-none hover:text-pycon-orange hover:bg-white/5 focus-visible:bg-pycon-orange focus-visible:text-white"
                           {...(isExternal(child.href)
                             ? { target: '_blank', rel: 'noopener noreferrer' }
                             : {})}
@@ -181,8 +189,8 @@ const { items } = menuTexts[currentLang]
                 </details>
               ) : (
                 <a
-                  href={isExternal(item.href) ? item.href : getRelativeLocaleUrl(currentLang, item.href)}
-                  class="block text-slate-300 hover:text-white font-medium py-2 transition-colors rounded outline-none focus-visible:text-blue-400 focus-visible:underline decoration-2 underline-offset-4"
+                  href={getLocalizedUrl(currentLang, item.href)}
+                  class="block text-white hover:text-pycon-orange font-medium py-2 transition-colors rounded outline-none focus-visible:text-pycon-orange focus-visible:underline decoration-2 underline-offset-4"
                   {...(isExternal(item.href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 >
                   {item.label}
@@ -523,7 +531,7 @@ const { items } = menuTexts[currentLang]
 
   /* Active menu item styling */
   .is-active {
-    color: white;
+    color: var(--color-pycon-red);
     font-weight: 600;
   }
 
@@ -533,5 +541,6 @@ const { items } = menuTexts[currentLang]
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;
+    color: var(--color-pycon-orange);
   }
 </style>

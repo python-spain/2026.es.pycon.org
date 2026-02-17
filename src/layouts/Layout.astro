@@ -1,5 +1,5 @@
 ---
-import LanguagePicker from '../components/LanguagePicker.astro'
+import Nav from '../components/Nav.astro'
 import '../style/global.css'
 import '@fontsource-variable/jetbrains-mono'
 import '@fontsource-variable/outfit'
@@ -35,9 +35,7 @@ const { title, description = 'PyconES 2026' } = Astro.props
       class="fixed inset-0 bg-[url('/images/symbol-black-dark.svg')] bg-size-[80vh] bg-position-[140%_120%] bg-no-repeat opacity-30 pointer-events-none blur-xs"
     >
     </div>
-    <nav class="relative z-10">
-      <LanguagePicker lang={lang} />
-    </nav>
+    <Nav lang={lang as string} />
 
     <main class="relative z-10 flex flex-col justify-center">
       <slot />

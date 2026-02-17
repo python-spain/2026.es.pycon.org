@@ -1,8 +1,12 @@
 @import 'tailwindcss';
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* Adjust based on your header height */
+}
+
 @theme {
   /* Fonts */
-  --font-mono: 'JetBrains Mono Variable', monospace;
   --font-outfit: 'Outfit Variable', sans-serif;
 
   --font-size-xs: 0.875rem;

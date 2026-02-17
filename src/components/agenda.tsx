@@ -276,15 +276,20 @@ function SessionCard({
     >
       <div className="flex justify-between items-start">
         <span className="font-mono text-pycon-yellow font-bold text-sm bg-[#222] px-2 py-0.5 rounded">
-          {new Date(session.start).toLocaleTimeString([], {
+          {new Date(session.start).toLocaleTimeString('es-ES', {
             hour: '2-digit',
             minute: '2-digit',
+            hour12: false,
           })}
           {' - '}
-          {new Date(new Date(session.start).getTime() + session.duration * 60000).toLocaleTimeString([], {
-            hour: '2-digit',
-            minute: '2-digit',
-          })}
+          {new Date(new Date(session.start).getTime() + session.duration * 60000).toLocaleTimeString(
+            'es-ES',
+            {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false,
+            },
+          )}
         </span>
         {!isBreak && (
           <button

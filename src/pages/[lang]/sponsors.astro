@@ -66,7 +66,9 @@ const {
           {
             stats.items.map((stat) => (
               <div class="bg-white text-pycon-black p-4 rounded-lg border border-white/10 text-center">
-                <div class="text-3xl mb-2">{stat.icon}</div>
+                <div class="text-3xl mb-2" role="img" aria-hidden="true">
+                  {stat.icon}
+                </div>
                 <div class="text-2xl font-bold ">{stat.value}</div>
                 <div class="text-sm">{stat.label}</div>
               </div>
@@ -96,7 +98,10 @@ const {
 
         <div class="grid md:grid-cols-2 gap-6">
           <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
-            <h3 class="text-xl font-bold mb-4">📍 {location.where}</h3>
+            <h3 class="text-xl font-bold mb-4">
+              <span aria-hidden="true" role="img">📍</span>
+              {location.where}
+            </h3>
             <p class="mb-4">
               {location.body}
               <strong>{location.bodyStrong}</strong>
@@ -108,7 +113,7 @@ const {
           </div>
 
           <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
-            <h3 class="text-xl font-bold mb-4">📅 {when.title}</h3>
+            <h3 class="text-xl font-bold mb-4"><span aria-hidden="true" role="img">📅</span> {when.title}</h3>
             <div class="space-y-3">
               <p>
                 <strong>{when.friday}: </strong>{when.fridayStrong}
@@ -146,7 +151,9 @@ const {
               {
                 whySponsor.items.map((item) => (
                   <div class="flex gap-3">
-                    <span class="text-xl">{item.icon}</span>
+                    <span class="text-xl" role="img" aria-hidden="true">
+                      {item.icon}
+                    </span>
                     <div>
                       <strong>{item.title}:</strong>
                       <span class="text-sm"> {item.desc}</span>
@@ -215,7 +222,9 @@ const {
           {
             audience.items.map((item) => (
               <div class="bg-white p-4 rounded-lg border border-white/10 text-center">
-                <div class="text-2xl mb-1">{item.icon}</div>
+                <div class="text-2xl mb-1" role="img" aria-hidden="true">
+                  {item.icon}
+                </div>
                 <div class="text-lg font-bold text-pycon-black">{item.value}</div>
                 <div class="text-md text-gray-700">{item.label}</div>
               </div>
@@ -246,16 +255,14 @@ const {
                         <div
                           class="w-3 h-3 rounded-sm shrink-0"
                           style={`background-color: ${colors[i]};`}
+                          role="img"
                           aria-hidden="true"
                         />
                         <span aria-hidden="true" class="truncate">
-                          {interest.label}
+                          {interest.label} {interest.pc}
                         </span>
                         <span aria-hidden="true" class="mr-2">
                           {interest.emoji}
-                        </span>
-                        <span class="sr-only">
-                          {interest.label} {interest.pc}
                         </span>
                       </div>
                     ))}
@@ -481,7 +488,9 @@ const {
             {
               pythonSpainPoints.items.map((point) => (
                 <div class="flex gap-3">
-                  <span class="text-2xl">{point.icon}</span>
+                  <span class="text-2xl" role="img" aria-hidden="true">
+                    {point.icon}
+                  </span>
                   <div>
                     <strong class="text-pycon-red">{point.title}</strong>
                     <p class="text-gray-600 text-sm mt-1">{point.desc}</p>
@@ -514,7 +523,7 @@ const {
 
       <!-- Social links -->
       <section class="text-center pb-16">
-        <h3 class="text-xl font-bold mb-6">{socialLinks.title}</h3>
+        <h2 class="text-xl font-bold mb-6">{socialLinks.title}</h2>
         <div class="flex flex-wrap justify-center gap-4">
           {
             socialLinks.items.map((link) => (

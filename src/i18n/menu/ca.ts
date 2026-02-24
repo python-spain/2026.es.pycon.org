@@ -40,6 +40,10 @@ export const ca = {
           label: 'Opinions',
           href: '/sponsors#testimonials',
         },
+        {
+          label: 'Paquets de patrocini',
+          href: '/sponsors#tiers',
+        },
       ],
     },
     {

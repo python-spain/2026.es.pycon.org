@@ -1,5 +1,7 @@
 ---
 import { texts } from '../../i18n/home'
+import SectionTitle from '../SectionTitle.astro'
+import TextBox from '../TextBox.astro'
 
 interface Props {
   lang: string
@@ -9,4 +11,7 @@ const { lang } = Astro.props
 const t = texts[lang as keyof typeof texts]
 ---
 
-<div>Patros</div>
+<div class="flex flex-col items-center gap-4">
+  <SectionTitle title={t['sponsors.title']} />
+  <TextBox text={t['sponsors.description']} />
+</div>

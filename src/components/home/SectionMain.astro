@@ -1,5 +1,6 @@
 ---
 import { texts } from '../../i18n/home'
+import TextBox from '../TextBox.astro'
 
 interface Props {
   lang: string
@@ -32,13 +33,7 @@ const t = texts[lang as keyof typeof texts]
       </span>
     </h2>
   </div>
-  <div class="flex-1 flex items-center justify-center mt-10 lg:mt-0 bg-black/15 p-8">
-    <h3>
-      <p class="text-center text-xl max-w-3xl">
-        {t['index.message']}
-      </p>
-    </h3>
-  </div>
+  <TextBox text={t['index.message']} />
 </div>
 
 <script>

@@ -7,6 +7,12 @@ export const texts = {
     'sponsors.title': 'Patrocinios',
     'sponsors.description':
       'Gracias a las empresas que colaboran con la PyConES podemos ofrecer el mejor evento y experiencia posible. Somos una conferencia con un bajo coste de entrada capaz de ofrecer una experiencia de 3 días incluyendo regalos, almuerzos, comidas y meriendas. Además contamos con servicio de guardería, becas y traducción en directo a lenguaje de signos para que nadie se quede fuera. Con la ayuda de estas empresas conseguimos hacer un evento diverso e inclusivo enfocado en cuidar la comunidad de Python.',
+    'sponsors.main': 'Patrocinador Principal',
+    'sponsors.platinum': 'Patrocinador Platino',
+    'sponsors.gold': 'Patrocinador Oro',
+    'sponsors.silver': 'Patrocinador Plata',
+    'sponsors.bronze': 'Patrocinador Bronce',
+    'sponsors.none': 'No hay patrocinadores en este nivel',
   },
   en: {
     'index.initializing': 'Initialising system...',
@@ -16,6 +22,12 @@ export const texts = {
     'sponsors.title': 'Sponsorships',
     'sponsors.description':
       'Thanks to the companies that collaborate with PyConES, we can offer the best possible event and experience. We are a conference with a low entry cost capable of offering a 3-day experience including gifts, lunches, meals, and snacks. Additionally, we have childcare services, scholarships, and live sign language translation to ensure that no one is left out. With the help of these companies, we manage to create a diverse and inclusive event focused on caring for the Python community.',
+    'sponsors.main': 'Main Sponsor',
+    'sponsors.platinum': 'Platinum Sponsor',
+    'sponsors.gold': 'Gold Sponsor',
+    'sponsors.silver': 'Silver Sponsor',
+    'sponsors.bronze': 'Bronze Sponsor',
+    'sponsors.none': 'No sponsors in this tier',
   },
   ca: {
     'index.initializing': 'Inicialitzant sistema...',
@@ -25,5 +37,11 @@ export const texts = {
     'sponsors.title': 'Patrocinis',
     'sponsors.description':
       'Gràcies a les empreses que col·laboren amb la PyConES podem oferir el millor esdeveniment i experiència possible. Som una conferència amb un baix cost d’entrada capaç d’oferir una experiència de 3 dies incloent regals, àpats, menjars i berenars. A més comptem amb servei de guarderia, beques i traducció en directe a llenguatge de signes perquè ningú es quedi fora. Amb l’ajuda d’aquestes empreses aconseguim fer un esdeveniment divers i inclusiu enfocat en cuidar la comunitat de Python.',
+    'sponsors.main': 'Patrocinador Principal',
+    'sponsors.platinum': 'Patrocinador Platí',
+    'sponsors.gold': 'Patrocinador Or',
+    'sponsors.silver': 'Patrocinador Plata',
+    'sponsors.bronze': 'Patrocinador Bronze',
+    'sponsors.none': 'No hi ha patrocinadors en aquest nivell',
   },
 } as const

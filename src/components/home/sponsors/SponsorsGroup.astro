@@ -1,0 +1,43 @@
+---
+import type { ISponsor, TSponsorTier } from '../../../types/sponsors'
+import { texts } from '../../../i18n/home'
+
+interface Props {
+  lang: string
+  title: string
+  sponsors: ISponsor[]
+}
+
+const { title, sponsors, lang } = Astro.props
+const t = texts[lang as keyof typeof texts]
+
+const IMG_WITH_BY_TIER: Record<TSponsorTier, number> = {
+  main: 200,
+  platinum: 150,
+  gold: 120,
+  silver: 100,
+  bronze: 80,
+}
+---
+
+<div>
+  <h4>{title}</h4>
+  {
+    sponsors.length > 0 ? (
+      <div class="flex flex-wrap gap-4 mt-4">
+        {sponsors.map((sponsor) => (
+          <a
+            href={sponsor.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center p-4 border rounded-lg hover:shadow-lg transition-shadow duration-300"
+          >
+            <img src={sponsor.logo} alt={sponsor.name} width={IMG_WITH_BY_TIER[sponsor.tier]} />
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="text-gray-500 mt-2">{t['sponsors.none']}</p>
+    )
+  }
+</div>

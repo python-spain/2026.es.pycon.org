@@ -1,0 +1,12 @@
+---
+import { texts } from '../../i18n/home'
+
+interface Props {
+  lang: string
+}
+
+const { lang } = Astro.props
+const t = texts[lang as keyof typeof texts]
+---
+
+<div>Patros</div>

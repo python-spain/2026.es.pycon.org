@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import SectionMain from './home/SectionMain.astro'
+import SectionSponsors from './home/SectionSponsors.astro'
 
 interface Props {
   lang: string
@@ -11,4 +12,5 @@ const { lang } = Astro.props
 
 <Layout title="PyConES 2026">
   <SectionMain lang={lang} />
+  <SectionSponsors lang={lang} />
 </Layout>

@@ -1,14 +1,17 @@
 ---
 import type { ISponsor, TSponsorTier } from '../../../types/sponsors'
 import { texts } from '../../../i18n/home'
+import { TIER_COLORS } from '../../../constants'
+import { hexToRgba } from '../../../utils/colors'
 
 interface Props {
+  tierId: TSponsorTier
   lang: string
   title: string
   sponsors: ISponsor[]
 }
 
-const { title, sponsors, lang } = Astro.props
+const { title, sponsors, lang, tierId } = Astro.props
 const t = texts[lang as keyof typeof texts]
 
 const IMG_WITH_BY_TIER: Record<TSponsorTier, number> = {
@@ -21,7 +24,7 @@ const IMG_WITH_BY_TIER: Record<TSponsorTier, number> = {
 ---
 
 <div>
-  <h4>{title}</h4>
+  <h4 style={`background-color: ${hexToRgba(TIER_COLORS[tierId], 0.2)};`} class="p-2">{title}</h4>
   {
     sponsors.length > 0 ? (
       <div class="flex flex-wrap gap-4 mt-4">
@@ -30,9 +33,10 @@ const IMG_WITH_BY_TIER: Record<TSponsorTier, number> = {
             href={sponsor.website}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center justify-center p-4 border rounded-lg hover:shadow-lg transition-shadow duration-300"
+            class="flex flex-col items-center justify-center p-4 border rounded-lg hover:shadow-lg transition-shadow duration-300"
           >
-            <img src={sponsor.logo} alt={sponsor.name} width={IMG_WITH_BY_TIER[sponsor.tier]} />
+            <img src={sponsor.logo} alt={sponsor.name} width={IMG_WITH_BY_TIER[tierId]} />
+            <small>{sponsor.name}</small>
           </a>
         ))}
       </div>

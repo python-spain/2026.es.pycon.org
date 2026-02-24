@@ -32,10 +32,10 @@ const main = filterSponsorsByTier('main')
   <TextBox text={t['sponsors.description']} />
 
   <div class="flex flex-col w-full gap-8">
-    <SponsorsGroup lang={lang} title={t['sponsors.main']} sponsors={main} />
-    <SponsorsGroup lang={lang} title={t['sponsors.platinum']} sponsors={platinum} />
-    <SponsorsGroup lang={lang} title={t['sponsors.gold']} sponsors={gold} />
-    <SponsorsGroup lang={lang} title={t['sponsors.silver']} sponsors={silver} />
-    <SponsorsGroup lang={lang} title={t['sponsors.bronze']} sponsors={bronze} />
+    <SponsorsGroup lang={lang} title={t['sponsors.main']} sponsors={main} tierId="main" />
+    <SponsorsGroup lang={lang} title={t['sponsors.platinum']} sponsors={platinum} tierId="platinum" />
+    <SponsorsGroup lang={lang} title={t['sponsors.gold']} sponsors={gold} tierId="gold" />
+    <SponsorsGroup lang={lang} title={t['sponsors.silver']} sponsors={silver} tierId="silver" />
+    <SponsorsGroup lang={lang} title={t['sponsors.bronze']} sponsors={bronze} tierId="bronze" />
   </div>
 </div>

@@ -31,7 +31,7 @@ const main = filterSponsorsByTier('main')
   <SectionTitle title={t['sponsors.title']} />
   <TextBox text={t['sponsors.description']} />
 
-  <div class="flex flex-col w-full gap-8">
+  <div class="w-full grid grid-cols-1 gap-8 lg:grid-cols-2">
     <SponsorsGroup lang={lang} title={t['sponsors.main']} sponsors={main} tierId="main" />
     <SponsorsGroup lang={lang} title={t['sponsors.platinum']} sponsors={platinum} tierId="platinum" />
     <SponsorsGroup lang={lang} title={t['sponsors.gold']} sponsors={gold} tierId="gold" />

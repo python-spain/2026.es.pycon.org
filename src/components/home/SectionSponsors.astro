@@ -1,7 +1,7 @@
 ---
 import { texts } from '../../i18n/home'
 import SectionTitle from '../SectionTitle.astro'
-import TextBox from '../TextBox.astro'
+import CenteredPanel from '../CenteredPanel.astro'
 import type { ISponsor } from '../../types/sponsors'
 import SponsorsGroup from './sponsors/SponsorsGroup.astro'
 
@@ -29,9 +29,9 @@ const main = filterSponsorsByTier('main')
 
 <div class="flex flex-col items-center gap-4">
   <SectionTitle title={t['sponsors.title']} />
-  <TextBox text={t['sponsors.description']} />
+  <CenteredPanel text={t['sponsors.description']} />
 
-  <div class="w-full grid grid-cols-1 gap-8 lg:grid-cols-2">
+  <div class="w-full flex flex-col gap-8">
     <SponsorsGroup lang={lang} title={t['sponsors.main']} sponsors={main} tierId="main" />
     <SponsorsGroup lang={lang} title={t['sponsors.platinum']} sponsors={platinum} tierId="platinum" />
     <SponsorsGroup lang={lang} title={t['sponsors.gold']} sponsors={gold} tierId="gold" />

@@ -13,6 +13,7 @@ export const texts = {
     'sponsors.silver': 'Patrocinador Plata',
     'sponsors.bronze': 'Patrocinador Bronce',
     'sponsors.none': 'No hay patrocinadores en este nivel',
+    'sponsors.altlogo': 'Logo de {name}',
   },
   en: {
     'index.initializing': 'Initialising system...',
@@ -28,6 +29,7 @@ export const texts = {
     'sponsors.silver': 'Silver Sponsor',
     'sponsors.bronze': 'Bronze Sponsor',
     'sponsors.none': 'No sponsors in this tier',
+    'sponsors.altlogo': '{name} logo',
   },
   ca: {
     'index.initializing': 'Inicialitzant sistema...',
@@ -43,5 +45,6 @@ export const texts = {
     'sponsors.silver': 'Patrocinador Plata',
     'sponsors.bronze': 'Patrocinador Bronze',
     'sponsors.none': 'No hi ha patrocinadors en aquest nivell',
+    'sponsors.altlogo': 'Logo de {name}',
   },
 } as const

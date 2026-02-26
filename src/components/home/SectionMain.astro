@@ -1,6 +1,6 @@
 ---
 import { texts } from '../../i18n/home'
-import TextBox from '../TextBox.astro'
+import CenteredPanel from '../CenteredPanel.astro'
 
 interface Props {
   lang: string
@@ -33,7 +33,7 @@ const t = texts[lang as keyof typeof texts]
       </span>
     </h2>
   </div>
-  <TextBox text={t['index.message']} />
+  <CenteredPanel text={t['index.message']} />
 </div>
 
 <script>

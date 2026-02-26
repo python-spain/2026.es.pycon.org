@@ -1,0 +1,52 @@
+---
+import type { ISponsor, TSponsorTier } from '../../../types/sponsors'
+import { texts } from '../../../i18n/home'
+import { TIER_COLORS } from '../../../constants'
+
+interface Props {
+  tierId: TSponsorTier
+  lang: string
+  title: string
+  sponsors: ISponsor[]
+}
+
+const { title, sponsors, lang, tierId } = Astro.props
+const t = texts[lang as keyof typeof texts]
+
+const IMG_WITH_BY_TIER: Record<TSponsorTier, number> = {
+  main: 200,
+  platinum: 150,
+  gold: 120,
+  silver: 100,
+  bronze: 80,
+}
+---
+
+<div class="w-full">
+  <h4 style={`background-color: ${TIER_COLORS[tierId]};`} class="p-2 text-black rounded">{title}</h4>
+  {
+    sponsors.length > 0 ? (
+      <div class="flex flex-wrap gap-4 mt-4">
+        {sponsors.map((sponsor) => (
+          <a
+            href={sponsor.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex flex-col items-center justify-center p-4 border rounded-lg hover:shadow-lg transition-shadow duration-300"
+          >
+            <img
+              src={sponsor.logo}
+              alt={t['sponsors.altlogo'].replace('{name}', sponsor.name)}
+              width={IMG_WITH_BY_TIER[tierId]}
+            />
+            <small>{sponsor.name}</small>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="text-gray-100 mt-2 bg-white/10 px-2 py-1 rounded w-[184px] border border-gray-300 text-center">
+        {t['sponsors.none']}
+      </p>
+    )
+  }
+</div>

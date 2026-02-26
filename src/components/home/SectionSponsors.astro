@@ -1,0 +1,41 @@
+---
+import { texts } from '../../i18n/home'
+import SectionTitle from '../SectionTitle.astro'
+import CenteredPanel from '../CenteredPanel.astro'
+import type { ISponsor } from '../../types/sponsors'
+import SponsorsGroup from './sponsors/SponsorsGroup.astro'
+
+const sponsors = Object.values(import.meta.glob('../../data/sponsors/*.md', { eager: true })) as {
+  frontmatter: ISponsor
+}[]
+
+interface Props {
+  lang: string
+}
+
+const { lang } = Astro.props
+const t = texts[lang as keyof typeof texts]
+
+function filterSponsorsByTier(tier: string): ISponsor[] {
+  return sponsors.filter((s) => s.frontmatter.tier === tier).map((s) => s.frontmatter)
+}
+
+const bronze = filterSponsorsByTier('bronze')
+const silver = filterSponsorsByTier('silver')
+const gold = filterSponsorsByTier('gold')
+const platinum = filterSponsorsByTier('platinum')
+const main = filterSponsorsByTier('main')
+---
+
+<div class="flex flex-col items-center gap-4">
+  <SectionTitle title={t['sponsors.title']} />
+  <CenteredPanel text={t['sponsors.description']} />
+
+  <div class="w-full flex flex-col gap-8">
+    <SponsorsGroup lang={lang} title={t['sponsors.main']} sponsors={main} tierId="main" />
+    <SponsorsGroup lang={lang} title={t['sponsors.platinum']} sponsors={platinum} tierId="platinum" />
+    <SponsorsGroup lang={lang} title={t['sponsors.gold']} sponsors={gold} tierId="gold" />
+    <SponsorsGroup lang={lang} title={t['sponsors.silver']} sponsors={silver} tierId="silver" />
+    <SponsorsGroup lang={lang} title={t['sponsors.bronze']} sponsors={bronze} tierId="bronze" />
+  </div>
+</div>

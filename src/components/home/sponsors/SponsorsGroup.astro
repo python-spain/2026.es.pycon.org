@@ -23,7 +23,7 @@ const IMG_WITH_BY_TIER: Record<TSponsorTier, number> = {
 ---
 
 <div class="w-full">
-  <h4 style={`background-color: ${TIER_COLORS[tierId]};`} class="p-2">{title}</h4>
+  <h4 style={`background-color: ${TIER_COLORS[tierId]};`} class="p-2 text-black rounded">{title}</h4>
   {
     sponsors.length > 0 ? (
       <div class="flex flex-wrap gap-4 mt-4">
@@ -44,7 +44,9 @@ const IMG_WITH_BY_TIER: Record<TSponsorTier, number> = {
         ))}
       </div>
     ) : (
-      <p class="text-gray-500 mt-2">{t['sponsors.none']}</p>
+      <p class="text-gray-100 mt-2 bg-white/10 px-2 py-1 rounded w-[184px] border border-gray-300 text-center">
+        {t['sponsors.none']}
+      </p>
     )
   }
 </div>

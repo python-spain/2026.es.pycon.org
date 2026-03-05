@@ -1,0 +1,49 @@
+---
+const socialLinks = [
+  { icon: '🦋', label: 'Bluesky', url: 'https://bsky.app/profile/es.pycon.org' },
+  { icon: '🐙', label: 'GitHub', url: 'https://github.com/python-spain' },
+  { icon: '𝕏', label: '', url: 'https://x.com/PyConES' },
+  { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/company/pycones' },
+  { icon: '📸', label: 'Instagram', url: 'https://www.instagram.com/pycon_es' },
+]
+---
+
+<footer class="py-2 bg-pycon-black text-white border-t border-white/10 w-full">
+  <div class="flex justify-evenly max-w-[1200px] mx-auto px-4">
+    <div class="flex flex-wrap justify-center gap-4">
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative flex h-10 w-10 items-center justify-center rounded-full bg-white border border-white/10 text-gray-600 transition-colors hover:border-pycon-yellow hover:text-pycon-yellow"
+            aria-label={link.label || 'Social link'}
+          >
+            <span class="text-xl transition-transform group-hover:scale-110">{link.icon}</span>
+
+            {link.label && (
+              <span class="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap rounded bg-white px-2 py-1 text-xs font-bold text-pycon-black opacity-0 transition-opacity group-hover:opacity-100 shadow-lg">
+                {link.label}
+                {/* Arrow */}
+                <span class="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-white" />
+              </span>
+            )}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="flex items-center gap-4">
+      <a
+        href="https://es.python.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:opacity-80 transition-opacity"
+      >
+        <img src="/collaborators/python-espana.png" alt="Python España" class="h-8 w-auto" />
+      </a>
+      <p class="text-sm text-gray-400">Copyright © Python España & PyConES 2026 Org</p>
+    </div>
+  </div>
+</footer>

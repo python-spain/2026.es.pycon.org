@@ -414,11 +414,13 @@ export const ca = {
     items: [
       { icon: '🦋', label: 'Bluesky', url: 'https://bsky.app/profile/es.pycon.org' },
       { icon: '🐙', label: 'GitHub', url: 'https://github.com/python-spain' },
+      { icon: '🐘', label: 'Mastodon', url: 'https://fosstodon.org/@pycones' },
       { icon: '𝕏', label: '', url: 'https://x.com/PyConES' },
       { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/company/pycones' },
       { icon: '📸', label: 'Instagram', url: 'https://www.instagram.com/pycon_es' },
     ],
   },
+
   contact: {
     title: 'T’hi apuntes?',
     body: 'T’ho posem fàcil. Escriu-nos explicant-nos quin nivell de patrocini t’interessa o quin pressupost teniu al cap. Nosaltres et guiarem en el procés, resoldrem els teus dubtes i veurem com encaixar la teva marca de la millor forma possible.',

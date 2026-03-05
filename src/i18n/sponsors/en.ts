@@ -410,15 +410,17 @@ export const en = {
     ],
   },
   socialLinks: {
-    title: 'Follow us',
+    title: 'Follow us on social media',
     items: [
       { icon: '🦋', label: 'Bluesky', url: 'https://bsky.app/profile/es.pycon.org' },
       { icon: '🐙', label: 'GitHub', url: 'https://github.com/python-spain' },
+      { icon: '🐘', label: 'Mastodon', url: 'https://fosstodon.org/@pycones' },
       { icon: '𝕏', label: '', url: 'https://x.com/PyConES' },
       { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/company/pycones' },
       { icon: '📸', label: 'Instagram', url: 'https://www.instagram.com/pycon_es' },
     ],
   },
+
   contact: {
     title: 'Interested?',
     body: 'We make it easy. Write to us mentioning which sponsorship level interests you or what budget you have in mind. We will guide you through the process and help your brand fit in the best possible way.',

@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 6rem; /* Adjust based on your header height */
@@ -53,9 +55,50 @@ html {
   --color-pycon-red-50: #fca09c;
   --color-pycon-red-25: #fdcfcd;
 
+  --color-pycon-mute: #cc6600;
+  --color-pycon-mute-100: #cc6600;
+
+  --color-pycon-gray: #4a4a48;
+  --color-pycon-gray-100: #4a4a48;
+
   --color-pycon-black: #1d1d1b;
   --color-pycon-black-100: #1d1d1b;
   --color-pycon-black-75: #555554;
   --color-pycon-black-50: #8e8e8d;
   --color-pycon-black-25: #c6c6c6;
+
+  --color-pycon-white: #ffffff;
+
+  /*DS colors*/
+  --color-pantone-151c: --color-pycon-orange-100;
+  --color-pantone-123c: --color-pycon-yellow-100;
+  --color-pantone-warm-red: --color-pycon-red-100;
+  --color-pantone-black-c: --color-pycon-black-100;
+  --color-pantone-yellow-100: --color-pycon-yellow;
+  --color-pantone-yellow-75: --color-pycon-yellow-75;
+  --color-pantone-yellow-50: --color-pycon-yellow-50;
+  --color-pantone-yellow-25: --color-pycon-yellow-25;
+  --color-pantone-warm-red-100: --color-pycon-red;
+  --color-pantone-warm-red-75: --color-pycon-red-75;
+  --color-pantone-warm-red-50: --color-pycon-red-50;
+  --color-pantone-warm-red-25: --color-pycon-red-25;
+
+  --color-tier-main: --color-pycon-yellow;
+  --color-tier-platinum: --color-pycon-orange;
+  --color-tier-gold: --color-pycon-red;
+  --color-tier-silver: --color-pycon-mute;
+  --color-tier-bronze: --color-pycon-gray;
+}
+
+@layer base {
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #1d1d1b;
+    --bg-symbol: url('/images/symbol-black-dark.svg');
+    color-scheme: light dark;
+  }
+  .dark {
+    --bg-color: #1d1d1b;
+    --text-color: #ffffff;
+  }
 }

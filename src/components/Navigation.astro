@@ -132,15 +132,15 @@ const { items } = menuTexts[currentLang]
               </li>
             ))
           }
-
-          <!-- Language Picker (Desktop) -->
-          <li class="menu-item flex items-center gap-2">
-            <LanguagePicker variant="desktop" lang={currentLang} />
-            <div class="h-6 w-px bg-pycon-black/20 dark:bg-white/20"></div>
-            <ThemeToggle />
-          </li>
         </ul>
       </nav>
+
+      <!-- Desktop utility controls (outside nav for proper semantics) -->
+      <div class="hidden lg:flex items-center gap-2">
+        <LanguagePicker variant="desktop" lang={currentLang} />
+        <div class="h-6 w-px bg-pycon-black/20 dark:bg-white/20" aria-hidden="true"></div>
+        <ThemeToggle />
+      </div>
 
       <!-- Mobile Toggle -->
       <ResponsiveToggle />
@@ -202,15 +202,13 @@ const { items } = menuTexts[currentLang]
             </li>
           ))
         }
-
-        <!-- Language Picker & Theme Toggle (Mobile) -->
-        <li
-          class="menu-item flex items-center justify-between py-2 border-t border-pycon-black/10 dark:border-white/10 mt-2"
-        >
-          <LanguagePicker variant="mobile" lang={currentLang} />
-          <ThemeToggle />
-        </li>
       </ul>
+
+      <!-- Mobile utility controls (outside nav for proper semantics) -->
+      <div class="flex items-center justify-between py-2 border-t border-pycon-black/10 dark:border-white/10 mt-2">
+        <LanguagePicker variant="mobile" lang={currentLang} />
+        <ThemeToggle />
+      </div>
     </nav>
   </div>
 </div>

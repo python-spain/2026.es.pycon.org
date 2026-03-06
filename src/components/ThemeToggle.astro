@@ -1,7 +1,8 @@
 <button
   class="theme-toggle-btn cursor-pointer relative p-2 text-pycon-black dark:text-white rounded-md outline-none transition-colors hover:bg-pycon-black/5 dark:hover:bg-white/5 focus-visible:bg-pycon-orange focus-visible:text-white"
-  aria-label="Cambiar tema"
-  aria-pressed="false"
+  role="switch"
+  aria-checked="false"
+  aria-label="Modo oscuro"
 >
   <svg
     aria-hidden="true"
@@ -38,7 +39,7 @@
 
     const updateButtonState = (isDark) => {
       toggleBtns.forEach((btn) => {
-        btn.setAttribute('aria-pressed', isDark ? 'true' : 'false')
+        btn.setAttribute('aria-checked', isDark ? 'true' : 'false')
       })
     }
 

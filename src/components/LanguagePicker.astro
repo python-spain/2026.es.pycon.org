@@ -71,7 +71,7 @@ const getPathForLang = (targetLang: string) => {
             hreflang={lang}
             lang={lang}
             aria-current={lang === currentLang ? 'page' : undefined}
-            aria-label={`${t['labelariadesc']} ${t.label[lang as keyof typeof t.label]}`}
+            aria-label={t['labelariadesc'][lang as keyof typeof t.labelariadesc]}
             class:list={[
               'px-3 py-2 text-sm font-outfit rounded transition-colors outline-none',
               lang === currentLang

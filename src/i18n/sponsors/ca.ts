@@ -206,7 +206,7 @@ export const ca = {
     no_taxes: 'sense IVA',
     items: [
       {
-        id: 'bronze',
+        color: 'text-tier-bronze',
         name: 'Bronze',
         emoji: '🟤',
         price: 'Preu 1.000€',
@@ -214,7 +214,7 @@ export const ca = {
         bg: 'rgba(180, 83, 9, 0.1)',
       },
       {
-        id: 'silver',
+        color: 'text-tier-silver',
         name: 'Plata',
         emoji: '⚪',
         price: 'Preu 3.000€',
@@ -222,7 +222,7 @@ export const ca = {
         bg: 'rgba(107, 114, 128, 0.1)',
       },
       {
-        id: 'gold',
+        color: 'text-tier-gold',
         name: 'Or',
         emoji: '🌟',
         price: 'Preu 6.000€',
@@ -230,7 +230,7 @@ export const ca = {
         bg: 'rgba(234, 179, 8, 0.1)',
       },
       {
-        id: 'platinium',
+        color: 'text-tier-platinium',
         name: 'Platí',
         emoji: '🏆',
         price: 'Preu 8.000€',
@@ -238,7 +238,7 @@ export const ca = {
         bg: 'rgba(34, 197, 94, 0.1)',
       },
       {
-        id: 'main',
+        color: 'text-tier-main',
         name: 'Principal',
         emoji: '🏰',
         price: 'Preu Personalitzat',

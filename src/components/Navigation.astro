@@ -205,7 +205,9 @@ const { items } = menuTexts[currentLang]
       </ul>
 
       <!-- Mobile utility controls (outside nav for proper semantics) -->
-      <div class="flex items-center justify-between py-2 border-t border-pycon-black/10 dark:border-white/10 mt-2">
+      <div
+        class="flex items-center justify-between py-2 border-t border-pycon-black/10 dark:border-white/10 mt-2"
+      >
         <LanguagePicker variant="mobile" lang={currentLang} />
         <ThemeToggle />
       </div>

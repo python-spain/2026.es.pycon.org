@@ -1,29 +1,24 @@
 ---
-import type { ISponsor, TSponsorTier } from '../../../types/sponsors'
+import type { ISponsor } from '../../../types/sponsors'
 import { texts } from '../../../i18n/home'
-import { TIER_COLORS } from '../../../constants'
 
 interface Props {
-  tierId: TSponsorTier
   lang: string
   title: string
   sponsors: ISponsor[]
+  bgColor: string
+  textColor: string
+  size: number
 }
 
-const { title, sponsors, lang, tierId } = Astro.props
+const { title, sponsors, lang, bgColor, textColor, size } = Astro.props
 const t = texts[lang as keyof typeof texts]
-
-const IMG_WITH_BY_TIER: Record<TSponsorTier, number> = {
-  main: 200,
-  platinum: 150,
-  gold: 120,
-  silver: 100,
-  bronze: 80,
-}
 ---
 
 <div class="w-full">
-  <h4 style={`background-color: ${TIER_COLORS[tierId]};`} class="p-2 text-black rounded">{title}</h4>
+  <h4 class={`p-2 text-black rounded ${bgColor} ${textColor}`}>
+    {title}
+  </h4>
   {
     sponsors.length > 0 ? (
       <div class="flex flex-wrap gap-4 mt-4">
@@ -37,7 +32,7 @@ const IMG_WITH_BY_TIER: Record<TSponsorTier, number> = {
             <img
               src={sponsor.logo}
               alt={t['sponsors.altlogo'].replace('{name}', sponsor.name)}
-              width={IMG_WITH_BY_TIER[tierId]}
+              width={size}
             />
             <small>{sponsor.name}</small>
           </a>

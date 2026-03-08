@@ -206,7 +206,7 @@ export const en = {
     no_taxes: 'VAT not included',
     items: [
       {
-        id: 'bronze',
+        color: 'text-tier-bronze',
         name: 'Bronze',
         emoji: '🟤',
         price: 'Price €1,000',
@@ -214,7 +214,7 @@ export const en = {
         bg: 'rgba(180, 83, 9, 0.1)',
       },
       {
-        id: 'silver',
+        color: 'text-tier-silver',
         name: 'Silver',
         emoji: '⚪',
         price: 'Price €3,000',
@@ -222,7 +222,7 @@ export const en = {
         bg: 'rgba(107, 114, 128, 0.1)',
       },
       {
-        id: 'gold',
+        color: 'text-tier-gold',
         name: 'Gold',
         emoji: '🌟',
         price: 'Price €6,000',
@@ -230,7 +230,7 @@ export const en = {
         bg: 'rgba(234, 179, 8, 0.1)',
       },
       {
-        id: 'platinum',
+        color: 'text-tier-platinum',
         name: 'Platinum',
         emoji: '🏆',
         price: 'Price €8,000',
@@ -238,7 +238,7 @@ export const en = {
         bg: 'rgba(34, 197, 94, 0.1)',
       },
       {
-        id: 'main',
+        color: 'text-tier-main',
         name: 'Main',
         emoji: '🏰',
         price: 'Price Custom',

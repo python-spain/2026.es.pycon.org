@@ -4,5 +4,6 @@ export interface ISponsor {
   name: string
   website: string
   tier: TSponsorTier
+  logobg: string
   logo: string
 }

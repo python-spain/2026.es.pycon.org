@@ -33,6 +33,7 @@ const t = texts[lang as keyof typeof texts]
               src={sponsor.logo}
               alt={t['sponsors.altlogo'].replace('{name}', sponsor.name)}
               width={size}
+              style={{ background: sponsor.logobg }}
             />
             <small>{sponsor.name}</small>
           </a>

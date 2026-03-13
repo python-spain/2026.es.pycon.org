@@ -54,15 +54,15 @@ const { items } = menuTexts[currentLang]
 
 <div
   id="main-navigation"
-  class="fixed top-0 w-full z-50 bg-pycon-white/90 backdrop-blur-md border-b border-pycon-black/10 transition-colors duration-300"
+  class="fixed top-0 w-full z-50 bg-pycon-black/90 backdrop-blur-md border-b border-pycon-gray-100/30 transition-colors duration-300"
 >
   <div class="container mx-auto px-4 h-20 flex items-center justify-between">
     <!-- Logo -->
     <a
       href={getRelativeLocaleUrl(currentLang, '/')}
-      class="text-2xl font-bold font-outfit tracking-tighter text-pycon-black rounded px-2 py-1 outline-none transition-all focus-visible:bg-pycon-black/10 focus-visible:text-pycon-orange"
+      class="text-2xl font-bold font-outfit tracking-tighter text-pycon-white rounded px-2 py-1 outline-none transition-all focus-visible:bg-pycon-yellow-25/10 focus-visible:text-pycon-yellow"
     >
-      PyCon<span class="text-pycon-orange">ES</span>
+      PyCon<span class="text-pycon-yellow">ES</span>
     </a>
 
     <div class="wrapper flex items-center gap-4">
@@ -76,7 +76,7 @@ const { items } = menuTexts[currentLang]
                   <>
                     <button
                       id={`dropdown-btn-${index}`}
-                      class="dropdown-trigger flex items-center gap-1 text-pycon-black hover:text-pycon-orange font-medium transition-colors rounded outline-none focus-visible:text-pycon-orange focus-visible:underline decoration-2 underline-offset-4"
+                      class="dropdown-trigger flex items-center gap-1 text-pycon-white hover:text-pycon-yellow font-medium transition-colors rounded outline-none focus-visible:text-pycon-orange focus-visible:underline decoration-2 underline-offset-4"
                       aria-expanded="false"
                       aria-haspopup="true"
                       aria-controls={`dropdown-menu-${index}`}
@@ -99,14 +99,14 @@ const { items } = menuTexts[currentLang]
                     </button>
                     <ul
                       id={`dropdown-menu-${index}`}
-                      class="submenu lg:absolute lg:top-full lg:left-0 lg:w-64 bg-pycon-white rounded-lg p-2 mt-2 lg:mt-4 shadow-2xl z-50 border border-pycon-black/5"
+                      class="submenu lg:absolute lg:top-full lg:left-0 lg:w-64 bg-pycon-gray-100 rounded-lg p-2 mt-2 lg:mt-4 shadow-2xl z-50 border border-pycon-gray-100/50"
                       role="menu"
                     >
                       {item.children.map((child) => (
                         <li role="none">
                           <a
                             href={getLocalizedUrl(currentLang, child.href)}
-                            class="submenu-item block px-4 py-3 rounded-md text-pycon-black font-medium transition-colors outline-none hover:text-pycon-orange hover:bg-pycon-black/5 focus-visible:bg-pycon-orange focus-visible"
+                            class="submenu-item block px-4 py-3 rounded-md text-pycon-white font-medium transition-colors outline-none hover:text-pycon-yellow hover:bg-pycon-yellow-25/15 focus-visible:bg-pycon-orange focus-visible:text-white"
                             role="menuitem"
                             {...(isExternal(child.href)
                               ? { target: '_blank', rel: 'noopener noreferrer' }
@@ -121,7 +121,7 @@ const { items } = menuTexts[currentLang]
                 ) : (
                   <a
                     href={getLocalizedUrl(currentLang, item.href)}
-                    class="block text-pycon-black hover:text-pycon-orange font-medium transition-colors rounded outline-none focus-visible:text-pycon-orange focus-visible:underline decoration-2 underline-offset-4"
+                    class="block text-pycon-white hover:text-pycon-yellow font-medium transition-colors rounded outline-none focus-visible:text-pycon-orange focus-visible:underline decoration-2 underline-offset-4"
                     {...(isExternal(item.href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                   >
                     {item.label}
@@ -144,7 +144,7 @@ const { items } = menuTexts[currentLang]
 
     <!-- Mobile Navigation -->
     <nav
-      class="mobile-menu absolute top-20 left-0 w-full bg-pycon-white p-4 border-b border-pycon-black/10 shadow-xl lg:hidden transition-colors duration-300"
+      class="mobile-menu absolute top-20 left-0 w-full bg-pycon-black p-4 border-b border-pycon-gray-100/30 shadow-xl lg:hidden transition-colors duration-300"
       aria-label="Navegación principal móvil"
     >
       <ul class="menu flex flex-col gap-2">
@@ -153,7 +153,7 @@ const { items } = menuTexts[currentLang]
             <li class="menu-item">
               {item.children ? (
                 <details class="mobile-details">
-                  <summary class="flex items-center justify-between gap-1 w-full text-pycon-black hover:text-pycon-orange font-medium py-2 transition-colors rounded outline-none focus-visible:text-pycon-orange focus-visible:underline decoration-2 underline-offset-4 cursor-pointer list-none">
+                  <summary class="flex items-center justify-between gap-1 w-full text-pycon-white hover:text-pycon-yellow font-medium py-2 transition-colors rounded outline-none focus-visible:text-pycon-orange focus-visible:underline decoration-2 underline-offset-4 cursor-pointer list-none">
                     {item.label}
                     <svg
                       class="w-4 h-4 transition-transform duration-200 chevron-icon"
@@ -175,7 +175,7 @@ const { items } = menuTexts[currentLang]
                       <li>
                         <a
                           href={getLocalizedUrl(currentLang, child.href)}
-                          class="block px-4 py-3 rounded-md text-pycon-black font-medium transition-colors outline-none hover:text-pycon-orange hover:bg-pycon-black/5 focus-visible:bg-pycon-orange focus-visible"
+                          class="block px-4 py-3 rounded-md text-pycon-white font-medium transition-colors outline-none hover:text-pycon-yellow hover:bg-pycon-yellow-25/15 focus-visible:bg-pycon-orange focus-visible:text-white"
                           {...(isExternal(child.href)
                             ? { target: '_blank', rel: 'noopener noreferrer' }
                             : {})}
@@ -189,7 +189,7 @@ const { items } = menuTexts[currentLang]
               ) : (
                 <a
                   href={getLocalizedUrl(currentLang, item.href)}
-                  class="block text-pycon-black hover:text-pycon-orange font-medium py-2 transition-colors rounded outline-none focus-visible:text-pycon-orange focus-visible:underline decoration-2 underline-offset-4"
+                  class="block text-pycon-white hover:text-pycon-yellow font-medium py-2 transition-colors rounded outline-none focus-visible:text-pycon-orange focus-visible:underline decoration-2 underline-offset-4"
                   {...(isExternal(item.href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 >
                   {item.label}
@@ -201,7 +201,7 @@ const { items } = menuTexts[currentLang]
       </ul>
 
       <!-- Mobile utility controls (outside nav for proper semantics) -->
-      <div class="flex items-center justify-between py-2 border-t border-pycon-black/10 mt-2">
+      <div class="flex items-center justify-between py-2 border-t border-pycon-gray-100/30 mt-2">
         <LanguagePicker variant="mobile" lang={currentLang} />
       </div>
     </nav>
@@ -540,6 +540,6 @@ const { items } = menuTexts[currentLang]
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;
-    color: var(--color-pycon-orange);
+    color: var(--color-pycon-yellow);
   }
 </style>

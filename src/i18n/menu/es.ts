@@ -5,19 +5,19 @@ export const es = {
       href: '/',
     },
     {
-      label: 'La Conferencia',
+      label: 'Sede',
+      href: '/location',
+    },
+    {
+      label: 'Dónde alojarse',
+      href: '/accommodation',
+    },
+    {
+      label: 'Diversidad e Inclusión',
       children: [
         {
-          label: 'Speakers',
-          href: '/speakers',
-        },
-        {
-          label: 'Agenda',
-          href: '/agenda',
-        },
-        {
-          label: 'Sede',
-          href: '/location',
+          label: 'Código de conducta',
+          href: '/code-of-conduct',
         },
       ],
     },

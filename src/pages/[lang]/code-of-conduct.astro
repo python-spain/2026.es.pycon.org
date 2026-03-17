@@ -1,0 +1,276 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { texts } from '../../i18n/code-of-conduct'
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }, { params: { lang: 'ca' } }]
+}
+
+const { lang } = Astro.params
+
+const t = texts[(lang || 'es') as keyof typeof texts]
+
+const {
+  title,
+  heading,
+  intro,
+  commitment,
+  detailIntro,
+  why,
+  scope,
+  standards,
+  enforcement,
+  reporting,
+  attribution,
+} = t
+---
+
+<Layout title={title} description={intro}>
+  <div class="max-w-4xl mx-auto px-4 py-8 mt-20">
+    <!-- Hero -->
+    <header class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+        {heading}
+      </h1>
+      <div
+        class="w-24 h-1 bg-linear-to-r from-pycon-yellow via-pycon-orange to-pycon-red mx-auto rounded-full"
+      >
+      </div>
+    </header>
+
+    <!-- Intro -->
+    <section class="mb-12">
+      <div
+        class="bg-pycon-black/5 dark:bg-white/5 p-8 rounded-2xl border border-pycon-black/10 dark:border-white/10 shadow-sm"
+      >
+        <p class="text-lg leading-relaxed mb-6">
+          {intro}
+        </p>
+        <p class="opacity-80 leading-relaxed mb-6">
+          {commitment}
+        </p>
+        <p class="opacity-80 leading-relaxed">
+          {detailIntro}
+        </p>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section class="mb-12" aria-labelledby="coc-why">
+      <h2
+        id="coc-why"
+        class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3"
+      >
+        <span
+          class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-yellow/20 text-pycon-yellow text-lg"
+          aria-hidden="true">🤔</span
+        >
+        {why.title}
+      </h2>
+      <p class="opacity-80 leading-relaxed mb-6">
+        {why.intro}
+      </p>
+      <ul class="space-y-4">
+        {
+          why.reasons.map((reason) => (
+            <li class="flex gap-4 items-start">
+              <span
+                class="mt-1 w-2 h-2 rounded-full bg-pycon-orange shrink-0"
+                aria-hidden="true"
+              />
+              <span class="opacity-80 leading-relaxed">{reason}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- Scope -->
+    <section class="mb-12" aria-labelledby="coc-scope">
+      <h2
+        id="coc-scope"
+        class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3"
+      >
+        <span
+          class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-orange/20 text-pycon-orange text-lg"
+          aria-hidden="true">🌐</span
+        >
+        {scope.title}
+      </h2>
+      <div
+        class="bg-pycon-black/5 dark:bg-white/5 p-8 rounded-2xl border border-pycon-black/10 dark:border-white/10 shadow-sm"
+      >
+        <p class="opacity-80 leading-relaxed">
+          {scope.body}
+        </p>
+      </div>
+    </section>
+
+    <!-- Standards -->
+    <section class="mb-12" aria-labelledby="coc-standards">
+      <h2
+        id="coc-standards"
+        class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3"
+      >
+        <span
+          class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-red/20 text-pycon-red text-lg"
+          aria-hidden="true">📋</span
+        >
+        {standards.title}
+      </h2>
+
+      <!-- Positive behaviours -->
+      <div class="mb-8">
+        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+          <span class="text-green-500" aria-hidden="true">✅</span>
+          {standards.positiveTitle}
+        </h3>
+        <div
+          class="bg-green-50 dark:bg-green-900/10 p-6 rounded-2xl border border-green-200/50 dark:border-green-500/10"
+        >
+          <ul class="space-y-4">
+            {
+              standards.positiveItems.map((item) => (
+                <li class="flex gap-4 items-start">
+                  <span
+                    class="mt-1 w-2 h-2 rounded-full bg-green-500 shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span class="opacity-80 leading-relaxed">
+                    {item}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- Negative behaviours -->
+      <div class="mb-8">
+        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+          <span class="text-pycon-red" aria-hidden="true">🚫</span>
+          {standards.negativeTitle}
+        </h3>
+        <div
+          class="bg-pycon-red-25/30 dark:bg-red-900/10 p-6 rounded-2xl border border-pycon-red-25 dark:border-red-500/10"
+        >
+          <ul class="space-y-4">
+            {
+              standards.negativeItems.map((item) => (
+                <li class="flex gap-4 items-start">
+                  <span
+                    class="mt-1 w-2 h-2 rounded-full bg-pycon-red shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span class="opacity-80 leading-relaxed">
+                    {item}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- Harassment note -->
+      <div
+        class="bg-pycon-yellow-25/50 dark:bg-yellow-900/10 p-6 rounded-2xl border border-pycon-yellow-50 dark:border-yellow-500/10"
+      >
+        <p class="opacity-80 leading-relaxed text-sm italic">
+          <span class="font-semibold not-italic" aria-hidden="true">⚠️</span>
+          {standards.harassmentNote}
+        </p>
+      </div>
+    </section>
+
+    <!-- Enforcement -->
+    <section class="mb-12" aria-labelledby="coc-enforcement">
+      <h2
+        id="coc-enforcement"
+        class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3"
+      >
+        <span
+          class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-orange/20 text-pycon-orange text-lg"
+          aria-hidden="true">⚖️</span
+        >
+        {enforcement.title}
+      </h2>
+      <div
+        class="bg-pycon-black/5 dark:bg-white/5 p-8 rounded-2xl border border-pycon-black/10 dark:border-white/10 shadow-sm"
+      >
+        <p class="opacity-80 leading-relaxed">
+          {enforcement.body}
+        </p>
+      </div>
+    </section>
+
+    <!-- Reporting -->
+    <section class="mb-12" aria-labelledby="coc-reporting">
+      <h2
+        id="coc-reporting"
+        class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3"
+      >
+        <span
+          class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-red/20 text-pycon-red text-lg"
+          aria-hidden="true">📢</span
+        >
+        {reporting.title}
+      </h2>
+      <p class="opacity-80 leading-relaxed mb-6">
+        {reporting.intro}
+      </p>
+      <div class="space-y-4">
+        {
+          reporting.channels.map((channel, index) => (
+            <div class="flex gap-4 items-start bg-pycon-black/5 dark:bg-white/5 p-5 rounded-xl border border-pycon-black/10 dark:border-white/10 shadow-sm transition-all hover:shadow-md hover:border-pycon-orange/30 dark:hover:border-pycon-orange/20">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-pycon-orange/10 text-pycon-orange text-sm font-bold shrink-0">
+                {index + 1}
+              </span>
+              <p class="opacity-80 leading-relaxed text-sm">
+                {channel}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+      <div
+        class="mt-6 bg-pycon-yellow-25/50 dark:bg-yellow-900/10 p-5 rounded-xl border border-pycon-yellow-50 dark:border-yellow-500/10"
+      >
+        <p class="opacity-80 leading-relaxed text-sm flex items-start gap-3">
+          <span class="text-lg shrink-0" aria-hidden="true">🔒</span>
+          {reporting.privacy}
+        </p>
+      </div>
+    </section>
+
+    <!-- Attribution -->
+    <section class="mb-16" aria-labelledby="coc-attribution">
+      <h2
+        id="coc-attribution"
+        class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3"
+      >
+        <span
+          class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-yellow/20 text-pycon-yellow text-lg"
+          aria-hidden="true">📝</span
+        >
+        {attribution.title}
+      </h2>
+      <p class="opacity-80 leading-relaxed mb-4">
+        {attribution.intro}
+      </p>
+      <ul class="space-y-3">
+        {
+          attribution.sources.map((source) => (
+            <li class="flex gap-3 items-start">
+              <span class="mt-1 w-2 h-2 rounded-full bg-pycon-yellow shrink-0" aria-hidden="true" />
+              <span class="opacity-80 leading-relaxed text-sm">
+                {source}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Layout>

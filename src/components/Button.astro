@@ -1,19 +1,13 @@
 ---
 interface Props {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
-  href?: string;
-  class?: string;
-  [x: string]: any;
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
+  size?: 'sm' | 'md' | 'lg'
+  href?: string
+  class?: string
+  [x: string]: any
 }
 
-const { 
-  variant = 'primary', 
-  size = 'md', 
-  href,
-  class: className,
-  ...rest 
-} = Astro.props;
+const { variant = 'primary', size = 'md', href, class: className, ...rest } = Astro.props
 
 const variants = {
   primary: 'bg-orange-500 text-white hover:bg-orange-600',
@@ -26,18 +20,15 @@ const variants = {
 const sizes = {
   sm: 'h-8 px-3 py-1.5 text-sm leading-5',
   md: 'h-10 px-4 py-2 text-base leading-6', // Uses h-10 based on size specs, though some variants export h-11
-  lg: 'h-12 px-6 py-3 text-lg leading-7'
-};
+  lg: 'h-12 px-6 py-3 text-lg leading-7',
+}
 
-const baseClasses = 'inline-flex items-center justify-center font-[\'Outfit\'] font-medium rounded-lg text-center transition-colors duration-200 cursor-pointer';
+const baseClasses =
+  "inline-flex items-center justify-center font-['Outfit'] font-medium rounded-lg text-center transition-colors duration-200 cursor-pointer"
 
-const Element = href ? 'a' : 'button';
+const Element = href ? 'a' : 'button'
 ---
 
-<Element 
-  href={href} 
-  class:list={[baseClasses, variants[variant], sizes[size], className]}
-  {...rest}
->
+<Element href={href} class:list={[baseClasses, variants[variant], sizes[size], className]} {...rest}>
   <slot />
 </Element>

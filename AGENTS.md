@@ -146,6 +146,7 @@ Agents (like Copilot) must adhere to these coding standards to ensure consistenc
 2. **During Execution**
    - When generating test files, suggest using Jest or Vitest (if no tests are found).
    - For updates, refactor to use modular imports and maintain concise separation of logic.
+   - **Follow SEO and i18n guidelines** defined in section 4 when creating or modifying pages.
 
 3. **Post-Execution**
    - Always include a test or linting step before suggesting commits.
@@ -153,6 +154,37 @@ Agents (like Copilot) must adhere to these coding standards to ensure consistenc
      ```bash
      chore: format code with Prettier
      ```
+
+---
+
+## 4. SEO and Page Creation Guidelines
+
+Agents must ensure all new pages are optimized for search engines and follow the project's internationalization (i18n) structure.
+
+### Multi-language Pages
+- All new pages must be placed in `src/pages/[lang]/`.
+- Use `getStaticPaths()` to support all configured locales (`es`, `en`, `ca`).
+- Example structure:
+  ```typescript
+  export function getStaticPaths() {
+    return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }, { params: { lang: 'ca' } }]
+  }
+  ```
+
+### Layout and Metadata
+- Every page **must** use the `Layout` component from `src/layouts/Layout.astro`.
+- Pass a unique and descriptive `title` and `description` (150-160 characters) to the `Layout` component.
+- The `Layout` component automatically handles canonical URLs, social media tags (OG/Twitter), and `hreflang` tags.
+
+### Semantic HTML and Accessibility
+- **H1 Tags**: Use exactly one `<h1>` per page.
+- **Headings**: Maintain a logical hierarchy (`h2`, `h3`, etc.).
+- **Images**: All `<img>` tags must include a descriptive `alt` attribute.
+- **Links**: Use descriptive text for links. Avoid generic phrases like "click here".
+
+### Analytics and Monitoring
+- Use the `PUBLIC_GA_ID` environment variable for Google Analytics.
+- Do not hardcode tracking IDs.
 
 ---
 

@@ -19,7 +19,9 @@ const t = accommodationTexts[lang as keyof typeof accommodationTexts]
     </p>
   </section>
 
-  <section class="max-w-4xl bg-white/5 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-white/10 mb-16 shadow-2xl">
+  <section
+    class="max-w-4xl bg-white/5 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-white/10 mb-16 shadow-2xl"
+  >
     <p class="text-lg text-pycon-gray-25 leading-relaxed">
       {t['accommodation.intro']}
     </p>
@@ -32,59 +34,92 @@ const t = accommodationTexts[lang as keyof typeof accommodationTexts]
       <h2 class="text-3xl font-bold text-white px-4">{t['accommodation.hotels.title']}</h2>
       <div class="h-px bg-white/20 flex-1"></div>
     </div>
-    
-    <div class="bg-pycon-gray-100/50 p-12 rounded-3xl border border-pycon-yellow/30 text-center relative overflow-hidden group">
-        <!-- Shine effect -->
-        <div class="absolute -top-full -left-full w-[300%] h-[300%] bg-linear-to-br from-transparent via-pycon-yellow/5 to-transparent rotate-45 transition-transform duration-1000 group-hover:translate-x-[33%] group-hover:translate-y-[33%] pointer-events-none"></div>
-        
-        <div class="relative z-10">
-            <span class="text-6xl mb-6 block" role="img" aria-label="Construyendo">🏗️</span>
-            <h3 class="text-2xl font-bold text-pycon-yellow mb-4">{t['accommodation.hotels.subtitle']}</h3>
-            <p class="text-xl text-white font-medium max-w-2xl mx-auto italic opacity-80">
-                {t['accommodation.hotels.disclaimer']}
-            </p>
-        </div>
+
+    <div
+      class="bg-pycon-gray-100/50 p-12 rounded-3xl border border-pycon-yellow/30 text-center relative overflow-hidden group"
+    >
+      <!-- Shine effect -->
+      <div
+        class="absolute -top-full -left-full w-[300%] h-[300%] bg-linear-to-br from-transparent via-pycon-yellow/5 to-transparent rotate-45 transition-transform duration-1000 group-hover:translate-x-[33%] group-hover:translate-y-[33%] pointer-events-none"
+      >
+      </div>
+
+      <div class="relative z-10">
+        <span class="text-6xl mb-6 block" role="img" aria-label="Construyendo">🏗️</span>
+        <h3 class="text-2xl font-bold text-pycon-yellow mb-4">{t['accommodation.hotels.subtitle']}</h3>
+        <p class="text-xl text-white font-medium max-w-2xl mx-auto italic opacity-80">
+          {t['accommodation.hotels.disclaimer']}
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- Areas -->
   <section class="mb-24">
     <h2 class="text-3xl font-bold text-white mb-12 flex items-center gap-3">
-        <span class="w-2 h-8 bg-pycon-red rounded-full"></span>
-        {t['accommodation.areas.title']}
+      <span class="w-2 h-8 bg-pycon-red rounded-full"></span>
+      {t['accommodation.areas.title']}
     </h2>
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all hover:-translate-y-2">
-        <h3 class="text-xl font-bold text-pycon-orange mb-4 italic">{t['accommodation.areas.eixample.name']}</h3>
+      <div
+        class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all hover:-translate-y-2"
+      >
+        <h3 class="text-xl font-bold text-pycon-orange mb-4 italic">
+          {t['accommodation.areas.eixample.name']}
+        </h3>
         <p class="text-pycon-gray-25 text-sm leading-relaxed">{t['accommodation.areas.eixample.desc']}</p>
       </div>
-      <div class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all hover:-translate-y-2 text-center">
-        <h3 class="text-xl font-bold text-pycon-orange mb-4 italic">{t['accommodation.areas.gothic.name']}</h3>
+      <div
+        class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all hover:-translate-y-2 text-center"
+      >
+        <h3 class="text-xl font-bold text-pycon-orange mb-4 italic">
+          {t['accommodation.areas.gothic.name']}
+        </h3>
         <p class="text-pycon-gray-25 text-sm leading-relaxed">{t['accommodation.areas.gothic.desc']}</p>
       </div>
-       <div class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all hover:-translate-y-2 text-right">
-        <h3 class="text-xl font-bold text-pycon-orange mb-4 italic">{t['accommodation.areas.poblenou.name']}</h3>
+      <div
+        class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all hover:-translate-y-2 text-right"
+      >
+        <h3 class="text-xl font-bold text-pycon-orange mb-4 italic">
+          {t['accommodation.areas.poblenou.name']}
+        </h3>
         <p class="text-pycon-gray-25 text-sm leading-relaxed">{t['accommodation.areas.poblenou.desc']}</p>
       </div>
     </div>
   </section>
 
   <!-- Apartments -->
-  <section class="bg-linear-to-r from-pycon-red/20 to-pycon-orange/20 p-8 md:p-16 rounded-3xl border border-pycon-red/30">
+  <section
+    class="bg-linear-to-r from-pycon-red/20 to-pycon-orange/20 p-8 md:p-16 rounded-3xl border border-pycon-red/30"
+  >
     <div class="flex flex-col md:flex-row gap-12 items-center">
-        <div class="flex-1">
-            <h2 class="text-3xl font-bold text-white mb-6 uppercase tracking-tight">{t['accommodation.apartments.title']}</h2>
-            <p class="text-pycon-gray-25 text-lg mb-8 leading-relaxed">
-                {t['accommodation.apartments.text']}
-            </p>
-            <a href="https://meet.barcelona/es/alojarse-en-barcelona" target="_blank" class="inline-flex items-center gap-2 bg-white text-pycon-red font-bold px-6 py-3 rounded-lg hover:scale-105 transition-transform no-underline">
-                {t['accommodation.apartments.link']}
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </a>
-        </div>
-        <div class="w-48 h-48 bg-white/10 rounded-full flex items-center justify-center border border-white/20 shadow-2xl backdrop-blur-xl shrink-0">
-             <span class="text-7xl" role="img" aria-label="Ubicación">🏙️</span>
-        </div>
+      <div class="flex-1">
+        <h2 class="text-3xl font-bold text-white mb-6 uppercase tracking-tight">
+          {t['accommodation.apartments.title']}
+        </h2>
+        <p class="text-pycon-gray-25 text-lg mb-8 leading-relaxed">
+          {t['accommodation.apartments.text']}
+        </p>
+        <a
+          href="https://meet.barcelona/es/alojarse-en-barcelona"
+          target="_blank"
+          class="inline-flex items-center gap-2 bg-white text-pycon-red font-bold px-6 py-3 rounded-lg hover:scale-105 transition-transform no-underline"
+        >
+          {t['accommodation.apartments.link']}
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg
+          >
+        </a>
+      </div>
+      <div
+        class="w-48 h-48 bg-white/10 rounded-full flex items-center justify-center border border-white/20 shadow-2xl backdrop-blur-xl shrink-0"
+      >
+        <span class="text-7xl" role="img" aria-label="Ubicación">🏙️</span>
+      </div>
     </div>
   </section>
 </div>
@@ -95,7 +130,13 @@ const t = accommodationTexts[lang as keyof typeof accommodationTexts]
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>

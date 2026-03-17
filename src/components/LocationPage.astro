@@ -83,7 +83,9 @@ const transportIcons = {
           {t['location.rooms.title']}
         </h2>
         <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-pycon-gray-100 p-6 rounded-xl border border-white/10 hover:bg-pycon-gray-100/80 transition-all">
+          <div
+            class="bg-pycon-gray-100 p-6 rounded-xl border border-white/10 hover:bg-pycon-gray-100/80 transition-all"
+          >
             <div class="flex justify-between items-start mb-4">
               <h3 class="text-xl font-bold text-pycon-yellow">{t['location.rooms.paranimf.title']}</h3>
               <span class="bg-pycon-yellow/20 text-pycon-yellow px-3 py-1 rounded-full text-xs font-bold"
@@ -92,7 +94,9 @@ const transportIcons = {
             </div>
             <p class="text-pycon-gray-25 text-sm">{t['location.rooms.paranimf.desc']}</p>
           </div>
-          <div class="bg-pycon-gray-100 p-6 rounded-xl border border-white/10 hover:bg-pycon-gray-100/80 transition-all">
+          <div
+            class="bg-pycon-gray-100 p-6 rounded-xl border border-white/10 hover:bg-pycon-gray-100/80 transition-all"
+          >
             <div class="flex justify-between items-start mb-4">
               <h3 class="text-xl font-bold text-pycon-yellow">{t['location.rooms.aulamagna.title']}</h3>
               <span class="bg-pycon-yellow/20 text-pycon-yellow px-3 py-1 rounded-full text-xs font-bold"
@@ -101,7 +105,9 @@ const transportIcons = {
             </div>
             <p class="text-pycon-gray-25 text-sm">{t['location.rooms.aulamagna.desc']}</p>
           </div>
-          <div class="bg-pycon-gray-100 p-6 rounded-xl border border-white/10 hover:bg-pycon-gray-100/80 transition-all md:col-span-2">
+          <div
+            class="bg-pycon-gray-100 p-6 rounded-xl border border-white/10 hover:bg-pycon-gray-100/80 transition-all md:col-span-2"
+          >
             <div class="flex justify-between items-start mb-4">
               <h3 class="text-xl font-bold text-pycon-yellow">{t['location.rooms.teaching.title']}</h3>
               <span class="bg-pycon-yellow/20 text-pycon-yellow px-3 py-1 rounded-full text-xs font-bold"
@@ -118,9 +124,7 @@ const transportIcons = {
     <div class="space-y-8">
       <div class="bg-linear-to-br from-pycon-orange to-pycon-red p-8 rounded-2xl shadow-xl text-white">
         <h3 class="text-2xl font-bold mb-4">Google Maps</h3>
-        <p class="text-white/90 mb-6 text-sm">
-          Gran Via de les Corts Catalanes, 585, 08007 Barcelona
-        </p>
+        <p class="text-white/90 mb-6 text-sm">Gran Via de les Corts Catalanes, 585, 08007 Barcelona</p>
         <a
           href="https://maps.app.goo.gl/35p6A9Yf3QJ4kG9y8"
           target="_blank"
@@ -134,28 +138,102 @@ const transportIcons = {
       <div class="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10">
         <h3 class="text-xl font-bold mb-6 text-white flex items-center gap-2">
           <svg class="w-6 h-6 text-pycon-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
           {t['location.spaces.title']}
         </h3>
         <ul class="space-y-4">
           <li class="group">
-            <span class="text-pycon-orange font-bold block group-hover:text-pycon-yellow transition-colors italic">{t['location.spaces.gallery.title']}</span>
+            <span
+              class="text-pycon-orange font-bold block group-hover:text-pycon-yellow transition-colors italic"
+              >{t['location.spaces.gallery.title']}</span
+            >
             <span class="text-pycon-gray-25 text-xs">{t['location.spaces.gallery.desc']}</span>
           </li>
           <li class="group">
-            <span class="text-pycon-orange font-bold block group-hover:text-pycon-yellow transition-colors italic">{t['location.spaces.hall.title']}</span>
+            <span
+              class="text-pycon-orange font-bold block group-hover:text-pycon-yellow transition-colors italic"
+              >{t['location.spaces.hall.title']}</span
+            >
             <span class="text-pycon-gray-25 text-xs">{t['location.spaces.hall.desc']}</span>
           </li>
           <li class="group">
-            <span class="text-pycon-orange font-bold block group-hover:text-pycon-yellow transition-colors italic">{t['location.spaces.cloister.title']}</span>
+            <span
+              class="text-pycon-orange font-bold block group-hover:text-pycon-yellow transition-colors italic"
+              >{t['location.spaces.cloister.title']}</span
+            >
             <span class="text-pycon-gray-25 text-xs">{t['location.spaces.cloister.desc']}</span>
           </li>
           <li class="group">
-            <span class="text-pycon-orange font-bold block group-hover:text-pycon-yellow transition-colors italic">{t['location.spaces.garden.title']}</span>
+            <span
+              class="text-pycon-orange font-bold block group-hover:text-pycon-yellow transition-colors italic"
+              >{t['location.spaces.garden.title']}</span
+            >
             <span class="text-pycon-gray-25 text-xs">{t['location.spaces.garden.desc']}</span>
           </li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- City Section -->
+  <section class="mb-20 px-4 md:px-0">
+    <div
+      class="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-8 md:p-16 overflow-hidden"
+    >
+      <!-- Decoration -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-pycon-yellow/10 blur-[120px] -z-10 animate-pulse"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-pycon-red/10 blur-[120px] -z-10 animate-pulse"></div>
+
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-white uppercase tracking-tighter text-center">
+        {t['location.city.title']}
+      </h2>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div class="space-y-6">
+          <p class="text-xl text-white font-medium leading-relaxed drop-shadow-sm">
+            {t['location.city.intro']}
+          </p>
+          <p class="text-pycon-gray-25 leading-relaxed italic border-l-4 border-pycon-orange pl-6">
+            {t['location.city.heritage']}
+          </p>
+          <div class="bg-pycon-black/40 p-6 rounded-2xl border border-white/5">
+            <h3 class="text-lg font-bold text-pycon-yellow mb-2 uppercase tracking-wide">
+              {t['location.city.climate.title']}
+            </h3>
+            <p class="text-pycon-gray-25 text-sm uppercase">
+              {t['location.city.climate.text']}
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-8">
+          <div class="group">
+            <h3 class="text-2xl font-bold text-pycon-orange mb-4 flex items-center gap-3">
+              <span class="w-2 h-6 bg-pycon-orange rounded-full group-hover:scale-y-125 transition-transform"
+              ></span>
+              {t['location.city.tech.title']}
+            </h3>
+            <p class="text-pycon-gray-25 leading-relaxed">
+              {t['location.city.tech.text']}
+            </p>
+          </div>
+
+          <div class="group">
+            <h3 class="text-2xl font-bold text-pycon-red mb-4 flex items-center gap-3">
+              <span class="w-2 h-6 bg-pycon-red rounded-full group-hover:scale-y-125 transition-transform"
+              ></span>
+              {t['location.city.connections.title']}
+            </h3>
+            <p class="text-pycon-gray-25 leading-relaxed">
+              {t['location.city.connections.text']}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -167,64 +245,61 @@ const transportIcons = {
     </h2>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
       <!-- Metro -->
-      <div class="bg-pycon-black/60 p-8 rounded-2xl border border-white/10 hover:border-pycon-yellow/50 transition-all flex flex-col items-center text-center">
-        <div class="w-16 h-16 bg-pycon-yellow/10 rounded-full flex items-center justify-center mb-6 text-pycon-yellow">
-          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d={transportIcons.metro}></path></svg>
+      <div
+        class="bg-pycon-black/60 p-8 rounded-2xl border border-white/10 hover:border-pycon-yellow/50 transition-all flex flex-col items-center text-center"
+      >
+        <div
+          class="w-16 h-16 bg-pycon-yellow/10 rounded-full flex items-center justify-center mb-6 text-pycon-yellow"
+        >
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"
+            ><path d={transportIcons.metro}></path></svg
+          >
         </div>
         <h3 class="text-xl font-bold text-white mb-3">{t['location.transport.metro.title']}</h3>
         <p class="text-sm text-pycon-gray-25">{t['location.transport.metro.items']}</p>
       </div>
       <!-- Renfe -->
-      <div class="bg-pycon-black/60 p-8 rounded-2xl border border-white/10 hover:border-pycon-yellow/50 transition-all flex flex-col items-center text-center">
-        <div class="w-16 h-16 bg-pycon-yellow/10 rounded-full flex items-center justify-center mb-6 text-pycon-yellow">
-          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d={transportIcons.train}></path></svg>
+      <div
+        class="bg-pycon-black/60 p-8 rounded-2xl border border-white/10 hover:border-pycon-yellow/50 transition-all flex flex-col items-center text-center"
+      >
+        <div
+          class="w-16 h-16 bg-pycon-yellow/10 rounded-full flex items-center justify-center mb-6 text-pycon-yellow"
+        >
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"
+            ><path d={transportIcons.train}></path></svg
+          >
         </div>
         <h3 class="text-xl font-bold text-white mb-3">{t['location.transport.renfe.title']}</h3>
         <p class="text-sm text-pycon-gray-25">{t['location.transport.renfe.items']}</p>
       </div>
       <!-- Long Distance -->
-      <div class="bg-pycon-black/60 p-8 rounded-2xl border border-white/10 hover:border-pycon-yellow/50 transition-all flex flex-col items-center text-center">
-        <div class="w-16 h-16 bg-pycon-yellow/10 rounded-full flex items-center justify-center mb-6 text-pycon-yellow">
-          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d={transportIcons.bus}></path></svg>
+      <div
+        class="bg-pycon-black/60 p-8 rounded-2xl border border-white/10 hover:border-pycon-yellow/50 transition-all flex flex-col items-center text-center"
+      >
+        <div
+          class="w-16 h-16 bg-pycon-yellow/10 rounded-full flex items-center justify-center mb-6 text-pycon-yellow"
+        >
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"
+            ><path d={transportIcons.bus}></path></svg
+          >
         </div>
         <h3 class="text-xl font-bold text-white mb-3">{t['location.transport.long.title']}</h3>
         <p class="text-sm text-pycon-gray-25">{t['location.transport.long.items']}</p>
       </div>
       <!-- Car -->
-      <div class="bg-pycon-black/60 p-8 rounded-2xl border border-white/10 hover:border-pycon-red/50 transition-all flex flex-col items-center text-center">
-        <div class="w-16 h-16 bg-pycon-red/10 rounded-full flex items-center justify-center mb-6 text-pycon-red">
-          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d={transportIcons.car}></path></svg>
+      <div
+        class="bg-pycon-black/60 p-8 rounded-2xl border border-white/10 hover:border-pycon-red/50 transition-all flex flex-col items-center text-center"
+      >
+        <div
+          class="w-16 h-16 bg-pycon-red/10 rounded-full flex items-center justify-center mb-6 text-pycon-red"
+        >
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"
+            ><path d={transportIcons.car}></path></svg
+          >
         </div>
         <h3 class="text-xl font-bold text-white mb-3">{t['location.transport.car.title']}</h3>
         <p class="text-sm text-pycon-gray-25">{t['location.transport.car.desc']}</p>
       </div>
-    </div>
-  </section>
-
-  <!-- City Section -->
-  <section
-    class="relative rounded-3xl overflow-hidden bg-pycon-black border border-white/10 p-8 md:p-16 flex flex-col items-center text-center"
-  >
-    <!-- Background element -->
-    <div class="absolute top-0 right-0 w-64 h-64 bg-pycon-yellow/20 blur-[100px] -z-10"></div>
-    <div class="absolute bottom-0 left-0 w-64 h-64 bg-pycon-red/20 blur-[100px] -z-10"></div>
-
-    <h2 class="text-4xl md:text-5xl font-black mb-8 text-white uppercase tracking-tighter">
-      {t['location.city.title']}
-    </h2>
-    <p class="text-xl text-pycon-gray-25 max-w-3xl leading-relaxed mb-8">
-      {t['location.city.text']}
-    </p>
-    <div class="inline-block px-6 py-2 bg-pycon-orange/20 border border-pycon-orange/50 rounded-full text-pycon-orange font-bold mb-8">
-      {t['location.city.tech']}
-    </div>
-    
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl opacity-50 grayscale hover:grayscale-0 transition-all">
-        <!-- Minimalista representation of city assets if we had them -->
-        <div class="h-2 bg-white/10 rounded"></div>
-        <div class="h-2 bg-white/10 rounded"></div>
-        <div class="h-2 bg-white/10 rounded"></div>
-        <div class="h-2 bg-white/10 rounded"></div>
     </div>
   </section>
 </div>

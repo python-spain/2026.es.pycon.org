@@ -19,6 +19,10 @@ export const ca = {
           label: 'Seu',
           href: '/location',
         },
+        {
+          label: 'Codi de conducta',
+          href: '/code-of-conduct',
+        },
       ],
     },
     {

@@ -19,6 +19,10 @@ export const en = {
           label: 'Venue',
           href: '/location',
         },
+        {
+          label: 'Code of Conduct',
+          href: '/code-of-conduct',
+        },
       ],
     },
     {

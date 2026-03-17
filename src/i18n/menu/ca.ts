@@ -5,25 +5,12 @@ export const ca = {
       href: '/',
     },
     {
-      label: 'La Conferència',
-      children: [
-        {
-          label: 'Speakers',
-          href: '/speakers',
-        },
-        {
-          label: 'Agenda',
-          href: '/agenda',
-        },
-        {
-          label: 'Seu',
-          href: '/location',
-        },
-        {
-          label: 'On allotjar-se',
-          href: '/accommodation',
-        },
-      ],
+      label: 'Seu',
+      href: '/location',
+    },
+    {
+      label: 'On allotjar-se',
+      href: '/accommodation',
     },
     {
       label: 'Patrocinis',

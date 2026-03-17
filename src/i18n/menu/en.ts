@@ -5,26 +5,14 @@ export const en = {
       href: '/',
     },
     {
-      label: 'The Conference',
-      children: [
-        {
-          label: 'Speakers',
-          href: '/speakers',
-        },
-        {
-          label: 'Schedule',
-          href: '/agenda',
-        },
-        {
-          label: 'Venue',
-          href: '/location',
-        },
-        {
-          label: 'Where to stay',
-          href: '/accommodation',
-        },
-      ],
+      label: 'Venue',
+      href: '/location',
     },
+    {
+      label: 'Where to stay',
+      href: '/accommodation',
+    },
+
     {
       label: 'Sponsorship',
       children: [

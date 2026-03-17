@@ -5,6 +5,14 @@ export const es = {
       href: '/',
     },
     {
+      label: 'Sede',
+      href: '/location',
+    },
+    {
+      label: 'Dónde alojarse',
+      href: '/accommodation',
+    },
+    {
       label: 'La Conferencia',
       children: [
         {

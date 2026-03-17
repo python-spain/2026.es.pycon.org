@@ -5,15 +5,6 @@ export const ca = {
       href: '/',
     },
     {
-      label: 'La Conferència',
-      children: [
-        {
-          label: 'Seu',
-          href: '/location',
-        },
-      ],
-    },
-    {
       label: 'Diversitat i Inclusió',
       children: [
         {

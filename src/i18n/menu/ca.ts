@@ -5,6 +5,14 @@ export const ca = {
       href: '/',
     },
     {
+      label: 'Seu',
+      href: '/location',
+    },
+    {
+      label: 'On allotjar-se',
+      href: '/accommodation',
+    },
+    {
       label: 'Diversitat i Inclusió',
       children: [
         {

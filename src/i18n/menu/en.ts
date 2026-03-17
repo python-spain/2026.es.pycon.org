@@ -5,13 +5,12 @@ export const en = {
       href: '/',
     },
     {
-      label: 'The Conference',
-      children: [
-        {
-          label: 'Venue',
-          href: '/location',
-        },
-      ],
+      label: 'Venue',
+      href: '/location',
+    },
+    {
+      label: 'Where to stay',
+      href: '/accommodation',
     },
     {
       label: 'Diversity and Inclusion',

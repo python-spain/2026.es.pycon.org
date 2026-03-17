@@ -5,13 +5,12 @@ export const es = {
       href: '/',
     },
     {
-      label: 'La Conferencia',
-      children: [
-        {
-          label: 'Sede',
-          href: '/location',
-        },
-      ],
+      label: 'Sede',
+      href: '/location',
+    },
+    {
+      label: 'Dónde alojarse',
+      href: '/accommodation',
     },
     {
       label: 'Diversidad e Inclusión',

@@ -30,31 +30,15 @@ const { title, description = 'PyconES 2026' } = Astro.props
     <ClientRouter />
 
     <script is:inline>
-      const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme')
-        }
-
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark'
-        }
-
-        return 'light'
-      })()
-
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
+      document.documentElement.classList.add('dark')
     </script>
   </head>
 
   <body
-    class="bg-pycon-white dark:bg-pycon-black font-outfit text-pycon-black dark:text-pycon-white antialiased h-screen relative transition-colors duration-300"
+    class="bg-pycon-black font-outfit text-pycon-white antialiased h-screen relative transition-colors duration-300"
   >
     <div
-      class="fixed inset-0 bg-[url('/images/symbol-black-light.svg')] dark:bg-[url('/images/symbol-black-dark.svg')] bg-size-[80vh] bg-position-[140%_120%] bg-no-repeat opacity-5 pointer-events-none blur transition-colors duration-300"
+      class="fixed inset-0 bg-[url('/images/symbol-black-dark.svg')] bg-size-[80vh] bg-position-[140%_120%] bg-no-repeat opacity-5 pointer-events-none blur transition-colors duration-300"
     >
     </div>
     <Nav lang={lang as string} />

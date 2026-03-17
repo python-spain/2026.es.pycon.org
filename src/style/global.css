@@ -1,7 +1,5 @@
 @import 'tailwindcss';
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
@@ -102,14 +100,9 @@ html {
 
 @layer base {
   :root {
-    --bg-color: #ffffff;
-    --text-color: #1d1d1b;
-    --bg-symbol: url('/images/symbol-black-dark.svg');
-    color-scheme: light dark;
-  }
-
-  .dark {
     --bg-color: #1d1d1b;
     --text-color: #ffffff;
+    --bg-symbol: url('/images/symbol-black-dark.svg');
+    color-scheme: dark;
   }
 }

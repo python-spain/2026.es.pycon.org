@@ -8,17 +8,14 @@ export const ca = {
       label: 'La Conferència',
       children: [
         {
-          label: 'Speakers',
-          href: '/speakers',
-        },
-        {
-          label: 'Agenda',
-          href: '/agenda',
-        },
-        {
           label: 'Seu',
           href: '/location',
         },
+      ],
+    },
+    {
+      label: 'Diversitat i Inclusió',
+      children: [
         {
           label: 'Codi de conducta',
           href: '/code-of-conduct',

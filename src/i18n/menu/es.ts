@@ -19,6 +19,10 @@ export const es = {
           label: 'Sede',
           href: '/location',
         },
+        {
+          label: 'Dónde alojarse',
+          href: '/accommodation',
+        },
       ],
     },
     {

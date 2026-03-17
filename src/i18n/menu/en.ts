@@ -19,6 +19,10 @@ export const en = {
           label: 'Venue',
           href: '/location',
         },
+        {
+          label: 'Where to stay',
+          href: '/accommodation',
+        },
       ],
     },
     {

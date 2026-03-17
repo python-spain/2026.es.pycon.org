@@ -1,0 +1,262 @@
+---
+import { locationTexts } from '../i18n/location'
+
+interface Props {
+  lang: string
+}
+
+const { lang } = Astro.props
+const t = locationTexts[lang as keyof typeof locationTexts]
+
+const transportIcons = {
+  metro: 'M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z',
+  train:
+    'M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4zM7.5 17c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM18 11H6V6h12v5z',
+  car: 'M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42.99L3 13v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-6.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z',
+  bus: 'M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM17 11H7V6h10v5z',
+}
+---
+
+<div class="location-container pb-20">
+  <!-- Hero Section -->
+  <section class="relative h-[60vh] min-h-[400px] w-full overflow-hidden rounded-3xl mb-12 shadow-2xl">
+    <img
+      src="/images/Barcelona/seuUB.jpg"
+      alt={t['location.hero.title']}
+      class="absolute inset-0 w-full h-full object-contain transform hover:scale-105 transition-transform duration-700"
+    />
+    <div
+      class="absolute inset-0 bg-linear-to-t from-pycon-black via-pycon-black/40 to-transparent flex flex-col justify-end p-8 md:p-16"
+    >
+      <div class="max-w-4xl animate-fade-in-up">
+        <h1
+          class="text-4xl md:text-6xl font-extrabold text-white mb-4 tracking-tighter drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
+        >
+          {t['location.hero.title']}
+        </h1>
+        <p class="text-xl md:text-2xl text-pycon-yellow font-medium mb-6">
+          {t['location.hero.subtitle']}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Info -->
+  <section class="grid lg:grid-cols-3 gap-8 mb-20 px-4 md:px-0">
+    <div class="lg:col-span-2 space-y-8">
+      <div
+        class="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 hover:border-pycon-orange/50 transition-all shadow-xl"
+      >
+        <h2 class="text-3xl font-bold mb-6 text-pycon-red flex items-center gap-3">
+          <span class="w-2 h-8 bg-pycon-red rounded-full"></span>
+          {t['location.location.title']}
+        </h2>
+        <p class="text-lg text-pycon-gray-25 leading-relaxed mb-6">
+          {t['location.hero.text']}
+        </p>
+        <div class="flex items-center gap-4 p-4 bg-pycon-black/40 rounded-xl border border-white/5">
+          <svg
+            class="w-8 h-8 text-pycon-yellow shrink-0"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+          <span class="text-white font-medium">{t['location.location.text']}</span>
+        </div>
+      </div>
+
+      <!-- Spaces & Rooms -->
+      <div class="space-y-6">
+        <h2 class="text-3xl font-bold text-white flex items-center gap-3">
+          <span class="w-2 h-8 bg-pycon-yellow rounded-full"></span>
+          {t['location.rooms.title']}
+        </h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-pycon-gray-100 p-6 rounded-xl border border-white/10 hover:bg-pycon-gray-100/80 transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-bold text-pycon-yellow">{t['location.rooms.paranimf.title']}</h3>
+              <span class="bg-pycon-yellow/20 text-pycon-yellow px-3 py-1 rounded-full text-xs font-bold"
+                >400 PAX</span
+              >
+            </div>
+            <p class="text-pycon-gray-25 text-sm">{t['location.rooms.paranimf.desc']}</p>
+          </div>
+          <div class="bg-pycon-gray-100 p-6 rounded-xl border border-white/10 hover:bg-pycon-gray-100/80 transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-bold text-pycon-yellow">{t['location.rooms.aulamagna.title']}</h3>
+              <span class="bg-pycon-yellow/20 text-pycon-yellow px-3 py-1 rounded-full text-xs font-bold"
+                >160 PAX</span
+              >
+            </div>
+            <p class="text-pycon-gray-25 text-sm">{t['location.rooms.aulamagna.desc']}</p>
+          </div>
+          <div class="bg-pycon-gray-100 p-6 rounded-xl border border-white/10 hover:bg-pycon-gray-100/80 transition-all md:col-span-2">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-bold text-pycon-yellow">{t['location.rooms.teaching.title']}</h3>
+              <span class="bg-pycon-yellow/20 text-pycon-yellow px-3 py-1 rounded-full text-xs font-bold"
+                >90-120 PAX</span
+              >
+            </div>
+            <p class="text-pycon-gray-25 text-sm">{t['location.rooms.teaching.desc']}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar / CTA / Map Link -->
+    <div class="space-y-8">
+      <div class="bg-linear-to-br from-pycon-orange to-pycon-red p-8 rounded-2xl shadow-xl text-white">
+        <h3 class="text-2xl font-bold mb-4">Google Maps</h3>
+        <p class="text-white/90 mb-6 text-sm">
+          Gran Via de les Corts Catalanes, 585, 08007 Barcelona
+        </p>
+        <a
+          href="https://maps.app.goo.gl/35p6A9Yf3QJ4kG9y8"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block w-full text-center bg-white text-pycon-red font-bold py-3 rounded-lg hover:bg-pycon-gray-25 transition-colors shadow-lg"
+        >
+          Ver en el mapa
+        </a>
+      </div>
+
+      <div class="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10">
+        <h3 class="text-xl font-bold mb-6 text-white flex items-center gap-2">
+          <svg class="w-6 h-6 text-pycon-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          {t['location.spaces.title']}
+        </h3>
+        <ul class="space-y-4">
+          <li class="group">
+            <span class="text-pycon-orange font-bold block group-hover:text-pycon-yellow transition-colors italic">{t['location.spaces.gallery.title']}</span>
+            <span class="text-pycon-gray-25 text-xs">{t['location.spaces.gallery.desc']}</span>
+          </li>
+          <li class="group">
+            <span class="text-pycon-orange font-bold block group-hover:text-pycon-yellow transition-colors italic">{t['location.spaces.hall.title']}</span>
+            <span class="text-pycon-gray-25 text-xs">{t['location.spaces.hall.desc']}</span>
+          </li>
+          <li class="group">
+            <span class="text-pycon-orange font-bold block group-hover:text-pycon-yellow transition-colors italic">{t['location.spaces.cloister.title']}</span>
+            <span class="text-pycon-gray-25 text-xs">{t['location.spaces.cloister.desc']}</span>
+          </li>
+          <li class="group">
+            <span class="text-pycon-orange font-bold block group-hover:text-pycon-yellow transition-colors italic">{t['location.spaces.garden.title']}</span>
+            <span class="text-pycon-gray-25 text-xs">{t['location.spaces.garden.desc']}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Transport Section -->
+  <section class="mb-20 px-4 md:px-0">
+    <h2 class="text-4xl font-bold text-center mb-12 text-white">
+      {t['location.transport.title']}
+    </h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Metro -->
+      <div class="bg-pycon-black/60 p-8 rounded-2xl border border-white/10 hover:border-pycon-yellow/50 transition-all flex flex-col items-center text-center">
+        <div class="w-16 h-16 bg-pycon-yellow/10 rounded-full flex items-center justify-center mb-6 text-pycon-yellow">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d={transportIcons.metro}></path></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">{t['location.transport.metro.title']}</h3>
+        <p class="text-sm text-pycon-gray-25">{t['location.transport.metro.items']}</p>
+      </div>
+      <!-- Renfe -->
+      <div class="bg-pycon-black/60 p-8 rounded-2xl border border-white/10 hover:border-pycon-yellow/50 transition-all flex flex-col items-center text-center">
+        <div class="w-16 h-16 bg-pycon-yellow/10 rounded-full flex items-center justify-center mb-6 text-pycon-yellow">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d={transportIcons.train}></path></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">{t['location.transport.renfe.title']}</h3>
+        <p class="text-sm text-pycon-gray-25">{t['location.transport.renfe.items']}</p>
+      </div>
+      <!-- Long Distance -->
+      <div class="bg-pycon-black/60 p-8 rounded-2xl border border-white/10 hover:border-pycon-yellow/50 transition-all flex flex-col items-center text-center">
+        <div class="w-16 h-16 bg-pycon-yellow/10 rounded-full flex items-center justify-center mb-6 text-pycon-yellow">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d={transportIcons.bus}></path></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">{t['location.transport.long.title']}</h3>
+        <p class="text-sm text-pycon-gray-25">{t['location.transport.long.items']}</p>
+      </div>
+      <!-- Car -->
+      <div class="bg-pycon-black/60 p-8 rounded-2xl border border-white/10 hover:border-pycon-red/50 transition-all flex flex-col items-center text-center">
+        <div class="w-16 h-16 bg-pycon-red/10 rounded-full flex items-center justify-center mb-6 text-pycon-red">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d={transportIcons.car}></path></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">{t['location.transport.car.title']}</h3>
+        <p class="text-sm text-pycon-gray-25">{t['location.transport.car.desc']}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- City Section -->
+  <section
+    class="relative rounded-3xl overflow-hidden bg-pycon-black border border-white/10 p-8 md:p-16 flex flex-col items-center text-center"
+  >
+    <!-- Background element -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-pycon-yellow/20 blur-[100px] -z-10"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-pycon-red/20 blur-[100px] -z-10"></div>
+
+    <h2 class="text-4xl md:text-5xl font-black mb-8 text-white uppercase tracking-tighter">
+      {t['location.city.title']}
+    </h2>
+    <p class="text-xl text-pycon-gray-25 max-w-3xl leading-relaxed mb-8">
+      {t['location.city.text']}
+    </p>
+    <div class="inline-block px-6 py-2 bg-pycon-orange/20 border border-pycon-orange/50 rounded-full text-pycon-orange font-bold mb-8">
+      {t['location.city.tech']}
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl opacity-50 grayscale hover:grayscale-0 transition-all">
+        <!-- Minimalista representation of city assets if we had them -->
+        <div class="h-2 bg-white/10 rounded"></div>
+        <div class="h-2 bg-white/10 rounded"></div>
+        <div class="h-2 bg-white/10 rounded"></div>
+        <div class="h-2 bg-white/10 rounded"></div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .location-container {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

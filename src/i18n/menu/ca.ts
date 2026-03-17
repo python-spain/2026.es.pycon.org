@@ -19,6 +19,10 @@ export const ca = {
           label: 'Seu',
           href: '/location',
         },
+        {
+          label: 'On allotjar-se',
+          href: '/accommodation',
+        },
       ],
     },
     {

@@ -12,7 +12,6 @@ export const en = {
       label: 'Where to stay',
       href: '/accommodation',
     },
-
     {
       label: 'Sponsorship',
       children: [

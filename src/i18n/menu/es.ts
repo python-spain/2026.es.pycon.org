@@ -8,16 +8,17 @@ export const es = {
       label: 'La Conferencia',
       children: [
         {
-          label: 'Speakers',
-          href: '/speakers',
-        },
-        {
-          label: 'Agenda',
-          href: '/agenda',
-        },
-        {
           label: 'Sede',
           href: '/location',
+        },
+      ],
+    },
+    {
+      label: 'Diversidad e Inclusión',
+      children: [
+        {
+          label: 'Código de conducta',
+          href: '/code-of-conduct',
         },
       ],
     },

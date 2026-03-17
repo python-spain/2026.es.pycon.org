@@ -5,6 +5,15 @@ export const ca = {
       href: '/',
     },
     {
+      label: 'Diversitat i Inclusió',
+      children: [
+        {
+          label: 'Codi de conducta',
+          href: '/code-of-conduct',
+        },
+      ],
+    },
+    {
       label: 'Patrocinis',
       children: [
         {

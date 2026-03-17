@@ -37,8 +37,8 @@ const {
 ---
 
 <Layout title={title}>
-  <div class="page-wrapper w-full z-10">
-    <div class="container-custom max-w-[1200px] mx-auto px-4 py-8 text-white">
+  <div class="page-wrapper min-h-screen w-full absolute top-0 left-0 z-10 overflow-x-hidden">
+    <div class="container-custom max-w-300 mx-auto px-4 py-8 text-white">
       <!-- Hero -->
       <div class="text-center mb-12">
         <img src="/images/logo-vertical-alt-color-dark.svg" alt="PyconES 2026" class="h-50 mx-auto mb-4" />
@@ -55,7 +55,7 @@ const {
       <section id="about" class="mb-20">
         <div class="bg-white p-8 rounded-2xl text-center">
           <h2 class="text-pycon-red text-2xl font-bold mb-4">{about.title}</h2>
-          <p class="text-lg text-pycon-black max-w-[700px] mx-auto">{about.body}</p>
+          <p class="text-lg text-pycon-black max-w-175 mx-auto">{about.body}</p>
         </div>
       </section>
 
@@ -66,7 +66,9 @@ const {
           {
             stats.items.map((stat: { icon: string; value: string; label: string }) => (
               <div class="bg-white text-pycon-black p-4 rounded-lg border border-white/10 text-center">
-                <div class="text-3xl mb-2">{stat.icon}</div>
+                <div class="text-3xl mb-2" aria-hidden="true">
+                  {stat.icon}
+                </div>
                 <div class="text-2xl font-bold ">{stat.value}</div>
                 <div class="text-sm">{stat.label}</div>
               </div>
@@ -96,7 +98,10 @@ const {
 
         <div class="grid md:grid-cols-2 gap-6">
           <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
-            <h3 class="text-xl font-bold mb-4">📍 {location.where}</h3>
+            <h3 class="text-xl font-bold mb-4">
+              <span aria-hidden="true">📍</span>
+              {location.where}
+            </h3>
             <p class="mb-4">
               {location.body}
               <strong>{location.bodyStrong}</strong>
@@ -108,7 +113,7 @@ const {
           </div>
 
           <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
-            <h3 class="text-xl font-bold mb-4">📅 {when.title}</h3>
+            <h3 class="text-xl font-bold mb-4"><span aria-hidden="true">📅</span> {when.title}</h3>
             <div class="space-y-3">
               <p>
                 <strong>{when.friday}: </strong>{when.fridayStrong}
@@ -146,7 +151,9 @@ const {
               {
                 whySponsor.items.map((item) => (
                   <div class="flex gap-3">
-                    <span class="text-xl">{item.icon}</span>
+                    <span class="text-xl" aria-hidden="true">
+                      {item.icon}
+                    </span>
                     <div>
                       <strong>{item.title}:</strong>
                       <span class="text-sm"> {item.desc}</span>
@@ -166,12 +173,7 @@ const {
         <div class="bg-white text-pycon-black p-8 rounded-lg border border-white/10 mb-6">
           <h3 class="mb-6 font-outfit">{audience.seniority}</h3>
 
-          <div
-            role="img"
-            aria-label=""
-            aria-hidden="true"
-            class="flex w-full h-12 rounded-lg overflow-hidden mb-3"
-          >
+          <div aria-label="" aria-hidden="true" class="flex w-full h-12 rounded-lg overflow-hidden mb-3">
             <div
               style="width: 38%"
               class="h-full min-w-8 bg-pycon-yellow text-pycon-black text-xs font-bold flex items-center justify-center"
@@ -215,7 +217,9 @@ const {
           {
             audience.items.map((item: { icon: string; value: string; label: string }) => (
               <div class="bg-white p-4 rounded-lg border border-white/10 text-center">
-                <div class="text-2xl mb-1">{item.icon}</div>
+                <div class="text-2xl mb-1" aria-hidden="true">
+                  {item.icon}
+                </div>
                 <div class="text-lg font-bold text-pycon-black">{item.value}</div>
                 <div class="text-md text-gray-700">{item.label}</div>
               </div>
@@ -251,14 +255,11 @@ const {
                             style={`background-color: ${colors[i]};`}
                             aria-hidden="true"
                           />
-                          <span aria-hidden="true" class="truncate">
-                            {interest.label}
+                          <span class="truncate">
+                            {interest.label} {interest.pc}
                           </span>
                           <span aria-hidden="true" class="mr-2">
                             {interest.emoji}
-                          </span>
-                          <span class="sr-only">
-                            {interest.label} {interest.pc}
                           </span>
                         </div>
                       ),
@@ -344,16 +345,16 @@ const {
       </section>
 
       <!-- Paquetes de patrocinio -->
-      <section class="mb-20">
+      <section id="tiers" class="mb-20">
         <h2 class="text-center text-3xl font-bold mb-8">{tiers.title}</h2>
 
         <div class="table-scroll overflow-x-auto pb-4 mb-8 border border-white/10 rounded-lg bg-pycon-black">
-          <table class="pricing-table w-full border-separate border-spacing-0 min-w-[900px]">
+          <table class="pricing-table w-full border-separate border-spacing-0 min-w-225">
             <thead>
               <tr class="bg-pycon-black">
                 <th
                   scope="col"
-                  class="w-[200px] p-4 text-center border-b border-r border-white/10 align-bottom pb-6 sticky left-0 z-10"
+                  class="w-50 p-4 text-center border-b border-r border-white/10 align-bottom pb-6 sticky left-0 z-10"
                   >{tiers.column1}</th
                 >
                 {
@@ -367,7 +368,7 @@ const {
                         <div class="text-2xl mb-1" aria-hidden="true">
                           {t.emoji}
                         </div>
-                        <div class="text-xl font-bold" style={`color: ${t.color}`} aria-hidden="true">
+                        <div class={`text-xl font-bold ${t.color}`} aria-hidden="true">
                           {t.name}
                         </div>
                         <div class="text-white text-2xl font-bold my-1" aria-hidden="true">
@@ -487,7 +488,9 @@ const {
             {
               pythonSpainPoints.items.map((point: { icon: string; title: string; desc: string }) => (
                 <div class="flex gap-3">
-                  <span class="text-2xl">{point.icon}</span>
+                  <span class="text-2xl" aria-hidden="true">
+                    {point.icon}
+                  </span>
                   <div>
                     <strong class="text-pycon-red">{point.title}</strong>
                     <p class="text-gray-600 text-sm mt-1">{point.desc}</p>
@@ -515,6 +518,26 @@ const {
             </a>
           </div>
           <p class="mt-6 text-white">{SPONSORS_EMAIL}</p>
+        </div>
+      </section>
+
+      <!-- Social links -->
+      <section class="text-center pb-16">
+        <h2 class="text-xl font-bold mb-6">{socialLinks.title}</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          {
+            socialLinks.items.map((link: { url: string; label: string; icon: string }) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 bg-white px-4 py-2 rounded border border-white/10 hover:border-pycon-yellow transition-colors text-gray-600 hover:text-pycon-yellow"
+              >
+                <span>{link.icon}</span>
+                <span>{link.label}</span>
+              </a>
+            ))
+          }
         </div>
       </section>
     </div>

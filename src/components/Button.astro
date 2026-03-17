@@ -1,0 +1,43 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  class?: string;
+  [x: string]: any;
+}
+
+const { 
+  variant = 'primary', 
+  size = 'md', 
+  href,
+  class: className,
+  ...rest 
+} = Astro.props;
+
+const variants = {
+  primary: 'bg-orange-500 text-white hover:bg-orange-600',
+  secondary: 'bg-amber-400 text-stone-900 hover:bg-amber-500',
+  outline: 'outline outline-2 outline-offset-[-2px] outline-orange-500 text-orange-500 hover:bg-orange-50',
+  ghost: 'text-stone-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+};
+
+// Map sizes based on exact Figma sizes
+const sizes = {
+  sm: 'h-8 px-3 py-1.5 text-sm leading-5',
+  md: 'h-10 px-4 py-2 text-base leading-6', // Uses h-10 based on size specs, though some variants export h-11
+  lg: 'h-12 px-6 py-3 text-lg leading-7'
+};
+
+const baseClasses = 'inline-flex items-center justify-center font-[\'Outfit\'] font-medium rounded-lg text-center transition-colors duration-200 cursor-pointer';
+
+const Element = href ? 'a' : 'button';
+---
+
+<Element 
+  href={href} 
+  class:list={[baseClasses, variants[variant], sizes[size], className]}
+  {...rest}
+>
+  <slot />
+</Element>

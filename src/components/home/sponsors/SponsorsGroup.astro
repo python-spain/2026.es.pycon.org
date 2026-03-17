@@ -1,0 +1,48 @@
+---
+import type { ISponsor } from '../../../types/sponsors'
+import { texts } from '../../../i18n/home'
+
+interface Props {
+  lang: string
+  title: string
+  sponsors: ISponsor[]
+  bgColor: string
+  textColor: string
+  size: number
+}
+
+const { title, sponsors, lang, bgColor, textColor, size } = Astro.props
+const t = texts[lang as keyof typeof texts]
+---
+
+<div class="w-full">
+  <h4 class={`p-2 text-black rounded ${bgColor} ${textColor}`}>
+    {title}
+  </h4>
+  {
+    sponsors.length > 0 ? (
+      <div class="flex flex-wrap gap-4 mt-4">
+        {sponsors.map((sponsor) => (
+          <a
+            href={sponsor.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex flex-col items-center justify-center p-4 border rounded-lg hover:shadow-lg transition-shadow duration-300"
+          >
+            <img
+              src={sponsor.logo}
+              alt={t['sponsors.altlogo'].replace('{name}', sponsor.name)}
+              width={size}
+              style={{ background: sponsor.logobg }}
+            />
+            <small>{sponsor.name}</small>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="text-gray-100 mt-2 bg-white/10 px-2 py-1 rounded w-[184px] border border-gray-300 text-center">
+        {t['sponsors.none']}
+      </p>
+    )
+  }
+</div>

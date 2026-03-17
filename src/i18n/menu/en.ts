@@ -40,6 +40,10 @@ export const en = {
           label: 'Testimonials',
           href: '/sponsors#testimonials',
         },
+        {
+          label: 'Sponsorship Packages',
+          href: '/sponsors#tiers',
+        },
       ],
     },
     {

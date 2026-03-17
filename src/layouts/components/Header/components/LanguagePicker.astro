@@ -35,7 +35,7 @@ const getPathForLang = (targetLang: string) => {
 {
   variant === 'desktop' ? (
     <div
-      class="lang-picker flex items-center gap-1 border-l border-white/20 pl-6 ml-2 text-pycon-orange-100 text-lg font-outfit"
+      class="lang-picker flex items-center gap-1 border-l border-pycon-gray-100/30 pl-6 ml-2 text-pycon-yellow text-lg font-outfit"
       role="group"
       aria-label={t['alttext']}
     >
@@ -49,8 +49,8 @@ const getPathForLang = (targetLang: string) => {
           class:list={[
             'px-2 py-1 text-sm font-outfit rounded transition-colors outline-none',
             lang === currentLang
-              ? 'text-pycon-red-100 font-bold underline'
-              : 'text-pycon-orange-500 hover:text-white focus-visible:text-pycon-red-500',
+              ? 'text-pycon-red font-bold underline'
+              : 'text-pycon-yellow-75 hover:text-pycon-yellow focus-visible:text-pycon-orange',
           ]}
         >
           {t.label[lang as keyof typeof t.label]}
@@ -58,8 +58,12 @@ const getPathForLang = (targetLang: string) => {
       ))}
     </div>
   ) : (
-    <div class="lang-picker-mobile border-t border-white/10 pt-4 mt-2" role="group" aria-label={t['alttext']}>
-      <span class="text-slate-500 text-sm font-medium mb-2 block">Idioma</span>
+    <div
+      class="lang-picker-mobile border-t border-pycon-gray-100/30 pt-4 mt-2"
+      role="group"
+      aria-label={t['alttext']}
+    >
+      <span class="text-pycon-yellow-50 text-sm font-medium mb-2 block">Idioma</span>
       <div class="flex gap-2">
         {languages.map((lang) => (
           <a
@@ -67,12 +71,12 @@ const getPathForLang = (targetLang: string) => {
             hreflang={lang}
             lang={lang}
             aria-current={lang === currentLang ? 'page' : undefined}
-            aria-label={`${t['labelariadesc']} ${t.label[lang as keyof typeof t.label]}`}
+            aria-label={t['labelariadesc'][lang as keyof typeof t.labelariadesc]}
             class:list={[
               'px-3 py-2 text-sm font-outfit rounded transition-colors outline-none',
               lang === currentLang
-                ? 'bg-blue-600 text-white font-bold'
-                : 'bg-white/5 text-slate-300 hover:bg-white/10 focus-visible:bg-blue-600 focus-visible:text-white',
+                ? 'bg-pycon-yellow text-pycon-black font-bold'
+                : 'bg-pycon-gray-100/50 text-pycon-white hover:bg-pycon-yellow-25/20 hover:text-pycon-yellow focus-visible:bg-pycon-orange focus-visible:text-white',
             ]}
           >
             {t.label[lang as keyof typeof t.label]}

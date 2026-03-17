@@ -2,7 +2,8 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem; /* Adjust based on your header height */
+  scroll-padding-top: 6rem;
+  /* Adjust based on your header height */
 }
 
 @theme {
@@ -53,9 +54,55 @@ html {
   --color-pycon-red-50: #fca09c;
   --color-pycon-red-25: #fdcfcd;
 
+  --color-pycon-mute: #cc6600;
+  --color-pycon-mute-100: #cc6600;
+
+  --color-pycon-gray: #4a4a48;
+  --color-pycon-gray-100: #4a4a48;
+
   --color-pycon-black: #1d1d1b;
   --color-pycon-black-100: #1d1d1b;
   --color-pycon-black-75: #555554;
   --color-pycon-black-50: #8e8e8d;
   --color-pycon-black-25: #c6c6c6;
+
+  --color-pycon-white: #ffffff;
+
+  /*DS colors*/
+  --color-pantone-151c: var(--color-pycon-orange-100);
+  --color-pantone-123c: var(--color-pycon-yellow-100);
+  --color-pantone-warm-red: var(--color-pycon-red-100);
+  --color-pantone-black-c: var(--color-pycon-black-100);
+  --color-pantone-yellow-100: var(--color-pycon-yellow);
+  --color-pantone-yellow-75: var(--color-pycon-yellow-75);
+  --color-pantone-yellow-50: var(--color-pycon-yellow-50);
+  --color-pantone-yellow-25: var(--color-pycon-yellow-25);
+  --color-pantone-warm-red-100: var(--color-pycon-red);
+  --color-pantone-warm-red-75: var(--color-pycon-red-75);
+  --color-pantone-warm-red-50: var(--color-pycon-red-50);
+  --color-pantone-warm-red-25: var(--color-pycon-red-25);
+
+  --color-tier-main: var(--color-pycon-yellow);
+  --color-contrast-tier-main: #1d1d1b;
+
+  --color-tier-platinum: var(--color-pycon-orange);
+  --color-contrast-tier-platinum: #ffffff;
+
+  --color-tier-gold: var(--color-pycon-red);
+  --color-contrast-tier-gold: #ffffff;
+
+  --color-tier-silver: var(--color-pycon-mute);
+  --color-contrast-tier-silver: #ffffff;
+
+  --color-tier-bronze: var(--color-pycon-gray);
+  --color-contrast-tier-bronze: #ffffff;
+}
+
+@layer base {
+  :root {
+    --bg-color: #1d1d1b;
+    --text-color: #ffffff;
+    --bg-symbol: url('/images/symbol-black-dark.svg');
+    color-scheme: dark;
+  }
 }

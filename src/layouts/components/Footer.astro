@@ -1,49 +1,136 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import { footerTexts } from '@/i18n/components/footer'
+
+interface Props {
+  lang?: string
+}
+
+const { lang: propLang } = Astro.props
+
+// Get current language from URL if prop not provided
+const urlLang = Astro.url.pathname.split('/')[1] || 'es'
+const rawLang = propLang || urlLang
+const validLangs = ['es', 'en', 'ca'] as const
+type Lang = (typeof validLangs)[number]
+const currentLang: Lang = validLangs.includes(rawLang as Lang) ? (rawLang as Lang) : 'es'
+
+const t = footerTexts[currentLang]
+
 const socialLinks = [
   { icon: '🦋', label: 'Bluesky', url: 'https://bsky.app/profile/es.pycon.org' },
   { icon: '🐙', label: 'GitHub', url: 'https://github.com/python-spain' },
-  { icon: '𝕏', label: '', url: 'https://x.com/PyConES' },
+  { icon: '𝕏', label: 'X (Twitter)', url: 'https://x.com/PyConES' },
   { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/company/pycones' },
   { icon: '📸', label: 'Instagram', url: 'https://www.instagram.com/pycon_es' },
 ]
+
+const collaborators = [
+  {
+    name: 'Python España',
+    logo: '/collaborators/pyes_logo.png',
+    url: 'https://es.python.org/',
+  },
+  // {
+  //   name: 'Python Software Foundation',
+  //   logo: '/collaborators/psf.png',
+  //   url: 'https://www.python.org/psf/',
+  // },
+  {
+    name: 'EuroPython Society',
+    logo: '/collaborators/europython_logo.png',
+    url: 'https://www.europython-society.org/',
+  },
+  {
+    name: 'Universitat de Barcelona',
+    logo: '/collaborators/ub.png',
+    url: 'https://www.ub.edu/',
+  },
+]
 ---
 
-<footer class="py-2 bg-pycon-black text-white border-t border-white/10 w-full">
-  <div class="flex justify-evenly max-w-[1200px] mx-auto px-4">
-    <div class="flex flex-wrap justify-center gap-4">
-      {
-        socialLinks.map((link) => (
-          <a
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group relative flex h-10 w-10 items-center justify-center rounded-full bg-white border border-white/10 text-gray-600 transition-colors hover:border-pycon-yellow hover:text-pycon-yellow"
-            aria-label={link.label || 'Social link'}
-          >
-            <span class="text-xl transition-transform group-hover:scale-110">{link.icon}</span>
+<footer
+  class="w-full bg-pycon-black py-8 border-t border-pycon-gray-100/20 text-pycon-white transition-colors duration-300"
+>
+  <div class="container mx-auto px-4">
+    <!-- Top Row: Brand, Nav, and Social -->
+    <div class="flex flex-col lg:flex-row justify-between items-center gap-8 pb-8">
+      <!-- Brand & Copyright -->
+      <div class="flex flex-col items-center lg:items-start gap-2">
+        <a
+          href={getRelativeLocaleUrl(currentLang, '/')}
+          class="text-2xl font-bold font-outfit tracking-tighter text-pycon-white hover:text-pycon-yellow transition-colors outline-none focus-visible:text-pycon-yellow"
+        >
+          PyCon<span class="text-pycon-yellow">ES</span>
+        </a>
+        <p class="text-[10px] font-mono text-pycon-black-50 uppercase tracking-widest text-center lg:text-left">
+          {t.copyright}
+        </p>
+      </div>
 
-            {link.label && (
-              <span class="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap rounded bg-white px-2 py-1 text-xs font-bold text-pycon-black opacity-0 transition-opacity group-hover:opacity-100 shadow-lg">
-                {link.label}
-                {/* Arrow */}
-                <span class="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-white" />
-              </span>
-            )}
-          </a>
-        ))
-      }
+      <!-- Navigation & Policies -->
+      <nav class="flex flex-wrap justify-center items-center gap-x-8 gap-y-2 text-sm font-medium">
+        {
+          t.links.map((link) => (
+            <a
+              href={link.href}
+              class="hover:text-pycon-red transition-colors relative group outline-none focus-visible:text-pycon-red"
+            >
+              {link.label}
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pycon-red transition-all group-hover:w-full group-focus-visible:w-full" />
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- Social Links -->
+      <div class="flex flex-col items-center lg:items-end gap-2">
+        <span class="text-[9px] uppercase tracking-[0.2em] text-pycon-black-50 font-bold">
+          {t.social.title}
+        </span>
+        <div class="flex gap-2">
+          {
+            socialLinks.map((link) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex h-9 w-9 items-center justify-center rounded-lg bg-pycon-gray-100/20 border border-pycon-gray-100/10 text-pycon-white transition-all hover:bg-pycon-yellow hover:text-pycon-black hover:scale-110 outline-none focus-visible:bg-pycon-yellow focus-visible:text-pycon-black"
+                aria-label={link.label}
+                title={link.label}
+              >
+                <span class="text-lg">{link.icon}</span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
     </div>
 
-    <div class="flex items-center gap-4">
-      <a
-        href="https://es.python.org/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hover:opacity-80 transition-opacity"
-      >
-        <img src="/collaborators/python-espana.png" alt="Python España" class="h-8 w-auto" />
-      </a>
-      <p class="text-sm text-gray-400">Copyright © Python España & PyConES 2026 Org</p>
+    <!-- Bottom Row: Collaborators -->
+    <div class="pt-6 border-t border-pycon-gray-100/10 flex flex-col md:flex-row items-center justify-center gap-6">
+      <span class="text-[9px] uppercase tracking-[0.2em] text-pycon-black-50 font-bold shrink-0">
+        {t.collaborators.title}
+      </span>
+      <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
+        {
+          collaborators.map((collab) => (
+            <a
+              href={collab.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group transition-all hover:scale-105 outline-none focus-visible:ring-1 focus-visible:ring-pycon-orange rounded-md p-1"
+              title={collab.name}
+            >
+              <img
+                src={collab.logo}
+                alt={collab.name}
+                class="h-7 md:h-8 w-auto filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+              />
+            </a>
+          ))
+        }
+      </div>
     </div>
   </div>
 </footer>

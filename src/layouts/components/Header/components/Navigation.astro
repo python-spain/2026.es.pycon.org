@@ -1,6 +1,7 @@
 ---
 import ResponsiveToggle from './ResponsiveToggle.astro'
 import LanguagePicker from './LanguagePicker.astro'
+import ThemeToggle from './ThemeToggle.astro'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 import { menuTexts } from '@/i18n/menu'
 
@@ -136,6 +137,7 @@ const { items } = menuTexts[currentLang]
 
       <!-- Desktop utility controls (outside nav for proper semantics) -->
       <div class="hidden lg:flex items-center gap-2">
+        <ThemeToggle />
         <LanguagePicker variant="desktop" lang={currentLang} />
       </div>
 
@@ -203,6 +205,7 @@ const { items } = menuTexts[currentLang]
 
       <!-- Mobile utility controls (outside nav for proper semantics) -->
       <div class="flex items-center justify-between py-2 border-t border-pycon-gray-100/30 mt-2">
+        <ThemeToggle />
         <LanguagePicker variant="mobile" lang={currentLang} />
       </div>
     </nav>

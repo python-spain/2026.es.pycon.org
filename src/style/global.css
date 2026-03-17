@@ -105,4 +105,11 @@ html {
     --bg-symbol: url('/images/symbol-black-dark.svg');
     color-scheme: dark;
   }
+
+  :root.light {
+    --bg-color: #ffffff;
+    --text-color: #1d1d1b;
+    --bg-symbol: url('/images/symbol-black-light.svg');
+    color-scheme: light;
+  }
 }

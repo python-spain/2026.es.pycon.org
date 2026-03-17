@@ -13,6 +13,15 @@ export const es = {
       href: '/accommodation',
     },
     {
+      label: 'Diversidad e Inclusión',
+      children: [
+        {
+          label: 'Código de conducta',
+          href: '/code-of-conduct',
+        },
+      ],
+    },
+    {
       label: 'Patrocinios',
       children: [
         {

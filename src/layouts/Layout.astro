@@ -9,15 +9,44 @@ interface Props {
   title: string
   description?: string // Optional (?)
 }
-const { lang } = Astro.params || { lang: 'es' }
+const { lang = 'es' } = Astro.params
 const { title, description = 'PyconES 2026' } = Astro.props
+
+const siteUrl = Astro.site ? Astro.site.origin : 'https://2026.es.pycon.org'
+const canonicalURL = new URL(Astro.url.pathname, siteUrl)
+const socialImageURL = new URL('/images/logo-vertical-alt-color-dark.png', siteUrl) // I should check if PNG exists or generate it later
+
+const alternates = [
+  { href: new URL('/es/', siteUrl), hreflang: 'es' },
+  { href: new URL('/en/', siteUrl), hreflang: 'en' },
+  { href: new URL('/ca/', siteUrl), hreflang: 'ca' },
+]
 ---
 
 <!doctype html>
 <html lang={lang as string}>
   <head>
+    <!-- Analytics (Optional: set PUBLIC_GA_ID in .env) -->
+    {
+      import.meta.env.PUBLIC_GA_ID && (
+        <>
+          <script
+            is:inline
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}
+          />
+          <script is:inline define:vars={{ id: import.meta.env.PUBLIC_GA_ID }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', id);
+          </script>
+        </>
+      )
+    }
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
@@ -25,7 +54,62 @@ const { title, description = 'PyconES 2026' } = Astro.props
     <link rel="manifest" href="/favicon/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- SEO Meta Tags -->
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- i18n SEO (hreflang) -->
+    {
+      alternates.map(({ href, hreflang }) => (
+        <link rel="alternate" hreflang={hreflang} href={href.toString()} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={alternates[0].href.toString()} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageURL} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImageURL} />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "PyConES 2026",
+        "startDate": "2026-11-06",
+        "endDate": "2026-11-08",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": "UB Barcelona",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Barcelona",
+            "addressRegion": "Catalonia",
+            "addressCountry": "Spain"
+          }
+        },
+        "description": "The largest national Python conference in Spain, bringing together enthusiasts, professionals, and companies to share knowledge, experiences, and opportunities.",
+        "organizer": {
+          "@type": "Organization",
+          "name": "Python España",
+          "url": "https://es.python.org"
+        }
+      }
+    </script>
 
     <ClientRouter />
 

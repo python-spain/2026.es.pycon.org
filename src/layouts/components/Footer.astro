@@ -50,7 +50,7 @@ const collaborators = [
 ---
 
 <footer
-  class="w-full bg-gray-50 dark:bg-pycon-black py-8 border-t border-pycon-gray-100/10 dark:border-pycon-gray-100/20 text-pycon-black dark:text-pycon-white transition-colors duration-300"
+  class="w-full bg-gray-50 bg-pycon-black py-8 border-t border-pycon-gray-100/10 border-pycon-gray-100/20 text-pycon-black text-pycon-white transition-colors duration-300"
 >
   <div class="container mx-auto px-4">
     <!-- Top Row: Brand, Nav, and Social -->
@@ -59,11 +59,11 @@ const collaborators = [
       <div class="flex flex-col items-center lg:items-start gap-2">
         <a
           href={getRelativeLocaleUrl(currentLang, '/')}
-          class="text-2xl font-bold font-outfit tracking-tighter text-pycon-black dark:text-pycon-white hover:text-pycon-yellow transition-colors outline-none focus-visible:text-pycon-yellow"
+          class="text-2xl font-bold font-outfit tracking-tighter text-pycon-black text-pycon-white hover:text-pycon-yellow transition-colors outline-none focus-visible:text-pycon-yellow"
         >
           PyCon<span class="text-pycon-yellow">ES</span>
         </a>
-        <p class="text-[10px] font-mono text-pycon-black/50 dark:text-pycon-black-50 uppercase tracking-widest text-center lg:text-left">
+        <p class="text-[10px] font-mono text-pycon-black/50 text-pycon-black-50 uppercase tracking-widest text-center lg:text-left">
           {t.copyright}
         </p>
       </div>
@@ -74,7 +74,7 @@ const collaborators = [
           t.links.map((link) => (
             <a
               href={link.href}
-              class="text-pycon-black/80 dark:text-pycon-white/80 hover:text-pycon-red dark:hover:text-pycon-red transition-colors relative group outline-none focus-visible:text-pycon-red"
+              class="text-pycon-black/80 text-pycon-white/80 hover:text-pycon-red hover:text-pycon-red transition-colors relative group outline-none focus-visible:text-pycon-red"
             >
               {link.label}
               <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pycon-red transition-all group-hover:w-full group-focus-visible:w-full" />
@@ -84,7 +84,7 @@ const collaborators = [
       </nav>
 
       <!-- Social Links -->
-      <div class="flex flex-col items-center lg:items-end gap-2 text-pycon-black/50 dark:text-pycon-black-50 uppercase tracking-[0.2em] font-bold">
+      <div class="flex flex-col items-center lg:items-end gap-2 text-pycon-black/50 text-pycon-black-50 uppercase tracking-[0.2em] font-bold">
         <span class="text-[9px]">
           {t.social.title}
         </span>
@@ -95,7 +95,7 @@ const collaborators = [
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group flex h-9 w-9 items-center justify-center rounded-lg bg-pycon-gray-100/10 dark:bg-pycon-gray-100/20 border border-pycon-gray-100/10 text-pycon-black dark:text-pycon-white transition-all hover:bg-pycon-yellow hover:text-pycon-black hover:scale-110 outline-none focus-visible:bg-pycon-yellow focus-visible:text-pycon-black"
+                class="group flex h-9 w-9 items-center justify-center rounded-lg bg-pycon-gray-100/10 bg-pycon-gray-100/20 border border-pycon-gray-100/10 text-pycon-black text-pycon-white transition-all hover:bg-pycon-yellow hover:text-pycon-black hover:scale-110 outline-none focus-visible:bg-pycon-yellow focus-visible:text-pycon-black"
                 aria-label={link.label}
                 title={link.label}
               >
@@ -108,7 +108,7 @@ const collaborators = [
     </div>
 
     <!-- Bottom Row: Collaborators -->
-    <div class="pt-6 border-t border-pycon-gray-100/10 flex flex-col md:flex-row items-center justify-center gap-6 text-pycon-black/50 dark:text-pycon-black-50 uppercase tracking-[0.2em] font-bold">
+    <div class="pt-6 border-t border-pycon-gray-100/10 flex flex-col md:flex-row items-center justify-center gap-6 text-pycon-black/50 text-pycon-black-50 uppercase tracking-[0.2em] font-bold">
       <span class="text-[9px] shrink-0">
         {t.collaborators.title}
       </span>

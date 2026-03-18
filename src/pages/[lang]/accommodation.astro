@@ -14,10 +14,17 @@ const titles = {
   ca: 'On allotjar-se | PyConES 2026',
 }
 
+const descriptions = {
+  es: 'Encuentra las mejores opciones de alojamiento para la PyConES 2026 en Barcelona. Hoteles, apartamentos y consejos para tu estancia en la ciudad condal.',
+  en: 'Find the best accommodation options for PyConES 2026 in Barcelona. Hotels, apartments, and tips for your stay in the city.',
+  ca: 'Troba les millors opcions d\'allotjament per a la PyConES 2026 a Barcelona. Hotels, apartaments i consells per a la teva estada a la ciutat comtal.',
+}
+
 const title = titles[(lang || 'es') as keyof typeof titles]
+const description = descriptions[(lang || 'es') as keyof typeof descriptions]
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description}>
   <div
     class="grow w-full pt-24"
   >

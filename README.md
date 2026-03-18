@@ -33,6 +33,27 @@ pnpm build
 pnpm preview
 ```
 
+## Testing
+
+This project uses **Vitest** for unit/logic testing and **Playwright** for End-to-End (E2E) smoke testing.
+
+### Run all tests
+```bash
+pnpm test
+```
+
+### Run unit tests only
+Used for verifying translations, utility functions, and business logic.
+```bash
+pnpm test:unit
+```
+
+### Run E2E tests only
+Used for checking links, SEO metadata, and user flows across all supported browsers.
+```bash
+pnpm test:e2e
+```
+
 ## SEO & New Pages
 
 To maintain good SEO and consistency as the project grows, follow these guidelines when adding new pages:

@@ -40,17 +40,25 @@ This document provides a detailed guide for agents interacting with this codebas
 
 ### Testing Commands
 
-(Note: No testing framework is currently integrated. Update this section if added.)
+This project uses **Vitest** for unit/logic testing and **Playwright** for E2E/smoke testing.
 
-To simulate the test command:
+- **Run all tests**:
+  ```bash
+  pnpm test
+  ```
 
-```bash
-pnpm test
-```
+- **Run unit tests only**:
+  ```bash
+  pnpm test:unit
+  ```
 
-Currently, this outputs `Error: no test specified`.
+- **Run E2E tests only**:
+  ```bash
+  pnpm test:e2e
+  ```
 
-For individual test setups, the framework used (e.g. Jest, Vitest) will define the process.
+Vitest tests should be located in `__tests__` directories relative to the code they test.
+Playwright tests are located in the `e2e/` directory.
 
 ---
 

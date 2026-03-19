@@ -157,7 +157,31 @@ Agents (like Copilot) must adhere to these coding standards to ensure consistenc
 
 ---
 
-## 4. SEO and Page Creation Guidelines
+## 4. Accessibility (a11y) Guidelines
+
+All new UI components and pages must be built with accessibility in mind from the start. Agents must prioritize the following core principles:
+
+### 1. Semantic HTML & Structure
+- **Use HTML5 elements:** Prioritize `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, and `<footer>` over generic `<div>`s. Screen readers depend on this semantics.
+- **Heading hierarchy:** Always use headings in logical order (`<h1>` → `<h2>` → `<h3>`) without skipping levels.
+- **Actions vs Navigation:** Use `<button>` for actions and `<a>` solely for links/navigation. Avoid using `<div>` or `<span>` with `onClick` handlers.
+
+### 2. Text Alternatives (Images & Icons)
+- **Image `alt` tags:** All `<img>` elements must have meaningful `alt` text. Describe the image's function or content (e.g., `alt="Persona usando la app en un celular"` not `alt="imagen1"`). If an image is purely decorative, strictly use `alt=""`.
+- **SVGs and ARIA:** Ensure decorative SVGs have `aria-hidden="true"`. Interactive SVGs must have an `aria-label` or `<title>`. Provide `aria-` attributes (`aria-expanded`, `aria-describedby`) for dynamic elements where visual context isn't enough.
+
+### 3. Color and Contrast
+- **Contrast Ratios:** Ensure all text has sufficient contrast against its background. Avoid light grey text on white backgrounds.
+- **Do not rely on color alone:** Always provide an additional visual indicator alongside color (e.g., rather than saying "Fields in red are required", say "Fields marked with * are required").
+
+### 4. Keyboard Navigation
+- **Tab navigation:** All interactive elements must be fully functional using only the keyboard (`Tab` and `Enter`/`Space`).
+- **Visible Focus:** Ensure a clear, visible focus state for all focusable elements. Never use `outline: none;` without providing a custom visible focus ring (e.g., using Tailwind's `focus-visible:ring`).
+
+### Agent Enforcement
+- When generating or modifying components, agents **must** proactively apply these accessibility standards without needing explicit prompting from the user.
+
+## 5. SEO and Page Creation Guidelines
 
 Agents must ensure all new pages are optimized for search engines and follow the project's internationalization (i18n) structure.
 

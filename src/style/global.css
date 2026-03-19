@@ -1,7 +1,5 @@
 @import 'tailwindcss';
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
@@ -12,19 +10,19 @@ html {
   /* Fonts */
   --font-outfit: 'Outfit Variable', sans-serif;
 
-  --font-size-xs: 0.875rem;
-  --font-size-sm: 1rem;
-  --font-size-base: 1.125rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
-  --font-size-2xl: 1.875rem;
-  --font-size-3xl: 2.25rem;
-  --font-size-4xl: 2.625rem;
-  --font-size-5xl: 3rem;
-  --font-size-6xl: 3.375rem;
-  --font-size-7xl: 3.75rem;
-  --font-size-8xl: 4.5rem;
-  --font-size-9xl: 6rem;
+  --font-size-xs: 1rem;
+  --font-size-sm: 1.125rem;
+  --font-size-base: 1.25rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 1.875rem;
+  --font-size-2xl: 2.25rem;
+  --font-size-3xl: 2.625rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 3.375rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+  --font-size-8xl: 6rem;
+  --font-size-9xl: 8rem;
 
   /* Font Weights */
   --font-weight-thin: 100;
@@ -102,14 +100,16 @@ html {
 
 @layer base {
   :root {
-    --bg-color: #ffffff;
-    --text-color: #1d1d1b;
-    --bg-symbol: url('/images/symbol-black-dark.svg');
-    color-scheme: light dark;
-  }
-
-  .dark {
     --bg-color: #1d1d1b;
     --text-color: #ffffff;
+    --bg-symbol: url('/images/symbol-black-dark.svg');
+    color-scheme: dark;
+  }
+
+  :root.light {
+    --bg-color: #ffffff;
+    --text-color: #1d1d1b;
+    --bg-symbol: url('/images/symbol-black-light.svg');
+    color-scheme: light;
   }
 }

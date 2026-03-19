@@ -5,19 +5,19 @@ export const ca = {
       href: '/',
     },
     {
-      label: 'La Conferència',
+      label: 'Seu',
+      href: '/location',
+    },
+    {
+      label: 'On allotjar-se',
+      href: '/accommodation',
+    },
+    {
+      label: 'Diversitat i Inclusió',
       children: [
         {
-          label: 'Speakers',
-          href: '/speakers',
-        },
-        {
-          label: 'Agenda',
-          href: '/agenda',
-        },
-        {
-          label: 'Seu',
-          href: '/location',
+          label: 'Codi de conducta',
+          href: '/code-of-conduct',
         },
       ],
     },

@@ -30,6 +30,17 @@ export const es = {
     sunday: 'Domingo',
     sundayBody: 'Más charlas, "charlas relámpago" y la despedida final.',
   },
+  socialLinks: {
+    title: 'Síguenos en redes',
+    items: [
+      { icon: '🦋', label: 'Bluesky', url: 'https://bsky.app/profile/es.pycon.org' },
+      { icon: '🐙', label: 'GitHub', url: 'https://github.com/python-spain' },
+      { icon: '🐘', label: 'Mastodon', url: 'https://fosstodon.org/@pycones' },
+      { icon: '𝕏', label: '', url: 'https://x.com/PyConES' },
+      { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/company/pycones' },
+      { icon: '📸', label: 'Instagram', url: 'https://www.instagram.com/pycon_es' },
+    ],
+  },
   stats: {
     title: 'La PyConES en números',
     items: [
@@ -409,16 +420,7 @@ export const es = {
       },
     ],
   },
-  socialLinks: {
-    title: 'Síguenos en redes',
-    items: [
-      { icon: '🦋', label: 'Bluesky', url: 'https://bsky.app/profile/es.pycon.org' },
-      { icon: '🐙', label: 'GitHub', url: 'https://github.com/python-spain' },
-      { icon: '𝕏', label: '', url: 'https://x.com/PyConES' },
-      { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/company/pycones' },
-      { icon: '📸', label: 'Instagram', url: 'https://www.instagram.com/pycon_es' },
-    ],
-  },
+
   contact: {
     title: '¿Te apuntas?',
     body: 'Te lo ponemos fácil. Escríbenos contándonos qué nivel de patrocinio te interesa o qué presupuesto tenéis en mente. Nosotros te guiaremos en el proceso, resolveremos tus dudas y veremos cómo encajar tu marca de la mejor forma posible.',

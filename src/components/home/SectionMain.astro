@@ -1,5 +1,5 @@
 ---
-import { texts } from '../../i18n/home'
+import { texts } from '@/i18n/home'
 import CenteredPanel from '../CenteredPanel.astro'
 
 interface Props {
@@ -22,7 +22,7 @@ const t = texts[lang as keyof typeof texts]
 
     <h2
       id="subtitle-container"
-      class="mt-4 md:text-2xl text-pycon-red-75 font-mono h-8 flex justify-center items-start gap-2 [text-shadow:0_0_3px_var(--color-pycon-black),0_0_6px_var(--color-pycon-black),0_0_6px_var(--color-pycon-black),0_0_12px_var(--color-pycon-black)]"
+      class="mt-4 md:text-2xl text-pycon-red-50 font-mono h-8 flex justify-center items-start gap-2 [text-shadow:0_0_3px_var(--color-pycon-black),0_0_6px_var(--color-pycon-black),0_0_6px_var(--color-pycon-black),0_0_12px_var(--color-pycon-black)]"
       aria-live="polite"
       aria-busy="true"
     >

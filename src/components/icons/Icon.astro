@@ -2,7 +2,7 @@
 import type { IconProps } from '../../lib/icons/types'
 import { IconSizes } from '../../lib/icons/types'
 import { getIconMapping } from '../../lib/icons/mappings/index'
-import { AlertCircle } from '@lucide/astro'
+import { CircleAlert } from '@lucide/astro'
 
 interface Props extends IconProps {}
 
@@ -60,7 +60,7 @@ if (!LucideIconComponent && !fallback) {
       {fallback}
     </span>
   ) : (
-    <AlertCircle
+    <CircleAlert
       class={classes}
       style={style}
       aria-label={ariaLabel || `Unknown icon: ${name}`}

@@ -1,7 +1,7 @@
 import type { IconMappingWithFallback } from '@/lib/icons/types'
 import {
   Bot, // ML & IA (🤖)
-  BarChart3, // Data Science (📊)
+  ChartArea, // Data Science (📊)
   Blocks, // Software Engineering (🏗️)
   Monitor, // Web Development (💻)
   Users, // Community (🤝) - reusing Users for community context
@@ -19,7 +19,7 @@ export const technicalMapping: Record<string, IconMappingWithFallback> = {
     fallback: '🤖',
   },
   'data-science': {
-    icon: BarChart3,
+    icon: ChartArea,
     fallback: '📊',
   },
   'software-engineering': {

@@ -1,8 +1,8 @@
 import type { IconMappingWithFallback } from '@/lib/icons/types'
 import {
-  AlertTriangle, // Warning (🛑/⚠️)
-  CheckCircle, // Allowed (✅)
-  XCircle, // Forbidden (🚫)
+  TriangleAlert, // Warning (🛑/⚠️)
+  CircleCheck, // Allowed (✅)
+  CircleX, // Forbidden (🚫)
   Info, // Information (ℹ️)
   MapPin, // Location (📍)
   Calendar, // Calendar/Date (📅)
@@ -12,7 +12,7 @@ import {
   Scale, // Enforcement/Justice (⚖️)
   Megaphone, // Reporting/Announcement (📢)
   Lock, // Privacy/Security (🔒)
-  FileSignature, // Attribution/Document (📝)
+  FilePen, // Attribution/Document (📝)
   Sprout, // Junior level (🌱)
   Rocket, // Senior level (🚀)
   Brain, // Expert level (🧠)
@@ -37,15 +37,15 @@ import {
  */
 export const statusMapping: Record<string, IconMappingWithFallback> = {
   warning: {
-    icon: AlertTriangle,
+    icon: TriangleAlert,
     fallback: '⚠️',
   },
   allowed: {
-    icon: CheckCircle,
+    icon: CircleCheck,
     fallback: '✅',
   },
   forbidden: {
-    icon: XCircle,
+    icon: CircleX,
     fallback: '🚫',
   },
   info: {
@@ -85,7 +85,7 @@ export const statusMapping: Record<string, IconMappingWithFallback> = {
     fallback: '🔒',
   },
   attribution: {
-    icon: FileSignature,
+    icon: FilePen,
     fallback: '📝',
   },
   junior: {

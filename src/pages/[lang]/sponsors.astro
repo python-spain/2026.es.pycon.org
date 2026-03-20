@@ -87,7 +87,7 @@ const {
         <h2 class="text-center text-2xl font-bold mb-8">{objectives.title}</h2>
         <div class="grid md:grid-cols-3 gap-6">
           {
-            objectives.items.map((obj) => (
+            objectives.items.map((obj: any) => (
               <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10 text-center">
                 <div class="text-xl font-bold mb-2">{obj.title}</div>
                 <div>{obj.desc}</div>
@@ -445,7 +445,7 @@ const {
           </thead>
           <tbody>
             {
-              benefitCategories.items.map((category) => (
+              benefitCategories.items.map((category: any) => (
                 <>
                   <tr>
                     <th
@@ -457,7 +457,7 @@ const {
                     </th>
                     <td colspan="5" class="bg-pycon-black border-b border-white/10" />
                   </tr>
-                  {category.rows.map((row) => (
+                  {category.rows.map((row: any) => (
                     <tr>
                       <th
                         scope="row"

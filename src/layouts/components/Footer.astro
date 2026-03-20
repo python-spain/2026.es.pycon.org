@@ -75,10 +75,10 @@ const collaborators = [
       <!-- Navigation & Policies -->
       <nav class="flex flex-wrap justify-center items-center gap-x-8 gap-y-2 text-sm font-medium">
         {
-          t.links.map((link) => (
+          t.links.map((link: any) => (
             <a
               href={link.href}
-              class="text-pycon-black/80 text-pycon-white/80 hover:text-pycon-red hover:text-pycon-red transition-colors relative group outline-none focus-visible:text-pycon-red"
+              class="text-pycon-white/80 hover:text-pycon-red transition-colors relative group outline-none focus-visible:text-pycon-red"
             >
               {link.label}
               <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pycon-red transition-all group-hover:w-full group-focus-visible:w-full" />

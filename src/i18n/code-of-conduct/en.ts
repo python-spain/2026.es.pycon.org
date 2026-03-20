@@ -1,6 +1,7 @@
 export const en = {
   title: 'Code of Conduct - PyConES 2026',
-  heading: 'Code of Conduct 🛑',
+  heading: 'Code of Conduct',
+  headingIcon: 'stop',
   intro:
     'Python España, as an association around which different types of events are organised, wants to ensure that all people who participate in such events or communications have a professional and positive experience of learning, collaboration, or leisure. To this end, everyone participating in the community is expected to show respect and courtesy towards others.',
   commitment:
@@ -23,7 +24,8 @@ export const en = {
   },
   standards: {
     title: 'Our standards',
-    positiveTitle: 'Examples of behaviour that contributes to creating a positive environment for our community:',
+    positiveTitle:
+      'Examples of behaviour that contributes to creating a positive environment for our community:',
     positiveItems: [
       'Demonstrating empathy and kindness towards other people. Do not insult or humiliate other attendees. Remember that sexist, racist, or discriminatory jokes are not appropriate. They never are.',
       'Respecting differing opinions, viewpoints, and experiences.',
@@ -40,7 +42,7 @@ export const en = {
       'Derogatory comments, trolling, insulting or derogatory remarks, and personal or political attacks.',
       'Racist, sexist, or exclusionary jokes.',
       'Public or private harassment.',
-      'Publishing others\' private information, such as physical or email addresses, without their explicit permission.',
+      "Publishing others' private information, such as physical or email addresses, without their explicit permission.",
       'Other conduct which could reasonably be considered inappropriate in a professional setting.',
     ],
     harassmentNote:

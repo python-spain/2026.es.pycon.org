@@ -1,11 +1,25 @@
+/**
+ * Social media icon mappings
+ *
+ * NOTE: Some Lucide icons (Github, Twitter, Linkedin, Instagram) are marked as deprecated
+ * but are still functional and visually appropriate for social media use. These warnings
+ * can be safely ignored until Lucide provides stable replacement icons.
+ *
+ * Maps semantic names to Lucide Astro components with emoji fallbacks
+ */
+
 import type { IconMappingWithFallback } from '@/lib/icons/types'
 import {
   Bird, // Bluesky (closest match for blue bird)
-  Github, // GitHub - keeping original as it might still work
   MessageCircle, // Mastodon (generic social/messaging)
-  Twitter, // X/Twitter - keeping original as it might still work
-  Linkedin, // LinkedIn - keeping original as it might still work
-  Instagram, // Instagram - keeping original as it might still work
+} from '@lucide/astro'
+
+// Import deprecated social media icons - warnings are expected and safe to ignore
+import {
+  Github as GitHubIcon, // ⚠️ Deprecated but functional
+  Twitter as TwitterIcon, // ⚠️ Deprecated but functional
+  Linkedin as LinkedInIcon, // ⚠️ Deprecated but functional
+  Instagram as InstagramIcon, // ⚠️ Deprecated but functional
 } from '@lucide/astro'
 
 /**
@@ -15,10 +29,10 @@ import {
 export const socialMapping: Record<string, IconMappingWithFallback> = {
   bluesky: {
     icon: Bird,
-    fallback: '🦋', // Original emoji from i18n files
+    fallback: '🦋',
   },
   github: {
-    icon: Github,
+    icon: GitHubIcon, // Using deprecated but functional Github icon
     fallback: '🐙',
   },
   mastodon: {
@@ -26,15 +40,15 @@ export const socialMapping: Record<string, IconMappingWithFallback> = {
     fallback: '🐘',
   },
   twitter: {
-    icon: Twitter,
+    icon: TwitterIcon, // Using deprecated but functional Twitter icon
     fallback: '𝕏',
   },
   linkedin: {
-    icon: Linkedin,
+    icon: LinkedInIcon, // Using deprecated but functional Linkedin icon
     fallback: '💼',
   },
   instagram: {
-    icon: Instagram,
+    icon: InstagramIcon, // Using deprecated but functional Instagram icon
     fallback: '📸',
   },
 }

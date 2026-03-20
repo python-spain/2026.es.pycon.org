@@ -1,6 +1,7 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n'
 import { footerTexts } from '@/i18n/components/footer'
+import SocialIcon from '@/components/icons/SocialIcon.astro'
 
 interface Props {
   lang?: string
@@ -17,13 +18,14 @@ const currentLang: Lang = validLangs.includes(rawLang as Lang) ? (rawLang as Lan
 
 const t = footerTexts[currentLang]
 
+// Updated social links with semantic icon names
 const socialLinks = [
-  { icon: '🦋', label: 'Bluesky', url: 'https://bsky.app/profile/es.pycon.org' },
-  { icon: '🐙', label: 'GitHub', url: 'https://github.com/python-spain' },
-  { icon: '𝕏', label: 'X (Twitter)', url: 'https://x.com/PyConES' },
-  { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/company/pycones' },
-  { icon: '📸', label: 'Instagram', url: 'https://www.instagram.com/pycon_es' },
-]
+  { iconName: 'bluesky', label: 'Bluesky', url: 'https://bsky.app/profile/es.pycon.org' },
+  { iconName: 'github', label: 'GitHub', url: 'https://github.com/python-spain' },
+  { iconName: 'twitter', label: 'X (Twitter)', url: 'https://x.com/PyConES' },
+  { iconName: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/company/pycones' },
+  { iconName: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/pycon_es' },
+] as const
 
 const collaborators = [
   {
@@ -63,7 +65,9 @@ const collaborators = [
         >
           PyCon<span class="text-pycon-yellow">ES</span>
         </a>
-        <p class="text-[10px] font-mono text-pycon-black/50 text-pycon-black-50 uppercase tracking-widest text-center lg:text-left">
+        <p
+          class="text-[10px] font-mono text-pycon-black/50 text-pycon-black-50 uppercase tracking-widest text-center lg:text-left"
+        >
           {t.copyright}
         </p>
       </div>
@@ -84,7 +88,9 @@ const collaborators = [
       </nav>
 
       <!-- Social Links -->
-      <div class="flex flex-col items-center lg:items-end gap-2 text-pycon-black/50 text-pycon-black-50 uppercase tracking-[0.2em] font-bold">
+      <div
+        class="flex flex-col items-center lg:items-end gap-2 text-pycon-black/50 text-pycon-black-50 uppercase tracking-[0.2em] font-bold"
+      >
         <span class="text-[9px]">
           {t.social.title}
         </span>
@@ -99,7 +105,7 @@ const collaborators = [
                 aria-label={link.label}
                 title={link.label}
               >
-                <span class="text-lg">{link.icon}</span>
+                <SocialIcon platform={link.iconName} size="md" aria-hidden="true" />
               </a>
             ))
           }
@@ -108,7 +114,9 @@ const collaborators = [
     </div>
 
     <!-- Bottom Row: Collaborators -->
-    <div class="pt-6 border-t border-pycon-gray-100/10 flex flex-col md:flex-row items-center justify-center gap-6 text-pycon-black/50 text-pycon-black-50 uppercase tracking-[0.2em] font-bold">
+    <div
+      class="pt-6 border-t border-pycon-gray-100/10 flex flex-col md:flex-row items-center justify-center gap-6 text-pycon-black/50 text-pycon-black-50 uppercase tracking-[0.2em] font-bold"
+    >
       <span class="text-[9px] shrink-0">
         {t.collaborators.title}
       </span>

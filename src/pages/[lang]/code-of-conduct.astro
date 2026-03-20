@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro'
+import StatusIcon from '../../components/icons/StatusIcon.astro'
 import { texts } from '../../i18n/code-of-conduct'
 
 export function getStaticPaths() {
@@ -13,6 +14,7 @@ const t = texts[(lang || 'es') as keyof typeof texts]
 const {
   title,
   heading,
+  headingIcon,
   intro,
   commitment,
   detailIntro,
@@ -29,7 +31,10 @@ const {
   <div class="grow container mx-auto px-4 py-8 mt-20">
     <!-- Hero -->
     <header class="text-center mb-16">
-      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+      <h1
+        class="text-4xl md:text-5xl font-extrabold leading-tight mb-6 flex items-center justify-center gap-4"
+      >
+        <StatusIcon type={headingIcon} size="xl" class="text-pycon-red w-9 h-9 flex-shrink-0" />
         {heading}
       </h1>
       <div
@@ -40,9 +45,7 @@ const {
 
     <!-- Intro -->
     <section class="mb-12">
-      <div
-        class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm"
-      >
+      <div class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm">
         <p class="text-lg leading-relaxed mb-6">
           {intro}
         </p>
@@ -57,13 +60,10 @@ const {
 
     <!-- Why -->
     <section class="mb-12" aria-labelledby="coc-why">
-      <h2
-        id="coc-why"
-        class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3"
-      >
+      <h2 id="coc-why" class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
         <span
           class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-yellow/20 text-pycon-yellow text-lg"
-          aria-hidden="true">🤔</span
+          aria-hidden="true"><StatusIcon type="thinking" size="md" /></span
         >
         {why.title}
       </h2>
@@ -74,10 +74,7 @@ const {
         {
           why.reasons.map((reason) => (
             <li class="flex gap-4 items-start">
-              <span
-                class="mt-1 w-2 h-2 rounded-full bg-pycon-orange shrink-0"
-                aria-hidden="true"
-              />
+              <span class="mt-1 w-2 h-2 rounded-full bg-pycon-orange shrink-0" aria-hidden="true" />
               <span class="opacity-80 leading-relaxed">{reason}</span>
             </li>
           ))
@@ -87,19 +84,14 @@ const {
 
     <!-- Scope -->
     <section class="mb-12" aria-labelledby="coc-scope">
-      <h2
-        id="coc-scope"
-        class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3"
-      >
+      <h2 id="coc-scope" class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
         <span
           class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-orange/20 text-pycon-orange text-lg"
-          aria-hidden="true">🌐</span
+          aria-hidden="true"><StatusIcon type="scope" size="md" /></span
         >
         {scope.title}
       </h2>
-      <div
-        class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm"
-      >
+      <div class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm">
         <p class="opacity-80 leading-relaxed">
           {scope.body}
         </p>
@@ -108,13 +100,10 @@ const {
 
     <!-- Standards -->
     <section class="mb-12" aria-labelledby="coc-standards">
-      <h2
-        id="coc-standards"
-        class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3"
-      >
+      <h2 id="coc-standards" class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3">
         <span
           class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-red/20 text-pycon-red text-lg"
-          aria-hidden="true">📋</span
+          aria-hidden="true"><StatusIcon type="standards" size="md" /></span
         >
         {standards.title}
       </h2>
@@ -122,23 +111,16 @@ const {
       <!-- Positive behaviours -->
       <div class="mb-8">
         <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-          <span class="text-green-500" aria-hidden="true">✅</span>
+          <span class="text-green-500" aria-hidden="true"><StatusIcon type="allowed" size="sm" /></span>
           {standards.positiveTitle}
         </h3>
-        <div
-          class="bg-green-900/10 p-6 rounded-2xl border border-green-500/10"
-        >
+        <div class="bg-green-900/10 p-6 rounded-2xl border border-green-500/10">
           <ul class="space-y-4">
             {
               standards.positiveItems.map((item) => (
                 <li class="flex gap-4 items-start">
-                  <span
-                    class="mt-1 w-2 h-2 rounded-full bg-green-500 shrink-0"
-                    aria-hidden="true"
-                  />
-                  <span class="opacity-80 leading-relaxed">
-                    {item}
-                  </span>
+                  <span class="mt-1 w-2 h-2 rounded-full bg-green-500 shrink-0" aria-hidden="true" />
+                  <span class="opacity-80 leading-relaxed">{item}</span>
                 </li>
               ))
             }
@@ -149,23 +131,16 @@ const {
       <!-- Negative behaviours -->
       <div class="mb-8">
         <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-          <span class="text-pycon-red" aria-hidden="true">🚫</span>
+          <span class="text-pycon-red" aria-hidden="true"><StatusIcon type="forbidden" size="sm" /></span>
           {standards.negativeTitle}
         </h3>
-        <div
-          class="bg-red-900/10 p-6 rounded-2xl border border-red-500/10"
-        >
+        <div class="bg-red-900/10 p-6 rounded-2xl border border-red-500/10">
           <ul class="space-y-4">
             {
               standards.negativeItems.map((item) => (
                 <li class="flex gap-4 items-start">
-                  <span
-                    class="mt-1 w-2 h-2 rounded-full bg-pycon-red shrink-0"
-                    aria-hidden="true"
-                  />
-                  <span class="opacity-80 leading-relaxed">
-                    {item}
-                  </span>
+                  <span class="mt-1 w-2 h-2 rounded-full bg-pycon-red shrink-0" aria-hidden="true" />
+                  <span class="opacity-80 leading-relaxed">{item}</span>
                 </li>
               ))
             }
@@ -174,11 +149,11 @@ const {
       </div>
 
       <!-- Harassment note -->
-      <div
-        class="bg-yellow-900/10 p-6 rounded-2xl border border-yellow-500/10"
-      >
+      <div class="bg-yellow-900/10 p-6 rounded-2xl border border-yellow-500/10">
         <p class="opacity-80 leading-relaxed text-sm italic">
-          <span class="font-semibold not-italic" aria-hidden="true">⚠️</span>
+          <span class="font-semibold not-italic" aria-hidden="true"
+            ><StatusIcon type="warning" size="sm" /></span
+          >
           {standards.harassmentNote}
         </p>
       </div>
@@ -186,19 +161,14 @@ const {
 
     <!-- Enforcement -->
     <section class="mb-12" aria-labelledby="coc-enforcement">
-      <h2
-        id="coc-enforcement"
-        class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3"
-      >
+      <h2 id="coc-enforcement" class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
         <span
           class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-orange/20 text-pycon-orange text-lg"
-          aria-hidden="true">⚖️</span
+          aria-hidden="true"><StatusIcon type="enforcement" size="md" /></span
         >
         {enforcement.title}
       </h2>
-      <div
-        class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm"
-      >
+      <div class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm">
         <p class="opacity-80 leading-relaxed">
           {enforcement.body}
         </p>
@@ -207,13 +177,10 @@ const {
 
     <!-- Reporting -->
     <section class="mb-12" aria-labelledby="coc-reporting">
-      <h2
-        id="coc-reporting"
-        class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3"
-      >
+      <h2 id="coc-reporting" class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
         <span
           class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-red/20 text-pycon-red text-lg"
-          aria-hidden="true">📢</span
+          aria-hidden="true"><StatusIcon type="reporting" size="md" /></span
         >
         {reporting.title}
       </h2>
@@ -227,18 +194,14 @@ const {
               <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-pycon-orange/10 text-pycon-orange text-sm font-bold shrink-0">
                 {index + 1}
               </span>
-              <p class="opacity-80 leading-relaxed text-sm">
-                {channel}
-              </p>
+              <p class="opacity-80 leading-relaxed text-sm">{channel}</p>
             </div>
           ))
         }
       </div>
-      <div
-        class="mt-6 bg-yellow-900/10 p-5 rounded-xl border border-yellow-500/10"
-      >
+      <div class="mt-6 bg-yellow-900/10 p-5 rounded-xl border border-yellow-500/10">
         <p class="opacity-80 leading-relaxed text-sm flex items-start gap-3">
-          <span class="text-lg shrink-0" aria-hidden="true">🔒</span>
+          <span class="text-lg shrink-0" aria-hidden="true"><StatusIcon type="privacy" size="sm" /></span>
           {reporting.privacy}
         </p>
       </div>
@@ -246,13 +209,10 @@ const {
 
     <!-- Attribution -->
     <section class="mb-16" aria-labelledby="coc-attribution">
-      <h2
-        id="coc-attribution"
-        class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3"
-      >
+      <h2 id="coc-attribution" class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
         <span
           class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-yellow/20 text-pycon-yellow text-lg"
-          aria-hidden="true">📝</span
+          aria-hidden="true"><StatusIcon type="attribution" size="md" /></span
         >
         {attribution.title}
       </h2>
@@ -264,9 +224,7 @@ const {
           attribution.sources.map((source) => (
             <li class="flex gap-3 items-start">
               <span class="mt-1 w-2 h-2 rounded-full bg-pycon-yellow shrink-0" aria-hidden="true" />
-              <span class="opacity-80 leading-relaxed text-sm">
-                {source}
-              </span>
+              <span class="opacity-80 leading-relaxed text-sm">{source}</span>
             </li>
           ))
         }

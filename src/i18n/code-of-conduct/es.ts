@@ -1,6 +1,7 @@
 export const es = {
   title: 'Código de conducta - PyConES 2026',
-  heading: 'Código de conducta 🛑',
+  heading: 'Código de conducta',
+  headingIcon: 'stop',
   intro:
     'Python España, como asociación en torno a la que se organizan eventos de distintos tipos, quiere asegurar que todas las personas que participen en dichos eventos o comunicaciones tengan una experiencia profesional y positiva de aprendizaje, colaboración u ocio. Para ello, se espera que quien participe en la comunidad muestre respeto y cortesía hacia el resto.',
   commitment:
@@ -23,7 +24,8 @@ export const es = {
   },
   standards: {
     title: 'Nuestros estándares',
-    positiveTitle: 'Ejemplos de comportamiento que contribuyen a crear un ambiente positivo para nuestra comunidad:',
+    positiveTitle:
+      'Ejemplos de comportamiento que contribuyen a crear un ambiente positivo para nuestra comunidad:',
     positiveItems: [
       'Demostrar empatía y amabilidad ante otras personas. No insultes o humilles a otros asistentes. Recuerda que las bromas sexistas, racistas o discriminatorias no son apropiadas. Nunca lo son.',
       'Respetar las diferentes opiniones, puntos de vista y experiencias.',

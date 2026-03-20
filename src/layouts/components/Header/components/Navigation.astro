@@ -1,7 +1,7 @@
 ---
 import ResponsiveToggle from './ResponsiveToggle.astro'
 import LanguagePicker from './LanguagePicker.astro'
-    import { getRelativeLocaleUrl } from 'astro:i18n'
+import { getRelativeLocaleUrl } from 'astro:i18n'
 import { menuTexts } from '@/i18n/menu'
 
 interface MenuItem {
@@ -63,11 +63,7 @@ const { items } = menuTexts[currentLang]
       href={getRelativeLocaleUrl(currentLang, '/')}
       class="flex items-center outline-none transition-all hover:opacity-80 focus-visible:opacity-80"
     >
-      <img
-        src="/images/logo-large.png"
-        alt="PyConES 2026 Barcelona"
-        class="w-auto md:w-64"
-      />
+      <img src="/images/logo-large.png" alt="PyConES 2026 Barcelona" class="w-auto md:w-64" />
     </a>
 
     <div class="wrapper flex items-center gap-4">

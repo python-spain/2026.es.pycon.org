@@ -44,12 +44,12 @@ export const es = {
   stats: {
     title: 'La PyConES en números',
     items: [
-      { icon: '👥', value: '+800', label: 'asistentes' },
-      { icon: '🎤', value: '+80', label: 'ponentes internacionales y locales' },
-      { icon: '🌟', value: '2', label: 'oradores plenarios' },
-      { icon: '🗓', value: '3', label: 'días de conferencia' },
-      { icon: '🏢', value: '28', label: 'empresas patrocinadoras' },
-      { icon: '🤝', value: '+8', label: 'asociaciones colaboradoras' },
+      { iconName: 'attendees', icon: '👥', value: '+800', label: 'asistentes' },
+      { iconName: 'speakers', icon: '🎤', value: '+80', label: 'ponentes internacionales y locales' },
+      { iconName: 'keynotes', icon: '🌟', value: '2', label: 'oradores plenarios' },
+      { iconName: 'days', icon: '🗓', value: '3', label: 'días de conferencia' },
+      { iconName: 'companies', icon: '🏢', value: '28', label: 'empresas patrocinadoras' },
+      { iconName: 'collaborators', icon: '🤝', value: '+8', label: 'asociaciones colaboradoras' },
     ],
   },
   objectives: {
@@ -63,13 +63,13 @@ export const es = {
   interests: {
     title: 'Intereses',
     items: [
-      { label: 'ML & IA', emoji: '🤖', pc: '29%' },
-      { label: 'DATA SCIENCE', emoji: '📊', pc: '17%' },
-      { label: 'ING. SOFTWARE', emoji: '🏗️', pc: '14%' },
-      { label: 'DESARROLLO WEB', emoji: '💻', pc: '10%' },
-      { label: 'COMUNIDAD', emoji: '🤝', pc: '7%' },
-      { label: 'DEVOPS & CLOUD', emoji: '☁️', pc: '7%' },
-      { label: 'OTROS', emoji: '🔧', pc: '16%' },
+      { label: 'ML & IA', iconName: 'ml-ai', emoji: '🤖', pc: '29%' },
+      { label: 'DATA SCIENCE', iconName: 'data-science', emoji: '📊', pc: '17%' },
+      { label: 'ING. SOFTWARE', iconName: 'software-engineering', emoji: '🏗️', pc: '14%' },
+      { label: 'DESARROLLO WEB', iconName: 'web-development', emoji: '💻', pc: '10%' },
+      { label: 'COMUNIDAD', iconName: 'community', emoji: '🤝', pc: '7%' },
+      { label: 'DEVOPS & CLOUD', iconName: 'devops-cloud', emoji: '☁️', pc: '7%' },
+      { label: 'OTROS', iconName: 'others', emoji: '🔧', pc: '16%' },
     ],
   },
   audience: {
@@ -78,21 +78,25 @@ export const es = {
     items: [
       {
         icon: '💼',
+        iconName: 'business',
         value: '81%',
         label: 'Profesionales en activo',
       },
       {
         icon: '💜',
+        iconName: 'love',
         value: '33%',
         label: 'Mujeres y personas no binarias',
       },
       {
         icon: '🔑',
+        iconName: 'leadership',
         value: '26%',
         label: 'Dirección y Tech Leads',
       },
       {
         icon: '🌍',
+        iconName: 'scope',
         value: '13%',
         label: 'Contenido en inglés',
       },
@@ -111,26 +115,31 @@ export const es = {
     items: [
       {
         icon: '🔍',
+        iconName: 'search',
         title: 'CONTRATA',
         desc: 'La mayoría de los asistentes son perfiles técnicos activos. Es el entorno ideal para captar talento difícil de encontrar (Seniors, Data Scientists, DevOps, etc.) que muchas veces no está en LinkedIn, sino aquí.',
       },
       {
         icon: '🤝',
+        iconName: 'partnership',
         title: 'CONECTA',
         desc: 'No solo encontrarás programadores: también directores técnicos y gerentes de otras empresas punteras. Es un escenario perfecto para cerrar acuerdos, encontrar socios o iniciar colaboraciones entre empresas.',
       },
       {
         icon: '🚀',
+        iconName: 'senior',
         title: 'VISIBILIZA TU MARCA',
         desc: 'Asocia tu imagen a la innovación y el código abierto. Patrocinar la PyConES te posiciona como una empresa referente que apuesta por la tecnología y la comunidad.',
       },
       {
         icon: '❤️',
+        iconName: 'heart',
         title: 'APOYA A LA COMUNIDAD',
         desc: 'Al patrocinar, haces posible que este evento exista. Devuelves valor al ecosistema Python que tu empresa utiliza a diario y es algo que los asistentes recordarán.',
       },
       {
         icon: '⚖️',
+        iconName: 'enforcement',
         title: 'IMPULSA LA DIVERSIDAD',
         desc: 'Tu patrocinio ayuda a financiar becas y entradas para personas con menos recursos o colectivos poco representados. Es una forma tangible de demostrar los valores éticos de tu empresa y contribuir a que la tecnología sea más accesible para todos. Python es para todo el mundo.',
       },
@@ -220,6 +229,7 @@ export const es = {
         color: 'text-tier-bronze',
         name: 'Bronce',
         emoji: '🟤',
+        iconName: 'bronze',
         price: 'Precio 1.000€',
         limit: 'Ilimitado',
         bg: 'rgba(180, 83, 9, 0.1)',
@@ -228,6 +238,7 @@ export const es = {
         color: 'text-tier-silver',
         name: 'Plata',
         emoji: '⚪',
+        iconName: 'silver',
         price: 'Precio 3.000€',
         limit: '10 disp.',
         bg: 'rgba(107, 114, 128, 0.1)',
@@ -236,6 +247,7 @@ export const es = {
         color: 'text-tier-gold',
         name: 'Oro',
         emoji: '🌟',
+        iconName: 'gold',
         price: 'Precio 6.000€',
         limit: '5 disp.',
         bg: 'rgba(234, 179, 8, 0.1)',
@@ -244,6 +256,7 @@ export const es = {
         color: 'text-tier-platinum',
         name: 'Platino',
         emoji: '🏆',
+        iconName: 'platinum',
         price: 'Precio 8.000€',
         limit: '2 disp.',
         bg: 'rgba(34, 197, 94, 0.1)',
@@ -252,6 +265,7 @@ export const es = {
         color: 'text-tier-main',
         name: 'Principal',
         emoji: '🏰',
+        iconName: 'main',
         price: 'Precio Personalizado',
         limit: '1 disp.',
         bg: 'rgba(168, 85, 247, 0.1)',
@@ -400,21 +414,25 @@ export const es = {
     items: [
       {
         icon: '🌍',
+        iconName: 'scope',
         title: 'COMUNIDAD',
         desc: 'Damos soporte legal, fiscal y de infraestructura a los grupos locales de Python en toda España (Madrid, Barcelona, Valencia, Vigo, etc.). Les ayudamos a que puedan centrarse en lo importante: compartir conocimiento.',
       },
       {
         icon: '📢',
+        iconName: 'reporting',
         title: 'EVENTOS',
         desc: 'Organizamos la PyConES, el evento de referencia del sector. Pero también apoyamos otros encuentros, hackathons y talleres que mantienen la comunidad activa durante todo el año.',
       },
       {
         icon: '🤝',
+        iconName: 'partnership',
         title: 'DIVERSIDAD E INCLUSIÓN',
         desc: 'Creemos que la tecnología es para todos. Destinamos una parte importante del presupuesto a becas financieras para facilitar la asistencia de grupos subrepresentados y estudiantes a nuestros eventos.',
       },
       {
         icon: '⚖️',
+        iconName: 'enforcement',
         title: 'INFRAESTRUCTURA',
         desc: 'Actuamos como paraguas legal para la comunidad. Gestionamos los recursos, protegemos la marca y aseguramos que haya un entorno seguro y profesional para el desarrollo de la tecnología en España.',
       },

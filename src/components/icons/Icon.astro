@@ -6,14 +6,14 @@ import { AlertCircle } from '@lucide/astro'
 
 interface Props extends IconProps {}
 
-const { 
-  name, 
-  size = 'md', 
-  color = 'currentColor', 
-  className = '', 
+const {
+  name,
+  size = 'md',
+  color = 'currentColor',
+  className = '',
   'aria-label': ariaLabel,
   'aria-hidden': ariaHidden = false,
-  ...rest 
+  ...rest
 } = Astro.props
 
 // Get the mapped icon or fallback
@@ -21,21 +21,12 @@ const { icon: LucideIconComponent, fallback } = getIconMapping(name)
 
 // Build CSS classes
 const sizeClasses = IconSizes[size]
-const colorClasses = color.startsWith('#') || color.startsWith('rgb') || color.startsWith('hsl') 
-  ? '' 
-  : color
+const colorClasses = color.startsWith('#') || color.startsWith('rgb') || color.startsWith('hsl') ? '' : color
 
-const classes = [
-  sizeClasses,
-  colorClasses,
-  className,
-  'inline-block flex-shrink-0'
-].filter(Boolean).join(' ')
+const classes = [sizeClasses, colorClasses, className, 'inline-block flex-shrink-0'].filter(Boolean).join(' ')
 
 // Build style object for CSS color values
-const style = color.startsWith('#') || color.startsWith('rgb') || color.startsWith('hsl')
-  ? { color }
-  : {}
+const style = color.startsWith('#') || color.startsWith('rgb') || color.startsWith('hsl') ? { color } : {}
 
 // Log missing mappings in development
 if (!LucideIconComponent && !fallback) {
@@ -49,32 +40,32 @@ if (!LucideIconComponent && !fallback) {
 }
 ---
 
-{LucideIconComponent ? (
-  <LucideIconComponent 
-    class={classes}
-    style={style}
-    aria-label={ariaLabel}
-    aria-hidden={ariaHidden ? 'true' : undefined}
-    {...rest}
-  />
-) : fallback ? (
-  <!-- Fallback to emoji during transition -->
-  <span 
-    class={`${sizeClasses} ${className} inline-flex items-center justify-center`}
-    style={style}
-    aria-label={ariaLabel}
-    aria-hidden={ariaHidden ? 'true' : undefined}
-    {...rest}
-  >
-    {fallback}
-  </span>
-) : (
-  <!-- Default fallback icon -->
-  <AlertCircle 
-    class={classes}
-    style={style}
-    aria-label={ariaLabel || `Unknown icon: ${name}`}
-    aria-hidden={ariaHidden ? 'true' : undefined}
-    {...rest}
-  />
-)}
+{
+  LucideIconComponent ? (
+    <LucideIconComponent
+      class={classes}
+      style={style}
+      aria-label={ariaLabel}
+      aria-hidden={ariaHidden ? 'true' : undefined}
+      {...rest}
+    />
+  ) : fallback ? (
+    <span
+      class={`${sizeClasses} ${className} inline-flex items-center justify-center`}
+      style={style}
+      aria-label={ariaLabel}
+      aria-hidden={ariaHidden ? 'true' : undefined}
+      {...rest}
+    >
+      {fallback}
+    </span>
+  ) : (
+    <AlertCircle
+      class={classes}
+      style={style}
+      aria-label={ariaLabel || `Unknown icon: ${name}`}
+      aria-hidden={ariaHidden ? 'true' : undefined}
+      {...rest}
+    />
+  )
+}

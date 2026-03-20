@@ -1,11 +1,11 @@
 import type { IconMappingWithFallback } from '@/lib/icons/types'
 import {
   Bird, // Bluesky (closest match for blue bird)
-  Github, // GitHub
+  Github, // GitHub - keeping original as it might still work
   MessageCircle, // Mastodon (generic social/messaging)
-  Twitter, // X/Twitter
-  Linkedin, // LinkedIn
-  Instagram, // Instagram
+  Twitter, // X/Twitter - keeping original as it might still work
+  Linkedin, // LinkedIn - keeping original as it might still work
+  Instagram, // Instagram - keeping original as it might still work
 } from '@lucide/astro'
 
 /**

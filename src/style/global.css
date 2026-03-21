@@ -1,23 +1,28 @@
 @import 'tailwindcss';
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  /* Adjust based on your header height */
+}
+
 @theme {
   /* Fonts */
-  --font-mono: 'JetBrains Mono Variable', monospace;
   --font-outfit: 'Outfit Variable', sans-serif;
 
-  --font-size-xs: 0.875rem;
-  --font-size-sm: 1rem;
-  --font-size-base: 1.125rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
-  --font-size-2xl: 1.875rem;
-  --font-size-3xl: 2.25rem;
-  --font-size-4xl: 2.625rem;
-  --font-size-5xl: 3rem;
-  --font-size-6xl: 3.375rem;
-  --font-size-7xl: 3.75rem;
-  --font-size-8xl: 4.5rem;
-  --font-size-9xl: 6rem;
+  --font-size-xs: 1rem;
+  --font-size-sm: 1.125rem;
+  --font-size-base: 1.25rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 1.875rem;
+  --font-size-2xl: 2.25rem;
+  --font-size-3xl: 2.625rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 3.375rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+  --font-size-8xl: 6rem;
+  --font-size-9xl: 8rem;
 
   /* Font Weights */
   --font-weight-thin: 100;
@@ -49,9 +54,62 @@
   --color-pycon-red-50: #fca09c;
   --color-pycon-red-25: #fdcfcd;
 
+  --color-pycon-mute: #cc6600;
+  --color-pycon-mute-100: #cc6600;
+
+  --color-pycon-gray: #4a4a48;
+  --color-pycon-gray-100: #4a4a48;
+
   --color-pycon-black: #1d1d1b;
   --color-pycon-black-100: #1d1d1b;
   --color-pycon-black-75: #555554;
   --color-pycon-black-50: #8e8e8d;
   --color-pycon-black-25: #c6c6c6;
+
+  --color-pycon-white: #ffffff;
+
+  /*DS colors*/
+  --color-pantone-151c: var(--color-pycon-orange-100);
+  --color-pantone-123c: var(--color-pycon-yellow-100);
+  --color-pantone-warm-red: var(--color-pycon-red-100);
+  --color-pantone-black-c: var(--color-pycon-black-100);
+  --color-pantone-yellow-100: var(--color-pycon-yellow);
+  --color-pantone-yellow-75: var(--color-pycon-yellow-75);
+  --color-pantone-yellow-50: var(--color-pycon-yellow-50);
+  --color-pantone-yellow-25: var(--color-pycon-yellow-25);
+  --color-pantone-warm-red-100: var(--color-pycon-red);
+  --color-pantone-warm-red-75: var(--color-pycon-red-75);
+  --color-pantone-warm-red-50: var(--color-pycon-red-50);
+  --color-pantone-warm-red-25: var(--color-pycon-red-25);
+
+  --color-tier-main: var(--color-pycon-yellow);
+  --color-contrast-tier-main: #1d1d1b;
+
+  --color-tier-platinum: var(--color-pycon-orange);
+  --color-contrast-tier-platinum: #ffffff;
+
+  --color-tier-gold: var(--color-pycon-red);
+  --color-contrast-tier-gold: #ffffff;
+
+  --color-tier-silver: var(--color-pycon-mute);
+  --color-contrast-tier-silver: #ffffff;
+
+  --color-tier-bronze: var(--color-pycon-gray);
+  --color-contrast-tier-bronze: #ffffff;
+}
+
+@layer base {
+  :root {
+    --bg-color: #1d1d1b;
+    --text-color: #ffffff;
+    --bg-symbol: url('/images/symbol-black-dark.svg');
+    color-scheme: dark;
+  }
+
+  :root.light {
+    --bg-color: #ffffff;
+    --text-color: #1d1d1b;
+    --bg-symbol: url('/images/symbol-black-light.svg');
+    color-scheme: light;
+  }
 }

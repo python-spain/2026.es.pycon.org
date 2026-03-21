@@ -1,0 +1,51 @@
+---
+import type { ISponsor } from '../../../types/sponsors'
+import { texts } from '../../../i18n/home'
+
+interface Props {
+  lang: string
+  title: string
+  sponsors: ISponsor[]
+  tierColor: string
+  size: number
+}
+
+const { title, sponsors, lang, tierColor, size } = Astro.props
+const t = texts[lang as keyof typeof texts]
+---
+
+{
+  sponsors.length > 0 ? (
+    <div class="w-full">
+      <div class="flex items-center gap-4 mb-6">
+        <div class:list={['h-px flex-1 opacity-30', tierColor]} style="background: currentColor;" />
+        <h4 class:list={['text-sm font-semibold uppercase tracking-widest', tierColor]}>{title}</h4>
+        <div class:list={['h-px flex-1 opacity-30', tierColor]} style="background: currentColor;" />
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-6">
+        {sponsors.map((sponsor) => (
+          <a
+            href={sponsor.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative flex items-center justify-center rounded-xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm p-5 transition-all duration-300 hover:bg-white/[0.08] hover:border-white/[0.15] hover:scale-[1.03] hover:shadow-lg hover:shadow-black/20"
+          >
+            <img
+              src={sponsor.logo}
+              alt={t['sponsors.altlogo'].replace('{name}', sponsor.name)}
+              width={size}
+              height={Math.round(size * 0.6)}
+              class="object-contain transition-all duration-300 opacity-90 group-hover:opacity-100"
+              style={{
+                background: sponsor.logobg,
+                borderRadius: '0.5rem',
+                padding: '0.5rem',
+                maxHeight: `${Math.round(size * 0.7)}px`,
+              }}
+            />
+          </a>
+        ))}
+      </div>
+    </div>
+  ) : null
+}

@@ -1,0 +1,32 @@
+---
+import type { AvailableIconName } from '../../lib/icons/types'
+import Icon from './Icon.astro'
+
+interface Props {
+  type: AvailableIconName
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  className?: string
+  'aria-label'?: string
+  [x: string]: any
+}
+
+const { type, size = 'md', className = '', 'aria-label': ariaLabel, ...rest } = Astro.props
+
+// Generate appropriate aria-label based on status type
+const statusLabels = {
+  warning: 'Warning',
+  allowed: 'Allowed',
+  forbidden: 'Forbidden',
+  info: 'Information',
+}
+
+const defaultAriaLabel = ariaLabel || statusLabels[type] || `Status: ${type}`
+---
+
+<Icon
+  name={type}
+  size={size}
+  className={`status-icon status-icon--${type} ${className}`.trim()}
+  aria-label={defaultAriaLabel}
+  {...rest}
+/>

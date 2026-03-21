@@ -1,0 +1,71 @@
+---
+import type { IconProps } from '../../lib/icons/types'
+import { IconSizes } from '../../lib/icons/types'
+import { getIconMapping } from '../../lib/icons/mappings/index'
+import { CircleAlert } from '@lucide/astro'
+
+interface Props extends IconProps {}
+
+const {
+  name,
+  size = 'md',
+  color = 'currentColor',
+  className = '',
+  'aria-label': ariaLabel,
+  'aria-hidden': ariaHidden = false,
+  ...rest
+} = Astro.props
+
+// Get the mapped icon or fallback
+const { icon: LucideIconComponent, fallback } = getIconMapping(name)
+
+// Build CSS classes
+const sizeClasses = IconSizes[size]
+const colorClasses = color.startsWith('#') || color.startsWith('rgb') || color.startsWith('hsl') ? '' : color
+
+const classes = [sizeClasses, colorClasses, className, 'inline-block flex-shrink-0'].filter(Boolean).join(' ')
+
+// Build style object for CSS color values
+const style = color.startsWith('#') || color.startsWith('rgb') || color.startsWith('hsl') ? { color } : {}
+
+// Log missing mappings in development
+if (!LucideIconComponent && !fallback) {
+  try {
+    if (typeof window === 'undefined' || (globalThis as any).__DEV__ !== false) {
+      console.warn(`[Icon] No mapping found for icon "${name}". Using fallback.`)
+    }
+  } catch {
+    // Silent fallback if environment detection fails
+  }
+}
+---
+
+{
+  LucideIconComponent ? (
+    <LucideIconComponent
+      class={classes}
+      style={style}
+      aria-label={ariaLabel}
+      aria-hidden={ariaHidden ? 'true' : undefined}
+      {...rest}
+    />
+  ) : fallback ? (
+    <span
+      class={`${sizeClasses} ${className} inline-flex items-center justify-center`}
+      style={style}
+      aria-label={ariaLabel}
+      aria-hidden={ariaHidden ? 'true' : undefined}
+      {...rest}
+    >
+      {fallback}
+    </span>
+  ) : (
+    <CircleAlert
+      class={classes}
+      style={style}
+      aria-label={ariaLabel || `Unknown icon: ${name}`}
+      aria-hidden={ariaHidden ? 'true' : undefined}
+      {...rest}
+    />
+  )
+}

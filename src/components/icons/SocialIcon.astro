@@ -1,0 +1,26 @@
+---
+import type { SocialIconName } from '../../lib/icons/types'
+import Icon from './Icon.astro'
+
+interface Props {
+  platform: SocialIconName
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  className?: string
+  'aria-label'?: string
+  [x: string]: any
+}
+
+const { platform, size = 'md', className = '', 'aria-label': ariaLabel, ...rest } = Astro.props
+
+// Generate appropriate aria-label if not provided
+const defaultAriaLabel =
+  ariaLabel || `${platform.charAt(0).toUpperCase() + platform.slice(1)} social media link`
+---
+
+<Icon
+  name={platform}
+  size={size}
+  className={`social-icon social-icon--${platform} ${className}`.trim()}
+  aria-label={defaultAriaLabel}
+  {...rest}
+/>

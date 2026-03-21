@@ -1,0 +1,13 @@
+---
+import Navigation from './components/Navigation.astro'
+
+interface Props {
+  lang?: string
+}
+
+const { lang } = Astro.props
+---
+
+<header class="w-full z-50">
+  <Navigation lang={lang} />
+</header>

@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import AccommodationPage from '../../components/AccommodationPage.astro'
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }, { params: { lang: 'ca' } }]
+}
+
+const { lang } = Astro.params
+
+const titles = {
+  es: 'Dónde alojarse | PyConES 2026',
+  en: 'Where to stay | PyConES 2026',
+  ca: 'On allotjar-se | PyConES 2026',
+}
+
+const title = titles[(lang || 'es') as keyof typeof titles]
+---
+
+<Layout title={title}>
+  <div class="grow w-full pt-24">
+    <div class="container mx-auto px-4 md:px-8">
+      <AccommodationPage lang={lang || 'es'} />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .accommodation-page-wrapper {
+    background:
+      radial-gradient(circle at 100% 0%, rgba(255, 130, 0, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 0% 50%, rgba(247, 37, 133, 0.05) 0%, transparent 40%);
+  }
+</style>

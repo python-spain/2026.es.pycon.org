@@ -5,7 +5,8 @@ on:
     branches: [main, develop]
 
 jobs:
-  build:
+  check:
+    name: Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,6 +22,12 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Astro check
+        run: pnpm astro check
+
+      - name: Prettier check
+        run: pnpm exec prettier --check src
 
       - name: Build
         run: pnpm build

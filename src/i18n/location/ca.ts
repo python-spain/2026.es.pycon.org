@@ -4,6 +4,7 @@ export const ca = {
   'location.hero.subtitle': 'Edifici Històric de la Gran Via',
   'location.hero.text':
     "Després d'una recerca exhaustiva de possibles seus per a la PyConES 2026, vam concloure que la Universitat de Barcelona (UB) oferia un dels espais més emblemàtics de la ciutat. Com a universitat més gran i antiga de Catalunya, les seves instal·lacions històriques compleixen totes les necessitats del nostre esdeveniment.",
+  'location.map.link': 'Veure al mapa',
   'location.location.title': 'Ubicació',
   'location.location.text':
     'Situada al bell mig de Barcelona, al costat de la Plaça Universidat i la Plaça Catalunya.',

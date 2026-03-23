@@ -4,6 +4,7 @@ export const en = {
   'location.hero.subtitle': 'Historic Building at Gran Via',
   'location.hero.text':
     "After an exhaustive search for possible venues for PyConES 2026, we concluded that the University of Barcelona (UB) offered one of the city's most iconic spaces. As Catalonia's largest and oldest university, its historic facilities meet all our event's needs.",
+  'location.map.link': 'View on map',
   'location.location.title': 'Location',
   'location.location.text':
     'Located in the heart of Barcelona, right by Plaza Universidad and Plaza Cataluña.',

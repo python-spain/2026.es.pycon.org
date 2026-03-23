@@ -4,6 +4,7 @@ export const es = {
   'location.hero.subtitle': 'Edificio Histórico de la Gran Vía',
   'location.hero.text':
     'Tras una búsqueda exhaustiva de posibles sedes para el evento de PyConES 2026, concluimos que la Universidad de Barcelona (UB) ofrecía uno de los espacios más emblemáticos de la ciudad. Siendo la UB la universidad más grande y antigua de Cataluña, las equipaciones de este edificio cumplen con todas las necesidades de nuestro evento.',
+  'location.map.link': 'Ver en el mapa',
   'location.location.title': 'Ubicación',
   'location.location.text':
     'Situada en el mismísimo centro de Barcelona, junto a Plaza Universidad y Plaza Cataluña.',

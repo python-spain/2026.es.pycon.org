@@ -38,7 +38,7 @@ const {
 ---
 
 <Layout title={title}>
-  <div class="grow w-full overflow-x-hidden">
+  <div class="grow w-full md:mt-24 mt-16">
     <div class="container mx-auto px-4 py-8 text-white">
       <!-- Hero -->
       <div class="text-center mb-12">
@@ -395,12 +395,12 @@ const {
       <h2 class="text-center text-3xl font-bold mb-8">{tiers.title}</h2>
 
       <div class="table-scroll overflow-x-auto pb-4 mb-8 border border-white/10 rounded-lg bg-pycon-black">
-        <table class="pricing-table w-full border-separate border-spacing-0 min-w-225">
+        <table class="pricing-table w-full border-separate border-spacing-0">
           <thead>
             <tr class="bg-pycon-black">
               <th
                 scope="col"
-                class="w-50 p-4 text-center border-b border-r border-white/10 align-bottom pb-6 sticky left-0 z-10"
+                class="w-50 p-4 text-center border-b border-r border-white/10 align-bottom pb-6 sticky left-0 z-10 bg-pycon-black"
                 >{tiers.column1}</th
               >
               {
@@ -448,23 +448,24 @@ const {
               benefitCategories.items.map((category: any) => (
                 <>
                   <tr>
-                    <th
+                    <td
+                      colspan="5"
                       scope="row"
                       class="p-4 text-left font-bold text-pycon-orange-75 bg-pycon-black border-b border-white/10 sticky left-0 z-10"
                       aria-label={category.category}
                     >
                       <span aria-hidden="true">{category.category}</span>
-                    </th>
+                    </td>
                     <td colspan="5" class="bg-pycon-black border-b border-white/10" />
                   </tr>
                   {category.rows.map((row: any) => (
                     <tr>
-                      <th
+                      <td
                         scope="row"
                         class="p-4 text-left border-b border-r border-white/10 text-white sticky left-0 bg-pycon-black z-10 text-sm font-normal"
                       >
                         {row.label}
-                      </th>
+                      </td>
                       {row.data.map((val: string) => (
                         <td class="p-4 text-center border-b border-white/10 text-sm">
                           {val === '✅' ? (

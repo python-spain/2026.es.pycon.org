@@ -38,129 +38,106 @@ const {
 ---
 
 <Layout title={title}>
-  <div class="grow w-full md:mt-24 mt-16">
-    <div class="container mx-auto px-4 py-8 text-white">
-      <!-- Hero -->
-      <div class="text-center mb-12">
-        <img src="/images/logo-vertical-alt-color-dark.svg" alt="PyconES 2026" class="h-50 mx-auto mb-4" />
-        <div class="flex flex-col items-center">
-          <span class="font-medium
+  <div class="grow w-full mt-24 px-4">
+    <!-- Hero -->
+    <div class="text-center mb-12">
+      <img src="/images/logo-vertical-alt-color-dark.svg" alt="PyconES 2026" class="h-50 mx-auto mb-4" />
+      <div class="flex flex-col items-center">
+        <span class="font-medium
          px-2 -mt-3 rounded text-sm"> {hero.date} </span>
-          <h1 class="mt-24 text-2xl md:text-3xl font-extrabold leading-tight">
-            {hero.subtitle}
-          </h1>
+        <h1 class="mt-24 text-2xl md:text-3xl font-extrabold leading-tight">
+          {hero.subtitle}
+        </h1>
+      </div>
+    </div>
+
+    <!-- About -->
+    <section id="about" class="mb-20">
+      <div class="bg-white p-8 rounded-2xl text-center">
+        <h2 class="text-pycon-red text-2xl font-bold mb-4">{about.title}</h2>
+        <p class="text-lg text-pycon-black max-w-175 mx-auto">{about.body}</p>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section id="stats" class="mb-20">
+      <h2 class="text-center text-2xl font-bold mb-8">{stats.title}</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {
+          stats.items.map((stat: { iconName?: string; icon: string; value: string; label: string }) => (
+            <div class="bg-white text-pycon-black p-4 rounded-lg border border-white/10 text-center">
+              <div class="text-3xl mb-2 flex justify-center items-center" aria-hidden="true">
+                {stat.iconName ? (
+                  <Icon name={stat.iconName} size="xl" className="text-pycon-orange" />
+                ) : (
+                  stat.icon
+                )}
+              </div>
+              <div class="text-2xl font-bold ">{stat.value}</div>
+              <div class="text-sm">{stat.label}</div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Alcanza tus objetivos -->
+    <section class="mb-20">
+      <h2 class="text-center text-2xl font-bold mb-8">{objectives.title}</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {
+          objectives.items.map((obj: any) => (
+            <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10 text-center">
+              <div class="text-xl font-bold mb-2">{obj.title}</div>
+              <div>{obj.desc}</div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Location -->
+    <section id="location" class="mb-20">
+      <h2 class="text-center text-2xl font-bold mb-8">{location.title}</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <Icon name="location" size="md" className="text-pycon-red" aria-hidden={true} />
+            {location.where}
+          </h3>
+          <p class="mb-4">
+            {location.body}
+            <strong>{location.bodyStrong}</strong>
+            {location.bodyEnd}
+          </p>
+          <p class="">
+            {location.body2}
+          </p>
+        </div>
+
+        <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <Icon name="calendar" size="md" className="text-pycon-red" aria-hidden={true} />
+            {when.title}
+          </h3>
+          <div class="space-y-3">
+            <p>
+              <strong>{when.friday}: </strong>{when.fridayStrong}
+              <em>{when.fridayEm}</em>
+            </p>
+            <p>
+              <strong>{when.saturday}: </strong>
+              {when.saturdayBody}
+            </p>
+            <p>
+              <strong>{when.sunday}: </strong>
+              {when.sundayBody}
+            </p>
+          </div>
         </div>
       </div>
-
-      <!-- About -->
-      <section id="about" class="mb-20">
-        <div class="bg-white p-8 rounded-2xl text-center">
-          <h2 class="text-pycon-red text-2xl font-bold mb-4">{about.title}</h2>
-          <p class="text-lg text-pycon-black max-w-175 mx-auto">{about.body}</p>
-        </div>
-      </section>
-
-      <!-- Stats -->
-      <section id="stats" class="mb-20">
-        <h2 class="text-center text-2xl font-bold mb-8">{stats.title}</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {
-            stats.items.map((stat: { iconName?: string; icon: string; value: string; label: string }) => (
-              <div class="bg-white text-pycon-black p-4 rounded-lg border border-white/10 text-center">
-                <div class="text-3xl mb-2 flex justify-center items-center" aria-hidden="true">
-                  {stat.iconName ? (
-                    <Icon name={stat.iconName} size="xl" className="text-pycon-orange" />
-                  ) : (
-                    stat.icon
-                  )}
-                </div>
-                <div class="text-2xl font-bold ">{stat.value}</div>
-                <div class="text-sm">{stat.label}</div>
-              </div>
-            ))
-          }
-        </div>
-      </section>
-
-      <!-- Alcanza tus objetivos -->
-      <section class="mb-20">
-        <h2 class="text-center text-2xl font-bold mb-8">{objectives.title}</h2>
-        <div class="grid md:grid-cols-3 gap-6">
-          {
-            objectives.items.map((obj: any) => (
-              <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10 text-center">
-                <div class="text-xl font-bold mb-2">{obj.title}</div>
-                <div>{obj.desc}</div>
-              </div>
-            ))
-          }
-        </div>
-      </section>
-
-      <!-- Location -->
-      <section id="location" class="mb-20">
-        <h2 class="text-center text-2xl font-bold mb-8">{location.title}</h2>
-
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-              <Icon name="location" size="md" className="text-pycon-red" aria-hidden={true} />
-              {location.where}
-            </h3>
-            <p class="mb-4">
-              {location.body}
-              <strong>{location.bodyStrong}</strong>
-              {location.bodyEnd}
-            </p>
-            <p class="">
-              {location.body2}
-            </p>
-          </div>
-
-          <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10 mt-6">
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-              <Icon name="calendar" size="md" className="text-pycon-red" aria-hidden={true} />
-              {when.title}
-            </h3>
-            <div class="space-y-3">
-              <p>
-                <strong>{when.friday}: </strong>{when.fridayStrong}
-                <em>{when.fridayEm}</em>
-              </p>
-              <p>
-                <strong>{when.saturday}: </strong>
-                {when.saturdayBody}
-              </p>
-              <p>
-                <strong>{when.sunday}: </strong>
-                {when.sundayBody}
-              </p>
-            </div>
-          </div>
-
-          <div class="bg-white text-pycon-black p-6 rounded-lg border border-white/10">
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-              <Icon name="calendar" size="md" className="text-pycon-red" aria-hidden={true} />
-              {when.title}
-            </h3>
-            <div class="space-y-3">
-              <p>
-                <strong>{when.friday}: </strong>{when.fridayStrong}
-                <em>{when.fridayEm}</em>
-              </p>
-              <p>
-                <strong>{when.saturday}: </strong>
-                {when.saturdayBody}
-              </p>
-              <p>
-                <strong>{when.sunday}: </strong>
-                {when.sundayBody}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    </section>
 
     <!-- Qué es PyConES -->
     <section class="mb-20">

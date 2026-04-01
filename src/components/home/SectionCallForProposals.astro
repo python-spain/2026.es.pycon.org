@@ -1,0 +1,36 @@
+---
+import { texts } from '../../i18n/home'
+import SectionTitle from '../SectionTitle.astro'
+import Button from '../Button.astro'
+
+interface Props {
+  lang: string
+}
+
+const { lang } = Astro.props
+const t = texts[lang as keyof typeof texts]
+---
+
+<div class="flex flex-col items-center gap-6">
+  <SectionTitle title={t['cfp.title']} />
+
+  <div
+    class="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 hover:border-pycon-orange/50 transition-all shadow-xl w-full"
+  >
+    <p class="text-lg text-pycon-gray-25 leading-relaxed mb-6 text-center">
+      {t['cfp.description']}
+    </p>
+
+    <div class="flex justify-center">
+      <Button
+        variant="primary"
+        size="lg"
+        href="https://pretalx.com/pycones-2026/cfp"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {t['cfp.button']}
+      </Button>
+    </div>
+  </div>
+</div>

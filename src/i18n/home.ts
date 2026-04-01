@@ -14,6 +14,10 @@ export const texts = {
     'sponsors.bronze': 'Patrocinador Bronce',
     'sponsors.none': 'No hay patrocinadores en este nivel',
     'sponsors.altlogo': 'Logo de {name}',
+    'cfp.title': 'Call for Proposals',
+    'cfp.description':
+      '¡Ya está abierta la llamada a propuestas! Mándanos tu charla o taller antes del 3 de mayo a las 23:59h (hora peninsular). Si te estás preguntando si puedes hacer esto, la respuesta es que sí. Si tienes un tema que te interesa, ¡nos interesa!',
+    'cfp.button': 'Envía tu propuesta',
   },
   en: {
     'index.initializing': 'Initialising system...',
@@ -30,6 +34,10 @@ export const texts = {
     'sponsors.bronze': 'Bronze Sponsor',
     'sponsors.none': 'No sponsors in this tier',
     'sponsors.altlogo': '{name} logo',
+    'cfp.title': 'Call for Proposals',
+    'cfp.description':
+      "The call for proposals is now open! Send us your talk or workshop before May 3rd at 23:59 (CET). If you're wondering whether you can do this, the answer is yes. If you have a topic that interests you, it interests us!",
+    'cfp.button': 'Submit your proposal',
   },
   ca: {
     'index.initializing': 'Inicialitzant sistema...',
@@ -46,5 +54,9 @@ export const texts = {
     'sponsors.bronze': 'Patrocinador Bronze',
     'sponsors.none': 'No hi ha patrocinadors en aquest nivell',
     'sponsors.altlogo': 'Logo de {name}',
+    'cfp.title': 'Call for Proposals',
+    'cfp.description':
+      "Ja està oberta la crida a propostes! Envia'ns la teva xerrada o taller abans del 3 de maig a les 23:59h (hora peninsular). Si t'estàs preguntant si pots fer això, la resposta és que sí. Si tens un tema que t'interessa, ens interessa!",
+    'cfp.button': 'Envia la teva proposta',
   },
 } as const

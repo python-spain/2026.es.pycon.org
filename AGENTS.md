@@ -162,23 +162,51 @@ Agents (like Copilot) must adhere to these coding standards to ensure consistenc
 All new UI components and pages must be built with accessibility in mind from the start. Agents must prioritize the following core principles:
 
 ### 1. Semantic HTML & Structure
+
 - **Use HTML5 elements:** Prioritize `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, and `<footer>` over generic `<div>`s. Screen readers depend on this semantics.
 - **Heading hierarchy:** Always use headings in logical order (`<h1>` → `<h2>` → `<h3>`) without skipping levels.
 - **Actions vs Navigation:** Use `<button>` for actions and `<a>` solely for links/navigation. Avoid using `<div>` or `<span>` with `onClick` handlers.
 
 ### 2. Text Alternatives (Images & Icons)
+
 - **Image `alt` tags:** All `<img>` elements must have meaningful `alt` text. Describe the image's function or content (e.g., `alt="Persona usando la app en un celular"` not `alt="imagen1"`). If an image is purely decorative, strictly use `alt=""`.
 - **SVGs and ARIA:** Ensure decorative SVGs have `aria-hidden="true"`. Interactive SVGs must have an `aria-label` or `<title>`. Provide `aria-` attributes (`aria-expanded`, `aria-describedby`) for dynamic elements where visual context isn't enough.
 
 ### 3. Color and Contrast
+
 - **Contrast Ratios:** Ensure all text has sufficient contrast against its background. Avoid light grey text on white backgrounds.
-- **Do not rely on color alone:** Always provide an additional visual indicator alongside color (e.g., rather than saying "Fields in red are required", say "Fields marked with * are required").
+- **Do not rely on color alone:** Always provide an additional visual indicator alongside color (e.g., rather than saying "Fields in red are required", say "Fields marked with \* are required").
 
 ### 4. Keyboard Navigation
+
 - **Tab navigation:** All interactive elements must be fully functional using only the keyboard (`Tab` and `Enter`/`Space`).
 - **Visible Focus:** Ensure a clear, visible focus state for all focusable elements. Never use `outline: none;` without providing a custom visible focus ring (e.g., using Tailwind's `focus-visible:ring`).
 
+### 5. External Links & New Tab Notifications
+
+- **New tab links:** All links with `target="_blank"` must include `aria-label` that informs users the link opens in a new tab.
+- **Use centralized translations:** Use `menuTexts[lang].new_tab` for consistent translations across all languages:
+  - Spanish: `(se abre en nueva pestaña)`
+  - English: `(opens in new tab)`
+  - Catalan: `(s'obre en una pestanya nova)`
+- **Implementation example:**
+  ```astro
+  <a
+    href="https://example.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={`${linkText} ${menuTexts[lang].new_tab}`}
+  >
+    {linkText}
+  </a>
+  ```
+- **Required imports:** Always import `menuTexts` when adding external links:
+  ```astro
+  import {menuTexts} from '@/i18n/menu' const menuT = menuTexts[lang as keyof typeof menuTexts]
+  ```
+
 ### Agent Enforcement
+
 - When generating or modifying components, agents **must** proactively apply these accessibility standards without needing explicit prompting from the user.
 
 ## 5. SEO and Page Creation Guidelines
@@ -186,6 +214,7 @@ All new UI components and pages must be built with accessibility in mind from th
 Agents must ensure all new pages are optimized for search engines and follow the project's internationalization (i18n) structure.
 
 ### Multi-language Pages
+
 - All new pages must be placed in `src/pages/[lang]/`.
 - Use `getStaticPaths()` to support all configured locales (`es`, `en`, `ca`).
 - Example structure:
@@ -196,17 +225,20 @@ Agents must ensure all new pages are optimized for search engines and follow the
   ```
 
 ### Layout and Metadata
+
 - Every page **must** use the `Layout` component from `src/layouts/Layout.astro`.
 - Pass a unique and descriptive `title` and `description` (150-160 characters) to the `Layout` component.
 - The `Layout` component automatically handles canonical URLs, social media tags (OG/Twitter), and `hreflang` tags.
 
 ### Semantic HTML and Accessibility
+
 - **H1 Tags**: Use exactly one `<h1>` per page.
 - **Headings**: Maintain a logical hierarchy (`h2`, `h3`, etc.).
 - **Images**: All `<img>` tags must include a descriptive `alt` attribute.
 - **Links**: Use descriptive text for links. Avoid generic phrases like "click here".
 
 ### Analytics and Monitoring
+
 - Use the `PUBLIC_GA_ID` environment variable for Google Analytics.
 - Do not hardcode tracking IDs.
 

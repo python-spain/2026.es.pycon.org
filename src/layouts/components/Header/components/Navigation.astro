@@ -49,7 +49,7 @@ const { items } = menuTexts[currentLang]
 
 <div
   id="main-navigation"
-  class="fixed top-0 w-full z-50 bg-pycon-black/90 backdrop-blur-md border-b border-pycon-gray-100/30 transition-colors duration-300"
+  class="fixed top-0 w-screen z-50 bg-pycon-black/90 backdrop-blur-md border-b border-pycon-gray-100/30 transition-colors duration-300"
 >
   <div class="container mx-auto px-4 h-20 flex items-center justify-between">
     <!-- Logo -->
@@ -222,6 +222,10 @@ const { items } = menuTexts[currentLang]
     const setActiveMenuItem = (): void => {
       const allMenus = mainNav.querySelectorAll('nav > ul')
       const currentPathname = window.location.pathname
+      const currentHash = window.location.hash
+
+      // Build the full current URL (without trailing slash in pathname)
+      const currentFullUrl = currentPathname.replace(/\/$/, '') + currentHash
 
       allMenus.forEach((menu) => {
         const menuItems = [...menu.querySelectorAll('a:not([rel*="external"])')] as HTMLAnchorElement[]
@@ -231,10 +235,17 @@ const { items } = menuTexts[currentLang]
           menuItem.classList.remove('is-active')
           menuItem.removeAttribute('aria-current')
 
-          const itemPathname = menuItem.pathname.replace(/\/$/, '') // Remove trailing slash
-          const currentPath = currentPathname.replace(/\/$/, '')
+          // Build the full URL for the menu item
+          const itemPathname = menuItem.pathname.replace(/\/$/, '')
+          const itemHash = menuItem.hash || ''
+          const itemFullUrl = itemPathname + itemHash
 
-          if (itemPathname === currentPath || (itemPathname === '' && currentPath === '')) {
+          // Compare full URLs
+          if (
+            itemFullUrl === currentFullUrl ||
+            (itemFullUrl === '' && currentFullUrl === '') ||
+            (itemPathname === '' && currentPathname.replace(/\/$/, '') === '')
+          ) {
             menuItem.classList.add('is-active')
             menuItem.setAttribute('aria-current', 'page')
           }
@@ -474,6 +485,27 @@ const { items } = menuTexts[currentLang]
 
     // Initialize active menu item
     setActiveMenuItem()
+
+    // Update active menu item when hash changes (for same-page navigation)
+    window.addEventListener('hashchange', setActiveMenuItem)
+
+    // Also listen for popstate (back/forward navigation)
+    window.addEventListener('popstate', setActiveMenuItem)
+
+    // Listen for clicks on menu items to update immediately
+    const allMenus = mainNav.querySelectorAll('nav > ul')
+    allMenus.forEach((menu) => {
+      menu.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement
+        const link = target.closest('a') as HTMLAnchorElement
+        if (link && !link.hasAttribute('rel')) {
+          // Small delay to ensure URL has changed
+          setTimeout(() => {
+            setActiveMenuItem()
+          }, 10)
+        }
+      })
+    })
   })
 </script>
 

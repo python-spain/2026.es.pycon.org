@@ -1,6 +1,7 @@
 ---
 import type { ISponsor } from '../../../types/sponsors'
 import { texts } from '../../../i18n/home'
+import { menuTexts } from '../../../i18n/menu'
 
 interface Props {
   lang: string
@@ -12,6 +13,7 @@ interface Props {
 
 const { title, sponsors, lang, tierColor, size } = Astro.props
 const t = texts[lang as keyof typeof texts]
+const menuT = menuTexts[lang as keyof typeof menuTexts]
 ---
 
 {
@@ -28,6 +30,7 @@ const t = texts[lang as keyof typeof texts]
             href={sponsor.website}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`${t['sponsors.altlogo'].replace('{name}', sponsor.name)} ${menuT.new_tab}`}
             class="group relative flex items-center justify-center rounded-xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm p-5 transition-all duration-300 hover:bg-white/[0.08] hover:border-white/[0.15] hover:scale-[1.03] hover:shadow-lg hover:shadow-black/20"
           >
             <img

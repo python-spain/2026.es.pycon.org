@@ -1,5 +1,6 @@
 ---
 import { accommodationTexts } from '../i18n/accommodation'
+import { menuTexts } from '../i18n/menu'
 import StatusIcon from './icons/StatusIcon.astro'
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 
 const { lang } = Astro.props
 const t = accommodationTexts[lang as keyof typeof accommodationTexts]
+const menuT = menuTexts[lang as keyof typeof menuTexts]
 type AreaSlug =
   | 'eixampleEsquerra'
   | 'elRaval'

@@ -152,7 +152,7 @@ const areaDesc = (slug: AreaSlug) => t[`accommodation.areas.${slug}.desc` as key
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${t['accommodation.apartments.link']} ${menuT.new_tab}`}
-          class="inline-flex items-center gap-2 bg-white text-pycon-red font-bold px-6 py-3 rounded-lg hover:scale-105 transition-transform no-underline"
+          class="inline-flex items-center gap-2 bg-white text-pycon-red font-bold px-6 py-3 rounded-lg motion-safe:hover:scale-105 transition-transform no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow"
         >
           {t['accommodation.apartments.link']}
           <span class="sr-only"> ({t['accommodation.a11y.linkOpensNewTab']})</span>

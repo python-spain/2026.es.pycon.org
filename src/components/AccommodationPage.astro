@@ -104,6 +104,8 @@ const t = accommodationTexts[lang as keyof typeof accommodationTexts]
         <a
           href="https://meet.barcelona/es/alojarse-en-barcelona"
           target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${t['accommodation.apartments.link']} ${menuT.new_tab}`}
           class="inline-flex items-center gap-2 bg-white text-pycon-red font-bold px-6 py-3 rounded-lg hover:scale-105 transition-transform no-underline"
         >
           {t['accommodation.apartments.link']}

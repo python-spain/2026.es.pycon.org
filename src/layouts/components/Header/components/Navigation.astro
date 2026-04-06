@@ -104,7 +104,7 @@ const { items } = menuTexts[currentLang]
                             class="submenu-item block px-4 py-3 rounded-md text-pycon-white font-medium transition-colors outline-none hover:text-pycon-yellow hover:bg-pycon-yellow-25/15 focus-visible:bg-pycon-orange focus-visible:text-white"
                             role="menuitem"
                             {...(isExternal(child.href)
-                              ? { target: '_blank', rel: 'noopener noreferrer' }
+                              ? { target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${child.label} ${menuTexts[currentLang].new_tab}` }
                               : {})}
                           >
                             {child.label}
@@ -172,7 +172,7 @@ const { items } = menuTexts[currentLang]
                           href={getLocalizedUrl(currentLang, child.href)}
                           class="block px-4 py-3 rounded-md text-pycon-white font-medium transition-colors outline-none hover:text-pycon-yellow hover:bg-pycon-yellow-25/15 focus-visible:bg-pycon-orange focus-visible:text-white"
                           {...(isExternal(child.href)
-                            ? { target: '_blank', rel: 'noopener noreferrer' }
+                            ? { target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${child.label} ${menuTexts[currentLang].new_tab}` }
                             : {})}
                         >
                           {child.label}

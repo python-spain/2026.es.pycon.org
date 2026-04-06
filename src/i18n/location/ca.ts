@@ -55,5 +55,4 @@ export const ca = {
     'El 22@Barcelona és la prova de com la ciutat ha transformat zones industrials en un epicentre de coneixement, situant-se al top 5 d’Europa en noves empreses tecnològiques.',
   'location.city.connections.title': 'Connexions i mobilitat',
   'location.city.connections.text':
-    'Sants és un node clau de l’AVE, connectant amb Madrid en 2.5h. L’Aeroport del Prat i una xarxa de mobilitat sostenible completen una accessibilitat excepcional.',
-} as const
+    'Sants és un node clau de l’AVE, connectant amb Madrid en 2.5h. L’Aeroport del Prat i una xarxa de mobilitat sostenible completen una accessibilitat excepcional.',  'location.new_tab': "(s'obre en una pestanya nova)",} as const

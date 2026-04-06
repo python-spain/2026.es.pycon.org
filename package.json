@@ -8,7 +8,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "format": "prettier --write src"
+    "format": "prettier --write src",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,10 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3"
@@ -46,6 +51,14 @@
           "parser": "astro"
         }
       }
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,css,md,astro}": "prettier --check"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
     ]
   }
 }

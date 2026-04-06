@@ -1,5 +1,6 @@
 ---
 import { accommodationTexts } from '../i18n/accommodation'
+import { menuTexts } from '../i18n/menu'
 import StatusIcon from './icons/StatusIcon.astro'
 
 interface Props {
@@ -8,6 +9,25 @@ interface Props {
 
 const { lang } = Astro.props
 const t = accommodationTexts[lang as keyof typeof accommodationTexts]
+const menuT = menuTexts[lang as keyof typeof menuTexts]
+type AreaSlug =
+  | 'eixampleEsquerra'
+  | 'elRaval'
+  | 'santAntoni'
+  | 'ciutatVella'
+  | 'sants'
+  | 'poblenou22'
+  | 'elClot'
+  | 'lesCorts'
+  | 'eixampleDreta'
+  | 'collblanc'
+
+const walkingAreas: AreaSlug[] = ['eixampleEsquerra', 'elRaval', 'santAntoni', 'ciutatVella']
+const directMetroAreas: AreaSlug[] = ['sants', 'poblenou22', 'elClot']
+const transferAreas: AreaSlug[] = ['lesCorts', 'eixampleDreta', 'collblanc']
+
+const areaName = (slug: AreaSlug) => t[`accommodation.areas.${slug}.name` as keyof typeof t]
+const areaDesc = (slug: AreaSlug) => t[`accommodation.areas.${slug}.desc` as keyof typeof t]
 ---
 
 <div class="accommodation-container pb-20">
@@ -20,20 +40,72 @@ const t = accommodationTexts[lang as keyof typeof accommodationTexts]
     </p>
   </section>
 
-  <section
-    class="max-w-4xl bg-white/5 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-white/10 mb-16 shadow-2xl"
-  >
-    <p class="text-lg text-pycon-gray-25 leading-relaxed">
-      {t['accommodation.intro']}
-    </p>
+  <!-- Areas -->
+  <section class="mb-24" aria-labelledby="accommodation-areas-heading">
+    <div class="flex items-center gap-4 mb-12">
+      <div class="h-px bg-white/20 flex-1" aria-hidden="true"></div>
+      <h2 id="accommodation-areas-heading" class="text-3xl font-bold text-white px-4">
+        {t['accommodation.areas.title']}
+      </h2>
+      <div class="h-px bg-white/20 flex-1" aria-hidden="true"></div>
+    </div>
+    <div class="max-w-4xl space-y-4 mb-12 text-pycon-gray-25 leading-relaxed">
+      <p class="text-lg">{t['accommodation.areas.transportIntro.p1']}</p>
+      <p class="text-lg">{t['accommodation.areas.transportIntro.p2']}</p>
+      <p class="text-lg">{t['accommodation.areas.transportIntro.p3']}</p>
+    </div>
+
+    <div class="space-y-16">
+      <div>
+        <h3 class="text-2xl font-bold text-white mb-6">{t['accommodation.areas.category.walking']}</h3>
+        <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 list-none m-0 p-0">
+          {
+            walkingAreas.map((slug) => (
+              <li class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all motion-safe:hover:-translate-y-2">
+                <h4 class="text-xl font-bold text-pycon-orange mb-4 italic">{areaName(slug)}</h4>
+                <p class="text-pycon-gray-25 text-sm leading-relaxed">{areaDesc(slug)}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-2xl font-bold text-white mb-6">{t['accommodation.areas.category.directMetro']}</h3>
+        <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 list-none m-0 p-0">
+          {
+            directMetroAreas.map((slug) => (
+              <li class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all motion-safe:hover:-translate-y-2">
+                <h4 class="text-xl font-bold text-pycon-orange mb-4 italic">{areaName(slug)}</h4>
+                <p class="text-pycon-gray-25 text-sm leading-relaxed">{areaDesc(slug)}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-2xl font-bold text-white mb-6">{t['accommodation.areas.category.transferMetro']}</h3>
+        <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 list-none m-0 p-0">
+          {
+            transferAreas.map((slug) => (
+              <li class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all motion-safe:hover:-translate-y-2">
+                <h4 class="text-xl font-bold text-pycon-orange mb-4 italic">{areaName(slug)}</h4>
+                <p class="text-pycon-gray-25 text-sm leading-relaxed">{areaDesc(slug)}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
   </section>
 
   <!-- Hotels Section -->
-  <section class="mb-24">
+  <section class="mb-24" aria-labelledby="accommodation-hotels-heading">
     <div class="flex items-center gap-4 mb-12">
-      <div class="h-px bg-white/20 flex-1"></div>
-      <h2 class="text-3xl font-bold text-white px-4">{t['accommodation.hotels.title']}</h2>
-      <div class="h-px bg-white/20 flex-1"></div>
+      <div class="h-px bg-white/20 flex-1" aria-hidden="true"></div>
+      <h2 id="accommodation-hotels-heading" class="text-3xl font-bold text-white px-4">
+        {t['accommodation.hotels.title']}
+      </h2>
+      <div class="h-px bg-white/20 flex-1" aria-hidden="true"></div>
     </div>
 
     <div
@@ -41,12 +113,18 @@ const t = accommodationTexts[lang as keyof typeof accommodationTexts]
     >
       <!-- Shine effect -->
       <div
-        class="absolute -top-full -left-full w-[300%] h-[300%] bg-linear-to-br from-transparent via-pycon-yellow/5 to-transparent rotate-45 transition-transform duration-1000 group-hover:translate-x-[33%] group-hover:translate-y-[33%] pointer-events-none"
+        class="absolute -top-full -left-full w-[300%] h-[300%] bg-linear-to-br from-transparent via-pycon-yellow/5 to-transparent rotate-45 transition-transform duration-1000 motion-safe:group-hover:translate-x-[33%] motion-safe:group-hover:translate-y-[33%] pointer-events-none"
+        aria-hidden="true"
       >
       </div>
 
       <div class="relative z-10">
-        <StatusIcon type="construction" size="xl" role="img" aria-label="Construyendo" />
+        <StatusIcon
+          type="construction"
+          size="xl"
+          role="img"
+          aria-label={t['accommodation.a11y.constructionIcon']}
+        />
         <h3 class="text-2xl font-bold text-pycon-yellow mb-4">{t['accommodation.hotels.subtitle']}</h3>
         <p class="text-xl text-white font-medium max-w-2xl mx-auto italic opacity-80">
           {t['accommodation.hotels.disclaimer']}
@@ -55,59 +133,37 @@ const t = accommodationTexts[lang as keyof typeof accommodationTexts]
     </div>
   </section>
 
-  <!-- Areas -->
-  <section class="mb-24">
-    <h2 class="text-3xl font-bold text-white mb-12 flex items-center gap-3">
-      <span class="w-2 h-8 bg-pycon-red rounded-full"></span>
-      {t['accommodation.areas.title']}
-    </h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div
-        class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all hover:-translate-y-2"
-      >
-        <h3 class="text-xl font-bold text-pycon-orange mb-4 italic">
-          {t['accommodation.areas.eixample.name']}
-        </h3>
-        <p class="text-pycon-gray-25 text-sm leading-relaxed">{t['accommodation.areas.eixample.desc']}</p>
-      </div>
-      <div
-        class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all hover:-translate-y-2 text-center"
-      >
-        <h3 class="text-xl font-bold text-pycon-orange mb-4 italic">
-          {t['accommodation.areas.gothic.name']}
-        </h3>
-        <p class="text-pycon-gray-25 text-sm leading-relaxed">{t['accommodation.areas.gothic.desc']}</p>
-      </div>
-      <div
-        class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all hover:-translate-y-2 text-right"
-      >
-        <h3 class="text-xl font-bold text-pycon-orange mb-4 italic">
-          {t['accommodation.areas.poblenou.name']}
-        </h3>
-        <p class="text-pycon-gray-25 text-sm leading-relaxed">{t['accommodation.areas.poblenou.desc']}</p>
-      </div>
-    </div>
-  </section>
-
   <!-- Apartments -->
   <section
     class="bg-linear-to-r from-pycon-red/20 to-pycon-orange/20 p-8 md:p-16 rounded-3xl border border-pycon-red/30"
+    aria-labelledby="accommodation-apartments-heading"
   >
     <div class="flex flex-col md:flex-row gap-12 items-center">
       <div class="flex-1">
-        <h2 class="text-3xl font-bold text-white mb-6 uppercase tracking-tight">
+        <h2
+          id="accommodation-apartments-heading"
+          class="text-3xl font-bold text-white mb-6 uppercase tracking-tight"
+        >
           {t['accommodation.apartments.title']}
         </h2>
         <p class="text-pycon-gray-25 text-lg mb-8 leading-relaxed">
           {t['accommodation.apartments.text']}
         </p>
         <a
-          href="https://meet.barcelona/es/alojarse-en-barcelona"
+          href={t['accommodation.apartments.linkUrl']}
           target="_blank"
-          class="inline-flex items-center gap-2 bg-white text-pycon-red font-bold px-6 py-3 rounded-lg hover:scale-105 transition-transform no-underline"
+          rel="noopener noreferrer"
+          aria-label={`${t['accommodation.apartments.link']} ${menuT.new_tab}`}
+          class="inline-flex items-center gap-2 bg-white text-pycon-red font-bold px-6 py-3 rounded-lg motion-safe:hover:scale-105 transition-transform no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow"
         >
           {t['accommodation.apartments.link']}
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          <span class="sr-only"> ({t['accommodation.a11y.linkOpensNewTab']})</span>
+          <svg
+            class="w-5 h-5 shrink-0"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
             ><path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -118,8 +174,9 @@ const t = accommodationTexts[lang as keyof typeof accommodationTexts]
       </div>
       <div
         class="w-48 h-48 bg-white/10 rounded-full flex items-center justify-center border border-white/20 shadow-2xl backdrop-blur-xl shrink-0"
+        aria-hidden="true"
       >
-        <StatusIcon type="city" size="xl" role="img" aria-label="Ubicación" />
+        <StatusIcon type="city" size="xl" />
       </div>
     </div>
   </section>
@@ -138,6 +195,12 @@ const t = accommodationTexts[lang as keyof typeof accommodationTexts]
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .accommodation-container {
+      animation: none;
     }
   }
 </style>

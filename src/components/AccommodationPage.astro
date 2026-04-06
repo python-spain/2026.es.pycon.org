@@ -1,5 +1,6 @@
 ---
 import { accommodationTexts } from '../i18n/accommodation'
+import { menuTexts } from '../i18n/menu'
 import StatusIcon from './icons/StatusIcon.astro'
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 
 const { lang } = Astro.props
 const t = accommodationTexts[lang as keyof typeof accommodationTexts]
+const menuT = menuTexts[lang as keyof typeof menuTexts]
 type AreaSlug =
   | 'eixampleEsquerra'
   | 'elRaval'
@@ -151,6 +153,7 @@ const areaDesc = (slug: AreaSlug) => t[`accommodation.areas.${slug}.desc` as key
           href={t['accommodation.apartments.linkUrl']}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`${t['accommodation.apartments.link']} ${menuT.new_tab}`}
           class="inline-flex items-center gap-2 bg-white text-pycon-red font-bold px-6 py-3 rounded-lg motion-safe:hover:scale-105 transition-transform no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow"
         >
           {t['accommodation.apartments.link']}

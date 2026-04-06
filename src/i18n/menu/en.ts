@@ -60,4 +60,5 @@ export const en = {
       ],
     },
   ],
+  new_tab: '(opens in new tab)',
 } as const

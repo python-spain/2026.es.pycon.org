@@ -60,4 +60,5 @@ export const es = {
       ],
     },
   ],
+  new_tab: '(se abre en nueva pestaña)',
 } as const

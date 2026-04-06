@@ -1,6 +1,7 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n'
 import { footerTexts } from '@/i18n/components/footer'
+import { menuTexts } from '@/i18n/menu'
 import SocialIcon from '@/components/icons/SocialIcon.astro'
 
 interface Props {
@@ -17,6 +18,7 @@ type Lang = (typeof validLangs)[number]
 const currentLang: Lang = validLangs.includes(rawLang as Lang) ? (rawLang as Lang) : 'es'
 
 const t = footerTexts[currentLang]
+const menuT = menuTexts[currentLang]
 
 // Updated social links with semantic icon names
 const socialLinks = [
@@ -102,7 +104,7 @@ const collaborators = [
                 target="_blank"
                 rel="noopener noreferrer"
                 class="group flex h-9 w-9 items-center justify-center rounded-lg bg-pycon-gray-100/10 bg-pycon-gray-100/20 border border-pycon-gray-100/10 text-pycon-black text-pycon-white transition-all hover:bg-pycon-yellow hover:text-pycon-black hover:scale-110 outline-none focus-visible:bg-pycon-yellow focus-visible:text-pycon-black"
-                aria-label={link.label}
+                aria-label={`${link.label} ${menuT.new_tab}`}
                 title={link.label}
               >
                 <SocialIcon platform={link.iconName} size="md" aria-hidden="true" />
@@ -128,6 +130,7 @@ const collaborators = [
               target="_blank"
               rel="noopener noreferrer"
               class="group transition-all hover:scale-105 outline-none focus-visible:ring-1 focus-visible:ring-pycon-orange rounded-md p-1"
+              aria-label={`${collab.name} ${menuT.new_tab}`}
               title={collab.name}
             >
               <img

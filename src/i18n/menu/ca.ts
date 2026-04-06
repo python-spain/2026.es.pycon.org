@@ -60,4 +60,5 @@ export const ca = {
       ],
     },
   ],
+  new_tab: "(s'obre en una pestanya nova)",
 } as const

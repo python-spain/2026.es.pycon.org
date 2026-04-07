@@ -1,5 +1,6 @@
 ---
 import { texts } from '../../i18n/home'
+import { menuTexts } from '../../i18n/menu'
 import SectionTitle from '../SectionTitle.astro'
 import Button from '../Button.astro'
 
@@ -9,6 +10,7 @@ interface Props {
 
 const { lang } = Astro.props
 const t = texts[lang as keyof typeof texts]
+const menuT = menuTexts[lang as keyof typeof menuTexts]
 ---
 
 <div class="flex flex-col items-center gap-6">
@@ -28,6 +30,7 @@ const t = texts[lang as keyof typeof texts]
         href="https://pretalx.com/pycones-2026/cfp"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label={`${t['cfp.button']} ${menuT.new_tab}`}
       >
         {t['cfp.button']}
       </Button>

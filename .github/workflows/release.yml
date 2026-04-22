@@ -1,0 +1,17 @@
+# Automatic release when package.json version changes
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths: [package.json]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: justincy/github-action-npm-release@2.0.2

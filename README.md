@@ -76,3 +76,24 @@ import Layout from '../../layouts/Layout.astro'
 ### 5. Sitemap
 
 - The sitemap is automatically generated on every build. No manual action is required.
+
+## Releases & Deploys
+
+### Creating a Release
+
+The release workflow automatically detects version changes in `package.json`. When you push to `main` with an updated version, it automatically:
+
+1. Creates a git tag
+2. Generates a changelog from commit history
+3. Creates a GitHub Release
+
+### Deploying
+
+Deployment is manual and triggered from GitHub Actions:
+
+1. Go to **Actions → Deploy to GitHub Pages**
+2. Select the tag you want to deploy (e.g., `v1.0.0`)
+3. Click **Run workflow**
+
+The site is deployed to GitHub Pages at `https://2026.es.pycon.org/`.
+

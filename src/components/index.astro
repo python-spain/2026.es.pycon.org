@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import SectionMain from './home/SectionMain.astro'
-import SectionCallForProposals from './home/SectionCallForProposals.astro'
+import SectionCTAs from './home/SectionCTAs.astro'
 import SectionSponsors from './home/SectionSponsors.astro'
 
 interface Props {
@@ -14,7 +14,7 @@ const { lang } = Astro.props
 <Layout title="PyConES 2026">
   <div class="flex flex-col gap-20">
     <SectionMain lang={lang} />
-    <SectionCallForProposals lang={lang} />
+    <SectionCTAs lang={lang} />
     <SectionSponsors lang={lang} />
   </div>
 </Layout>

@@ -18,6 +18,14 @@ export const texts = {
     'cfp.description':
       '¡Ya está abierta la llamada a propuestas! Mándanos tu charla o taller antes del 3 de mayo a las 23:59h (hora peninsular). Si te estás preguntando si puedes hacer esto, la respuesta es que sí. Si tienes un tema que te interesa, ¡nos interesa!',
     'cfp.button': 'Envía tu propuesta',
+    'cta.sponsors.title': '¡Buscamos Patrocinadores!',
+    'cta.sponsors.description':
+      'Ser patrocinador de la PyConES es una oportunidad para apoyar a la comunidad Python, conectar con talento técnico de alto nivel y ganar visibilidad en un entorno ligado al software libre y la innovación. Si formás parte o conocés a alguien de una empresa interesada en apoyar la comunidad Python, ¡ayudanos a llegar a ella!',
+    'cta.sponsors.button': 'Más información sobre patrocinios',
+    'cta.reviewers.title': 'Llamada a Revisores/as',
+    'cta.reviewers.description':
+      'Buscamos personas que nos ayuden a revisar las propuestas que recibamos. Tu experiencia y criterio son clave para garantizar la calidad del programa. Si querés colaborar con la organización y ayudar a seleccionar las mejores charlas y talleres, ¡necesitamos tu ayuda!',
+    'cta.reviewers.button': 'Quiero ser revisor/a',
   },
   en: {
     'index.initializing': 'Initialising system...',
@@ -38,6 +46,14 @@ export const texts = {
     'cfp.description':
       "The call for proposals is now open! Send us your talk or workshop before May 3rd at 23:59 (CET). If you're wondering whether you can do this, the answer is yes. If you have a topic that interests you, it interests us!",
     'cfp.button': 'Submit your proposal',
+    'cta.sponsors.title': 'We Are Looking for Sponsors!',
+    'cta.sponsors.description':
+      'Sponsoring PyConES is an opportunity to support the Python community, connect with high-level technical talent, and gain visibility in an environment linked to free software and innovation. If you are or know someone at a company interested in supporting the Python community, help us reach them!',
+    'cta.sponsors.button': 'More info about sponsorships',
+    'cta.reviewers.title': 'Call for Reviewers',
+    'cta.reviewers.description':
+      'We are looking for people to help us review the proposals we receive. Your experience and judgement are key to ensuring the quality of the programme. If you want to collaborate with the organisation and help select the best talks and workshops, we need your help!',
+    'cta.reviewers.button': 'I want to be a reviewer',
   },
   ca: {
     'index.initializing': 'Inicialitzant sistema...',
@@ -58,5 +74,13 @@ export const texts = {
     'cfp.description':
       "Ja està oberta la crida a propostes! Envia'ns la teva xerrada o taller abans del 3 de maig a les 23:59h (hora peninsular). Si t'estàs preguntant si pots fer això, la resposta és que sí. Si tens un tema que t'interessa, ens interessa!",
     'cfp.button': 'Envia la teva proposta',
+    'cta.sponsors.title': 'Busquem Patrocinadors!',
+    'cta.sponsors.description':
+      "Ser patrocinador de la PyConES és una oportunitat per donar suport a la comunitat Python, connectar amb talent tècnic d'alt nivell i guanyar visibilitat en un entorn lligat al programari lliure i la innovació. Si formes part o coneixes algú d'una empresa interessada en donar suport a la comunitat Python, ajuda'ns a arribar-hi!",
+    'cta.sponsors.button': 'Més informació sobre patrocinis',
+    'cta.reviewers.title': 'Crida a Revisors/es',
+    'cta.reviewers.description':
+      "Busquem persones que ens ajudin a revisar les propostes que rebem. La teva experiència i criteri són clau per garantir la qualitat del programa. Si vols col·laborar amb l'organització i ajudar a seleccionar les millors xerrades i tallers, necessitem la teva ajuda!",
+    'cta.reviewers.button': 'Vull ser revisor/a',
   },
 } as const

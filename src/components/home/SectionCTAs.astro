@@ -1,0 +1,107 @@
+---
+import { texts } from '@/i18n/home'
+import Button from '../Button.astro'
+
+interface Props {
+  lang: string
+}
+
+const { lang } = Astro.props
+const t = texts[lang as keyof typeof texts]
+
+const ctas = [
+  {
+    emoji: '🗣️',
+    title: t['cfp.title'],
+    description: t['cfp.description'],
+    buttonText: t['cfp.button'],
+    href: 'https://pretalx.com/pycones-2026/cfp',
+    variant: 'primary' as const,
+    accent: 'orange',
+    external: true,
+  },
+   {
+    emoji: '🔍',
+    title: t['cta.reviewers.title'],
+    description: t['cta.reviewers.description'],
+    buttonText: t['cta.reviewers.button'],
+    href: 'https://docs.google.com/forms/d/e/1FAIpQLScuG-J1A4xNmC249RkK2VCZDCjxw0uDE7hpL3A5Vj8yu3Ls5g/viewform',
+    variant: 'outline' as const,
+    accent: 'red',
+    external: true,
+  },
+  {
+    emoji: '🤝',
+    title: t['cta.sponsors.title'],
+    description: t['cta.sponsors.description'],
+    buttonText: t['cta.sponsors.button'],
+    href: `/${lang}/sponsors`,
+    variant: 'secondary' as const,
+    accent: 'amber',
+    external: false,
+  },
+ 
+]
+---
+
+<section aria-labelledby="ctas-heading" class="flex flex-col gap-8">
+  <h2 id="ctas-heading" class="sr-only">Llamadas a la participación</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {
+      ctas.map((cta) => (
+        <article
+          class:list={[
+            'group relative flex flex-col gap-6 p-8 rounded-2xl border transition-all duration-300 shadow-xl',
+            'bg-white/5 backdrop-blur-md hover:bg-white/10',
+            cta.accent === 'orange' && 'border-white/10 hover:border-pycon-orange/60',
+            cta.accent === 'amber' && 'border-white/10 hover:border-amber-400/60',
+            cta.accent === 'red' && 'border-white/10 hover:border-pycon-red-50/60',
+          ]}
+        >
+          {/* Subtle glow on hover */}
+          <div
+            class:list={[
+              'absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none',
+              cta.accent === 'orange' && 'shadow-[inset_0_0_60px_rgba(234,88,12,0.06)]',
+              cta.accent === 'amber' && 'shadow-[inset_0_0_60px_rgba(251,191,36,0.06)]',
+              cta.accent === 'red' && 'shadow-[inset_0_0_60px_rgba(239,68,68,0.06)]',
+            ]}
+            aria-hidden="true"
+          />
+
+          <div class="flex flex-col gap-3 flex-1">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl" aria-hidden="true">{cta.emoji}</span>
+              <h3
+                class:list={[
+                  'text-xl font-bold leading-snug',
+                  cta.accent === 'orange' && 'text-pycon-orange',
+                  cta.accent === 'amber' && 'text-amber-400',
+                  cta.accent === 'red' && 'text-pycon-red-50',
+                ]}
+              >
+                {cta.title}
+              </h3>
+            </div>
+
+            <p class="text-pycon-gray-25 leading-relaxed text-sm flex-1">{cta.description}</p>
+          </div>
+
+          <div class="mt-auto">
+            <Button
+              variant={cta.variant}
+              size="md"
+              href={cta.href}
+              target={cta.external ? '_blank' : undefined}
+              rel={cta.external ? 'noopener noreferrer' : undefined}
+              class="w-full"
+            >
+              {cta.buttonText}
+            </Button>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>

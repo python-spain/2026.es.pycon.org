@@ -37,13 +37,14 @@ const menuT = menuTexts[lang as keyof typeof menuTexts]
               src={sponsor.logo}
               alt={t['sponsors.altlogo'].replace('{name}', sponsor.name)}
               width={size}
-              height={Math.round(size * 0.6)}
+              height={Math.round(size * 0.7)}
               class="object-contain transition-all duration-300 opacity-90 group-hover:opacity-100"
               style={{
                 background: sponsor.logobg,
                 borderRadius: '0.5rem',
                 padding: '0.5rem',
-                maxHeight: `${Math.round(size * 0.7)}px`,
+                width: `${size}px`,
+                height: `${Math.round(size * 0.7)}px`,
               }}
             />
           </a>

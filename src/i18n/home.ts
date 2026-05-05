@@ -16,7 +16,8 @@ export const texts = {
     'sponsors.altlogo': 'Logo de {name}',
     'cfp.title': 'Llamada a Propuestas',
     'cfp.description':
-      '¡Ya está abierta la llamada a propuestas! Mándanos tu charla o taller antes del 3 de mayo a las 23:59h (hora peninsular). Si te estás preguntando si puedes hacer esto, la respuesta es que sí. Si tienes un tema que te interesa, ¡nos interesa!',
+      '¡Ya está abierta la llamada a propuestas! Mándanos tu charla o taller antes del 17 de mayo a las 23:59h (hora peninsular). Si te estás preguntando si puedes hacer esto, la respuesta es que sí. Si tienes un tema que te interesa, ¡nos interesa!',
+    'cfp.help': 'Si necesitas ayuda con tu propuesta, no dudes en escribirnos a charlas@2026.es.pycon.org',
     'cfp.button': 'Envía tu propuesta',
     'cta.sponsors.title': '¡Buscamos Patrocinadores!',
     'cta.sponsors.description':
@@ -44,7 +45,9 @@ export const texts = {
     'sponsors.altlogo': '{name} logo',
     'cfp.title': 'Call for Proposals',
     'cfp.description':
-      "The call for proposals is now open! Send us your talk or workshop before May 3rd at 23:59 (CET). If you're wondering whether you can do this, the answer is yes. If you have a topic that interests you, it interests us!",
+      "The call for proposals is now open! Send us your talk or workshop before May 17th at 23:59 (CET). If you're wondering whether you can do this, the answer is yes. If you have a topic that interests you, it interests us!",
+    'cfp.help':
+      "If you need help with your proposal, don't hesitate to contact us at charlas@2026.es.pycon.org.",
     'cfp.button': 'Submit your proposal',
     'cta.sponsors.title': 'We Are Looking for Sponsors!',
     'cta.sponsors.description':
@@ -72,7 +75,9 @@ export const texts = {
     'sponsors.altlogo': 'Logo de {name}',
     'cfp.title': 'Crida a Propostes',
     'cfp.description':
-      "Ja està oberta la crida a propostes! Envia'ns la teva xerrada o taller abans del 3 de maig a les 23:59h (hora peninsular). Si t'estàs preguntant si pots fer això, la resposta és que sí. Si tens un tema que t'interessa, ens interessa!",
+      "Ja està oberta la crida a propostes! Envia'ns la teva xerrada o taller abans del 17 de maig a les 23:59h (hora peninsular). Si t'estàs preguntant si pots fer això, la resposta és que sí. Si tens un tema que t'interessa, ens interessa!",
+    'cfp.help':
+      'Si necessites ajuda amb la teva proposta, no dubtis en escriure a charlas@2026.es.pycon.org.',
     'cfp.button': 'Envia la teva proposta',
     'cta.sponsors.title': 'Busquem Patrocinadors!',
     'cta.sponsors.description':

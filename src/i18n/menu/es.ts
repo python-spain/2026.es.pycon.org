@@ -5,12 +5,12 @@ export const es = {
       href: '/',
     },
     {
-      label: 'Sede',
-      href: '/location',
-    },
-    {
       label: 'Información',
       children: [
+        {
+          label: 'Sede',
+          href: '/location',
+        },
         {
           label: 'Dónde alojarse',
           href: '/accommodation',

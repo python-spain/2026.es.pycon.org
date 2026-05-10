@@ -15,10 +15,17 @@ const titles = {
   ca: 'Ofertes de treball | PyConES 2026',
 }
 
+const descriptions = {
+  es: 'Explora las ofertas de trabajo de los patrocinadores de PyConES 2026. Encuentra oportunidades como Python Developer, DevOps Engineer y más.',
+  en: 'Explore job offers from PyConES 2026 sponsors. Find opportunities like Python Developer, DevOps Engineer and more.',
+  ca: 'Explora les ofertes de treball dels patrocinadors de PyConES 2026. Troba oportunitats com Python Developer, DevOps Engineer i més.',
+}
+
 const title = titles[(lang || 'es') as keyof typeof titles]
+const description = descriptions[(lang || 'es') as keyof typeof descriptions]
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description}>
   <div class="grow w-full pt-24">
     <div class="container mx-auto px-4 md:px-8">
       <JobsPage lang={lang || 'es'} />

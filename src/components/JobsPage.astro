@@ -1,5 +1,6 @@
 ---
 import { jobsTexts } from '../i18n/jobs'
+import { menuTexts } from '../i18n/menu'
 
 interface Props {
   lang: string
@@ -20,6 +21,7 @@ interface JobFrontmatter {
 
 const { lang } = Astro.props
 const t = jobsTexts[(lang || 'es') as keyof typeof jobsTexts]
+const menuT = menuTexts[(lang || 'es') as keyof typeof menuTexts]
 
 const esJobs = Object.values(import.meta.glob('../data/jobs/es/*.md', { eager: true })) as { frontmatter: JobFrontmatter }[]
 const enJobs = Object.values(import.meta.glob('../data/jobs/en/*.md', { eager: true })) as { frontmatter: JobFrontmatter }[]
@@ -58,11 +60,10 @@ const isFeatured = (tier?: string) => tier === 'gold' || tier === 'platinum'
     jobs.length === 0 ? (
       <p class="text-pycon-gray-25 text-lg">{t.no_jobs}</p>
     ) : (
-      <section aria-labelledby="jobs-list-heading" class="grid md:grid-cols-2 gap-8">
-        <h2 id="jobs-list-heading" class="sr-only">{t.hero}</h2>
+      <ul class="grid md:grid-cols-2 gap-8 list-none m-0 p-0">
         {jobs.map(({ frontmatter: job }) => (
-          <article class={`flex flex-col bg-pycon-black/40 p-6 rounded-2xl border transition-all motion-safe:hover:-translate-y-2 ${isFeatured(job.tier) ? 'border-pycon-orange/50 hover:border-pycon-orange' : 'border-white/5 hover:border-white/20'}`}>
-            <header class="flex items-start justify-between mb-3">
+          <li class={`flex flex-col bg-pycon-black/40 p-6 rounded-2xl border transition-all motion-safe:hover:-translate-y-2 ${isFeatured(job.tier) ? 'border-pycon-orange/50 hover:border-pycon-orange' : 'border-white/5 hover:border-white/20'}`}>
+            <div class="flex items-start justify-between mb-3">
               <div>
                 <h2 class="text-xl font-bold text-white mb-1">{job.title}</h2>
                 <p class="text-pycon-orange text-lg font-medium">{job.company}</p>
@@ -70,7 +71,7 @@ const isFeatured = (tier?: string) => tier === 'gold' || tier === 'platinum'
               {isFeatured(job.tier) && (
                 <span class="px-3 py-1 bg-pycon-orange/20 text-pycon-orange text-xs font-bold rounded-full uppercase">{t.featured}</span>
               )}
-            </header>
+            </div>
 
             <div class="h-20 mb-3">
               <p class="text-pycon-gray-25 text-base leading-relaxed line-clamp-3">{job.description}</p>
@@ -79,15 +80,15 @@ const isFeatured = (tier?: string) => tier === 'gold' || tier === 'platinum'
             {job.skills && job.skills.length > 0 && (
               <div class="mb-3">
                 <p class="text-sm text-pycon-gray-50 mb-2 uppercase tracking-wide">{t.skills}</p>
-                <div class="flex flex-wrap gap-2">
+                <ul class="flex flex-wrap gap-2 list-none m-0 p-0" aria-label={t.skills}>
                   {job.skills.map((skill) => (
-                    <span class="px-3 py-1.5 bg-gradient-to-r from-pycon-orange/30 to-pycon-yellow/20 text-white text-sm rounded-full border border-pycon-orange/30">{skill}</span>
+                    <li><span class="px-3 py-1.5 bg-gradient-to-r from-pycon-orange/30 to-pycon-yellow/20 text-white text-sm rounded-full border border-pycon-orange/30">{skill}</span></li>
                   ))}
-                </div>
+                </ul>
               </div>
             )}
 
-            <footer class="mt-auto">
+            <div class="mt-auto">
               <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-base text-pycon-gray-50 mb-4">
                 <div class="flex items-center gap-2">
                   <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -100,16 +101,16 @@ const isFeatured = (tier?: string) => tier === 'gold' || tier === 'platinum'
                 {job.salary && <span class="text-pycon-yellow">{job.salary}</span>}
               </div>
 
-              <a href={job.apply_url} target="_blank" rel="noopener noreferrer" aria-label={`${job.title} en ${job.company} ${t.apply} ${t.location}: ${job.location}`} class="inline-flex items-center gap-2 px-4 py-2 bg-pycon-orange text-white font-bold rounded-lg hover:bg-white hover:text-pycon-orange transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-orange">
+              <a href={job.apply_url} target="_blank" rel="noopener noreferrer" aria-label={`${job.title} en ${job.company} ${t.apply} ${t.location}: ${job.location} ${menuT.new_tab}`} class="inline-flex items-center gap-2 px-4 py-2 bg-pycon-orange text-white font-bold rounded-lg hover:bg-white hover:text-pycon-orange transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-orange">
                 {t.apply}
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
-            </footer>
-          </article>
+            </div>
+          </li>
         ))}
-      </section>
+      </ul>
     )
   }
 </div>

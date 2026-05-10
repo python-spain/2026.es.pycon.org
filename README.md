@@ -96,4 +96,3 @@ Deployment is manual and triggered from GitHub Actions:
 3. Click **Run workflow**
 
 The site is deployed to GitHub Pages at `https://2026.es.pycon.org/`.
-

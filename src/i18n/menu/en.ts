@@ -9,12 +9,17 @@ export const en = {
       href: '/location',
     },
     {
-      label: 'Where to stay',
-      href: '/accommodation',
-    },
-    {
-      label: 'Teams',
-      href: '/teams',
+      label: 'Information',
+      children: [
+        {
+          label: 'Where to stay',
+          href: '/accommodation',
+        },
+        {
+          label: 'Teams',
+          href: '/teams',
+        },
+      ],
     },
     {
       label: 'Diversity and Inclusion',

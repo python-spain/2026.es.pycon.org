@@ -9,12 +9,17 @@ export const ca = {
       href: '/location',
     },
     {
-      label: 'On allotjar-se',
-      href: '/accommodation',
-    },
-    {
-      label: 'Equips',
-      href: '/teams',
+      label: 'Informació',
+      children: [
+        {
+          label: 'On allotjar-se',
+          href: '/accommodation',
+        },
+        {
+          label: 'Equips',
+          href: '/teams',
+        },
+      ],
     },
     {
       label: 'Diversitat i Inclusió',

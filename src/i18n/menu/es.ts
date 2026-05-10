@@ -9,12 +9,17 @@ export const es = {
       href: '/location',
     },
     {
-      label: 'Dónde alojarse',
-      href: '/accommodation',
-    },
-    {
-      label: 'Equipos',
-      href: '/teams',
+      label: 'Información',
+      children: [
+        {
+          label: 'Dónde alojarse',
+          href: '/accommodation',
+        },
+        {
+          label: 'Equipos',
+          href: '/teams',
+        },
+      ],
     },
     {
       label: 'Diversidad e Inclusión',

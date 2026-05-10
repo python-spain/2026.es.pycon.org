@@ -17,13 +17,12 @@ const teams = (
 
 <div class="teams-container pb-20">
   <section class="mb-12" aria-labelledby="teams-heading">
-    <h1 id="teams-heading" class="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">
+    <h2 id="teams-heading" class="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">
       {t.hero}
-    </h1>
+    </h2>
   </section>
 
   <section aria-labelledby="teams-list-heading">
-    <h2 id="teams-list-heading" class="sr-only">{t.hero}</h2>
     <ul role="list" class="grid md:grid-cols-2 gap-8 list-none m-0 p-0">
       {
         teams.map(({ frontmatter: team }) => (

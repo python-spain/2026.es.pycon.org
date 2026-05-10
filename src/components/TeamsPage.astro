@@ -17,9 +17,9 @@ const teams = (
 
 <div class="teams-container pb-20">
   <section class="mb-12" aria-labelledby="teams-heading">
-    <h2 id="teams-heading" class="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">
+    <h1 id="teams-heading" class="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">
       {t.hero}
-    </h2>
+    </h1>
   </section>
 
   <section aria-labelledby="teams-list-heading">
@@ -27,7 +27,7 @@ const teams = (
       {
         teams.map(({ frontmatter: team }) => (
           <li class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all motion-safe:hover:-translate-y-2">
-            <h3 class="text-xl font-bold text-pycon-orange mb-3">{team.name}</h3>
+            <h2 class="text-xl font-bold text-pycon-orange mb-3">{team.name}</h2>
             <p class="text-pycon-gray-25 text-sm leading-relaxed mb-6">{team.description}</p>
             <a
               href={`mailto:${team.contact}`}

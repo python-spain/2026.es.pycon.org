@@ -1,0 +1,87 @@
+---
+import { teamsTexts } from '../i18n/teams'
+
+interface Props {
+  lang: string
+}
+
+const { lang } = Astro.props
+const t = teamsTexts[(lang || 'es') as keyof typeof teamsTexts]
+
+const teams = (
+  Object.values(import.meta.glob('../data/teams/*.md', { eager: true })) as {
+    frontmatter: { name: string; description: string; contact: string }
+  }[]
+).sort((a, b) => a.frontmatter.name.localeCompare(b.frontmatter.name))
+---
+
+<div class="teams-container pb-20">
+  <section class="mb-12" aria-labelledby="teams-heading">
+    <h1
+      id="teams-heading"
+      class="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter"
+    >
+      {t.hero}
+    </h1>
+  </section>
+
+  <section aria-labelledby="teams-list-heading">
+    <h2 id="teams-list-heading" class="sr-only">{t.hero}</h2>
+    <ul role="list" class="grid md:grid-cols-2 gap-8 list-none m-0 p-0">
+      {
+        teams.map(({ frontmatter: team }) => (
+          <li class="bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all motion-safe:hover:-translate-y-2">
+            <h3 class="text-xl font-bold text-pycon-orange mb-3">{team.name}</h3>
+            <p class="text-pycon-gray-25 text-sm leading-relaxed mb-6">{team.description}</p>
+            <a
+              href={`mailto:${team.contact}`}
+              aria-label={`${t.contact} ${team.name}: ${team.contact}`}
+              class="inline-flex items-center gap-2 text-sm text-pycon-yellow hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow rounded"
+            >
+              <svg
+                class="w-4 h-4 shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              <span aria-hidden="true">
+                {t.contact}: {team.contact}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</div>
+
+<style>
+  .teams-container {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .teams-container {
+      animation: none;
+    }
+  }
+</style>

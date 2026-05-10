@@ -13,6 +13,10 @@ export const ca = {
       href: '/accommodation',
     },
     {
+      label: 'Equips',
+      href: '/teams',
+    },
+    {
       label: 'Diversitat i Inclusió',
       children: [
         {

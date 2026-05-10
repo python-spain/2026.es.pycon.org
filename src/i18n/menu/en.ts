@@ -13,6 +13,10 @@ export const en = {
       href: '/accommodation',
     },
     {
+      label: 'Teams',
+      href: '/teams',
+    },
+    {
       label: 'Diversity and Inclusion',
       children: [
         {

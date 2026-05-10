@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import TeamsPage from '../../components/TeamsPage.astro'
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }, { params: { lang: 'ca' } }]
+}
+
+const { lang } = Astro.params
+
+const titles = {
+  es: 'Equipos | PyConES 2026',
+  en: 'Teams | PyConES 2026',
+  ca: 'Equips | PyConES 2026',
+}
+
+const title = titles[(lang || 'es') as keyof typeof titles]
+---
+
+<Layout title={title}>
+  <div class="grow w-full pt-24">
+    <div class="container mx-auto px-4 md:px-8">
+      <TeamsPage lang={lang || 'es'} />
+    </div>
+  </div>
+</Layout>

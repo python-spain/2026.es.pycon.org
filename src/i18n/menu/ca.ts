@@ -56,6 +56,10 @@ export const ca = {
       ],
     },
     {
+      label: 'Ofertes de treball',
+      href: '/jobs',
+    },
+    {
       label: 'Edicions Anteriors',
       children: [
         {

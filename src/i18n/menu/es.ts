@@ -56,6 +56,10 @@ export const es = {
       ],
     },
     {
+      label: 'Ofertas de trabajo',
+      href: '/jobs',
+    },
+    {
       label: 'Ediciones Anteriores',
       children: [
         {

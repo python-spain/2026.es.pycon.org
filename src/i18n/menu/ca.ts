@@ -53,11 +53,11 @@ export const ca = {
           label: 'Paquets de patrocini',
           href: '/sponsors#tiers',
         },
+        {
+          label: 'Ofertes de treball',
+          href: '/jobs',
+        },
       ],
-    },
-    {
-      label: 'Ofertes de treball',
-      href: '/jobs',
     },
     {
       label: 'Edicions Anteriors',

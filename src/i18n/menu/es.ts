@@ -53,11 +53,11 @@ export const es = {
           label: 'Paquetes de patrocinio',
           href: '/sponsors#tiers',
         },
+        {
+          label: 'Ofertas de trabajo',
+          href: '/jobs',
+        },
       ],
-    },
-    {
-      label: 'Ofertas de trabajo',
-      href: '/jobs',
     },
     {
       label: 'Ediciones Anteriores',

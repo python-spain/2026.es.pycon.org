@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 import JobsPage from '../../components/JobsPage.astro'
-import { jobsTexts } from '../../i18n/jobs'
 
 export function getStaticPaths() {
   return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }, { params: { lang: 'ca' } }]

@@ -53,11 +53,11 @@ export const en = {
           label: 'Sponsorship Packages',
           href: '/sponsors#tiers',
         },
+        {
+          label: 'Job offers',
+          href: '/jobs',
+        },
       ],
-    },
-    {
-      label: 'Job offers',
-      href: '/jobs',
     },
     {
       label: 'Past Editions',

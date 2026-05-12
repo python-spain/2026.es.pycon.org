@@ -5,12 +5,21 @@ export const es = {
       href: '/',
     },
     {
-      label: 'Sede',
-      href: '/location',
-    },
-    {
-      label: 'Dónde alojarse',
-      href: '/accommodation',
+      label: 'Información',
+      children: [
+        {
+          label: 'Sede',
+          href: '/location',
+        },
+        {
+          label: 'Dónde alojarse',
+          href: '/accommodation',
+        },
+        {
+          label: 'Equipos',
+          href: '/teams',
+        },
+      ],
     },
     {
       label: 'Diversidad e Inclusión',

@@ -61,16 +61,7 @@ export const es = {
     },
     {
       label: 'Ediciones Anteriores',
-      children: [
-        {
-          label: '2025 (Sevilla)',
-          href: 'https://2025.es.pycon.org',
-        },
-        {
-          label: '2024 (Vigo)',
-          href: 'https://2024.es.pycon.org',
-        },
-      ],
+      href: '/past-editions',
     },
   ],
   new_tab: '(se abre en nueva pestaña)',

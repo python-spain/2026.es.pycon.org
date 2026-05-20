@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import PastEditionsPage from '../../components/PastEditionsPage.astro'
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }, { params: { lang: 'ca' } }]
+}
+
+const { lang } = Astro.params
+
+const titles = {
+  es: 'Ediciones Anteriores | PyConES 2026',
+  en: 'Past Editions | PyConES 2026',
+  ca: 'Edicions Anteriors | PyConES 2026',
+}
+
+const title = titles[(lang || 'es') as keyof typeof titles]
+---
+
+<Layout title={title}>
+  <div class="grow w-full pt-24">
+    <div class="container mx-auto px-4 md:px-8">
+      <PastEditionsPage lang={lang || 'es'} />
+    </div>
+  </div>
+</Layout>

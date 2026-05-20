@@ -240,7 +240,7 @@ export const es = {
         emoji: '⚪',
         iconName: 'silver',
         price: 'Precio 3.000€',
-        limit: '10 disp.',
+        limit: '9 disp.',
         bg: 'rgba(107, 114, 128, 0.1)',
       },
       {
@@ -249,7 +249,7 @@ export const es = {
         emoji: '🌟',
         iconName: 'gold',
         price: 'Precio 6.000€',
-        limit: '5 disp.',
+        limit: '2 disp.',
         bg: 'rgba(234, 179, 8, 0.1)',
       },
       {
@@ -267,7 +267,7 @@ export const es = {
         emoji: '🏰',
         iconName: 'main',
         price: 'Precio Personalizado',
-        limit: '1 disp.',
+        limit: '0 disp.',
         bg: 'rgba(168, 85, 247, 0.1)',
       },
     ],
@@ -279,7 +279,7 @@ export const es = {
       {
         category: '🔢 Disponibilidad',
         rows: [
-          { label: 'Número límite', data: ['Ilimitado', '10', '6', '3', '1'] },
+          { label: 'Número límite', data: ['Ilimitado', '9', '2', '2', '0'] },
           { label: 'Papeleo extra', data: ['🚫', '🚫', '🚫', '✅', '✅'] },
         ],
       },

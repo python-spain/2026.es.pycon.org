@@ -220,7 +220,7 @@ export const ca = {
         emoji: '⚪',
         iconName: 'silver',
         price: 'Preu 3.000€',
-        limit: '10 disp.',
+        limit: '9 disp.',
         bg: 'rgba(107, 114, 128, 0.1)',
       },
       {
@@ -229,7 +229,7 @@ export const ca = {
         emoji: '🌟',
         iconName: 'gold',
         price: 'Preu 6.000€',
-        limit: '5 disp.',
+        limit: '2 disp.',
         bg: 'rgba(234, 179, 8, 0.1)',
       },
       {
@@ -247,7 +247,7 @@ export const ca = {
         emoji: '🏰',
         iconName: 'main',
         price: 'Preu Personalitzat',
-        limit: '1 disp.',
+        limit: '0 disp.',
         bg: 'rgba(168, 85, 247, 0.1)',
       },
     ],

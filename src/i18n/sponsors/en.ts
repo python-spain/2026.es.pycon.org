@@ -224,7 +224,7 @@ export const en = {
         emoji: '⚪',
         iconName: 'silver',
         price: 'Price €3,000',
-        limit: '10 avail.',
+        limit: '9 avail.',
         bg: 'rgba(107, 114, 128, 0.1)',
       },
       {
@@ -233,7 +233,7 @@ export const en = {
         emoji: '🌟',
         iconName: 'gold',
         price: 'Price €6,000',
-        limit: '5 avail.',
+        limit: '2 avail.',
         bg: 'rgba(234, 179, 8, 0.1)',
       },
       {
@@ -251,7 +251,7 @@ export const en = {
         emoji: '🏰',
         iconName: 'main',
         price: 'Price Custom',
-        limit: '1 avail.',
+        limit: '0 avail.',
         bg: 'rgba(168, 85, 247, 0.1)',
       },
     ],

@@ -27,6 +27,11 @@ export const texts = {
     'cta.reviewers.description':
       'Buscamos personas que nos ayuden a revisar las propuestas que recibamos. Tu experiencia y criterio son clave para garantizar la calidad del programa. Si querés colaborar con la organización y ayudar a seleccionar las mejores charlas y talleres, ¡necesitamos tu ayuda!',
     'cta.reviewers.button': 'Quiero ser revisor/a',
+    'tickets.title': '🎟️ Entradas',
+    'tickets.earlybird.label': 'Early Bird',
+    'tickets.earlybird.date': '5 de junio',
+    'tickets.general.label': 'Venta General',
+    'tickets.general.date': '19 de junio',
   },
   en: {
     'index.initializing': 'Initialising system...',
@@ -57,6 +62,11 @@ export const texts = {
     'cta.reviewers.description':
       'We are looking for people to help us review the proposals we receive. Your experience and judgement are key to ensuring the quality of the programme. If you want to collaborate with the organisation and help select the best talks and workshops, we need your help!',
     'cta.reviewers.button': 'I want to be a reviewer',
+    'tickets.title': '🎟️ Tickets',
+    'tickets.earlybird.label': 'Early Bird',
+    'tickets.earlybird.date': 'June 5',
+    'tickets.general.label': 'General Sale',
+    'tickets.general.date': 'June 19',
   },
   ca: {
     'index.initializing': 'Inicialitzant sistema...',
@@ -87,5 +97,10 @@ export const texts = {
     'cta.reviewers.description':
       "Busquem persones que ens ajudin a revisar les propostes que rebem. La teva experiència i criteri són clau per garantir la qualitat del programa. Si vols col·laborar amb l'organització i ajudar a seleccionar les millors xerrades i tallers, necessitem la teva ajuda!",
     'cta.reviewers.button': 'Vull ser revisor/a',
+    'tickets.title': '🎟️ Entrades',
+    'tickets.earlybird.label': 'Early Bird',
+    'tickets.earlybird.date': '5 de juny',
+    'tickets.general.label': 'Venda General',
+    'tickets.general.date': '19 de juny',
   },
 } as const

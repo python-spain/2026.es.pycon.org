@@ -1,0 +1,78 @@
+---
+import { texts } from '@/i18n/home'
+
+interface Props {
+  lang: string
+}
+
+const { lang } = Astro.props
+const t = texts[lang as keyof typeof texts]
+
+const dates = [
+  {
+    emoji: '🎫',
+    label: t['tickets.earlybird.label'],
+    date: t['tickets.earlybird.date'],
+    accentBg: 'bg-pycon-orange/10',
+    accentBorder: 'border-pycon-orange/25',
+    accentText: 'text-pycon-orange',
+    bar: 'bg-pycon-orange',
+  },
+  {
+    emoji: '🎟️',
+    label: t['tickets.general.label'],
+    date: t['tickets.general.date'],
+    accentBg: 'bg-amber-400/10',
+    accentBorder: 'border-amber-400/25',
+    accentText: 'text-amber-400',
+    bar: 'bg-amber-400',
+  },
+]
+---
+
+<section aria-labelledby="tickets-heading">
+  <div class="relative rounded-2xl border border-white/10 overflow-hidden">
+    {/* Gradient accent bar at top — visual separator */}
+    <div
+      class="h-1.5 w-full bg-gradient-to-r from-pycon-orange via-amber-400 to-pycon-yellow"
+      aria-hidden="true"
+    >
+    </div>
+
+    {/* Background gradient — different from glassmorphism CTAs */}
+    <div
+      class="bg-gradient-to-b from-pycon-orange/5 via-amber-400/[0.04] to-transparent px-6 py-10 md:px-10 md:py-12"
+    >
+      <div class="flex flex-col items-center gap-2 text-center">
+        <span class="text-3xl" aria-hidden="true">🎟️</span>
+        <h2 id="tickets-heading" class="text-xl md:text-2xl font-bold text-pycon-white">
+          {t['tickets.title']}
+        </h2>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+        {
+          dates.map((d) => (
+            <div
+              class:list={[
+                'flex flex-col items-center gap-2 rounded-xl border p-5 text-center',
+                d.accentBg,
+                d.accentBorder,
+              ]}
+            >
+              <span class="text-3xl" aria-hidden="true">
+                {d.emoji}
+              </span>
+              <span class="text-xs uppercase tracking-widest font-semibold text-pycon-gray-25">
+                {d.label}
+              </span>
+              <span class={['text-2xl md:text-3xl font-bold leading-tight', d.accentText].join(' ')}>
+                {d.date}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,81 @@
+---
+import { pastEditionsTexts } from '../i18n/past-editions'
+import { menuTexts } from '../i18n/menu'
+
+interface Props {
+  lang: string
+}
+
+const { lang } = Astro.props
+const t = pastEditionsTexts[(lang || 'es') as keyof typeof pastEditionsTexts]
+const menuT = menuTexts[(lang || 'es') as keyof typeof menuTexts]
+---
+
+<div class="past-editions-container pb-20">
+  <section class="mb-12" aria-labelledby="past-editions-heading">
+    <h1
+      id="past-editions-heading"
+      class="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter"
+    >
+      {t.hero}
+    </h1>
+  </section>
+
+  <section aria-labelledby="editions-list-heading">
+    <h2 id="editions-list-heading" class="sr-only">{t.hero}</h2>
+    <ul
+      role="list"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 list-none m-0 p-0"
+    >
+      {
+        t.editions.map((edition) => (
+          <li class="bg-pycon-black/40 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all motion-safe:hover:-translate-y-2 overflow-hidden">
+            <a
+              href={edition.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`PyConES ${edition.year} - ${edition.city} ${menuT.new_tab}`}
+              class="block group"
+            >
+              <div class="aspect-square bg-pycon-gray-100/20 flex items-center justify-center p-6">
+                <img
+                  src={edition.image}
+                  alt={`PyConES ${edition.year} - ${edition.city}`}
+                  class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-4 text-center">
+                <p class="text-pycon-orange font-bold text-lg">PyConES {edition.year}</p>
+                <p class="text-pycon-gray-25 text-sm">{edition.city}</p>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</div>
+
+<style>
+  .past-editions-container {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .past-editions-container {
+      animation: none;
+    }
+  }
+</style>

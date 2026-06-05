@@ -18,3 +18,5 @@ dist/
 *.local
 
 .claude
+.agents/
+skills-lock.json

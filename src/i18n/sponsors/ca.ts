@@ -171,7 +171,6 @@ export const ca = {
       { name: 'Raiola Networks', editions: 1, logo: '/sponsors/raiola.png' },
       { name: 'Perk', editions: 1, logo: '/sponsors/perk.svg' },
       { name: 'Brite', editions: 1, logo: '/sponsors/logo-brite.svg' },
-      { name: 'Inditex Tech', editions: 1, logo: '/sponsors/logo-inditex-tech.avif' },
       { name: 'Fever', editions: 1, logo: '/sponsors/fever.png' },
       { name: 'Kiwi.com', editions: 1, logo: '/sponsors/kiwi.png' },
       { name: 'NIQ', editions: 1, logo: '/sponsors/NIQ.png' },

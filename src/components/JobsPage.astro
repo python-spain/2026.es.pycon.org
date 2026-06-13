@@ -83,8 +83,8 @@ const isFeatured = (tier?: string) => tier === 'gold' || tier === 'platinum'
               )}
             </div>
 
-            <div class="h-20 mb-3">
-              <p class="text-pycon-gray-25 text-base leading-relaxed line-clamp-3">{job.description}</p>
+            <div class="mb-3">
+              <p class="text-pycon-gray-25 text-base leading-relaxed line-clamp-5">{job.description}</p>
             </div>
 
             {job.skills && job.skills.length > 0 && (
@@ -159,13 +159,6 @@ const isFeatured = (tier?: string) => tier === 'gold' || tier === 'platinum'
 <style>
   .jobs-container {
     animation: fadeIn 0.8s ease-out;
-  }
-
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   @keyframes fadeIn {

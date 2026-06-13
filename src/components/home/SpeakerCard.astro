@@ -1,0 +1,80 @@
+---
+import { Globe } from '@lucide/astro'
+import type { ISpeaker, ISpeakerLink } from '../../types/speakers'
+import { texts } from '../../i18n/home'
+import { menuTexts } from '../../i18n/menu'
+import SocialIcon from '../icons/SocialIcon.astro'
+
+interface Props {
+  speaker: ISpeaker
+  lang: string
+}
+
+const { speaker, lang } = Astro.props
+const t = texts[lang as keyof typeof texts]
+const menuT = menuTexts[lang as keyof typeof menuTexts]
+
+const altPhoto = t['speakers.altphoto'].replace('{name}', speaker.name)
+
+function ariaForLink(link: ISpeakerLink, name: string): string {
+  const key = `speakers.aria_${link.type}` as
+    | 'speakers.aria_github'
+    | 'speakers.aria_linkedin'
+    | 'speakers.aria_instagram'
+    | 'speakers.aria_website'
+  const label = t[key] ?? link.type
+  return `${label.replace('{name}', name)} ${menuT.new_tab}`
+}
+
+const linkClasses =
+  'inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.08] hover:border-white/[0.15] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow transition-colors'
+---
+
+<article
+  class="h-full bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all motion-safe:hover:-translate-y-2 flex flex-col items-center text-center"
+>
+  <img
+    src={speaker.photo}
+    alt={altPhoto}
+    width="160"
+    height="160"
+    loading="lazy"
+    class="rounded-full w-40 h-40 object-cover border-2 border-pycon-orange/30 mb-6"
+  />
+
+  <h3 class="text-xl font-bold text-pycon-orange mb-4">{speaker.name}</h3>
+
+  <ul role="list" class="flex items-center gap-3 list-none m-0 p-0 mb-4">
+    {
+      speaker.links.map((link) => (
+        <li>
+          {link.type === 'website' ? (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={ariaForLink(link, speaker.name)}
+              class={linkClasses}
+            >
+              <Globe class="w-5 h-5" aria-hidden="true" />
+            </a>
+          ) : (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={ariaForLink(link, speaker.name)}
+              class={linkClasses}
+            >
+              <SocialIcon platform={link.type} size="md" aria-hidden="true" />
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="text-sm leading-relaxed text-pycon-gray-25 whitespace-pre-line text-justify">
+    {speaker.description}
+  </p>
+</article>

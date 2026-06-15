@@ -44,7 +44,10 @@ const linkClasses =
 
   <h3 class="text-xl font-bold text-pycon-orange mb-4">{speaker.name}</h3>
 
-  <ul role="list" class="flex items-center gap-3 list-none m-0 p-0 mb-4">
+  <ul
+    aria-label={t['speakers.aria_social_links'].replace('{name}', speaker.name)}
+    class="flex items-center gap-3 list-none m-0 p-0 mb-4"
+  >
     {
       speaker.links.map((link) => (
         <li>
@@ -56,7 +59,7 @@ const linkClasses =
               aria-label={ariaForLink(link, speaker.name)}
               class={linkClasses}
             >
-              <Globe class="w-5 h-5" aria-hidden="true" />
+              <Globe class="w-5 h-5" aria-hidden="true" focusable="false" />
             </a>
           ) : (
             <a

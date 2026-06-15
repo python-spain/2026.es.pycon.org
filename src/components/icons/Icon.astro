@@ -45,15 +45,16 @@ if (!LucideIconComponent && !fallback) {
     <LucideIconComponent
       class={classes}
       style={style}
-      aria-label={ariaLabel}
+      aria-label={ariaHidden ? undefined : ariaLabel}
       aria-hidden={ariaHidden ? 'true' : undefined}
+      focusable="false"
       {...rest}
     />
   ) : fallback ? (
     <span
       class={`${sizeClasses} ${className} inline-flex items-center justify-center`}
       style={style}
-      aria-label={ariaLabel}
+      aria-label={ariaHidden ? undefined : ariaLabel}
       aria-hidden={ariaHidden ? 'true' : undefined}
       {...rest}
     >
@@ -63,8 +64,9 @@ if (!LucideIconComponent && !fallback) {
     <CircleAlert
       class={classes}
       style={style}
-      aria-label={ariaLabel || `Unknown icon: ${name}`}
+      aria-label={ariaHidden ? undefined : ariaLabel || `Unknown icon: ${name}`}
       aria-hidden={ariaHidden ? 'true' : undefined}
+      focusable="false"
       {...rest}
     />
   )

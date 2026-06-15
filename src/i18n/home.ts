@@ -32,6 +32,7 @@ export const texts = {
     'speakers.aria_linkedin': 'LinkedIn de {name}',
     'speakers.aria_instagram': 'Instagram de {name}',
     'speakers.aria_website': 'Sitio web de {name}',
+    'speakers.aria_social_links': 'Enlaces sociales de {name}',
   },
   en: {
     'index.initializing': 'Initialising system...',
@@ -67,6 +68,7 @@ export const texts = {
     'speakers.aria_linkedin': '{name} on LinkedIn',
     'speakers.aria_instagram': '{name} on Instagram',
     'speakers.aria_website': "{name}'s website",
+    'speakers.aria_social_links': "{name}'s social links",
   },
   ca: {
     'index.initializing': 'Inicialitzant sistema...',
@@ -102,5 +104,6 @@ export const texts = {
     'speakers.aria_linkedin': 'LinkedIn de {name}',
     'speakers.aria_instagram': 'Instagram de {name}',
     'speakers.aria_website': 'Lloc web de {name}',
+    'speakers.aria_social_links': 'Enllaços socials de {name}',
   },
 } as const

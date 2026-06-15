@@ -25,7 +25,7 @@ const sortedSpeakers = speakers.map((s) => s.frontmatter).sort((a, b) => a.order
       <SectionTitle title={t['speakers.title']} />
       <CenteredPanel text={t['speakers.description']} />
 
-      <ul role="list" class="w-full grid gap-8 md:grid-cols-2 lg:grid-cols-3 list-none m-0 p-0 mt-4">
+      <ul class="w-full grid gap-8 md:grid-cols-2 lg:grid-cols-3 list-none m-0 p-0 mt-4">
         {sortedSpeakers.map((speaker) => (
           <li>
             <SpeakerCard speaker={speaker} lang={lang} />

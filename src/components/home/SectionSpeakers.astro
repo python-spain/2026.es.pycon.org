@@ -1,0 +1,37 @@
+---
+import { texts } from '@/i18n/home'
+import SectionTitle from '../SectionTitle.astro'
+import CenteredPanel from '../CenteredPanel.astro'
+import type { ISpeaker } from '../../types/speakers'
+import SpeakerCard from './SpeakerCard.astro'
+
+const speakers = Object.values(import.meta.glob('../../data/speakers/*.md', { eager: true })) as {
+  frontmatter: ISpeaker
+}[]
+
+interface Props {
+  lang: string
+}
+
+const { lang } = Astro.props
+const t = texts[lang as keyof typeof texts]
+
+const sortedSpeakers = speakers.map((s) => s.frontmatter).sort((a, b) => a.order - b.order)
+---
+
+{
+  sortedSpeakers.length > 0 && (
+    <div class="flex flex-col items-center gap-6">
+      <SectionTitle title={t['speakers.title']} />
+      <CenteredPanel text={t['speakers.description']} />
+
+      <ul class="w-full grid gap-8 md:grid-cols-2 lg:grid-cols-3 list-none m-0 p-0 mt-4">
+        {sortedSpeakers.map((speaker) => (
+          <li>
+            <SpeakerCard speaker={speaker} lang={lang} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}

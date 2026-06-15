@@ -1,0 +1,13 @@
+---
+name: 'Ada Lovelace'
+order: 1
+photo: '/speakers/ada-lovelace.webp'
+links:
+  - type: 'github'
+    url: 'https://github.com/ada-lovelace'
+  - type: 'linkedin'
+    url: 'https://linkedin.com/in/ada-lovelace'
+  - type: 'website'
+    url: 'https://ada-lovelace.dev'
+description: Pionera de la computación y primera programadora de la historia. Trabajó con Charles Babbage en la Máquina Analítica y escribió lo que se considera el primer algoritmo destinado a ser procesado por una máquina. Su visión de las computadoras como herramientas capaces de manipular símbolos, música y texto anticipó por más de un siglo los usos modernos de la informática.
+---

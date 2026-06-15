@@ -24,6 +24,15 @@ export const texts = {
     'earlybird.description':
       'La venta de entradas con descuento Early Bird ya ha comenzado. ¡No te pierdas esta oportunidad única de aprender, conectar y crecer en la comunidad Python!',
     'earlybird.button': 'Comprar entradas',
+    'speakers.title': 'Oradores plenarios',
+    'speakers.description':
+      'Las voces más relevantes de la comunidad Python compartirán su visión y experiencia en la PyConES 2026. Descubre a las personas que protagonizarán las charlas plenarias de esta edición.',
+    'speakers.altphoto': 'Foto de {name}',
+    'speakers.aria_github': 'GitHub de {name}',
+    'speakers.aria_linkedin': 'LinkedIn de {name}',
+    'speakers.aria_instagram': 'Instagram de {name}',
+    'speakers.aria_website': 'Sitio web de {name}',
+    'speakers.aria_social_links': 'Enlaces sociales de {name}',
   },
   en: {
     'index.initializing': 'Initialising system...',
@@ -51,6 +60,15 @@ export const texts = {
     'earlybird.description':
       'Early Bird discounted tickets are now on sale. Do not miss this unique opportunity to learn, connect, and grow in the Python community!',
     'earlybird.button': 'Buy tickets',
+    'speakers.title': 'Plenary Speakers',
+    'speakers.description':
+      'The most relevant voices in the Python community will share their vision and experience at PyConES 2026. Meet the people headlining the plenary talks of this edition.',
+    'speakers.altphoto': 'Photo of {name}',
+    'speakers.aria_github': '{name} on GitHub',
+    'speakers.aria_linkedin': '{name} on LinkedIn',
+    'speakers.aria_instagram': '{name} on Instagram',
+    'speakers.aria_website': "{name}'s website",
+    'speakers.aria_social_links': "{name}'s social links",
   },
   ca: {
     'index.initializing': 'Inicialitzant sistema...',
@@ -78,5 +96,14 @@ export const texts = {
     'earlybird.description':
       "La venda d'entrades amb descompte Early Bird ja ha començat. No et perdis aquesta oportunitat única d'aprendre, connectar i créixer en la comunitat Python!",
     'earlybird.button': 'Comprar entrades',
+    'speakers.title': 'Ponents plenaris',
+    'speakers.description':
+      'Les veus més rellevants de la comunitat Python compartiran la seva visió i experiència a la PyConES 2026. Descobreix les persones que protagonitzaran les xerrades plenàries d’aquesta edició.',
+    'speakers.altphoto': 'Foto de {name}',
+    'speakers.aria_github': 'GitHub de {name}',
+    'speakers.aria_linkedin': 'LinkedIn de {name}',
+    'speakers.aria_instagram': 'Instagram de {name}',
+    'speakers.aria_website': 'Lloc web de {name}',
+    'speakers.aria_social_links': 'Enllaços socials de {name}',
   },
 } as const

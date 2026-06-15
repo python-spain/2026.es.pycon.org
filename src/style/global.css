@@ -96,6 +96,9 @@ html {
 
   --color-tier-bronze: var(--color-pycon-gray);
   --color-contrast-tier-bronze: #ffffff;
+
+  --color-tier-community: #4a6fa5;
+  --color-contrast-tier-community: #ffffff;
 }
 
 @layer base {

@@ -1,4 +1,4 @@
-export type TSponsorTier = 'bronze' | 'silver' | 'gold' | 'platinum' | 'main'
+export type TSponsorTier = 'bronze' | 'silver' | 'gold' | 'platinum' | 'main' | 'community'
 
 export interface ISponsor {
   name: string

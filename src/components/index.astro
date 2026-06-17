@@ -2,7 +2,7 @@
 import Layout from '@/layouts/Layout.astro'
 import SectionMain from './home/SectionMain.astro'
 import SectionSpeakers from './home/SectionSpeakers.astro'
-// import SectionEarlyBird from './home/SectionEarlyBird.astro'
+import SectionEarlyBird from './home/SectionEarlyBird.astro'
 import SectionSponsors from './home/SectionSponsors.astro'
 
 interface Props {
@@ -16,7 +16,7 @@ const { lang } = Astro.props
   <div class="flex flex-col gap-20">
     <SectionMain lang={lang} />
     <SectionSpeakers lang={lang} />
-    <!-- <SectionEarlyBird lang={lang} /> -->
+    <SectionEarlyBird lang={lang} />
     <SectionSponsors lang={lang} />
   </div>
 </Layout>

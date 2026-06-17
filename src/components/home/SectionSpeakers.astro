@@ -17,15 +17,22 @@ const { lang } = Astro.props
 const t = texts[lang as keyof typeof texts]
 
 const sortedSpeakers = speakers.map((s) => s.frontmatter).sort((a, b) => a.order - b.order)
+
+const count = sortedSpeakers.length
+const gridByCount: Record<number, string> = {
+  1: 'grid-cols-1 max-w-md mx-auto',
+  2: 'grid-cols-1 sm:grid-cols-2 max-w-3xl mx-auto',
+}
+const gridClasses = gridByCount[count] ?? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
 ---
 
 {
   sortedSpeakers.length > 0 && (
-    <div class="flex flex-col items-center gap-6">
+    <div class="flex flex-col items-center gap-6 my-24">
       <SectionTitle title={t['speakers.title']} />
       <CenteredPanel text={t['speakers.description']} />
 
-      <ul class="w-full grid gap-8 md:grid-cols-2 lg:grid-cols-3 list-none m-0 p-0 mt-4">
+      <ul class={`w-full grid gap-8 list-none m-0 p-0 mt-4 ${gridClasses}`}>
         {sortedSpeakers.map((speaker) => (
           <li>
             <SpeakerCard speaker={speaker} lang={lang} />

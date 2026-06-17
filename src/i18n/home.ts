@@ -20,9 +20,9 @@ export const texts = {
       '¡Ya está abierta la llamada a propuestas! Mándanos tu charla o taller antes del 17 de mayo a las 23:59h (hora peninsular). Si te estás preguntando si puedes hacer esto, la respuesta es que sí. Si tienes un tema que te interesa, ¡nos interesa!',
     'cfp.help': 'Si necesitas ayuda con tu propuesta, no dudes en escribirnos a charlas@2026.es.pycon.org',
     'cfp.button': 'Envía tu propuesta',
-    'earlybird.title': '¡Entradas Early Bird disponibles!',
-    'earlybird.description':
-      'La venta de entradas con descuento Early Bird ya ha comenzado. ¡No te pierdas esta oportunidad única de aprender, conectar y crecer en la comunidad Python!',
+    'tickets.title': '¡Entradas disponibles!',
+    'tickets.description':
+      'La venta de entradas generales ya ha comenzado. ¡No te pierdas esta oportunidad única de aprender, conectar y crecer en la comunidad Python!',
     'earlybird.button': 'Comprar entradas',
     'speakers.title': 'Oradores plenarios',
     'speakers.description':
@@ -56,9 +56,9 @@ export const texts = {
     'cfp.help':
       "If you need help with your proposal, don't hesitate to contact us at charlas@2026.es.pycon.org.",
     'cfp.button': 'Submit your proposal',
-    'earlybird.title': 'Early Bird tickets are now available!',
-    'earlybird.description':
-      'Early Bird discounted tickets are now on sale. Do not miss this unique opportunity to learn, connect, and grow in the Python community!',
+    'tickets.title': 'Tickets are now available!',
+    'tickets.description':
+      'General tickets are now on sale. Do not miss this unique opportunity to learn, connect, and grow in the Python community!',
     'earlybird.button': 'Buy tickets',
     'speakers.title': 'Plenary Speakers',
     'speakers.description':
@@ -92,9 +92,9 @@ export const texts = {
     'cfp.help':
       'Si necessites ajuda amb la teva proposta, no dubtis en escriure a charlas@2026.es.pycon.org.',
     'cfp.button': 'Envia la teva proposta',
-    'earlybird.title': 'Entrades Early Bird disponibles!',
-    'earlybird.description':
-      "La venda d'entrades amb descompte Early Bird ja ha començat. No et perdis aquesta oportunitat única d'aprendre, connectar i créixer en la comunitat Python!",
+    'tickets.title': 'Entrades disponibles!',
+    'tickets.description':
+      "La venda d'entrades generals ja ha començat. No et perdis aquesta oportunitat única d'aprendre, connectar i créixer en la comunitat Python!",
     'earlybird.button': 'Comprar entrades',
     'speakers.title': 'Ponents plenaris',
     'speakers.description':

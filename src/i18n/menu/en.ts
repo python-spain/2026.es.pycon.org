@@ -28,6 +28,10 @@ export const en = {
           label: 'Code of Conduct',
           href: '/code-of-conduct',
         },
+        {
+          label: 'Scholarships',
+          href: '/becas',
+        },
       ],
     },
     {

@@ -5,16 +5,30 @@ import CenteredPanel from '../CenteredPanel.astro'
 import type { ISpeaker } from '../../types/speakers'
 import SpeakerCard from './SpeakerCard.astro'
 
-const speakers = Object.values(import.meta.glob('../../data/speakers/*.md', { eager: true })) as {
-  frontmatter: ISpeaker
-}[]
-
 interface Props {
   lang: string
 }
 
 const { lang } = Astro.props
 const t = texts[lang as keyof typeof texts]
+
+const esSpeakers = Object.values(import.meta.glob('../../data/speakers/es/*.md', { eager: true })) as {
+  frontmatter: ISpeaker
+}[]
+const enSpeakers = Object.values(import.meta.glob('../../data/speakers/en/*.md', { eager: true })) as {
+  frontmatter: ISpeaker
+}[]
+const caSpeakers = Object.values(import.meta.glob('../../data/speakers/ca/*.md', { eager: true })) as {
+  frontmatter: ISpeaker
+}[]
+
+const allSpeakersMap: Record<string, { frontmatter: ISpeaker }[]> = {
+  es: esSpeakers,
+  en: enSpeakers,
+  ca: caSpeakers,
+}
+
+const speakers = allSpeakersMap[lang] || []
 
 const sortedSpeakers = speakers.map((s) => s.frontmatter).sort((a, b) => a.order - b.order)
 

@@ -2,8 +2,8 @@
 import { i18n } from 'astro:config/client'
 import IndexPage from '@/components/index.astro'
 
-const locales = i18n.locales
-const defaultLocale = i18n.defaultLocale
+const locales = i18n!.locales
+const defaultLocale = i18n!.defaultLocale
 ---
 
 <script is:inline define:vars={{ locales, defaultLocale }}>
@@ -17,4 +17,4 @@ const defaultLocale = i18n.defaultLocale
   }
 </script>
 
-<IndexPage lang={i18n.defaultLocale} />
+<IndexPage lang={i18n!.defaultLocale} />

@@ -1,4 +1,14 @@
-export type TSpeakerLinkType = 'github' | 'linkedin' | 'instagram' | 'website'
+export type TSpeakerLinkType =
+  | 'github'
+  | 'linkedin'
+  | 'instagram'
+  | 'website'
+  | 'bluesky'
+  | 'twitter'
+  | 'youtube'
+  | 'spotify'
+  | 'applepodcasts'
+  | 'rss'
 
 export interface ISpeakerLink {
   type: TSpeakerLinkType

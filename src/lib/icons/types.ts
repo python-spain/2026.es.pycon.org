@@ -34,7 +34,18 @@ export interface IconMappingWithFallback {
 }
 
 // Category-specific icon name types for better type safety and autocomplete
-export type SocialIconName = 'bluesky' | 'github' | 'mastodon' | 'twitter' | 'linkedin' | 'instagram'
+export type SocialIconName =
+  | 'bluesky'
+  | 'github'
+  | 'mastodon'
+  | 'twitter'
+  | 'linkedin'
+  | 'instagram'
+  | 'website'
+  | 'youtube'
+  | 'spotify'
+  | 'applepodcasts'
+  | 'rss'
 
 export type StatisticIconName = 'attendees' | 'speakers' | 'keynotes' | 'days' | 'companies' | 'collaborators'
 

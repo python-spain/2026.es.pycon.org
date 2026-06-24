@@ -22,6 +22,12 @@ function ariaForLink(link: ISpeakerLink, name: string): string {
     | 'speakers.aria_linkedin'
     | 'speakers.aria_instagram'
     | 'speakers.aria_website'
+    | 'speakers.aria_bluesky'
+    | 'speakers.aria_twitter'
+    | 'speakers.aria_youtube'
+    | 'speakers.aria_spotify'
+    | 'speakers.aria_applepodcasts'
+    | 'speakers.aria_rss'
   const label = t[key] ?? link.type
   return `${label.replace('{name}', name)} ${menuT.new_tab}`
 }
@@ -46,7 +52,7 @@ const linkClasses =
 
   <ul
     aria-label={t['speakers.aria_social_links'].replace('{name}', speaker.name)}
-    class="flex items-center gap-3 list-none m-0 p-0 mb-4"
+    class="grid grid-cols-4 gap-3 list-none m-0 p-0 mb-4 w-fit mx-auto justify-items-center"
   >
     {
       speaker.links.map((link) => (

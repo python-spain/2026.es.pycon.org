@@ -7,6 +7,10 @@ import {
   Twitter, // X/Twitter (deprecated but functional)
   Linkedin, // LinkedIn (deprecated but functional)
   Instagram, // Instagram (deprecated but functional)
+  Youtube,
+  Headphones, // Spotify (no native Lucide icon for Spotify brand)
+  Podcast, // Apple Podcasts (no native Lucide icon for Apple Podcasts brand)
+  Rss,
 } from '@lucide/astro'
 
 /**
@@ -37,5 +41,21 @@ export const socialMapping: Record<string, IconMappingWithFallback> = {
   instagram: {
     icon: Instagram, // deprecated but functional
     fallback: '📸',
+  },
+  youtube: {
+    icon: Youtube,
+    fallback: '▶️',
+  },
+  spotify: {
+    icon: Headphones, // No native Spotify icon in Lucide
+    fallback: '🎧',
+  },
+  applepodcasts: {
+    icon: Podcast, // No native Apple Podcasts icon in Lucide
+    fallback: '🎙️',
+  },
+  rss: {
+    icon: Rss,
+    fallback: '📡',
   },
 }

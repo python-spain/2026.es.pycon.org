@@ -5,10 +5,12 @@ export interface ISpeakerLink {
   url: string
 }
 
+import type { TLocale } from './locale'
+
 export interface ISpeaker {
   name: string
   order: number
   photo: string
   links: ISpeakerLink[]
-  description: string
+  descriptions: Record<TLocale, string>
 }

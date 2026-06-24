@@ -12,25 +12,11 @@ interface Props {
 const { lang } = Astro.props
 const t = texts[lang as keyof typeof texts]
 
-const esSpeakers = Object.values(import.meta.glob('../../data/speakers/es/*.md', { eager: true })) as {
-  frontmatter: ISpeaker
-}[]
-const enSpeakers = Object.values(import.meta.glob('../../data/speakers/en/*.md', { eager: true })) as {
-  frontmatter: ISpeaker
-}[]
-const caSpeakers = Object.values(import.meta.glob('../../data/speakers/ca/*.md', { eager: true })) as {
+const speakerModules = Object.values(import.meta.glob('../../data/speakers/*.md', { eager: true })) as {
   frontmatter: ISpeaker
 }[]
 
-const allSpeakersMap: Record<string, { frontmatter: ISpeaker }[]> = {
-  es: esSpeakers,
-  en: enSpeakers,
-  ca: caSpeakers,
-}
-
-const speakers = allSpeakersMap[lang] || []
-
-const sortedSpeakers = speakers.map((s) => s.frontmatter).sort((a, b) => a.order - b.order)
+const sortedSpeakers = speakerModules.map((s) => s.frontmatter).sort((a, b) => a.order - b.order)
 
 const count = sortedSpeakers.length
 const gridByCount: Record<number, string> = {

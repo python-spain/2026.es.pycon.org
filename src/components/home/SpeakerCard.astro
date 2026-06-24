@@ -78,6 +78,6 @@ const linkClasses =
   </ul>
 
   <p class="text-sm leading-relaxed text-pycon-gray-25 whitespace-pre-line text-justify">
-    {speaker.description}
+    {speaker.descriptions[lang as keyof typeof speaker.descriptions]}
   </p>
 </article>

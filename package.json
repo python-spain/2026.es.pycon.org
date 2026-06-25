@@ -19,7 +19,7 @@
     "@astrojs/sitemap": "3.7.3",
     "@fontsource-variable/jetbrains-mono": "5.2.8",
     "@fontsource-variable/outfit": "5.2.8",
-    "@lucide/astro": "0.577.0",
+    "@lucide/astro": "1.21.0",
     "@tailwindcss/vite": "4.3.1",
     "animejs": "4.5.0",
     "astro": "5.16.8",

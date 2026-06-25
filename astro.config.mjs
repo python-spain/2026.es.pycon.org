@@ -5,6 +5,7 @@ import sitemap from '@astrojs/sitemap'
 export default defineConfig({
   site: 'https://2026.es.pycon.org',
   base: '/',
+  compressHTML: true,
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

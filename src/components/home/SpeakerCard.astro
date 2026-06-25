@@ -1,5 +1,4 @@
 ---
-import { Globe } from '@lucide/astro'
 import type { ISpeaker, ISpeakerLink } from '../../types/speakers'
 import { texts } from '../../i18n/home'
 import { menuTexts } from '../../i18n/menu'
@@ -57,27 +56,15 @@ const linkClasses =
     {
       speaker.links.map((link) => (
         <li>
-          {link.type === 'website' ? (
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={ariaForLink(link, speaker.name)}
-              class={linkClasses}
-            >
-              <Globe class="w-5 h-5" aria-hidden="true" focusable="false" />
-            </a>
-          ) : (
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={ariaForLink(link, speaker.name)}
-              class={linkClasses}
-            >
-              <SocialIcon platform={link.type} size="md" aria-hidden="true" />
-            </a>
-          )}
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={ariaForLink(link, speaker.name)}
+            class={linkClasses}
+          >
+            <SocialIcon platform={link.type} size="md" aria-hidden="true" />
+          </a>
         </li>
       ))
     }

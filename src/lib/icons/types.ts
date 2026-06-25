@@ -30,6 +30,7 @@ export interface IconMapping {
 
 export interface IconMappingWithFallback {
   icon: any | null // Astro component or null
+  svg?: string // Raw SVG inner content (overrides icon when present)
   fallback?: string // Original emoji for fallback during transition
 }
 

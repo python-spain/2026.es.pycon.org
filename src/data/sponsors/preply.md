@@ -2,6 +2,6 @@
 name: 'Preply'
 website: 'https://preply.com/en/careers?location=Barcelona#SearchJobs'
 tier: 'silver'
-logobg: '#ffffff'
+logobg: '#FF7AAC'
 logo: '/sponsors/preply.svg'
 ---

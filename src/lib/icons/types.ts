@@ -30,11 +30,23 @@ export interface IconMapping {
 
 export interface IconMappingWithFallback {
   icon: any | null // Astro component or null
+  svg?: string // Raw SVG inner content (overrides icon when present)
   fallback?: string // Original emoji for fallback during transition
 }
 
 // Category-specific icon name types for better type safety and autocomplete
-export type SocialIconName = 'bluesky' | 'github' | 'mastodon' | 'twitter' | 'linkedin' | 'instagram'
+export type SocialIconName =
+  | 'bluesky'
+  | 'github'
+  | 'mastodon'
+  | 'twitter'
+  | 'linkedin'
+  | 'instagram'
+  | 'website'
+  | 'youtube'
+  | 'spotify'
+  | 'applepodcasts'
+  | 'rss'
 
 export type StatisticIconName = 'attendees' | 'speakers' | 'keynotes' | 'days' | 'companies' | 'collaborators'
 

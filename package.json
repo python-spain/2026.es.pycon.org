@@ -1,6 +1,6 @@
 {
   "name": "2026.es.pycon.org",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,24 +16,24 @@
   "license": "ISC",
   "packageManager": "pnpm@10.10.0",
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.1",
-    "@fontsource-variable/jetbrains-mono": "^5.2.8",
-    "@fontsource-variable/outfit": "^5.2.8",
-    "@lucide/astro": "^0.577.0",
-    "@tailwindcss/vite": "^4.1.18",
-    "animejs": "^4.2.2",
-    "astro": "^5.16.8",
-    "tailwindcss": "^4.1.18"
+    "@astrojs/sitemap": "3.7.3",
+    "@fontsource-variable/jetbrains-mono": "5.2.8",
+    "@fontsource-variable/outfit": "5.2.8",
+    "@lucide/astro": "1.21.0",
+    "@tailwindcss/vite": "4.3.1",
+    "animejs": "4.5.0",
+    "astro": "7.0.2",
+    "tailwindcss": "4.3.1"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@commitlint/cli": "^20.5.0",
-    "@commitlint/config-conventional": "^20.5.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
-    "prettier": "^3.7.4",
-    "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^5.9.3"
+    "@astrojs/check": "0.9.9",
+    "@commitlint/cli": "21.1.0",
+    "@commitlint/config-conventional": "21.1.0",
+    "husky": "9.1.7",
+    "lint-staged": "17.0.8",
+    "prettier": "3.8.4",
+    "prettier-plugin-astro": "0.14.1",
+    "typescript": "6.0.3"
   },
   "prettier": {
     "tabWidth": 2,

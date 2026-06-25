@@ -20,7 +20,7 @@ const statusLabels = {
   info: 'Information',
 }
 
-const defaultAriaLabel = ariaLabel || statusLabels[type] || `Status: ${type}`
+const defaultAriaLabel = ariaLabel || statusLabels[type as keyof typeof statusLabels] || `Status: ${type}`
 ---
 
 <Icon

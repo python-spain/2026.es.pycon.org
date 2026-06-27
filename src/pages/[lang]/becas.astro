@@ -11,7 +11,18 @@ const { lang } = Astro.params
 
 const t = texts[(lang || 'es') as keyof typeof texts]
 
-const { title, heading, intro, description, targetAudience, documentation, application, sponsors } = t
+const {
+  title,
+  heading,
+  intro,
+  covered,
+  notIncluded,
+  importantNote,
+  targetAudience,
+  documentation,
+  application,
+  contact,
+} = t
 ---
 
 <Layout title={title} description={intro}>
@@ -36,8 +47,27 @@ const { title, heading, intro, description, targetAudience, documentation, appli
         <p class="text-lg leading-relaxed mb-6">
           {intro}
         </p>
-        <p class="opacity-80 leading-relaxed">
-          {description}
+      </div>
+    </section>
+
+    <!-- What's covered -->
+    <section class="mb-12">
+      <div class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm">
+        <p class="opacity-80 leading-relaxed mb-4">
+          {covered}
+        </p>
+        <p class="opacity-80 leading-relaxed text-sm">
+          {notIncluded}
+        </p>
+      </div>
+    </section>
+
+    <!-- Important note -->
+    <section class="mb-12">
+      <div class="bg-yellow-900/10 p-6 rounded-2xl border border-yellow-500/10">
+        <p class="opacity-80 leading-relaxed text-sm flex items-start gap-3">
+          <span class="text-lg shrink-0" aria-hidden="true"><StatusIcon type="warning" size="sm" /></span>
+          {importantNote}
         </p>
       </div>
     </section>
@@ -52,7 +82,7 @@ const { title, heading, intro, description, targetAudience, documentation, appli
         {targetAudience.title}
       </h2>
       <div class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm">
-        <ul class="space-y-4">
+        <ul class="space-y-4 mb-6">
           {
             targetAudience.items.map((item: string) => (
               <li class="flex gap-4 items-start">
@@ -62,6 +92,9 @@ const { title, heading, intro, description, targetAudience, documentation, appli
             ))
           }
         </ul>
+        <p class="opacity-70 leading-relaxed text-sm italic">
+          {targetAudience.note}
+        </p>
       </div>
     </section>
 
@@ -74,6 +107,15 @@ const { title, heading, intro, description, targetAudience, documentation, appli
         >
         {documentation.title}
       </h2>
+
+      <!-- Warning about redacting data -->
+      <div class="bg-yellow-900/10 p-5 rounded-xl border border-yellow-500/10 mb-6">
+        <p class="opacity-80 leading-relaxed text-sm flex items-start gap-3">
+          <span class="text-lg shrink-0" aria-hidden="true"><StatusIcon type="warning" size="sm" /></span>
+          {documentation.warning}
+        </p>
+      </div>
+
       <div class="space-y-4">
         {
           documentation.items.map((item: { category: string; requirement: string }) => (
@@ -101,11 +143,16 @@ const { title, heading, intro, description, targetAudience, documentation, appli
         {application.title}
       </h2>
       <div class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm">
-        <p class="opacity-80 leading-relaxed mb-6">
+        <p class="opacity-80 leading-relaxed mb-2">
           {application.body}
+        </p>
+        <p class="text-pycon-yellow font-semibold mb-6">
+          {application.deadline}
         </p>
         <a
           href={application.formLink}
+          target="_blank"
+          rel="noopener noreferrer"
           class="inline-flex items-center gap-2 bg-pycon-red hover:bg-pycon-red/80 text-white font-semibold px-6 py-3 rounded-xl transition-all hover:shadow-lg"
         >
           {application.formText}
@@ -126,22 +173,25 @@ const { title, heading, intro, description, targetAudience, documentation, appli
       </div>
     </section>
 
-    <!-- Sponsors -->
-    <section class="mb-16" aria-labelledby="becas-sponsors">
-      <h2 id="becas-sponsors" class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
+    <!-- Contact -->
+    <section class="mb-16" aria-labelledby="becas-contact">
+      <h2 id="becas-contact" class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
         <span
           class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-yellow/20 text-pycon-yellow text-lg"
-          aria-hidden="true"><StatusIcon type="partnership" size="md" /></span
+          aria-hidden="true"><StatusIcon type="info" size="md" /></span
         >
-        {sponsors.title}
+        {contact.title}
       </h2>
       <div class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm">
-        <p class="opacity-80 leading-relaxed mb-6">
-          {sponsors.intro}
+        <p class="opacity-80 leading-relaxed">
+          {contact.body}
+          <a
+            href={`mailto:${contact.email}`}
+            class="text-pycon-orange hover:text-pycon-orange/80 underline transition-colors"
+          >
+            {contact.email}
+          </a>
         </p>
-        <div id="beca-sponsors-list" class="flex flex-wrap gap-8 items-center justify-center">
-          <!-- Sponsors logos will go here when confirmed -->
-        </div>
       </div>
     </section>
   </div>

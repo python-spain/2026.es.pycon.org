@@ -28,6 +28,10 @@ export const ca = {
           label: 'Codi de conducta',
           href: '/code-of-conduct',
         },
+        {
+          label: 'Beces',
+          href: '/becas',
+        },
       ],
     },
     {

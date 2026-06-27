@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { lang } = Astro.props
-const t = texts[lang as keyof typeof texts]
+const t = texts[lang as keyof typeof texts] as Record<string, string>
 const menuT = menuTexts[lang as keyof typeof menuTexts]
 
 const ctas = [

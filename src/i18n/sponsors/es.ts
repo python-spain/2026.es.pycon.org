@@ -239,7 +239,7 @@ export const es = {
         emoji: '⚪',
         iconName: 'silver',
         price: 'Precio 3.000€',
-        limit: '9 disp.',
+        limit: '8 disp.',
         bg: 'rgba(107, 114, 128, 0.1)',
       },
       {
@@ -248,7 +248,7 @@ export const es = {
         emoji: '🌟',
         iconName: 'gold',
         price: 'Precio 6.000€',
-        limit: '2 disp.',
+        limit: '0 disp.',
         bg: 'rgba(234, 179, 8, 0.1)',
       },
       {

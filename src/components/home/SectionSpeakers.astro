@@ -5,10 +5,6 @@ import CenteredPanel from '../CenteredPanel.astro'
 import type { ISpeaker } from '../../types/speakers'
 import SpeakerCard from './SpeakerCard.astro'
 
-const speakers = Object.values(import.meta.glob('../../data/speakers/*.md', { eager: true })) as {
-  frontmatter: ISpeaker
-}[]
-
 interface Props {
   lang: string
 }
@@ -16,7 +12,11 @@ interface Props {
 const { lang } = Astro.props
 const t = texts[lang as keyof typeof texts]
 
-const sortedSpeakers = speakers.map((s) => s.frontmatter).sort((a, b) => a.order - b.order)
+const speakerModules = Object.values(import.meta.glob('../../data/speakers/*.md', { eager: true })) as {
+  frontmatter: ISpeaker
+}[]
+
+const sortedSpeakers = speakerModules.map((s) => s.frontmatter).sort((a, b) => a.order - b.order)
 
 const count = sortedSpeakers.length
 const gridByCount: Record<number, string> = {

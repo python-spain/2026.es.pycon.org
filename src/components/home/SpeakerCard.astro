@@ -1,5 +1,4 @@
 ---
-import { Globe } from '@lucide/astro'
 import type { ISpeaker, ISpeakerLink } from '../../types/speakers'
 import { texts } from '../../i18n/home'
 import { menuTexts } from '../../i18n/menu'
@@ -22,6 +21,12 @@ function ariaForLink(link: ISpeakerLink, name: string): string {
     | 'speakers.aria_linkedin'
     | 'speakers.aria_instagram'
     | 'speakers.aria_website'
+    | 'speakers.aria_bluesky'
+    | 'speakers.aria_twitter'
+    | 'speakers.aria_youtube'
+    | 'speakers.aria_spotify'
+    | 'speakers.aria_applepodcasts'
+    | 'speakers.aria_rss'
   const label = t[key] ?? link.type
   return `${label.replace('{name}', name)} ${menuT.new_tab}`
 }
@@ -46,38 +51,26 @@ const linkClasses =
 
   <ul
     aria-label={t['speakers.aria_social_links'].replace('{name}', speaker.name)}
-    class="flex items-center gap-3 list-none m-0 p-0 mb-4"
+    class="grid grid-cols-4 gap-3 list-none m-0 p-0 mb-4 w-fit mx-auto justify-items-center"
   >
     {
       speaker.links.map((link) => (
         <li>
-          {link.type === 'website' ? (
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={ariaForLink(link, speaker.name)}
-              class={linkClasses}
-            >
-              <Globe class="w-5 h-5" aria-hidden="true" focusable="false" />
-            </a>
-          ) : (
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={ariaForLink(link, speaker.name)}
-              class={linkClasses}
-            >
-              <SocialIcon platform={link.type} size="md" aria-hidden="true" />
-            </a>
-          )}
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={ariaForLink(link, speaker.name)}
+            class={linkClasses}
+          >
+            <SocialIcon platform={link.type} size="md" aria-hidden="true" />
+          </a>
         </li>
       ))
     }
   </ul>
 
   <p class="text-sm leading-relaxed text-pycon-gray-25 whitespace-pre-line text-justify">
-    {speaker.description}
+    {speaker.descriptions[lang as keyof typeof speaker.descriptions]}
   </p>
 </article>

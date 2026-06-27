@@ -3,7 +3,7 @@ import { i18n } from 'astro:config/client'
 import { texts } from '@/i18n/components/LanguagePicker'
 
 // Idiomas disponibles
-const languages = i18n.locales as string[]
+const languages = i18n!.locales as string[]
 
 interface Props {
   variant?: 'desktop' | 'mobile'
@@ -14,7 +14,7 @@ const { variant = 'desktop', lang } = Astro.props
 
 // Idioma actual detectado desde la URL
 const pathname = Astro.url.pathname
-const currentLang = lang || pathname.split('/')[1] || i18n.defaultLocale
+const currentLang = lang || pathname.split('/')[1] || i18n!.defaultLocale
 const t = texts[currentLang as keyof typeof texts] || texts['es']
 
 // Función para construir la URL destino
@@ -43,7 +43,7 @@ const getPathForLang = (targetLang: string) => {
         <a
           href={getPathForLang(lang)}
           hreflang={lang}
-          aria-label={t['labelariadesc'][lang]}
+          aria-label={t['labelariadesc'][lang as keyof typeof t.label]}
           lang={lang}
           aria-current={lang === currentLang ? 'page' : undefined}
           class:list={[

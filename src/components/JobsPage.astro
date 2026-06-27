@@ -1,57 +1,32 @@
 ---
 import { jobsTexts } from '../i18n/jobs'
 import { menuTexts } from '../i18n/menu'
+import type { IJob, TLocale, TJobTier } from '../types/jobs'
 
 interface Props {
   lang: string
 }
 
-interface JobFrontmatter {
-  title: string
-  company: string
-  location: string
-  type: string
-  description: string
-  skills?: string[]
-  salary?: string
-  apply_url: string
-  tier?: string
-  draft?: boolean
-}
-
 const { lang } = Astro.props
 const t = jobsTexts[(lang || 'es') as keyof typeof jobsTexts]
 const menuT = menuTexts[(lang || 'es') as keyof typeof menuTexts]
+const locale = (lang || 'es') as TLocale
 
-const esJobs = Object.values(import.meta.glob('../data/jobs/es/*.md', { eager: true })) as {
-  frontmatter: JobFrontmatter
-}[]
-const enJobs = Object.values(import.meta.glob('../data/jobs/en/*.md', { eager: true })) as {
-  frontmatter: JobFrontmatter
-}[]
-const caJobs = Object.values(import.meta.glob('../data/jobs/ca/*.md', { eager: true })) as {
-  frontmatter: JobFrontmatter
+const jobModules = Object.values(import.meta.glob('../data/jobs/!(_*).md', { eager: true })) as {
+  frontmatter: IJob
 }[]
 
-const allJobsMap: Record<string, { frontmatter: JobFrontmatter }[]> = {
-  es: esJobs,
-  en: enJobs,
-  ca: caJobs,
-}
+const tierOrder: Record<TJobTier, number> = { platinum: 0, gold: 1, silver: 2, bronze: 3 }
 
-const allJobs = allJobsMap[lang] || []
-
-const jobs = allJobs
+const jobs = jobModules
   .filter((job) => job.frontmatter.draft !== true)
   .sort((a, b) => {
-    const tierOrder = { platinum: 0, gold: 1, silver: 2, bronze: 3 }
-    const aTier = tierOrder[a.frontmatter.tier as keyof typeof tierOrder] ?? 4
-    const bTier = tierOrder[b.frontmatter.tier as keyof typeof tierOrder] ?? 4
-    if (aTier !== bTier) return aTier - bTier
-    return 0
+    const aTier = tierOrder[a.frontmatter.tier as TJobTier] ?? 4
+    const bTier = tierOrder[b.frontmatter.tier as TJobTier] ?? 4
+    return aTier - bTier
   })
 
-const isFeatured = (tier?: string) => tier === 'gold' || tier === 'platinum'
+const isFeatured = (tier?: TJobTier) => tier === 'gold' || tier === 'platinum'
 ---
 
 <div class="jobs-container pb-20">
@@ -67,46 +42,84 @@ const isFeatured = (tier?: string) => tier === 'gold' || tier === 'platinum'
       <p class="text-pycon-gray-25 text-lg">{t.no_jobs}</p>
     ) : (
       <ul class="grid md:grid-cols-2 gap-8 list-none m-0 p-0">
-        {jobs.map(({ frontmatter: job }) => (
-          <li
-            class={`flex flex-col bg-pycon-black/40 p-6 rounded-2xl border transition-all motion-safe:hover:-translate-y-2 ${isFeatured(job.tier) ? 'border-pycon-orange/50 hover:border-pycon-orange' : 'border-white/5 hover:border-white/20'}`}
-          >
-            <div class="flex items-start justify-between mb-3">
-              <div>
-                <h2 class="text-xl font-bold text-white mb-1">{job.title}</h2>
-                <p class="text-pycon-orange text-lg font-medium">{job.company}</p>
+        {jobs.map(({ frontmatter: job }) => {
+          const jobLocation = job.location[locale]
+          return (
+            <li
+              class={`flex flex-col bg-pycon-black/40 p-6 rounded-2xl border transition-all motion-safe:hover:-translate-y-2 ${isFeatured(job.tier) ? 'border-pycon-orange/50 hover:border-pycon-orange' : 'border-white/5 hover:border-white/20'}`}
+            >
+              <div class="flex items-start justify-between mb-3">
+                <div>
+                  <h2 class="text-xl font-bold text-white mb-1">{job.title}</h2>
+                  <p class="text-pycon-orange text-lg font-medium">{job.company}</p>
+                </div>
+                {isFeatured(job.tier) && (
+                  <span class="px-3 py-1 bg-pycon-orange/20 text-pycon-orange text-xs font-bold rounded-full uppercase">
+                    {t.featured}
+                  </span>
+                )}
               </div>
-              {isFeatured(job.tier) && (
-                <span class="px-3 py-1 bg-pycon-orange/20 text-pycon-orange text-xs font-bold rounded-full uppercase">
-                  {t.featured}
-                </span>
+
+              <div class="h-35 mb-3">
+                <p class="text-pycon-gray-25 text-base leading-relaxed line-clamp-5">
+                  {job.description[locale]}
+                </p>
+              </div>
+
+              {job.skills && job.skills.length > 0 && (
+                <div class="mb-3">
+                  <p class="text-sm text-pycon-gray-50 mb-2 uppercase tracking-wide">{t.skills}</p>
+                  <ul class="flex flex-wrap gap-2 list-none m-0 p-0" aria-label={t.skills}>
+                    {job.skills.map((skill) => (
+                      <li>
+                        <span class="px-3 py-1.5 bg-gradient-to-r from-pycon-orange/30 to-pycon-yellow/20 text-white text-sm rounded-full border border-pycon-orange/30">
+                          {skill}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
-            </div>
 
-            <div class="h-35 mb-3">
-              <p class="text-pycon-gray-25 text-base leading-relaxed line-clamp-5">{job.description}</p>
-            </div>
+              <div class="mt-auto">
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-base text-pycon-gray-50 mb-4">
+                  <div class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                    <span>{jobLocation}</span>
+                  </div>
+                  <span class="px-2 py-0.5 bg-white/5 rounded text-xs">{job.type}</span>
+                  {job.salary && <span class="text-pycon-yellow">{job.salary}</span>}
+                </div>
 
-            {job.skills && job.skills.length > 0 && (
-              <div class="mb-3">
-                <p class="text-sm text-pycon-gray-50 mb-2 uppercase tracking-wide">{t.skills}</p>
-                <ul class="flex flex-wrap gap-2 list-none m-0 p-0" aria-label={t.skills}>
-                  {job.skills.map((skill) => (
-                    <li>
-                      <span class="px-3 py-1.5 bg-gradient-to-r from-pycon-orange/30 to-pycon-yellow/20 text-white text-sm rounded-full border border-pycon-orange/30">
-                        {skill}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            <div class="mt-auto">
-              <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-base text-pycon-gray-50 mb-4">
-                <div class="flex items-center gap-2">
+                <a
+                  href={job.apply_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${job.title} en ${job.company} ${t.apply} ${t.location}: ${jobLocation} ${menuT.new_tab}`}
+                  class="inline-flex items-center gap-2 px-4 py-2 bg-pycon-orange text-white font-bold rounded-lg hover:bg-white hover:text-pycon-orange transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-orange"
+                >
+                  {t.apply}
                   <svg
-                    class="w-4 h-4 shrink-0"
+                    class="w-4 h-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -116,41 +129,14 @@ const isFeatured = (tier?: string) => tier === 'gold' || tier === 'platinum'
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                     />
                   </svg>
-                  <span>{job.location}</span>
-                </div>
-                <span class="px-2 py-0.5 bg-white/5 rounded text-xs">{job.type}</span>
-                {job.salary && <span class="text-pycon-yellow">{job.salary}</span>}
+                </a>
               </div>
-
-              <a
-                href={job.apply_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${job.title} en ${job.company} ${t.apply} ${t.location}: ${job.location} ${menuT.new_tab}`}
-                class="inline-flex items-center gap-2 px-4 py-2 bg-pycon-orange text-white font-bold rounded-lg hover:bg-white hover:text-pycon-orange transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-orange"
-              >
-                {t.apply}
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
-            </div>
-          </li>
-        ))}
+            </li>
+          )
+        })}
       </ul>
     )
   }

@@ -5,6 +5,10 @@ export const ca = {
       href: '/',
     },
     {
+      label: 'Programa',
+      href: '/programa',
+    },
+    {
       label: 'Informació',
       children: [
         {

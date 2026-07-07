@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import ProgramaPage from '../../components/ProgramaPage.astro'
+import { programaTexts } from '../../i18n/programa'
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }, { params: { lang: 'ca' } }]
+}
+
+const { lang } = Astro.params
+const t = programaTexts[(lang || 'es') as keyof typeof programaTexts]
+---
+
+<Layout title={t.title} description={t.seoDescription} fullWidth>
+  <div class="grow w-full md:mt-24 mt-12">
+    <ProgramaPage lang={lang || 'es'} />
+  </div>
+  <script is:inline src="https://pretalx.com/pycones-2025/widgets/schedule.js"></script>
+  <script is:inline>
+    function injectPretalxDialogStyles() {
+      const schedule = document.querySelector('pretalx-schedule')
+      if (!schedule?.shadowRoot) return
+      if (schedule.shadowRoot.querySelector('#pycones-dialog-fix')) return
+      const style = document.createElement('style')
+      style.id = 'pycones-dialog-fix'
+      style.textContent = `
+        #filter-bottom-sheet-dialog,
+        #filter-bottom-sheet-dialog .dialog-inner {
+          background: #fff !important;
+          color: #0d0f10 !important;
+        }
+      `
+      schedule.shadowRoot.appendChild(style)
+    }
+    customElements.whenDefined('pretalx-schedule').then(injectPretalxDialogStyles)
+    new MutationObserver(injectPretalxDialogStyles).observe(document.body, {
+      childList: true,
+      subtree: true,
+    })
+    document.addEventListener('astro:page-load', injectPretalxDialogStyles)
+  </script>
+</Layout>

@@ -5,6 +5,10 @@ export const es = {
       href: '/',
     },
     {
+      label: 'Programa',
+      href: '/programa',
+    },
+    {
       label: 'Información',
       children: [
         {

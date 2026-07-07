@@ -1,0 +1,41 @@
+---
+import { programaTexts } from '@/i18n/programa'
+import { menuTexts } from '@/i18n/menu'
+
+interface Props {
+  lang: string
+}
+const { lang } = Astro.props
+const t = programaTexts[lang as keyof typeof programaTexts]
+const menuT = menuTexts[lang as keyof typeof menuTexts]
+---
+
+<section class="py-8">
+  <h1 class="text-3xl md:text-5xl font-bold text-center mb-6">{t.title}</h1>
+  <p class="text-center text-base md:text-lg mb-10 max-w-2xl mx-auto opacity-80">{t.intro}</p>
+
+  <div class="bg-white overflow-x-auto p-4">
+    <pretalx-schedule
+      event-url="https://pretalx.com/pycones-2025/"
+      locale={t.locale}
+      format="grid"
+      style="--pretalx-clr-primary: #03004b"></pretalx-schedule>
+  </div>
+
+  <noscript>
+    <div class="pretalx-widget">
+      <div class="pretalx-widget-info-message">
+        {t.noscript}{' '}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${t.noscriptLink} ${menuT.new_tab}`}
+          href="https://pretalx.com/pycones-2025/schedule/"
+        >
+          {t.noscriptLink}
+        </a>
+        .
+      </div>
+    </div>
+  </noscript>
+</section>

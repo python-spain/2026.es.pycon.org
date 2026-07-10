@@ -1,0 +1,149 @@
+---
+import type { Schedule } from '@/types/schedule'
+import { formatDayLabel, formatTime } from '@/lib/schedule'
+import { menuTexts } from '@/i18n/menu'
+import { programaTexts } from '@/i18n/programa'
+
+interface Props {
+  schedule: Schedule
+  lang: string
+}
+
+const { schedule, lang } = Astro.props
+const t = programaTexts[lang as keyof typeof programaTexts]
+const menuT = menuTexts[lang as keyof typeof menuTexts]
+---
+
+<div class="schedule-list">
+  {
+    schedule.days.map((day) => (
+      <section class="mb-12" aria-labelledby={`day-${day.index}-heading`}>
+        <h2
+          id={`day-${day.index}-heading`}
+          class="text-2xl md:text-3xl font-black text-white mb-6 flex items-baseline gap-3"
+        >
+          <span class="text-pycon-orange">{t.list.dayN(day.index)}</span>
+          <span class="text-base md:text-lg font-normal text-pycon-gray-25 capitalize">
+            {formatDayLabel(day.date, lang, schedule.timezone)}
+          </span>
+        </h2>
+        <ol class="flex flex-col gap-4 list-none m-0 p-0">
+          {day.sessions.map((s) => (
+            <li class="bg-pycon-black/40 rounded-2xl border border-white/5 p-5 md:p-6 transition-colors hover:border-pycon-orange/40 focus-within:border-pycon-orange/60">
+              <article>
+                <header class="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-3">
+                  <time datetime={s.date} class="text-sm font-mono text-pycon-yellow shrink-0">
+                    {formatTime(s.date, schedule.timezone)}–{formatTime(s.end, schedule.timezone)}
+                  </time>
+                  <span class="text-xs text-pycon-gray-25/70 shrink-0">{s.duration}</span>
+                  {s.track && (
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-pycon-orange/15 text-pycon-orange border border-pycon-orange/30 shrink-0">
+                      {s.track}
+                    </span>
+                  )}
+                  {s.type && <span class="text-xs text-pycon-gray-25/70 shrink-0">{s.type}</span>}
+                </header>
+
+                <h3 class="text-lg md:text-xl font-bold text-white mb-2 leading-snug">{s.title}</h3>
+
+                {s.subtitle && <p class="text-sm text-pycon-gray-25 mb-3 italic">{s.subtitle}</p>}
+
+                {s.persons.length > 0 && (
+                  <p class="text-sm text-pycon-gray-25 mb-3">
+                    <span class="font-semibold text-white">{t.list.by}: </span>
+                    {s.persons.map((p, i) => {
+                      const sep =
+                        i === 0
+                          ? ''
+                          : i === s.persons.length - 1
+                            ? ' & '
+                            : s.persons.length === 2
+                              ? ' & '
+                              : ', '
+                      return (
+                        <>
+                          {sep}
+                          <span class="text-white">{p.public_name || p.name}</span>
+                        </>
+                      )
+                    })}
+                  </p>
+                )}
+
+                <dl class="flex flex-wrap gap-x-6 gap-y-1 text-xs text-pycon-gray-25/80 mb-4">
+                  <div class="flex items-baseline gap-1.5">
+                    <dt class="font-semibold text-white">{t.list.room}:</dt>
+                    <dd>{s.room}</dd>
+                  </div>
+                  {s.language && (
+                    <div class="flex items-baseline gap-1.5">
+                      <dt class="font-semibold text-white">{t.list.language}:</dt>
+                      <dd>
+                        <span lang={s.language}>{s.language.toUpperCase()}</span>
+                      </dd>
+                    </div>
+                  )}
+                </dl>
+
+                {s.abstract && (
+                  <details class="group mb-3">
+                    <summary class="cursor-pointer text-sm text-pycon-yellow hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow rounded inline-flex items-center gap-1.5 select-none list-none [&::-webkit-details-marker]:hidden">
+                      <svg
+                        class="w-3.5 h-3.5 transition-transform group-open:rotate-90"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                      <span class="group-open:hidden">{t.list.showAbstract}</span>
+                      <span class="hidden group-open:inline">{t.list.hideAbstract}</span>
+                    </summary>
+                    <p
+                      lang={s.language === 'en' ? 'en' : s.language === 'ca' ? 'ca' : 'es'}
+                      class="mt-3 text-sm text-pycon-gray-25 leading-relaxed"
+                    >
+                      {s.abstract}
+                    </p>
+                  </details>
+                )}
+
+                {s.url && (
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${s.title} — ${t.list.talkLink} ${menuT.new_tab}`}
+                    class="inline-flex items-center gap-1.5 text-sm text-pycon-yellow hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow rounded"
+                  >
+                    <span>{t.list.talkLink}</span>
+                    <svg
+                      class="w-3.5 h-3.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </a>
+                )}
+              </article>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))
+  }
+</div>

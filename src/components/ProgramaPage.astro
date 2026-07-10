@@ -33,18 +33,18 @@ const schedule = await getSchedule()
     <label
       class="cursor-pointer px-4 py-2 rounded-lg text-sm has-[:checked]:bg-pycon-orange has-[:checked]:text-pycon-black has-[:checked]:font-semibold text-pycon-gray-25 transition-colors"
     >
-      <input type="radio" name="schedule-view" value="list" class="sr-only" checked />
+      <input type="radio" name="schedule-view" value="list" class="sr-only" />
       {t.list.viewModeList}
     </label>
     <label
       class="cursor-pointer px-4 py-2 rounded-lg text-sm has-[:checked]:bg-pycon-orange has-[:checked]:text-pycon-black has-[:checked]:font-semibold text-pycon-gray-25 transition-colors"
     >
-      <input type="radio" name="schedule-view" value="grid" class="sr-only" />
+      <input type="radio" name="schedule-view" value="grid" class="sr-only" checked />
       {t.list.viewModeGrid}
     </label>
   </fieldset>
 
-  <div id="schedule-list-view" class="schedule-view" data-view="list">
+  <div id="schedule-list-view" class="schedule-view hidden" data-view="list">
     {
       schedule ? (
         <ScheduleList schedule={schedule} lang={lang} />
@@ -66,7 +66,7 @@ const schedule = await getSchedule()
     }
   </div>
 
-  <div id="schedule-grid-view" class="schedule-view hidden" data-view="grid">
+  <div id="schedule-grid-view" class="schedule-view" data-view="grid">
     <pretalx-schedule
       event-url="https://pretalx.com/pycones-2026/"
       locale={t.locale}

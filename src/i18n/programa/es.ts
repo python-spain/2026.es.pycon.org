@@ -5,4 +5,11 @@ export const es = {
   locale: 'es',
   noscript: 'JavaScript está deshabilitado en tu navegador. Para ver el programa sin JavaScript,',
   noscriptLink: 'haz click aquí',
+  a11y: {
+    statusTemplate: (count: number) => `Mostrando ${count} ${count === 1 ? 'sesión' : 'sesiones'}`,
+    statusEmpty: 'No hay sesiones que coincidan con los filtros',
+    searchLabel: 'Buscar sesiones',
+    timezoneLabel: 'Zona horaria',
+    closeFilters: 'Cerrar filtros',
+  },
 } as const

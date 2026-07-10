@@ -10,15 +10,19 @@ const t = programaTexts[lang as keyof typeof programaTexts]
 const menuT = menuTexts[lang as keyof typeof menuTexts]
 ---
 
-<section class="py-8">
-  <h1 class="text-3xl md:text-5xl font-bold text-center mb-6">{t.title}</h1>
+<section class="py-8" aria-labelledby="schedule-title">
+  <h1 id="schedule-title" class="text-3xl md:text-5xl font-bold text-center mb-6">{t.title}</h1>
   <p class="text-center text-base md:text-lg mb-10 max-w-2xl mx-auto opacity-80">{t.intro}</p>
 
   <pretalx-schedule
     event-url="https://pretalx.com/pycones-2026/"
     locale={t.locale}
     format="grid"
-    style="--pretalx-clr-primary: #03004b"></pretalx-schedule>
+    style="--pretalx-clr-primary: #03004b; --pretalx-clr-success: #2e7d32"></pretalx-schedule>
+
+  <div id="schedule-status" role="status" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+  <script is:inline type="application/json" id="schedule-i18n" set:html={JSON.stringify(t.a11y)} />
 
   <noscript>
     <div class="pretalx-widget">

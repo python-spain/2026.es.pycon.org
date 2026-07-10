@@ -72,5 +72,6 @@ export const en = {
       href: '/past-editions',
     },
   ],
+  skipToContent: 'Skip to main content',
   new_tab: '(opens in new tab)',
 } as const

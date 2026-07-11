@@ -16,27 +16,4 @@ const t = programaTexts[(lang || 'es') as keyof typeof programaTexts]
     <ProgramaPage lang={lang || 'es'} />
   </div>
   <script is:inline src="https://pretalx.com/pycones-2026/widgets/schedule.js"></script>
-  <script is:inline>
-    function injectPretalxDialogStyles() {
-      const schedule = document.querySelector('pretalx-schedule')
-      if (!schedule?.shadowRoot) return
-      if (schedule.shadowRoot.querySelector('#pycones-dialog-fix')) return
-      const style = document.createElement('style')
-      style.id = 'pycones-dialog-fix'
-      style.textContent = `
-        #filter-bottom-sheet-dialog,
-        #filter-bottom-sheet-dialog .dialog-inner {
-          background: #fff !important;
-          color: #0d0f10 !important;
-        }
-      `
-      schedule.shadowRoot.appendChild(style)
-    }
-    customElements.whenDefined('pretalx-schedule').then(injectPretalxDialogStyles)
-    new MutationObserver(injectPretalxDialogStyles).observe(document.body, {
-      childList: true,
-      subtree: true,
-    })
-    document.addEventListener('astro:page-load', injectPretalxDialogStyles)
-  </script>
 </Layout>

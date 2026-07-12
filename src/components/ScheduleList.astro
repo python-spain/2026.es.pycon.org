@@ -12,6 +12,11 @@ interface Props {
 const { schedule, lang } = Astro.props
 const t = programaTexts[lang as keyof typeof programaTexts]
 const menuT = menuTexts[lang as keyof typeof menuTexts]
+
+// Map a talk's language code to a valid BCP-47 lang attribute value.
+// Falls back to the page's lang if Pretalx returns something unexpected.
+const knownLangs = new Set(['en', 'es', 'ca'])
+const talkLang = (s: { language: string }) => (knownLangs.has(s.language) ? s.language : lang)
 ---
 
 <div class="schedule-list">
@@ -51,9 +56,15 @@ const menuT = menuTexts[lang as keyof typeof menuTexts]
                   {s.type && <span class="text-xs text-pycon-gray-25/70 shrink-0">{s.type}</span>}
                 </header>
 
-                <h3 class="text-lg md:text-xl font-bold text-white mb-2 leading-snug">{s.title}</h3>
+                <h3 lang={talkLang(s)} class="text-lg md:text-xl font-bold text-white mb-2 leading-snug">
+                  {s.title}
+                </h3>
 
-                {s.subtitle && <p class="text-sm text-pycon-gray-25 mb-3 italic">{s.subtitle}</p>}
+                {s.subtitle && (
+                  <p lang={talkLang(s)} class="text-sm text-pycon-gray-25 mb-3 italic">
+                    {s.subtitle}
+                  </p>
+                )}
 
                 {s.persons.length > 0 && (
                   <p class="text-sm text-pycon-gray-25 mb-3">
@@ -113,7 +124,7 @@ const menuT = menuTexts[lang as keyof typeof menuTexts]
                       <span class="hidden group-open:inline">{t.list.hideAbstract}</span>
                     </summary>
                     <p
-                      lang={s.language === 'en' ? 'en' : s.language === 'ca' ? 'ca' : 'es'}
+                      lang={talkLang(s)}
                       class="mt-3 text-sm text-pycon-gray-25 leading-relaxed whitespace-pre-line"
                     >
                       {s.abstract}

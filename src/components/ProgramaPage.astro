@@ -51,9 +51,14 @@ const schedule = await getSchedule()
           <div class="max-w-3xl mx-auto mb-6 flex justify-end">
             <button
               type="button"
-              class="favorites-filter-btn inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-sm text-pycon-gray-25 hover:border-pycon-orange/50 hover:text-pycon-orange transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow has-[:checked]:bg-pycon-orange has-[:checked]:text-pycon-black has-[:checked]:font-semibold has-[:checked]:border-pycon-orange"
+              class="favorites-filter-btn inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-sm text-pycon-gray-25 hover:border-pycon-orange/50 hover:text-pycon-orange transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow aria-pressed:bg-pycon-orange aria-pressed:text-pycon-black aria-pressed:font-semibold aria-pressed:border-pycon-orange"
               aria-pressed="false"
+              aria-label={t.list.favoritesOnly}
               data-filter-favorites
+              data-filter-on-prefix={t.list.filterOnPrefix}
+              data-filter-on-singular={t.list.filterOnSingular}
+              data-filter-on-plural={t.list.filterOnPlural}
+              data-filter-off-message={t.list.filterOff}
             >
               <svg
                 class="w-4 h-4"
@@ -140,16 +145,6 @@ const schedule = await getSchedule()
   }
   #schedule-list-view.filter-favorites-only .schedule-list li:not(.is-favorite) {
     display: none;
-  }
-  .favorites-filter-btn[aria-pressed='true'] {
-    background-color: var(--color-pycon-orange, #fd6837);
-    color: #03004b;
-    font-weight: 600;
-    border-color: var(--color-pycon-orange, #fd6837);
-  }
-  .favorites-filter-btn[aria-pressed='true'] svg {
-    fill: currentColor;
-    stroke: currentColor;
   }
 </style>
 
@@ -252,37 +247,67 @@ const schedule = await getSchedule()
         empty.hidden = !(filterActive && count === 0)
       }
 
-      // Click handler: toggle, persist, update visual state and announce
+      // Click handler: handle both the per-session favourite button and
+      // the "only favourites" filter button. Event delegation on document
+      // so we don't depend on either button being in the DOM at script
+      // init time.
       document.addEventListener('click', (e) => {
-        const btn = e.target.closest && e.target.closest('.favorite-btn')
-        if (!btn) return
-        e.preventDefault()
-        const code = btn.getAttribute('data-session-code')
-        if (!code) return
-        const favs = readFavs()
-        const idx = favs.indexOf(code)
-        let added
-        if (idx >= 0) {
-          favs.splice(idx, 1)
-          added = false
-        } else {
-          favs.push(code)
-          added = true
+        const target = e.target.closest && e.target.closest('button')
+        if (!target) return
+
+        // Per-session favourite toggle
+        const favBtn = target.closest('.favorite-btn')
+        if (favBtn) {
+          e.preventDefault()
+          const code = favBtn.getAttribute('data-session-code')
+          if (!code) return
+          const favs = readFavs()
+          const idx = favs.indexOf(code)
+          let added
+          if (idx >= 0) {
+            favs.splice(idx, 1)
+            added = false
+          } else {
+            favs.push(code)
+            added = true
+          }
+          writeFavs(favs)
+          syncFavorites()
+          announce(added ? favBtn.dataset.addedMessage : favBtn.dataset.removedMessage)
+          return
         }
-        writeFavs(favs)
-        syncFavorites()
-        // Announce the state change via the live region. We clear it first
-        // so identical messages (e.g. clicking the same button twice) are
-        // re-announced by screen readers.
-        const status = document.getElementById('favorite-status')
-        if (status) {
-          const message = added ? btn.dataset.addedMessage : btn.dataset.removedMessage
-          status.textContent = ''
-          // Force a reflow so the new text triggers the live region reliably
-          void status.offsetWidth
-          status.textContent = message || ''
+
+        // "Only favourites" filter toggle
+        const filterBtn = target.closest('[data-filter-favorites]')
+        if (filterBtn) {
+          e.preventDefault()
+          const wasPressed = filterBtn.getAttribute('aria-pressed') === 'true'
+          const nowPressed = !wasPressed
+          filterBtn.setAttribute('aria-pressed', nowPressed ? 'true' : 'false')
+          const listView = document.getElementById('schedule-list-view')
+          if (listView) listView.classList.toggle('filter-favorites-only', nowPressed)
+          updateEmptyState()
+          const count = readFavs().length
+          const word = count === 1 ? filterBtn.dataset.filterOnSingular : filterBtn.dataset.filterOnPlural
+          const message = nowPressed
+            ? count > 0
+              ? `${filterBtn.dataset.filterOnPrefix}. Mostrando ${count} ${word}.`
+              : `${filterBtn.dataset.filterOnPrefix}.`
+            : filterBtn.dataset.filterOffMessage
+          announce(message)
         }
       })
+
+      // Write a message to the live region. Clears + forces a reflow so
+      // identical back-to-back messages still re-announce.
+      function announce(message) {
+        if (!message) return
+        const status = document.getElementById('favorite-status')
+        if (!status) return
+        status.textContent = ''
+        void status.offsetWidth
+        status.textContent = message
+      }
 
       // Re-sync when the user switches to the list view (widget may have
       // mutated localStorage in the same session).
@@ -292,18 +317,6 @@ const schedule = await getSchedule()
       window.addEventListener('storage', (e) => {
         if (e.key === FAV_KEY) syncFavorites()
       })
-
-      // Filter button: show only favourited sessions
-      const filterBtn = document.querySelector('[data-filter-favorites]')
-      if (filterBtn) {
-        filterBtn.addEventListener('click', () => {
-          const pressed = filterBtn.getAttribute('aria-pressed') === 'true'
-          filterBtn.setAttribute('aria-pressed', pressed ? 'false' : 'true')
-          const listView = document.getElementById('schedule-list-view')
-          if (listView) listView.classList.toggle('filter-favorites-only', !pressed)
-          updateEmptyState()
-        })
-      }
 
       // Initial render
       syncFavorites()

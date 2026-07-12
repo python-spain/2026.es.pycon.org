@@ -51,10 +51,10 @@ const schedule = await getSchedule()
           <div class="max-w-3xl mx-auto mb-6 flex justify-end">
             <button
               type="button"
+              id="favorites-filter-btn"
               class="favorites-filter-btn inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-sm text-pycon-gray-25 hover:border-pycon-orange/50 hover:text-pycon-orange transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow aria-pressed:bg-pycon-orange aria-pressed:text-pycon-black aria-pressed:font-semibold aria-pressed:border-pycon-orange"
               aria-pressed="false"
               aria-label={t.list.favoritesOnly}
-              data-filter-favorites
               data-filter-on-prefix={t.list.filterOnPrefix}
               data-filter-on-singular={t.list.filterOnSingular}
               data-filter-on-plural={t.list.filterOnPlural}
@@ -151,6 +151,10 @@ const schedule = await getSchedule()
 <script is:inline src="https://pretalx.com/pycones-2026/widgets/schedule.js"></script>
 
 <script is:inline>
+  try {
+    console.log('[programa] script starting')
+  } catch (e) {}
+
   ;(function () {
     // === View toggle (list <-> grid) ===
     ;(function () {
@@ -180,10 +184,6 @@ const schedule = await getSchedule()
 
       try {
         const saved = localStorage.getItem(STORAGE_KEY)
-        // Only restore the saved view if it matches the HTML default. Legacy
-        // values (e.g. 'list' from when list was the default) are ignored so
-        // the page always opens with the current default and there's no jump
-        // from a stale saved value.
         const defaultChecked = document.querySelector('input[name="schedule-view"]:checked')
         const defaultValue = defaultChecked ? defaultChecked.value : null
         if ((saved === 'list' || saved === 'grid') && saved === defaultValue) {
@@ -192,11 +192,7 @@ const schedule = await getSchedule()
       } catch (e) {}
     })()
 
-    // === Favorites sync (shared with the Pretalx widget) ===
-    // The widget persists favourites under `pycones-2026_favs` as a JSON
-    // array of session codes. We read/write the same key so toggling in
-    // the list is reflected in the widget (and vice-versa, next time the
-    // widget re-reads on mount).
+    // === Favorites sync + filter (shared with the Pretalx widget) ===
     ;(function () {
       const FAV_KEY = 'pycones-2026_favs'
 
@@ -247,59 +243,70 @@ const schedule = await getSchedule()
         empty.hidden = !(filterActive && count === 0)
       }
 
-      // Click handler: handle both the per-session favourite button and
-      // the "only favourites" filter button. Event delegation on document
-      // so we don't depend on either button being in the DOM at script
-      // init time.
-      document.addEventListener('click', (e) => {
-        const target = e.target.closest && e.target.closest('button')
-        if (!target) return
-
-        // Per-session favourite toggle
-        const favBtn = target.closest('.favorite-btn')
-        if (favBtn) {
-          e.preventDefault()
-          const code = favBtn.getAttribute('data-session-code')
-          if (!code) return
-          const favs = readFavs()
-          const idx = favs.indexOf(code)
-          let added
-          if (idx >= 0) {
-            favs.splice(idx, 1)
-            added = false
-          } else {
-            favs.push(code)
-            added = true
-          }
-          writeFavs(favs)
-          syncFavorites()
-          announce(added ? favBtn.dataset.addedMessage : favBtn.dataset.removedMessage)
+      // Click handler for the filter button. Bound directly to the button
+      // (not event delegation) so it works regardless of any capture-phase
+      // listeners the widget or other code may have installed.
+      function handleFilterClick(e) {
+        if (e) e.preventDefault()
+        const btn = document.getElementById('favorites-filter-btn')
+        if (!btn) {
+          try {
+            console.warn('[programa] filter button not in DOM')
+          } catch (e) {}
           return
         }
+        const wasPressed = btn.getAttribute('aria-pressed') === 'true'
+        const nowPressed = !wasPressed
+        btn.setAttribute('aria-pressed', nowPressed ? 'true' : 'false')
+        const listView = document.getElementById('schedule-list-view')
+        if (listView) listView.classList.toggle('filter-favorites-only', nowPressed)
+        updateEmptyState()
+        const count = readFavs().length
+        const word = count === 1 ? btn.dataset.filterOnSingular : btn.dataset.filterOnPlural
+        const message = nowPressed
+          ? count > 0
+            ? `${btn.dataset.filterOnPrefix}. Mostrando ${count} ${word}.`
+            : `${btn.dataset.filterOnPrefix}.`
+          : btn.dataset.filterOffMessage
+        announce(message)
+        try {
+          console.log('[programa] filter toggled, nowPressed=', nowPressed)
+        } catch (e) {}
+      }
 
-        // "Only favourites" filter toggle
-        const filterBtn = target.closest('[data-filter-favorites]')
-        if (filterBtn) {
-          e.preventDefault()
-          const wasPressed = filterBtn.getAttribute('aria-pressed') === 'true'
-          const nowPressed = !wasPressed
-          filterBtn.setAttribute('aria-pressed', nowPressed ? 'true' : 'false')
-          const listView = document.getElementById('schedule-list-view')
-          if (listView) listView.classList.toggle('filter-favorites-only', nowPressed)
-          updateEmptyState()
-          const count = readFavs().length
-          const word = count === 1 ? filterBtn.dataset.filterOnSingular : filterBtn.dataset.filterOnPlural
-          const message = nowPressed
-            ? count > 0
-              ? `${filterBtn.dataset.filterOnPrefix}. Mostrando ${count} ${word}.`
-              : `${filterBtn.dataset.filterOnPrefix}.`
-            : filterBtn.dataset.filterOffMessage
-          announce(message)
+      function bindFilterButton() {
+        const btn = document.getElementById('favorites-filter-btn')
+        if (!btn) return
+        if (btn.dataset.bound === '1') return
+        btn.addEventListener('click', handleFilterClick)
+        btn.dataset.bound = '1'
+        try {
+          console.log('[programa] filter button bound')
+        } catch (e) {}
+      }
+
+      // Per-session favourite click handler (event delegation)
+      document.addEventListener('click', (e) => {
+        const favBtn = e.target.closest && e.target.closest('.favorite-btn')
+        if (!favBtn) return
+        e.preventDefault()
+        const code = favBtn.getAttribute('data-session-code')
+        if (!code) return
+        const favs = readFavs()
+        const idx = favs.indexOf(code)
+        let added
+        if (idx >= 0) {
+          favs.splice(idx, 1)
+          added = false
+        } else {
+          favs.push(code)
+          added = true
         }
+        writeFavs(favs)
+        syncFavorites()
+        announce(added ? favBtn.dataset.addedMessage : favBtn.dataset.removedMessage)
       })
 
-      // Write a message to the live region. Clears + forces a reflow so
-      // identical back-to-back messages still re-announce.
       function announce(message) {
         if (!message) return
         const status = document.getElementById('favorite-status')
@@ -309,16 +316,18 @@ const schedule = await getSchedule()
         status.textContent = message
       }
 
-      // Re-sync when the user switches to the list view (widget may have
-      // mutated localStorage in the same session).
       document.addEventListener('pycones:view-changed', syncFavorites)
-
-      // Re-sync on cross-tab/window changes
       window.addEventListener('storage', (e) => {
         if (e.key === FAV_KEY) syncFavorites()
       })
+      document.addEventListener('astro:page-load', bindFilterButton)
 
-      // Initial render
+      // Try to bind now, and also on DOM ready
+      bindFilterButton()
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bindFilterButton)
+      }
+
       syncFavorites()
     })()
 

@@ -143,6 +143,14 @@ const schedule = await getSchedule()
   .schedule-view.hidden {
     display: none;
   }
+</style>
+
+<style is:global>
+  /* Hide non-favourite session cards when the favourites filter is on.
+     The .schedule-list and its <li> children are rendered by
+     ScheduleList.astro (its own Astro scope, data-astro-cid-zmszfzov),
+     so we use is:global here to let this rule reach across component
+     boundaries. */
   #schedule-list-view.filter-favorites-only .schedule-list li:not(.is-favorite) {
     display: none;
   }

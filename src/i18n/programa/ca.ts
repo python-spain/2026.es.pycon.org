@@ -29,6 +29,8 @@ export const ca = {
     favorite: 'Preferit',
     favoriteAdded: 'Afegit a preferits',
     favoriteRemoved: 'Tret de preferits',
+    favoritesOnly: 'Només preferits',
+    noFavorites: "Encara no tens preferits. Marca les sessions que t'interessin amb el cor.",
     showAbstract: 'Mostra la descripció',
     hideAbstract: 'Amaga la descripció',
     talkLink: 'Veure detalls de la xerrada a Pretalx',

@@ -47,7 +47,42 @@ const schedule = await getSchedule()
   <div id="schedule-list-view" class="schedule-view hidden" data-view="list">
     {
       schedule ? (
-        <ScheduleList schedule={schedule} lang={lang} />
+        <>
+          <div class="max-w-3xl mx-auto mb-6 flex justify-end">
+            <button
+              type="button"
+              class="favorites-filter-btn inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-sm text-pycon-gray-25 hover:border-pycon-orange/50 hover:text-pycon-orange transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow has-[:checked]:bg-pycon-orange has-[:checked]:text-pycon-black has-[:checked]:font-semibold has-[:checked]:border-pycon-orange"
+              aria-pressed="false"
+              data-filter-favorites
+            >
+              <svg
+                class="w-4 h-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                />
+              </svg>
+              <span>
+                {t.list.favoritesOnly} (<span data-favorites-count>0</span>)
+              </span>
+            </button>
+          </div>
+          <ScheduleList schedule={schedule} lang={lang} />
+          <p
+            class="favorites-empty max-w-3xl mx-auto mt-4 text-center text-pycon-gray-25/80 text-sm"
+            data-favorites-empty
+            hidden
+          >
+            {t.list.noFavorites}
+          </p>
+        </>
       ) : (
         <div class="max-w-2xl mx-auto text-center py-12 px-6 bg-pycon-black/40 rounded-2xl border border-white/5">
           <h2 class="text-2xl font-bold text-white mb-4">{t.list.emptyTitle}</h2>
@@ -103,6 +138,19 @@ const schedule = await getSchedule()
   .schedule-view.hidden {
     display: none;
   }
+  #schedule-list-view.filter-favorites-only .schedule-list li:not(.is-favorite) {
+    display: none;
+  }
+  .favorites-filter-btn[aria-pressed='true'] {
+    background-color: var(--color-pycon-orange, #fd6837);
+    color: #03004b;
+    font-weight: 600;
+    border-color: var(--color-pycon-orange, #fd6837);
+  }
+  .favorites-filter-btn[aria-pressed='true'] svg {
+    fill: currentColor;
+    stroke: currentColor;
+  }
 </style>
 
 <script is:inline src="https://pretalx.com/pycones-2026/widgets/schedule.js"></script>
@@ -137,12 +185,14 @@ const schedule = await getSchedule()
 
       try {
         const saved = localStorage.getItem(STORAGE_KEY)
-        if (saved === 'list' || saved === 'grid') {
-          const target = document.querySelector(`input[name="schedule-view"][value="${saved}"]`)
-          if (target) {
-            target.checked = true
-            applyView(saved)
-          }
+        // Only restore the saved view if it matches the HTML default. Legacy
+        // values (e.g. 'list' from when list was the default) are ignored so
+        // the page always opens with the current default and there's no jump
+        // from a stale saved value.
+        const defaultChecked = document.querySelector('input[name="schedule-view"]:checked')
+        const defaultValue = defaultChecked ? defaultChecked.value : null
+        if ((saved === 'list' || saved === 'grid') && saved === defaultValue) {
+          applyView(saved)
         }
       } catch (e) {}
     })()
@@ -177,8 +227,29 @@ const schedule = await getSchedule()
         document.querySelectorAll('.favorite-btn').forEach((btn) => {
           const code = btn.getAttribute('data-session-code')
           if (!code) return
-          btn.setAttribute('aria-pressed', favs.has(code) ? 'true' : 'false')
+          const isFav = favs.has(code)
+          btn.setAttribute('aria-pressed', isFav ? 'true' : 'false')
+          const li = btn.closest('li')
+          if (li) li.classList.toggle('is-favorite', isFav)
         })
+        updateFavoritesCount()
+        updateEmptyState()
+      }
+
+      function updateFavoritesCount() {
+        const count = readFavs().length
+        document.querySelectorAll('[data-favorites-count]').forEach((el) => {
+          el.textContent = String(count)
+        })
+      }
+
+      function updateEmptyState() {
+        const empty = document.querySelector('[data-favorites-empty]')
+        const listView = document.getElementById('schedule-list-view')
+        if (!empty || !listView) return
+        const filterActive = listView.classList.contains('filter-favorites-only')
+        const count = readFavs().length
+        empty.hidden = !(filterActive && count === 0)
       }
 
       // Click handler: toggle, persist, update visual state and announce
@@ -221,6 +292,18 @@ const schedule = await getSchedule()
       window.addEventListener('storage', (e) => {
         if (e.key === FAV_KEY) syncFavorites()
       })
+
+      // Filter button: show only favourited sessions
+      const filterBtn = document.querySelector('[data-filter-favorites]')
+      if (filterBtn) {
+        filterBtn.addEventListener('click', () => {
+          const pressed = filterBtn.getAttribute('aria-pressed') === 'true'
+          filterBtn.setAttribute('aria-pressed', pressed ? 'false' : 'true')
+          const listView = document.getElementById('schedule-list-view')
+          if (listView) listView.classList.toggle('filter-favorites-only', !pressed)
+          updateEmptyState()
+        })
+      }
 
       // Initial render
       syncFavorites()

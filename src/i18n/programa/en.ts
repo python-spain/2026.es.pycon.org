@@ -14,7 +14,7 @@ export const en = {
   },
   list: {
     viewModeLegend: 'Schedule view mode',
-    viewModeList: 'Accessible list',
+    viewModeList: 'List',
     viewModeGrid: 'Visual grid',
     dayN: (n: number) => `Day ${n}`,
     speakers: (count: number) => (count === 1 ? 'Speaker' : 'Speakers'),
@@ -29,6 +29,8 @@ export const en = {
     favorite: 'Favourite',
     favoriteAdded: 'Added to favourites',
     favoriteRemoved: 'Removed from favourites',
+    favoritesOnly: 'Only favourites',
+    noFavorites: "You don't have any favourites yet. Tap the heart on the sessions you're interested in.",
     showAbstract: 'Show description',
     hideAbstract: 'Hide description',
     talkLink: 'View talk details on Pretalx',

@@ -29,6 +29,8 @@ export const es = {
     favorite: 'Favorito',
     favoriteAdded: 'Añadido a favoritos',
     favoriteRemoved: 'Quitado de favoritos',
+    favoritesOnly: 'Solo favoritos',
+    noFavorites: 'No tienes favoritos todavía. Marca las sesiones que te interesen con el corazón.',
     showAbstract: 'Ver descripción',
     hideAbstract: 'Ocultar descripción',
     talkLink: 'Ver detalles de la charla en Pretalx',

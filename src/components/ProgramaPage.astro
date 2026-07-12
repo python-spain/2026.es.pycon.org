@@ -97,6 +97,8 @@ const schedule = await getSchedule()
   </div>
 </section>
 
+<div id="favorite-status" role="status" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
 <style>
   .schedule-view.hidden {
     display: none;
@@ -175,13 +177,11 @@ const schedule = await getSchedule()
         document.querySelectorAll('.favorite-btn').forEach((btn) => {
           const code = btn.getAttribute('data-session-code')
           if (!code) return
-          const isFav = favs.has(code)
-          btn.setAttribute('aria-pressed', isFav ? 'true' : 'false')
-          btn.setAttribute('aria-label', isFav ? btn.dataset.removeLabel : btn.dataset.addLabel)
+          btn.setAttribute('aria-pressed', favs.has(code) ? 'true' : 'false')
         })
       }
 
-      // Click handler: toggle, persist, update visual state
+      // Click handler: toggle, persist, update visual state and announce
       document.addEventListener('click', (e) => {
         const btn = e.target.closest && e.target.closest('.favorite-btn')
         if (!btn) return
@@ -190,13 +190,27 @@ const schedule = await getSchedule()
         if (!code) return
         const favs = readFavs()
         const idx = favs.indexOf(code)
+        let added
         if (idx >= 0) {
           favs.splice(idx, 1)
+          added = false
         } else {
           favs.push(code)
+          added = true
         }
         writeFavs(favs)
         syncFavorites()
+        // Announce the state change via the live region. We clear it first
+        // so identical messages (e.g. clicking the same button twice) are
+        // re-announced by screen readers.
+        const status = document.getElementById('favorite-status')
+        if (status) {
+          const message = added ? btn.dataset.addedMessage : btn.dataset.removedMessage
+          status.textContent = ''
+          // Force a reflow so the new text triggers the live region reliably
+          void status.offsetWidth
+          status.textContent = message || ''
+        }
       })
 
       // Re-sync when the user switches to the list view (widget may have

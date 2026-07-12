@@ -151,10 +151,6 @@ const schedule = await getSchedule()
 <script is:inline src="https://pretalx.com/pycones-2026/widgets/schedule.js"></script>
 
 <script is:inline>
-  try {
-    console.log('[programa] script starting')
-  } catch (e) {}
-
   ;(function () {
     // === View toggle (list <-> grid) ===
     ;(function () {
@@ -184,10 +180,17 @@ const schedule = await getSchedule()
 
       try {
         const saved = localStorage.getItem(STORAGE_KEY)
-        const defaultChecked = document.querySelector('input[name="schedule-view"]:checked')
-        const defaultValue = defaultChecked ? defaultChecked.value : null
-        if ((saved === 'list' || saved === 'grid') && saved === defaultValue) {
-          applyView(saved)
+        // Persistence rule: the first time the user lands on /programa
+        // (no saved value, or stored under the old 'list' default from a
+        // previous design) we show the current default, which is the
+        // visual grid. From then on, the user's choice wins: a stored
+        // 'list' or 'grid' is restored on the next visit.
+        if (saved === 'list' || saved === 'grid') {
+          const target = document.querySelector(`input[name="schedule-view"][value="${saved}"]`)
+          if (target) {
+            target.checked = true
+            applyView(saved)
+          }
         }
       } catch (e) {}
     })()
@@ -249,12 +252,7 @@ const schedule = await getSchedule()
       function handleFilterClick(e) {
         if (e) e.preventDefault()
         const btn = document.getElementById('favorites-filter-btn')
-        if (!btn) {
-          try {
-            console.warn('[programa] filter button not in DOM')
-          } catch (e) {}
-          return
-        }
+        if (!btn) return
         const wasPressed = btn.getAttribute('aria-pressed') === 'true'
         const nowPressed = !wasPressed
         btn.setAttribute('aria-pressed', nowPressed ? 'true' : 'false')
@@ -269,9 +267,6 @@ const schedule = await getSchedule()
             : `${btn.dataset.filterOnPrefix}.`
           : btn.dataset.filterOffMessage
         announce(message)
-        try {
-          console.log('[programa] filter toggled, nowPressed=', nowPressed)
-        } catch (e) {}
       }
 
       function bindFilterButton() {
@@ -280,9 +275,6 @@ const schedule = await getSchedule()
         if (btn.dataset.bound === '1') return
         btn.addEventListener('click', handleFilterClick)
         btn.dataset.bound = '1'
-        try {
-          console.log('[programa] filter button bound')
-        } catch (e) {}
       }
 
       // Per-session favourite click handler (event delegation)

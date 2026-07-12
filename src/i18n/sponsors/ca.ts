@@ -228,7 +228,7 @@ export const ca = {
         emoji: '🌟',
         iconName: 'gold',
         price: 'Preu 6.000€',
-        limit: '0 disp.',
+        limit: '1 disp.',
         bg: 'rgba(234, 179, 8, 0.1)',
       },
       {
@@ -237,7 +237,7 @@ export const ca = {
         emoji: '🏆',
         iconName: 'platinum',
         price: 'Preu 8.000€',
-        limit: '2 disp.',
+        limit: '0 disp.',
         bg: 'rgba(34, 197, 94, 0.1)',
       },
       {

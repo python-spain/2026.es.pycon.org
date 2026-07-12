@@ -124,6 +124,7 @@ const schedule = await getSchedule()
         try {
           localStorage.setItem(STORAGE_KEY, value)
         } catch (e) {}
+        document.dispatchEvent(new CustomEvent('pycones:view-changed', { detail: { value } }))
       }
 
       radios.forEach((radio) => {
@@ -142,6 +143,73 @@ const schedule = await getSchedule()
           }
         }
       } catch (e) {}
+    })()
+
+    // === Favorites sync (shared with the Pretalx widget) ===
+    // The widget persists favourites under `pycones-2026_favs` as a JSON
+    // array of session codes. We read/write the same key so toggling in
+    // the list is reflected in the widget (and vice-versa, next time the
+    // widget re-reads on mount).
+    ;(function () {
+      const FAV_KEY = 'pycones-2026_favs'
+
+      function readFavs() {
+        try {
+          const raw = localStorage.getItem(FAV_KEY)
+          if (!raw) return []
+          const arr = JSON.parse(raw)
+          return Array.isArray(arr) ? arr.filter((c) => typeof c === 'string') : []
+        } catch (e) {
+          return []
+        }
+      }
+
+      function writeFavs(arr) {
+        try {
+          localStorage.setItem(FAV_KEY, JSON.stringify(arr))
+        } catch (e) {}
+      }
+
+      function syncFavorites() {
+        const favs = new Set(readFavs())
+        document.querySelectorAll('.favorite-btn').forEach((btn) => {
+          const code = btn.getAttribute('data-session-code')
+          if (!code) return
+          const isFav = favs.has(code)
+          btn.setAttribute('aria-pressed', isFav ? 'true' : 'false')
+          btn.setAttribute('aria-label', isFav ? btn.dataset.removeLabel : btn.dataset.addLabel)
+        })
+      }
+
+      // Click handler: toggle, persist, update visual state
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest && e.target.closest('.favorite-btn')
+        if (!btn) return
+        e.preventDefault()
+        const code = btn.getAttribute('data-session-code')
+        if (!code) return
+        const favs = readFavs()
+        const idx = favs.indexOf(code)
+        if (idx >= 0) {
+          favs.splice(idx, 1)
+        } else {
+          favs.push(code)
+        }
+        writeFavs(favs)
+        syncFavorites()
+      })
+
+      // Re-sync when the user switches to the list view (widget may have
+      // mutated localStorage in the same session).
+      document.addEventListener('pycones:view-changed', syncFavorites)
+
+      // Re-sync on cross-tab/window changes
+      window.addEventListener('storage', (e) => {
+        if (e.key === FAV_KEY) syncFavorites()
+      })
+
+      // Initial render
+      syncFavorites()
     })()
 
     // === Pretalx widget a11y enhancements (for the grid view) ===

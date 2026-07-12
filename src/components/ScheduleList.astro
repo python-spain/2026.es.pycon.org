@@ -19,7 +19,7 @@ const knownLangs = new Set(['en', 'es', 'ca'])
 const talkLang = (s: { language: string }) => (knownLangs.has(s.language) ? s.language : lang)
 ---
 
-<div class="schedule-list">
+<div class="schedule-list max-w-3xl mx-auto">
   {
     schedule.days.map((day) => (
       <section class="mb-12" aria-labelledby={`day-${day.index}-heading`}>

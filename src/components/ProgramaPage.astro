@@ -39,7 +39,7 @@ const schedule = await getSchedule()
     <label
       class="cursor-pointer px-4 py-2 rounded-lg text-sm has-[:checked]:bg-pycon-orange has-[:checked]:text-pycon-black has-[:checked]:font-semibold text-pycon-gray-25 transition-colors"
     >
-      <input type="radio" name="schedule-view" value="grid" class="sr-only" checked />
+      <input type="radio" name="schedule-view" value="grid" class="sr-only" />
       {t.list.viewModeGrid}
     </label>
   </fieldset>
@@ -139,23 +139,6 @@ const schedule = await getSchedule()
 
 <div id="favorite-status" role="status" aria-live="polite" aria-atomic="true" class="sr-only"></div>
 
-<style>
-  .schedule-view.hidden {
-    display: none;
-  }
-</style>
-
-<style is:global>
-  /* Hide non-favourite session cards when the favourites filter is on.
-     The .schedule-list and its <li> children are rendered by
-     ScheduleList.astro (its own Astro scope, data-astro-cid-zmszfzov),
-     so we use is:global here to let this rule reach across component
-     boundaries. */
-  #schedule-list-view.filter-favorites-only .schedule-list li:not(.is-favorite) {
-    display: none;
-  }
-</style>
-
 <script is:inline src="https://pretalx.com/pycones-2026/widgets/schedule.js"></script>
 
 <script is:inline>
@@ -167,13 +150,15 @@ const schedule = await getSchedule()
       const views = document.querySelectorAll('.schedule-view')
 
       function applyView(value) {
-        views.forEach((v) => {
-          if (v.getAttribute('data-view') === value) {
-            v.classList.remove('hidden')
-          } else {
-            v.classList.add('hidden')
-          }
-        })
+        // Visibility is driven declaratively from CSS via the
+        // data-schedule-view attribute on <html> (set by the pre-paint
+        // script in the Layout). We only need to keep that attribute and
+        // localStorage in sync here.
+        if (value === 'list' || value === 'grid') {
+          document.documentElement.setAttribute('data-schedule-view', value)
+        } else {
+          document.documentElement.removeAttribute('data-schedule-view')
+        }
         try {
           localStorage.setItem(STORAGE_KEY, value)
         } catch (e) {}
@@ -187,17 +172,17 @@ const schedule = await getSchedule()
       })
 
       try {
-        const saved = localStorage.getItem(STORAGE_KEY)
-        // Persistence rule: the first time the user lands on /programa
-        // (no saved value, or stored under the old 'list' default from a
-        // previous design) we show the current default, which is the
-        // visual grid. From then on, the user's choice wins: a stored
-        // 'list' or 'grid' is restored on the next visit.
-        if (saved === 'list' || saved === 'grid') {
-          const target = document.querySelector(`input[name="schedule-view"][value="${saved}"]`)
-          if (target) {
-            target.checked = true
-            applyView(saved)
+        // If a session hash is present, force the list view. Otherwise,
+        // restore the radio state from the saved preference.
+        const hasHash = location.hash && location.hash.length > 1
+        if (hasHash) {
+          const listRadio = document.querySelector('input[name="schedule-view"][value="list"]')
+          if (listRadio) listRadio.checked = true
+        } else {
+          const saved = localStorage.getItem(STORAGE_KEY)
+          if (saved === 'list' || saved === 'grid') {
+            const target = document.querySelector(`input[name="schedule-view"][value="${saved}"]`)
+            if (target) target.checked = true
           }
         }
       } catch (e) {}

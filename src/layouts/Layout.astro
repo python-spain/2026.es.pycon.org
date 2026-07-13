@@ -112,6 +112,28 @@ const alternates = [
     </script>
 
     <ClientRouter />
+
+    <!--
+      Pre-paint schedule view preference for /programa.
+      Runs synchronously before the first paint so the user's saved view
+      choice (list vs grid) is applied without a flash of the other view.
+      The CSS that reads this attribute lives further down in <style is:global>.
+    -->
+    <script is:inline>
+      ;(function () {
+        try {
+          if (typeof location !== 'undefined' && /^\/(es|en|ca)\/programa\/?$/.test(location.pathname)) {
+            var saved = localStorage.getItem('pycones-schedule-view')
+            if (saved === 'list' || saved === 'grid') {
+              document.documentElement.setAttribute('data-schedule-view', saved)
+            }
+            if (location.hash && location.hash.length > 1) {
+              document.documentElement.setAttribute('data-schedule-view', 'list')
+            }
+          }
+        } catch (e) {}
+      })()
+    </script>
   </head>
 
   <body
@@ -200,5 +222,50 @@ const alternates = [
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+  }
+
+  /* Schedule view preference for /programa.
+     The default state shows the visual grid. A small inline script in
+     <head> sets data-schedule-view="list" or "grid" on <html> before the
+     first paint, based on the user's saved localStorage value, so there's
+     no flash of the other view. The same attribute is updated by the
+     toggle script in the page when the user changes their choice. */
+  #schedule-list-view,
+  #schedule-grid-view {
+    display: none;
+  }
+  html[data-schedule-view='list'] #schedule-list-view {
+    display: block;
+  }
+  html[data-schedule-view='grid'] #schedule-grid-view,
+  html:not([data-schedule-view]) #schedule-grid-view {
+    display: block;
+  }
+
+  /* Visual highlight on the view-mode toggle labels must follow
+     data-schedule-view (set before paint) so the active state matches
+     the view on first paint. The :checked highlight still works for
+     user-initiated changes via JS that sets radio.checked. */
+  .schedule-view-toggle label {
+    color: var(--color-pycon-gray-25, #c6c6c6);
+    background: transparent;
+  }
+  html[data-schedule-view='list'] .schedule-view-toggle label:has(input[value='list']) {
+    background: var(--color-pycon-orange, #ff8200);
+    color: var(--color-pycon-black, #1d1d1b);
+    font-weight: 600;
+  }
+  html[data-schedule-view='grid'] .schedule-view-toggle label:has(input[value='grid']),
+  html:not([data-schedule-view]) .schedule-view-toggle label:has(input[value='grid']) {
+    background: var(--color-pycon-orange, #ff8200);
+    color: var(--color-pycon-black, #1d1d1b);
+    font-weight: 600;
+  }
+
+  /* Favorites filter: hide non-favorite sessions when the filter is active.
+     Lives here (global) so it can target <li> elements rendered by the
+     child ScheduleList component, which have a different Astro scope. */
+  #schedule-list-view.filter-favorites-only .schedule-list li:not(.is-favorite) {
+    display: none;
   }
 </style>

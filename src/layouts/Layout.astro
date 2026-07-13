@@ -5,6 +5,7 @@ import '@/style/global.css'
 import '@fontsource-variable/jetbrains-mono'
 import '@fontsource-variable/outfit'
 import { ClientRouter } from 'astro:transitions'
+import { menuTexts } from '@/i18n/menu'
 
 interface Props {
   title: string
@@ -13,6 +14,7 @@ interface Props {
 }
 const { lang = 'es' } = Astro.params
 const { title, description = 'PyconES 2026', fullWidth = false } = Astro.props
+const skipT = menuTexts[lang as keyof typeof menuTexts].skipToContent
 
 const siteUrl = Astro.site ? Astro.site.origin : 'https://2026.es.pycon.org'
 const canonicalURL = new URL(Astro.url.pathname, siteUrl)
@@ -110,11 +112,34 @@ const alternates = [
     </script>
 
     <ClientRouter />
+
+    <!--
+      Pre-paint schedule view preference for /programa.
+      Runs synchronously before the first paint so the user's saved view
+      choice (list vs grid) is applied without a flash of the other view.
+      The CSS that reads this attribute lives further down in <style is:global>.
+    -->
+    <script is:inline>
+      ;(function () {
+        try {
+          if (typeof location !== 'undefined' && /^\/(es|en|ca)\/programa\/?$/.test(location.pathname)) {
+            var saved = localStorage.getItem('pycones-schedule-view')
+            if (saved === 'list' || saved === 'grid') {
+              document.documentElement.setAttribute('data-schedule-view', saved)
+            }
+            if (location.hash && location.hash.length > 1) {
+              document.documentElement.setAttribute('data-schedule-view', 'list')
+            }
+          }
+        } catch (e) {}
+      })()
+    </script>
   </head>
 
   <body
     class="bg-pycon-black font-outfit text-pycon-white antialiased min-h-screen relative flex flex-col transition-colors duration-300"
   >
+    <a href="#main-content" class="skip-link">{skipT}</a>
     <div
       class="fixed inset-0 bg-no-repeat bg-size-[80vh] bg-position-[140%_120%] opacity-5 pointer-events-none blur transition-all duration-300"
       style="background-image: var(--bg-symbol);"
@@ -123,6 +148,7 @@ const alternates = [
     <Header lang={lang as string} />
 
     <main
+      id="main-content"
       class:list={[
         'relative grow z-10 flex flex-col justify-center',
         fullWidth ? 'px-4 md:px-8' : 'container mx-auto p-4 md:p-8',
@@ -161,5 +187,85 @@ const alternates = [
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #8e8e8d;
+  }
+
+  /* Skip link (visible on focus) */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    z-index: 1000;
+    padding: 0.75rem 1rem;
+    background: #fff;
+    color: #03004b;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus,
+  .skip-link:focus-visible {
+    top: 1rem;
+    outline: 2px solid #03004b;
+    outline-offset: 2px;
+  }
+
+  /* Screen reader only utility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Schedule view preference for /programa.
+     The default state shows the visual grid. A small inline script in
+     <head> sets data-schedule-view="list" or "grid" on <html> before the
+     first paint, based on the user's saved localStorage value, so there's
+     no flash of the other view. The same attribute is updated by the
+     toggle script in the page when the user changes their choice. */
+  #schedule-list-view,
+  #schedule-grid-view {
+    display: none;
+  }
+  html[data-schedule-view='list'] #schedule-list-view {
+    display: block;
+  }
+  html[data-schedule-view='grid'] #schedule-grid-view,
+  html:not([data-schedule-view]) #schedule-grid-view {
+    display: block;
+  }
+
+  /* Visual highlight on the view-mode toggle labels must follow
+     data-schedule-view (set before paint) so the active state matches
+     the view on first paint. The :checked highlight still works for
+     user-initiated changes via JS that sets radio.checked. */
+  .schedule-view-toggle label {
+    color: var(--color-pycon-gray-25, #c6c6c6);
+    background: transparent;
+  }
+  html[data-schedule-view='list'] .schedule-view-toggle label:has(input[value='list']) {
+    background: var(--color-pycon-orange, #ff8200);
+    color: var(--color-pycon-black, #1d1d1b);
+    font-weight: 600;
+  }
+  html[data-schedule-view='grid'] .schedule-view-toggle label:has(input[value='grid']),
+  html:not([data-schedule-view]) .schedule-view-toggle label:has(input[value='grid']) {
+    background: var(--color-pycon-orange, #ff8200);
+    color: var(--color-pycon-black, #1d1d1b);
+    font-weight: 600;
+  }
+
+  /* Favorites filter: hide non-favorite sessions when the filter is active.
+     Lives here (global) so it can target <li> elements rendered by the
+     child ScheduleList component, which have a different Astro scope. */
+  #schedule-list-view.filter-favorites-only .schedule-list li:not(.is-favorite) {
+    display: none;
   }
 </style>

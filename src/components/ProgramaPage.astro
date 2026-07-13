@@ -24,12 +24,6 @@ const schedule = await getSchedule()
     class="schedule-view-toggle max-w-3xl mx-auto mb-8 border border-white/10 rounded-xl p-3 flex flex-wrap items-center gap-2 bg-pycon-black/40"
   >
     <legend class="sr-only">{t.list.viewModeLegend}</legend>
-    <span
-      aria-hidden="true"
-      class="text-xs uppercase tracking-wider text-pycon-gray-25/70 px-2 font-semibold"
-    >
-      {t.list.viewModeLegend}
-    </span>
     <label
       class="cursor-pointer px-4 py-2 rounded-lg text-sm has-[:checked]:bg-pycon-orange has-[:checked]:text-pycon-black has-[:checked]:font-semibold text-pycon-gray-25 transition-colors"
     >
@@ -107,12 +101,14 @@ const schedule = await getSchedule()
   </div>
 
   <div id="schedule-grid-view" class="schedule-view" data-view="grid">
-    <pretalx-schedule
-      event-url="https://pretalx.com/pycones-2026/"
-      locale={t.locale}
-      format="grid"
-      style="--pretalx-clr-primary: #03004b; --pretalx-clr-success: #2e7d32; color-scheme: light"
-    ></pretalx-schedule>
+    <div class="overflow-x-auto max-w-full">
+      <pretalx-schedule
+        event-url="https://pretalx.com/pycones-2026/"
+        locale={t.locale}
+        format="grid"
+        style="--pretalx-clr-primary: #03004b; --pretalx-clr-success: #2e7d32; color-scheme: light"
+      ></pretalx-schedule>
+    </div>
 
     <div id="schedule-status" role="status" aria-live="polite" aria-atomic="true" class="sr-only"></div>
 

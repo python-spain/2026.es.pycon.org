@@ -20,23 +20,50 @@ const schedule = await getSchedule()
   <h1 id="schedule-title" class="text-3xl md:text-5xl font-bold text-center mb-6">{t.title}</h1>
   <p class="text-center text-base md:text-lg mb-10 max-w-2xl mx-auto opacity-80">{t.intro}</p>
 
-  <fieldset
-    class="schedule-view-toggle max-w-3xl mx-auto mb-8 border border-white/10 rounded-xl p-3 flex flex-wrap items-center gap-2 bg-pycon-black/40"
-  >
-    <legend class="sr-only">{t.list.viewModeLegend}</legend>
-    <label
-      class="cursor-pointer px-4 py-2 rounded-lg text-sm has-[:checked]:bg-pycon-orange has-[:checked]:text-pycon-black has-[:checked]:font-semibold text-pycon-gray-25 transition-colors"
+  <div class="max-w-3xl mx-auto mb-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <fieldset
+      class="schedule-view-toggle border border-white/10 rounded-xl p-3 flex items-center gap-2 bg-pycon-black/40 w-full sm:w-auto justify-center sm:justify-start"
     >
-      <input type="radio" name="schedule-view" value="list" class="sr-only" />
-      {t.list.viewModeList}
-    </label>
-    <label
-      class="cursor-pointer px-4 py-2 rounded-lg text-sm has-[:checked]:bg-pycon-orange has-[:checked]:text-pycon-black has-[:checked]:font-semibold text-pycon-gray-25 transition-colors"
+      <legend class="sr-only">{t.list.viewModeLegend}</legend>
+      <label
+        class="cursor-pointer px-4 py-2 rounded-lg text-sm has-[:checked]:bg-pycon-orange has-[:checked]:text-pycon-black has-[:checked]:font-semibold text-pycon-gray-25 transition-colors"
+      >
+        <input type="radio" name="schedule-view" value="list" class="sr-only" />
+        {t.list.viewModeList}
+      </label>
+      <label
+        class="cursor-pointer px-4 py-2 rounded-lg text-sm has-[:checked]:bg-pycon-orange has-[:checked]:text-pycon-black has-[:checked]:font-semibold text-pycon-gray-25 transition-colors"
+      >
+        <input type="radio" name="schedule-view" value="grid" class="sr-only" />
+        {t.list.viewModeGrid}
+      </label>
+    </fieldset>
+
+    <a
+      href="/programa-pycones-2026.pdf"
+      download="programa-pycones-2026.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${t.downloadPdf} ${menuT.new_tab}`}
+      class="inline-flex items-center gap-2 px-4 py-3 bg-pycon-orange text-pycon-black font-semibold rounded-xl hover:opacity-90 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow text-sm w-full sm:w-auto justify-center"
     >
-      <input type="radio" name="schedule-view" value="grid" class="sr-only" />
-      {t.list.viewModeGrid}
-    </label>
-  </fieldset>
+      <svg
+        class="w-4 h-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+      <span>{t.downloadPdf}</span>
+    </a>
+  </div>
 
   <div id="schedule-list-view" class="schedule-view hidden" data-view="list">
     {

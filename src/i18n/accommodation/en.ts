@@ -4,8 +4,10 @@ export const en = {
   'accommodation.hero.subtitle': 'Recommendations for your stay in Barcelona',
   'accommodation.hotels.title': 'Recommended Hotels',
   'accommodation.hotels.subtitle': 'Agreements and nearby options',
-  'accommodation.hotels.disclaimer':
-    'We are working on exclusive discounts for attendees. Check back soon for promo codes!',
+  'accommodation.hotels.disclaimer': 'Use the promo code when booking to apply the PyConES discount.',
+  'accommodation.hotels.promoCode': 'Promo code',
+  'accommodation.hotels.book': 'Book hotel',
+  'accommodation.hotels.maps': 'View on Google Maps',
   'accommodation.areas.title': 'Best Areas',
   'accommodation.areas.transportIntro.p1':
     'If you are heading home by train, the best options are Sants, Eixample Esquerra, or Les Corts (for reaching Sants Estació).',

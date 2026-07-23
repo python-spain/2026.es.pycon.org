@@ -7,6 +7,7 @@ export const es = {
   'accommodation.hotels.disclaimer':
     'Usa el código promocional al reservar para aplicar el descuento de PyConES.',
   'accommodation.hotels.promoCode': 'Código promocional',
+  'accommodation.hotels.useDirectLink': 'Usa el enlace de reserva para aplicar el descuento.',
   'accommodation.hotels.book': 'Reservar hotel',
   'accommodation.hotels.maps': 'Ver en Google Maps',
   'accommodation.areas.title': 'Mejores Zonas',

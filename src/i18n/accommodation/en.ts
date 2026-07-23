@@ -6,6 +6,7 @@ export const en = {
   'accommodation.hotels.subtitle': 'Agreements and nearby options',
   'accommodation.hotels.disclaimer': 'Use the promo code when booking to apply the PyConES discount.',
   'accommodation.hotels.promoCode': 'Promo code',
+  'accommodation.hotels.useDirectLink': 'Use the booking link to apply the discount.',
   'accommodation.hotels.book': 'Book hotel',
   'accommodation.hotels.maps': 'View on Google Maps',
   'accommodation.areas.title': 'Best Areas',

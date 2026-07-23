@@ -12,7 +12,6 @@ export const hotels: IHotel[] = [
     name: 'Hotel Jazz',
     bookingUrl:
       'https://reservations.hoteljazz.com/hotel/nn_jazz?adultos=1&fini=06-11-2026&noches=2&origin=grponline&epc=U1RNVEhKQkdSUDFCQioqLFBZVEhPTgo=',
-    promoCode: '(usar enlace directo)',
     mapsUrl: 'https://maps.app.goo.gl/ZULETA9Zp2sZW1NL9',
   },
   {

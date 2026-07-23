@@ -116,40 +116,53 @@ const areaDesc = (slug: AreaSlug) => t[`accommodation.areas.${slug}.desc` as key
 
     <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 list-none m-0 p-0">
       {
-        hotels.map((hotel) => (
-          <li class="flex flex-col bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all motion-safe:hover:-translate-y-2">
-            <h4 class="text-xl font-bold text-pycon-orange mb-6 italic">{hotel.name}</h4>
+        hotels.map((hotel, index) => {
+          const promoId = `hotel-promo-${index}`
+          return (
+            <li class="flex flex-col bg-pycon-black/40 p-8 rounded-2xl border border-white/5 hover:border-pycon-orange/50 transition-all motion-safe:hover:-translate-y-2">
+              <h4 class="text-xl font-bold text-pycon-orange mb-6 italic">{hotel.name}</h4>
 
-            <p class="text-sm text-pycon-gray-50 mb-1 uppercase tracking-wide">
-              {t['accommodation.hotels.promoCode']}
-            </p>
-            <p class="text-white font-mono text-lg font-bold mb-6 tracking-wide">{hotel.promoCode}</p>
+              {hotel.promoCode ? (
+                <dl class="mb-6 m-0">
+                  <dt id={promoId} class="text-sm text-pycon-black-25 mb-1 uppercase tracking-wide">
+                    {t['accommodation.hotels.promoCode']}
+                  </dt>
+                  <dd class="m-0" aria-labelledby={promoId}>
+                    <code class="text-white font-mono text-lg font-bold tracking-wide not-italic">
+                      {hotel.promoCode}
+                    </code>
+                  </dd>
+                </dl>
+              ) : (
+                <p class="text-pycon-black-25 text-sm leading-relaxed mb-6">
+                  {t['accommodation.hotels.useDirectLink']}
+                </p>
+              )}
 
-            <div class="mt-auto flex flex-col gap-3">
-              <a
-                href={hotel.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${t['accommodation.hotels.book']}:
-                ${hotel.name} ${menuT.new_tab}`}
-                class="inline-flex items-center justify-center gap-2 bg-pycon-orange text-white font-bold px-4 py-3 rounded-lg motion-safe:hover:scale-105 transition-transform no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow"
-              >
-                {t['accommodation.hotels.book']}
-              </a>
+              <div class="mt-auto flex flex-col gap-3">
+                <a
+                  href={hotel.bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${t['accommodation.hotels.book']}: ${hotel.name} ${menuT.new_tab}`}
+                  class="inline-flex items-center justify-center gap-2 bg-pycon-orange text-white font-bold px-4 py-3 rounded-lg motion-safe:hover:scale-105 transition-transform no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow"
+                >
+                  {t['accommodation.hotels.book']}
+                </a>
 
-              <a
-                href={hotel.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${t['accommodation.hotels.maps']}:
-                ${hotel.name} ${menuT.new_tab}`}
-                class="inline-flex items-center justify-center gap-2 border border-white/20 text-pycon-gray-25 font-medium px-4 py-3 rounded-lg hover:border-pycon-yellow/50 hover:text-white transition-colors no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow"
-              >
-                {t['accommodation.hotels.maps']}
-              </a>
-            </div>
-          </li>
-        ))
+                <a
+                  href={hotel.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${t['accommodation.hotels.maps']}: ${hotel.name} ${menuT.new_tab}`}
+                  class="inline-flex items-center justify-center gap-2 border border-white/20 text-pycon-black-25 font-medium px-4 py-3 rounded-lg hover:border-pycon-yellow/50 hover:text-white transition-colors no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow"
+                >
+                  {t['accommodation.hotels.maps']}
+                </a>
+              </div>
+            </li>
+          )
+        })
       }
     </ul>
   </section>

@@ -7,6 +7,7 @@ export const ca = {
   'accommodation.hotels.disclaimer':
     'Fes servir el codi promocional en reservar per aplicar el descompte de PyConES.',
   'accommodation.hotels.promoCode': 'Codi promocional',
+  'accommodation.hotels.useDirectLink': "Fes servir l'enllaç de reserva per aplicar el descompte.",
   'accommodation.hotels.book': 'Reservar hotel',
   'accommodation.hotels.maps': 'Veure a Google Maps',
   'accommodation.areas.title': 'Millors Zones',

@@ -5,7 +5,11 @@ export const es = {
   'accommodation.hotels.title': 'Hoteles Recomendados',
   'accommodation.hotels.subtitle': 'Convenios y opciones cercanas',
   'accommodation.hotels.disclaimer':
-    'Estamos trabajando para cerrar convenios exclusivos con descuentos para los asistentes. ¡Vuelve pronto para ver los códigos promocionales!',
+    'Usa el código promocional al reservar para aplicar el descuento de PyConES.',
+  'accommodation.hotels.promoCode': 'Código promocional',
+  'accommodation.hotels.useDirectLink': 'Usa el enlace de reserva para aplicar el descuento.',
+  'accommodation.hotels.book': 'Reservar hotel',
+  'accommodation.hotels.maps': 'Ver en Google Maps',
   'accommodation.areas.title': 'Mejores Zonas',
   'accommodation.areas.transportIntro.p1':
     'Si tienes que volver a casa en tren, las mejores opciones son Sants, Eixample Esquerra o Les Corts (para ir a Sants Estació).',

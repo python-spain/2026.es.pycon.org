@@ -12,7 +12,7 @@ const t = jobsTexts[(lang || 'es') as keyof typeof jobsTexts]
 const menuT = menuTexts[(lang || 'es') as keyof typeof menuTexts]
 const locale = (lang || 'es') as TLocale
 
-const jobModules = Object.values(import.meta.glob('../data/jobs/!(_*).md', { eager: true })) as {
+const jobModules = Object.values(import.meta.glob(['../data/jobs/*.md'], { eager: true })) as {
   frontmatter: IJob
 }[]
 

@@ -248,7 +248,7 @@ export const es = {
         emoji: '🌟',
         iconName: 'gold',
         price: 'Precio 6.000€',
-        limit: '1 disp.',
+        limit: '0 disp.',
         bg: 'rgba(234, 179, 8, 0.1)',
       },
       {

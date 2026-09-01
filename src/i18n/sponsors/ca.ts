@@ -228,7 +228,7 @@ export const ca = {
         emoji: '🌟',
         iconName: 'gold',
         price: 'Preu 6.000€',
-        limit: '1 disp.',
+        limit: '0 disp.',
         bg: 'rgba(234, 179, 8, 0.1)',
       },
       {

@@ -219,7 +219,7 @@ export const ca = {
         emoji: '⚪',
         iconName: 'silver',
         price: 'Preu 3.000€',
-        limit: '7 disp.',
+        limit: '4 disp.',
         bg: 'rgba(107, 114, 128, 0.1)',
       },
       {

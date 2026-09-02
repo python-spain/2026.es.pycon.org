@@ -223,7 +223,7 @@ export const en = {
         emoji: '⚪',
         iconName: 'silver',
         price: 'Price €3,000',
-        limit: '7 avail.',
+        limit: '4 avail.',
         bg: 'rgba(107, 114, 128, 0.1)',
       },
       {

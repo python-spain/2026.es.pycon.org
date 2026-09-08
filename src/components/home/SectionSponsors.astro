@@ -31,6 +31,15 @@ const tierDefs: Array<{ key: TSponsorTier; size: number; color: string }> = [
   { key: 'bronze', size: 90, color: 'text-tier-bronze' },
   { key: 'community', size: 140, color: 'text-tier-community' },
 ]
+
+const tierTitleKeys = {
+  main: { singular: 'sponsors.main', plural: 'sponsors.main' },
+  platinum: { singular: 'sponsors.platinum', plural: 'sponsors.platinum_plural' },
+  gold: { singular: 'sponsors.gold', plural: 'sponsors.gold_plural' },
+  silver: { singular: 'sponsors.silver', plural: 'sponsors.silver_plural' },
+  bronze: { singular: 'sponsors.bronze', plural: 'sponsors.bronze_plural' },
+  community: { singular: 'sponsors.community', plural: 'sponsors.community_plural' },
+} as const
 ---
 
 <div class="flex flex-col items-center gap-6 my-24">
@@ -42,9 +51,7 @@ const tierDefs: Array<{ key: TSponsorTier; size: number; color: string }> = [
       tierDefs.map((tier) => {
         const tierSponsors = filterSponsorsByTier(tier.key)
         const titleKey =
-          tierSponsors.length > 1 && tier.key !== 'main'
-            ? `sponsors.${tier.key}_plural`
-            : `sponsors.${tier.key}`
+          tierSponsors.length > 1 ? tierTitleKeys[tier.key].plural : tierTitleKeys[tier.key].singular
         return (
           <SponsorsGroup
             lang={lang}

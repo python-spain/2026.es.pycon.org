@@ -39,15 +39,20 @@ const tierDefs: Array<{ key: TSponsorTier; size: number; color: string }> = [
 
   <div class="w-full flex flex-col gap-10 mt-4">
     {
-      tierDefs.map((tier) => (
-        <SponsorsGroup
-          lang={lang}
-          title={t[`sponsors.${tier.key}`]}
-          sponsors={filterSponsorsByTier(tier.key)}
-          tierColor={tier.color}
-          size={tier.size}
-        />
-      ))
+      tierDefs.map((tier) => {
+        const tierSponsors = filterSponsorsByTier(tier.key)
+        const titleKey =
+          tierSponsors.length > 1 ? `sponsors.${tier.key}_plural` : `sponsors.${tier.key}`
+        return (
+          <SponsorsGroup
+            lang={lang}
+            title={t[titleKey]}
+            sponsors={tierSponsors}
+            tierColor={tier.color}
+            size={tier.size}
+          />
+        )
+      })
     }
   </div>
 </div>

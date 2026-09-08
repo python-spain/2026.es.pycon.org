@@ -42,7 +42,9 @@ const tierDefs: Array<{ key: TSponsorTier; size: number; color: string }> = [
       tierDefs.map((tier) => {
         const tierSponsors = filterSponsorsByTier(tier.key)
         const titleKey =
-          tierSponsors.length > 1 ? `sponsors.${tier.key}_plural` : `sponsors.${tier.key}`
+          tierSponsors.length > 1 && tier.key !== 'main'
+            ? `sponsors.${tier.key}_plural`
+            : `sponsors.${tier.key}`
         return (
           <SponsorsGroup
             lang={lang}

@@ -379,7 +379,7 @@ export const es = {
     {
       name: 'Cena ponentes y organización',
       price: '2.000€',
-      available: 'Disponibilidad: 2/2',
+      available: 'Disponibilidad: 1/2',
       desc: 'Tu marca en la cena exclusiva para ponentes y organización. Incluye entrada para 2 personas.',
     },
     {
@@ -391,13 +391,13 @@ export const es = {
     {
       name: 'Food sponsor',
       price: '2.000€',
-      available: 'Disponibilidad: 6/6',
+      available: 'Disponibilidad: 5/6',
       desc: 'Tu marca en las comidas/coffee breaks del evento.',
     },
     {
       name: 'Django Girls',
       price: '1.500€',
-      available: 'Disponibilidad: 0/1',
+      available: 'Disponibilidad: 1/1',
       desc: 'Tu marca en el Taller Django Girls (orientado a la diversidad y principiantes).',
     },
     {

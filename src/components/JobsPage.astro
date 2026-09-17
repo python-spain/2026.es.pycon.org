@@ -16,17 +16,17 @@ const jobModules = Object.values(import.meta.glob(['../data/jobs/*.md'], { eager
   frontmatter: IJob
 }[]
 
-const tierOrder: Record<TJobTier, number> = { platinum: 0, gold: 1, silver: 2, bronze: 3 }
+const tierOrder: Record<TJobTier, number> = { main: 0, platinum: 1, gold: 2, silver: 3, bronze: 4 }
 
 const jobs = jobModules
   .filter((job) => job.frontmatter.draft !== true)
   .sort((a, b) => {
-    const aTier = tierOrder[a.frontmatter.tier as TJobTier] ?? 4
-    const bTier = tierOrder[b.frontmatter.tier as TJobTier] ?? 4
+    const aTier = tierOrder[a.frontmatter.tier as TJobTier] ?? 5
+    const bTier = tierOrder[b.frontmatter.tier as TJobTier] ?? 5
     return aTier - bTier
   })
 
-const isFeatured = (tier?: TJobTier) => tier === 'gold' || tier === 'platinum'
+const isFeatured = (tier?: TJobTier) => tier === 'platinum' || tier === 'main'
 ---
 
 <div class="jobs-container pb-20">

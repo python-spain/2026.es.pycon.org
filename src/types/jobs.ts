@@ -2,7 +2,7 @@ import type { TLocale } from './locale'
 
 export type { TLocale }
 
-export type TJobTier = 'platinum' | 'gold' | 'silver' | 'bronze'
+export type TJobTier = 'main' | 'platinum' | 'gold' | 'silver' | 'bronze'
 
 export interface IJob {
   title: string

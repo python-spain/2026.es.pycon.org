@@ -363,7 +363,7 @@ export const en = {
     {
       name: 'Speakers and Org Dinner',
       price: '€2,000',
-      available: 'Availability: 2/2',
+      available: 'Availability: 1/2',
       desc: 'Your brand at the exclusive dinner for speakers and staff. Includes entry for 2 people.',
     },
     {
@@ -375,13 +375,13 @@ export const en = {
     {
       name: 'Food Sponsor',
       price: '€2,000',
-      available: 'Availability: 6/6',
+      available: 'Availability: 5/6',
       desc: 'Your brand at the event meals/coffee breaks.',
     },
     {
       name: 'Django Girls',
       price: '€1,500',
-      available: 'Availability: 0/1',
+      available: 'Availability: 1/1',
       desc: 'Your brand at the Django Girls Workshop (diversity and beginner-oriented).',
     },
     {

@@ -359,7 +359,7 @@ export const ca = {
     {
       name: 'Sopar ponents i organització',
       price: '2.000€',
-      available: 'Disponibilitat: 2/2',
+      available: 'Disponibilitat: 1/2',
       desc: 'La teva marca al sopar exclusiu per a ponents i organització. Inclou entrada per a 2 persones.',
     },
     {
@@ -371,13 +371,13 @@ export const ca = {
     {
       name: 'Food sponsor',
       price: '2.000€',
-      available: 'Disponibilitat: 6/6',
+      available: 'Disponibilitat: 5/6',
       desc: 'La teva marca als dinars/coffee breaks de l’esdeveniment.',
     },
     {
       name: 'Django Girls',
       price: '1.500€',
-      available: 'Disponibilitat: 0/1',
+      available: 'Disponibilitat: 1/1',
       desc: 'La teva marca al Taller Django Girls (orientat a la diversitat i principiants).',
     },
     {

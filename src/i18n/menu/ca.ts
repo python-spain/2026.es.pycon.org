@@ -36,6 +36,10 @@ export const ca = {
           label: 'Beces',
           href: '/becas',
         },
+        {
+          label: 'Django Girls',
+          href: '/django-girls',
+        },
       ],
     },
     {

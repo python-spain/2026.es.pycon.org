@@ -36,6 +36,10 @@ export const en = {
           label: 'Scholarships',
           href: '/becas',
         },
+        {
+          label: 'Django Girls',
+          href: '/django-girls',
+        },
       ],
     },
     {

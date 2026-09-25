@@ -1,0 +1,35 @@
+export const en = {
+  title: 'Django Girls - PyConES 2026',
+  description:
+    'Free Django Girls workshop at PyConES 2026: learn how to build your own website in a day, in a safe and friendly environment. Apply by October 25th.',
+  heroTitle: 'Django Girls',
+  heroSubtitle: 'Workshop at PyConES 2026',
+  intro:
+    'Are you a woman or non-binary person who wants to learn how to build websites? We have great news! We are organizing a free workshop where you will build your own website from scratch in a single day, as part of PyConES 2026 at the University of Barcelona. You will learn the tools that professional developers use every day, in a simple and accessible way.',
+  detailsTitle: 'Details',
+  dateLabel: 'Date',
+  date: 'Friday, November 6, 2026',
+  locationLabel: 'Venue',
+  location: 'University of Barcelona',
+  deadlineLabel: 'Applications close',
+  deadline: 'October 25th',
+  requirementsTitle: 'Requirements',
+  requirements: [
+    'Identify as a woman or non-binary person.',
+    'Have a strong eagerness to learn.',
+    'Bring your own laptop.',
+    'No prior experience needed.',
+  ],
+  whatYouGetTitle: 'As an attendee you will',
+  whatYouGet: [
+    'Build your own website with Django.',
+    'Enjoy a safe and friendly atmosphere.',
+    'Meet other people with similar interests',
+  ],
+  signupTitle: 'Apply',
+  signupAttendeesLabel: 'Attendee signup',
+  signupAttendeesUrl: 'https://djangogirls.org/en/barcelona',
+  signupCoachesLabel: 'Mentor signup',
+  signupCoachesUrl: 'https://djangogirls.org/en/barcelona#coach',
+  shareText: 'Help us out by sharing! 🔄💛',
+}

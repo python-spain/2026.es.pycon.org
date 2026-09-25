@@ -1,0 +1,219 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import StatusIcon from '../../components/icons/StatusIcon.astro'
+import Button from '../../components/Button.astro'
+import { texts } from '../../i18n/django-girls'
+import { menuTexts } from '../../i18n/menu'
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }, { params: { lang: 'ca' } }]
+}
+
+const { lang } = Astro.params
+
+const t = texts[(lang || 'es') as keyof typeof texts]
+const menuT = menuTexts[(lang || 'es') as keyof typeof menuTexts]
+
+const {
+  title,
+  description,
+  heroTitle,
+  heroSubtitle,
+  intro,
+  detailsTitle,
+  dateLabel,
+  date,
+  locationLabel,
+  location,
+  deadlineLabel,
+  deadline,
+  requirementsTitle,
+  requirements,
+  whatYouGetTitle,
+  whatYouGet,
+  signupTitle,
+  signupAttendeesLabel,
+  signupAttendeesUrl,
+  signupCoachesLabel,
+  signupCoachesUrl,
+  shareText,
+} = t
+---
+
+<Layout title={title} description={description}>
+  <div class="grow container mx-auto px-4 py-8 mt-20">
+    <!-- Hero -->
+    <header class="text-center mb-16">
+      <h1
+        class="text-4xl md:text-5xl font-extrabold leading-tight mb-6 flex items-center justify-center gap-4"
+      >
+        <StatusIcon type="love" size="xl" class="text-pycon-red w-9 h-9 flex-shrink-0" />
+        {heroTitle}
+      </h1>
+      <p class="text-lg md:text-xl opacity-80 mb-6">{heroSubtitle}</p>
+      <div
+        class="w-24 h-1 bg-linear-to-r from-pycon-yellow via-pycon-orange to-pycon-red mx-auto rounded-full"
+      >
+      </div>
+    </header>
+
+    <!-- Intro -->
+    <section class="mb-12">
+      <div class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm">
+        <p class="text-lg leading-relaxed">
+          {intro}
+        </p>
+      </div>
+    </section>
+
+    <!-- Details -->
+    <section class="mb-12" aria-labelledby="dg-details">
+      <h2 id="dg-details" class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
+        <span
+          class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-yellow/20 text-pycon-yellow text-lg"
+          aria-hidden="true"><StatusIcon type="info" size="md" /></span
+        >
+        {detailsTitle}
+      </h2>
+      <div class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm">
+        <ul class="space-y-5">
+          <li class="flex gap-4 items-start">
+            <span class="mt-1 text-pycon-yellow shrink-0" aria-hidden="true">
+              <StatusIcon type="calendar" size="md" />
+            </span>
+            <div>
+              <p class="font-semibold mb-1">{dateLabel}</p>
+              <p class="opacity-80 leading-relaxed">{date}</p>
+            </div>
+          </li>
+          <li class="flex gap-4 items-start">
+            <span class="mt-1 text-pycon-orange shrink-0" aria-hidden="true">
+              <StatusIcon type="location" size="md" />
+            </span>
+            <div>
+              <p class="font-semibold mb-1">{locationLabel}</p>
+              <p class="opacity-80 leading-relaxed">{location}</p>
+            </div>
+          </li>
+          <li class="flex gap-4 items-start">
+            <span class="mt-1 text-pycon-red shrink-0" aria-hidden="true">
+              <StatusIcon type="warning" size="md" />
+            </span>
+            <div>
+              <p class="font-semibold mb-1">{deadlineLabel}</p>
+              <p class="opacity-80 leading-relaxed">{deadline}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Requirements -->
+    <section class="mb-12" aria-labelledby="dg-requirements">
+      <h2 id="dg-requirements" class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
+        <span
+          class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-orange/20 text-pycon-orange text-lg"
+          aria-hidden="true"><StatusIcon type="partnership" size="md" /></span
+        >
+        {requirementsTitle}
+      </h2>
+      <div class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm">
+        <ul class="space-y-4">
+          {
+            requirements.map((item: string) => (
+              <li class="flex gap-4 items-start">
+                <span class="mt-1 w-2 h-2 rounded-full bg-pycon-orange shrink-0" aria-hidden="true" />
+                <span class="opacity-80 leading-relaxed">{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- What you get -->
+    <section class="mb-12" aria-labelledby="dg-whatyouget">
+      <h2 id="dg-whatyouget" class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
+        <span
+          class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-red/20 text-pycon-red text-lg"
+          aria-hidden="true"><StatusIcon type="heart" size="md" /></span
+        >
+        {whatYouGetTitle}
+      </h2>
+      <div class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm">
+        <ul class="space-y-4">
+          {
+            whatYouGet.map((item: string) => (
+              <li class="flex gap-4 items-start">
+                <span class="mt-1 w-2 h-2 rounded-full bg-pycon-red shrink-0" aria-hidden="true" />
+                <span class="opacity-80 leading-relaxed">{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- Signup -->
+    <section class="mb-12" aria-labelledby="dg-signup">
+      <h2 id="dg-signup" class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
+        <span
+          class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-yellow/20 text-pycon-yellow text-lg"
+          aria-hidden="true"><StatusIcon type="thinking" size="md" /></span
+        >
+        {signupTitle}
+      </h2>
+      <div class="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm">
+        <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
+          <Button
+            variant="primary"
+            size="lg"
+            href={signupAttendeesUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${signupAttendeesLabel} ${menuT.new_tab}`}
+          >
+            {signupAttendeesLabel}
+            <svg
+              class="ml-2 w-4 h-4 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+          </Button>
+          <Button
+            variant="secondary"
+            size="lg"
+            href={signupCoachesUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${signupCoachesLabel} ${menuT.new_tab}`}
+          >
+            {signupCoachesLabel}
+            <svg
+              class="ml-2 w-4 h-4 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+          </Button>
+        </div>
+        <p class="opacity-70 leading-relaxed text-sm italic mt-6">{shareText}</p>
+      </div>
+    </section>
+  </div>
+</Layout>

@@ -5,7 +5,7 @@ export const ca = {
   heroTitle: 'Django Girls',
   heroSubtitle: 'Taller a la PyConES 2026',
   intro:
-    "Si ets una dona o persona no-binaria i vols aprendre a fer pàgines web, tenim bones notícies! Organitzem un taller gratuït en què podràs construir la teva pròpia pàgina web des de zero en un sol dia, en el marc de la PyConES 2026 a la Universitat de Barcelona. Aprendràs les eines que fan servir els programadors professionals cada dia, de manera senzilla i accessible.",
+    'Si ets una dona o persona no-binaria i vols aprendre a fer pàgines web, tenim bones notícies! Organitzem un taller gratuït en què podràs construir la teva pròpia pàgina web des de zero en un sol dia, en el marc de la PyConES 2026 a la Universitat de Barcelona. Aprendràs les eines que fan servir els programadors professionals cada dia, de manera senzilla i accessible.',
   detailsTitle: 'Detalls',
   dateLabel: 'Data',
   date: 'Divendres, 6 de novembre de 2026',

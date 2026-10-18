@@ -51,4 +51,15 @@ export const ca = {
     body: 'Si teniu algun dubte, podeu contactar-nos a',
     email: 'diversidadybecas@2026.es.pycon.org',
   },
+  faq: {
+    title: 'Preguntes freqüents',
+    subtitle: 'Resolem els dubtes més habituals sobre el programa de beques.',
+    autoTranslateNotice: 'Aquest text ha estat traduït automàticament i està pendent de revisió humana.',
+    categories: {
+      general: 'Sobre la beca en general',
+      entrada: "Sobre la beca d'entrada",
+      alojamiento: "Sobre la beca d'allotjament",
+      transporte: 'Sobre la beca de transport',
+    },
+  },
 }

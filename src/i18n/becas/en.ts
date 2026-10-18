@@ -50,4 +50,15 @@ export const en = {
     body: 'If you have any questions, you can contact us at',
     email: 'diversidadybecas@2026.es.pycon.org',
   },
+  faq: {
+    title: 'Frequently Asked Questions',
+    subtitle: 'Answers to the most common questions about the grants programme.',
+    autoTranslateNotice: 'This text was automatically translated and is pending human review.',
+    categories: {
+      general: 'About the grant in general',
+      entrada: 'About the entry grant',
+      alojamiento: 'About the accommodation grant',
+      transporte: 'About the travel grant',
+    },
+  },
 }

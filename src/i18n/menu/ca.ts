@@ -33,7 +33,7 @@ export const ca = {
           href: '/code-of-conduct',
         },
         {
-          label: 'Beces',
+          label: 'Beques',
           href: '/becas',
         },
         {

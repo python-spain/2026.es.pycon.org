@@ -1,29 +1,29 @@
 export const ca = {
-  title: 'Beces - PyConES 2026',
-  heading: 'Beces i ajuts',
+  title: 'Beques - PyConES 2026',
+  heading: 'Beques i ajuts',
   intro:
-    "Des de la comunitat de PyConES volem que l'assistència a la convenció sigui el més accessible possible per a tothom. Per això, hem decidit destinar una part dels nostres recursos a un programa de beces.",
+    'A la comunitat de PyConES volem que lʼassistència a la conferència sigui tan accessible com sigui possible per a tothom. Per això, hem decidit destinar una part dels nostres recursos a un programa de beques.',
   covered:
-    "Les beces es destinaran a sufragar les despeses d'allotjament, el transport i/o l'entrada de l'esdeveniment.",
+    "Les beques es destinaran a sufragar les despeses d'allotjament, de transport i/o d'entrada a l'esdeveniment.",
   notIncluded:
-    "No s'inclouen les despeses de tramitació ni pagament de visats. No obstant, un cop comprada l'entrada, us podem facilitar un justificant d'assistència a l'esdeveniment.",
+    "No s'inclouen les despeses de tramitació ni de pagament de visats. No obstant això, un cop comprada l'entrada, us podem facilitar un justificant d'assistència a l'esdeveniment.",
   importantNote:
-    "Tingueu en compte que les beces poden concedir-se de forma total o parcial. Per a facilitar la gestió de les beces, us demanem que no compreu l'entrada fins que s'hagi resol·licitat la vostra sol·licitud.",
+    "Tingueu en compte que les beques poden concedir-se de forma total o parcial. Per a facilitar la gestió de les beques, us demanem que no compreu l'entrada fins que s'hagi resolt la vostra sol·licitud.",
   targetAudience: {
     title: 'A qui van dirigides?',
     items: [
-      'Estudiants universitaris, formació professional, BootCamp o doctorat.',
+      'Estudiants universitaris, de formació professional, de bootcamp o de doctorat.',
       'Persones amb contracte de pràctiques, jornada reduïda, baixa laboral o excedència.',
       'Persones en situació de desocupació.',
-      'Fílies monoparentals / nombroses.',
+      'Famílies monoparentals o nombroses.',
       'Persones refugiades.',
     ],
     note: 'Aquestes no són les úniques situacions contemplades. Si necessiteu suport per a assistir a la conferència, no dubteu a sol·licitar la beca.',
   },
   documentation: {
-    title: 'Documentació a aportar',
+    title: 'Documentació que cal aportar',
     warning:
-      "Recordeu censurar la informació que no sigui necessària per a valorar la sol·licitud, com números d'identificació, adreces, dades bancàries, informació mèdica o altres dades personals no rellevants.",
+      "Recordeu ocultar les dades personals que no siguin necessàries per a valorar la sol·licitud, com ara números d'identificació, adreces, dades bancàries, informació mèdica o altres dades personals no rellevants.",
     items: [
       {
         category: 'Estudiants',
@@ -41,14 +41,14 @@ export const ca = {
   },
   application: {
     title: 'Sol·licitar una beca',
-    body: "Per a sol·licitar la vostra beca, heu d'omplir el formulari abans del 2 d'agost. Després de revisar la sol·licitud, ens posarem en contacte per correu electrònic per comunicar-vos la resposta.",
-    deadline: "2 d'agost",
-    formLink: 'https://forms.gle/5CGpNm6oJAWNjjNb6',
-    formText: 'Sol·licitar beca',
+    body: 'El termini de sol·licitud de beques per a la PyConES 2026 (2 dʼagost de 2026) ja ha tancat. Si necessiteu ajuda per a futures edicions o voleu estar al corrent de les novetats de lʼequip de beques, escriviu-nos a diversidadybecas@2026.es.pycon.org.',
+    deadline: 'Termini tancat',
+    formLink: 'mailto:diversidadybecas@2026.es.pycon.org',
+    formText: 'Contactar amb lʼequip de beques',
   },
   contact: {
     title: 'Dubtes?',
-    body: 'Si teniu algun dubte, podeu contactar-nos a',
+    body: 'Si teniu algun dubte, podeu contactar amb nosaltres a',
     email: 'diversidadybecas@2026.es.pycon.org',
   },
   faq: {

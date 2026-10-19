@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 import StatusIcon from '../../components/icons/StatusIcon.astro'
+import BecasFaq from '../../components/BecasFaq.astro'
 import { texts } from '../../i18n/becas'
 
 export function getStaticPaths() {
@@ -22,6 +23,7 @@ const {
   documentation,
   application,
   contact,
+  faq,
 } = t
 ---
 
@@ -172,6 +174,9 @@ const {
         </a>
       </div>
     </section>
+
+    <!-- FAQ -->
+    <BecasFaq lang={lang || 'es'} />
 
     <!-- Contact -->
     <section class="mb-16" aria-labelledby="becas-contact">

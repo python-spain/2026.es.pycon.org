@@ -1,0 +1,92 @@
+---
+import { texts } from '../i18n/becas'
+import StatusIcon from './icons/StatusIcon.astro'
+import type { IBecasFaq, TBecasFaqCategory } from '../types/becas-faq'
+
+interface Props {
+  lang: string
+}
+
+const { lang } = Astro.props
+const locale = (lang || 'es') as 'ca' | 'es' | 'en'
+const t = texts[locale]
+
+const faqItems = (
+  Object.values(import.meta.glob('../data/becas-faq/*.md', { eager: true })) as {
+    frontmatter: IBecasFaq
+  }[]
+).filter((m) => m.frontmatter && m.frontmatter.id)
+
+const categoryOrder: TBecasFaqCategory[] = ['general', 'entrada', 'alojamiento', 'transporte']
+
+const grouped = categoryOrder
+  .map((cat) => ({
+    category: cat,
+    items: faqItems
+      .filter((m) => m.frontmatter.category === cat)
+      .sort((a, b) => a.frontmatter.order - b.frontmatter.order),
+  }))
+  .filter((g) => g.items.length > 0)
+
+const categoryLabels = t.faq.categories as Record<TBecasFaqCategory, string>
+---
+
+<section class="mb-12" aria-labelledby="becas-faq-heading">
+  <h2 id="becas-faq-heading" class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
+    <span
+      class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-pycon-red/20 text-pycon-red text-lg"
+      aria-hidden="true"><StatusIcon type="info" size="md" /></span
+    >
+    {t.faq.title}
+  </h2>
+  <p class="opacity-80 leading-relaxed mb-8">{t.faq.subtitle}</p>
+
+  {
+    grouped.map(({ category, items }) => (
+      <section class="mb-8" aria-labelledby={`becas-faq-${category}`}>
+        <h3 id={`becas-faq-${category}`} class="text-xl font-semibold mb-4 opacity-90">
+          {categoryLabels[category]}
+        </h3>
+        <div class="space-y-3">
+          {items.map(({ frontmatter: faq }) => (
+            <details
+              id={`faq-${faq.id}`}
+              class="group bg-white/5 rounded-xl border border-white/10 shadow-sm overflow-hidden"
+            >
+              <summary class="cursor-pointer p-5 font-semibold flex items-center justify-between gap-4 list-none [&::-webkit-details-marker]:hidden marker:hidden">
+                <span>{faq.question[locale]}</span>
+                <svg
+                  class="w-5 h-5 shrink-0 transition-transform group-open:rotate-180"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
+              <div class="px-5 pb-5 opacity-80 leading-relaxed text-sm whitespace-pre-line">
+                {faq.answer[locale]}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  {
+    locale !== 'es' && t.faq.autoTranslateNotice && (
+      <p
+        class="opacity-60 leading-relaxed text-xs italic mt-8 p-4 border-l-2 border-pycon-yellow/40"
+        role="note"
+      >
+        {t.faq.autoTranslateNotice}
+      </p>
+    )
+  }
+</section>

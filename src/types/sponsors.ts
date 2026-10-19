@@ -4,6 +4,8 @@ export interface ISponsor {
   name: string
   website: string
   tier: TSponsorTier
-  logobg: string
+  logobg?: string
+  nobackground?: boolean
+  nopadding?: boolean
   logo: string
 }

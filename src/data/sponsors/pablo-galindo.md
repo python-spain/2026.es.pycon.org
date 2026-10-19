@@ -2,6 +2,7 @@
 name: 'Pablo Galindo'
 website: 'https://pablogsal.com/'
 tier: 'community'
-logobg: '#ffffff'
+nobackground: true
+nopadding: true
 logo: '/collaborators/PabloGalindo.jpg'
 ---

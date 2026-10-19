@@ -40,9 +40,9 @@ const menuT = menuTexts[lang as keyof typeof menuTexts]
               height={Math.round(size * 0.7)}
               class="object-contain transition-all duration-300 opacity-90 group-hover:opacity-100"
               style={{
-                background: sponsor.logobg,
+                background: sponsor.nobackground ? 'transparent' : sponsor.logobg,
                 borderRadius: '0.5rem',
-                padding: '0.5rem',
+                padding: sponsor.nopadding ? '0' : '0.5rem',
                 width: `${size}px`,
                 height: `${Math.round(size * 0.7)}px`,
               }}

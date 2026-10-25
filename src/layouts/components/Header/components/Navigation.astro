@@ -62,8 +62,8 @@ const { items } = menuTexts[currentLang]
 
     <div class="wrapper flex items-center gap-4">
       <!-- Desktop Navigation -->
-      <nav class="desktop-menu hidden lg:block" aria-label="Navegación principal">
-        <ul class="menu flex gap-8">
+      <nav class="desktop-menu hidden lg:block px-8" aria-label="Navegación principal">
+        <ul class="menu flex gap-8 items-center">
           {
             items.map((item: any, index: number) => (
               <li class:list={['menu-item', { 'has-dropdown': item.children }]}>

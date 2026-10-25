@@ -1,7 +1,7 @@
 ---
 name: 'Mia Bajić'
 order: 2
-photo: '/speakers/mia.jpg'
+photo: '/speakers/mia.png'
 links:
   - type: 'linkedin'
     url: 'https://www.linkedin.com/in/mia-bajic/'

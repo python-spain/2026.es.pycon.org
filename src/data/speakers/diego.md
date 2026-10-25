@@ -1,7 +1,7 @@
 ---
 name: 'Diego Russo'
 order: 1
-photo: '/speakers/diego.jpg'
+photo: '/speakers/diego.png'
 links:
   - type: 'github'
     url: 'https://github.com/diegorusso'

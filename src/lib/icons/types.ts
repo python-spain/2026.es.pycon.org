@@ -59,6 +59,8 @@ export type TechnicalIconName =
   | 'devops-cloud'
   | 'others'
 
+export type ContactIconName = 'mail'
+
 export type StatusIconName =
   | 'warning'
   | 'allowed'
@@ -92,4 +94,5 @@ export type StatusIconName =
   | 'main'
 
 // Union type for all available icon names
-export type AvailableIconName = SocialIconName | StatisticIconName | TechnicalIconName | StatusIconName
+export type AvailableIconName =
+  SocialIconName | StatisticIconName | TechnicalIconName | StatusIconName | ContactIconName

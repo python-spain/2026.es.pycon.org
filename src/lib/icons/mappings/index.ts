@@ -3,6 +3,7 @@ import { socialMapping } from './social'
 import { statisticsMapping } from './statistics'
 import { technicalMapping } from './technical'
 import { statusMapping } from './status'
+import { contactMapping } from './contact'
 
 // Combine all category mappings
 const allMappings = {
@@ -10,6 +11,7 @@ const allMappings = {
   ...statisticsMapping,
   ...technicalMapping,
   ...statusMapping,
+  ...contactMapping,
 }
 
 /**

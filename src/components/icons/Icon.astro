@@ -28,6 +28,11 @@ const classes = [sizeClasses, colorClasses, className, 'inline-block flex-shrink
 // Build style object for CSS color values
 const style = color.startsWith('#') || color.startsWith('rgb') || color.startsWith('hsl') ? { color } : {}
 
+// Lucide hardcodes width/height (24) as HTML attributes, which take precedence over
+// Tailwind's width/height utility classes. Neutralize them so the size classes
+// (IconSizes) actually control the rendered size.
+const lucideSizeProps = { width: '100%', height: '100%' }
+
 // Log missing mappings in development
 if (!LucideIconComponent && !svg && !fallback) {
   try {
@@ -60,6 +65,7 @@ if (!LucideIconComponent && !svg && !fallback) {
       aria-label={ariaHidden ? undefined : ariaLabel}
       aria-hidden={ariaHidden ? 'true' : undefined}
       focusable="false"
+      {...lucideSizeProps}
       {...rest}
     />
   ) : fallback ? (
@@ -79,6 +85,7 @@ if (!LucideIconComponent && !svg && !fallback) {
       aria-label={ariaHidden ? undefined : ariaLabel || `Unknown icon: ${name}`}
       aria-hidden={ariaHidden ? 'true' : undefined}
       focusable="false"
+      {...lucideSizeProps}
       {...rest}
     />
   )

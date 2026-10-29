@@ -3,6 +3,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n'
 import { footerTexts } from '@/i18n/components/footer'
 import { menuTexts } from '@/i18n/menu'
 import SocialIcon from '@/components/icons/SocialIcon.astro'
+import Icon from '@/components/icons/Icon.astro'
 
 interface Props {
   lang?: string
@@ -92,6 +93,14 @@ const collaborators = [
             </a>
           ))
         }
+        <a
+          href={`mailto:${t.contact.email}`}
+          aria-label={`${t.contact.label}: ${t.contact.email}`}
+          class="text-pycon-white/80 hover:text-pycon-red transition-colors relative group outline-none focus-visible:text-pycon-red flex items-center gap-1.5"
+        >
+          <Icon name="mail" size="sm" aria-hidden={true} />
+          {t.contact.label}
+        </a>
       </nav>
 
       <!-- Social Links -->

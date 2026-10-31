@@ -77,10 +77,8 @@ const renderDescription = (text: string) => {
                   <p class="text-sm text-pycon-gray-50 mb-2 uppercase tracking-wide">{t.skills}</p>
                   <ul class="flex flex-wrap gap-2 list-none m-0 p-0" aria-label={t.skills}>
                     {job.skills.map((skill) => (
-                      <li>
-                        <span class="px-3 py-1.5 bg-gradient-to-r from-pycon-orange/30 to-pycon-yellow/20 text-white text-sm rounded-full border border-pycon-orange/30">
-                          {skill}
-                        </span>
+                      <li class="px-3 py-1.5 bg-gradient-to-r from-pycon-orange/30 to-pycon-yellow/20 text-white text-sm rounded-full border border-pycon-orange/30">
+                        {skill}
                       </li>
                     ))}
                   </ul>

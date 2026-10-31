@@ -27,6 +27,11 @@ const jobs = jobModules
   })
 
 const isFeatured = (tier?: TJobTier) => tier === 'platinum' || tier === 'main'
+
+const renderDescription = (text: string) => {
+  const escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  return escaped.replace(/\*([^*]+)\*/g, '<em>$1</em>')
+}
 ---
 
 <div class="jobs-container pb-20">
@@ -61,9 +66,10 @@ const isFeatured = (tier?: TJobTier) => tier === 'platinum' || tier === 'main'
               </div>
 
               <div class="h-35 mb-3">
-                <p class="text-pycon-gray-25 text-base leading-relaxed line-clamp-5">
-                  {job.description[locale]}
-                </p>
+                <p
+                  class="text-pycon-gray-25 text-base leading-relaxed line-clamp-5"
+                  set:html={renderDescription(job.description[locale])}
+                />
               </div>
 
               {job.skills && job.skills.length > 0 && (
@@ -71,10 +77,8 @@ const isFeatured = (tier?: TJobTier) => tier === 'platinum' || tier === 'main'
                   <p class="text-sm text-pycon-gray-50 mb-2 uppercase tracking-wide">{t.skills}</p>
                   <ul class="flex flex-wrap gap-2 list-none m-0 p-0" aria-label={t.skills}>
                     {job.skills.map((skill) => (
-                      <li>
-                        <span class="px-3 py-1.5 bg-gradient-to-r from-pycon-orange/30 to-pycon-yellow/20 text-white text-sm rounded-full border border-pycon-orange/30">
-                          {skill}
-                        </span>
+                      <li class="px-3 py-1.5 bg-gradient-to-r from-pycon-orange/30 to-pycon-yellow/20 text-white text-sm rounded-full border border-pycon-orange/30">
+                        {skill}
                       </li>
                     ))}
                   </ul>

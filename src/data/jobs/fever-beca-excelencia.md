@@ -3,7 +3,7 @@ title: 'Beca de Excelencia'
 company: 'Fever'
 type: 'Internship'
 skills: [Django, Flask, PostgreSQL, Redis, AWS, Docker, Kubernetes]
-salary: 'Hasta 24.000 €'
+salary: 'Hasta 24k'
 apply_url: 'https://becasexcelencia.com/'
 tier: 'gold'
 location:

@@ -12,6 +12,8 @@ location:
   en: 'On-site, Madrid'
 description:
   ca: |
+    *Per a estudiants d'enginyeria en l'últim any o recent llicenciats al top 10% de la seva promoció.*
+
     Busquem el millor talent! Estudiants d'enginyeria com tu que, independentment de la seva especialitat, volen formar part d'un equip internacional altament qualificat i amb esperit emprenedor, aprendre els estàndards de codi més alts i treballar en projectes que impacten milions d'usuaris arreu del món.
 
     Requisits de la beca
@@ -23,6 +25,8 @@ description:
     Tenir interès a aprendre els estàndards de codi més alts i a desenvolupar la teva carrera professional en una startup tecnològica.
     Comptar amb les habilitats necessàries per treballar en un equip d'alt rendiment.
   es: |
+    *Para estudiantes de ingeniería en su último año o recién licenciados en el top 10% de su promoción.*
+
     Buscamos al mejor talento! Estudiantes de ingeniería como tú, que, independientemente de su especialidad, quieren ser parte de un equipo internacional altamente calificado y con espíritu emprendedor, aprender los más altos estándares de código y trabajar en proyectos que impactan a millones de usuarios en todo el mundo.
 
     Requisitos beca
@@ -34,6 +38,8 @@ description:
     Tener interés en aprender de los más altos estándares de código y en desarrollar tu carrera profesional en una startup tecnológica.
     Contar con las habilidades necesarias para trabajar en un equipo de alto rendimiento.
   en: |
+    *For final-year engineering students or recent graduates in the top 10% of their class.*
+
     We're looking for the best talent! Engineering students like you who, regardless of their specialty, want to be part of a highly qualified international team with an entrepreneurial spirit, learn the highest coding standards, and work on projects that impact millions of users around the world.
 
     Scholarship requirements

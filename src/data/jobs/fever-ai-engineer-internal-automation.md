@@ -12,6 +12,8 @@ location:
   en: 'Hybrid, Madrid'
 description:
   ca: |
+    *6+ anys d'enginyeria de programari, llançant sistemes d'IA en producció de principi a fi.*
+
     El lloc
     Busquem un Senior Forward Deployed AI Engineer per accelerar la transformació d'IA de tota l'empresa de Fever des de dins. Aquest és un lloc sènior, pràctic i de col·laborador individual per a algú que prospera integrat en equips de negoci, no darrere d'un backlog.
 
@@ -33,6 +35,8 @@ description:
     Excel·lent comunicació amb parts interessades no tècniques: pots traduir un procés manual desordenat en una solució tècnica i portar l'equip amb tu.
     Aquest és un lloc de col·laborador individual, no de gestió de persones. Formaràs part d'un petit squad d'habilitació d'IA: col·laboratiu en el dia a dia, però seràs propietari dels teus propis dominis de manera independent
   es: |
+    *6+ años de ingeniería de software, lanzando sistemas de IA en producción de principio a fin.*
+
     El puesto
     Buscamos un Senior Forward Deployed AI Engineer para acelerar la transformación de IA de toda la empresa de Fever desde dentro. Este es un puesto senior, práctico y de colaborador individual para alguien que prospera integrado en equipos de negocio, no detrás de un backlog.
 
@@ -54,6 +58,8 @@ description:
     Excelente comunicación con partes interesadas no técnicas: puedes traducir un proceso manual desordenado en una solución técnica y llevar al equipo contigo.
     Este es un puesto de colaborador individual, no de gestión de personas. Formarás parte de un pequeño squad de habilitación de IA: colaborativo en el día a día, pero serás dueño de tus propios dominios de forma independiente
   en: |
+    *6+ years of software engineering, shipping production AI systems end to end.*
+
     The Role
     We're looking for a Senior Forward Deployed AI Engineer to accelerate Fever's company-wide AI transformation from the inside out. This is a senior, hands-on individual contributor role for someone who thrives embedded with business teams — not behind a backlog.
 

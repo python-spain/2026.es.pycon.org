@@ -12,6 +12,8 @@ location:
   en: 'Hybrid, Spain'
 description:
   ca: |
+    *Sòlids coneixements de serveis d'alta concurrència, bases de dades relacionals i anglès de negocis.*
+
     Com a Senior Backend Engineer especialitzat en sistemes d'alt rendiment, tindràs un paper fonamental en la construcció de la columna vertebral de la plataforma d'entreteniment en directe de Fever. Busquem algú amb una excel·lència demostrada en el desenvolupament de programari, bon ull per a la qualitat del codi i motivació per fer les coses bé. Uneix-te a nosaltres si et desemboliques bé en un entorn de ritme ràpid i t'entusiasma portar els límits del possible més enllà. Aquesta és una oportunitat per tenir un impacte real en un líder global de categoria en alt creixement.
 
     Competències imprescindibles:
@@ -23,6 +25,8 @@ description:
     Domini de Datadog o altres eines de perfilat i sistemes de monitoratge similars.
     Domini d'anglès de negocis.
   es: |
+    *Sólidos conocimientos de servicios de alta concurrencia, bases de datos relacionales e inglés de negocios.*
+
     Como Senior Backend Engineer especializado en sistemas de alto rendimiento, desempeñarás un papel fundamental en la construcción de la columna vertebral de la plataforma de entretenimiento en vivo de Fever. Buscamos a alguien con una excelencia demostrada en el desarrollo de software, buen ojo para la calidad del código y motivación para hacer las cosas bien. Únete a nosotros si te desenvuelves bien en un entorno de ritmo rápido y te entusiasma llevar los límites de lo posible más allá. Esta es una oportunidad para tener un impacto real en un líder global de categoría en alto crecimiento.
 
     Competencias imprescindibles:
@@ -34,6 +38,8 @@ description:
     Dominio de Datadog u otras herramientas de perfilado y sistemas de monitorización similares.
     Dominio de inglés de negocios.
   en: |
+    *Strong knowledge of high-concurrency services, relational databases, and business English.*
+
     As a Senior Backend Engineer specializing in high-performance systems, you'll play a pivotal role in shaping the backbone of Fever's live-entertainment platform. We're seeking someone with proven software development excellence, a keen eye for code quality, and a drive to get things done right. Join us if you thrive in a fast-paced environment and are excited about pushing the boundaries of what's possible. This is an opportunity to have real impact in a high-growth global category leader.
 
     Must have skills:

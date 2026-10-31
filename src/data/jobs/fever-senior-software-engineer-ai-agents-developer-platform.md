@@ -12,6 +12,8 @@ location:
   en: 'Hybrid, Spain'
 description:
   ca: |
+    *5+ anys construint programari en producció, incloent-hi 1 a 2+ anys llançant aplicacions LLM.*
+
     Estem construint l'equip que defineix com la IA transforma l'enginyeria de producte a Fever. Aquest és, abans que res, un lloc d'enginyeria de backend: necessites sòlids fonaments de programari per construir sistemes que escalin i resisteixin en producció. L'experiència en IA es construeix sobre aquesta base. No només faràs servir agents: construiràs els arnesos, les avaluacions i la infraestructura que fan que produeixin resultats fiables i d'alta qualitat a tota l'empresa.
 
     T'uniràs a l'equip d'IA i DevEx. La nostra missió és elevar el rendiment de tota l'organització d'enginyeria de producte de Fever, no només d'enginyers individuals, sinó de squads sencers (producte, disseny i enginyeria junts) i de tot el que envolta la seva feina: CI/CD, observabilitat, infraestructura, dades i com les persones es comuniquen i coordinen. Busquem els punts de més palanca d'aquesta cadena i construïm eines impulsades per IA per millorar-los, sempre recolzades per mesuraments, no per suposicions.
@@ -26,6 +28,8 @@ description:
     Economia de la inferència: optimitzar els fluxos de treball d'IA per velocitat i cost: encaminament de models, memòria cau de prompts i elecció entre models autoallotjats i de frontera segons l'equilibri qualitat/cost.
     Excel·lència en enginyeria: proves, patrons de disseny, CI/CD i observabilitat. Tot es llança com a programari de producció, i ajudes a marcar l'estàndard del que significa fer-ho bé.
   es: |
+    *5+ años construyendo software en producción, incluidos 1 a 2+ años lanzando aplicaciones LLM.*
+
     Estamos construyendo el equipo que define cómo la IA transforma la ingeniería de producto en Fever. Este es, ante todo, un puesto de ingeniería de backend: necesitas sólidos fundamentos de software para construir sistemas que escalen y resistan en producción. La experiencia en IA se construye sobre esa base. No solo usarás agentes: construirás los arneses, las evaluaciones y la infraestructura que hacen que produzcan resultados fiables y de alta calidad en toda la empresa.
 
     Te unirás al equipo de IA y DevEx. Nuestra misión es elevar el rendimiento de toda la organización de ingeniería de producto de Fever, no solo de ingenieros individuales, sino de squads completos (producto, diseño e ingeniería juntos) y de todo lo que rodea su trabajo: CI/CD, observabilidad, infraestructura, datos y cómo las personas se comunican y coordinan. Buscamos los puntos de mayor apalancamiento de esa cadena y construimos herramientas impulsadas por IA para mejorarlos, siempre respaldadas por medición, no por suposiciones.
@@ -40,6 +44,8 @@ description:
     Economía de la inferencia: optimizar los flujos de trabajo de IA por velocidad y coste: enrutamiento de modelos, caché de prompts y elección entre modelos autoalojados y de frontera según el equilibrio calidad/coste.
     Excelencia en ingeniería: pruebas, patrones de diseño, CI/CD y observabilidad. Todo se lanza como software de producción, y ayudas a marcar el estándar de lo que significa hacerlo bien.
   en: |
+    *5+ years building production software, including 1 to 2+ years shipping LLM applications.*
+
     We're building the team that defines how AI transforms Product Engineering at Fever. This is a backend engineering role first: you need strong software fundamentals to build systems that scale and hold up in production. The AI expertise builds on top of that foundation. You won't just use agents, you'll build the harnesses, evals, and infrastructure that make them ship reliable, high-quality output across the entire company.
 
     You'll join the AI & DevEx team. Our mission is to raise the performance of Fever's whole Product Engineering organization, not just individual engineers, but entire squads (product, design, and engineering together) and everything that surrounds their work: CI/CD, observability, infrastructure, data, and how people communicate and coordinate. We look for the highest-leverage points in that chain and build AI-powered tools to improve them, always backed by measurement, not assumptions.

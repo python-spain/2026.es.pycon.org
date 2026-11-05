@@ -18,6 +18,20 @@ export const ca = {
   'location.rooms.teaching.title': 'Aules Docents',
   'location.rooms.teaching.desc':
     'Almenys 4 sales recentment restaurades amb capacitat per a 90-120 persones, equipades amb projector.',
+  'location.floorplans.title': 'Plànols de la seu',
+  'location.floorplans.ground': 'Planta baixa',
+  'location.floorplans.groundAlt':
+    'Plànol de la planta baixa de la Universitat de Barcelona amb la distribució de sales i espais.',
+  'location.floorplans.first': 'Primer pis',
+  'location.floorplans.firstAlt':
+    'Plànol del primer pis de la Universitat de Barcelona amb la distribució de sales i espais.',
+  'location.floorplans.expand': 'Ampliar plànol',
+  'location.floorplans.close': 'Tanca el plànol',
+  'location.floorplans.zoomIn': 'Aproxima',
+  'location.floorplans.zoomOut': 'Allunya',
+  'location.floorplans.reset': 'Encaixa',
+  'location.floorplans.hint':
+    'Fes servir la roda del ratolí o els botons per fer zoom, i arrossega per moure-te.',
   'location.spaces.title': 'Espais Oberts',
   'location.spaces.gallery.title': 'Galeria del Paranimf',
   'location.spaces.gallery.desc': 'Ideal per a acreditacions i pòsters acadèmics (250 persones).',

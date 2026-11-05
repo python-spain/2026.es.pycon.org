@@ -18,6 +18,20 @@ export const es = {
   'location.rooms.teaching.title': 'Aulas Docentes',
   'location.rooms.teaching.desc':
     'Al menos 4 salas recién restauradas con capacidad para 90-120 personas, equipadas con proyector.',
+  'location.floorplans.title': 'Planos de la sede',
+  'location.floorplans.ground': 'Planta baja',
+  'location.floorplans.groundAlt':
+    'Plano de la planta baja de la Universidad de Barcelona con la distribución de salas y espacios.',
+  'location.floorplans.first': 'Primer piso',
+  'location.floorplans.firstAlt':
+    'Plano del primer piso de la Universidad de Barcelona con la distribución de salas y espacios.',
+  'location.floorplans.expand': 'Ampliar plano',
+  'location.floorplans.close': 'Cerrar el plano',
+  'location.floorplans.zoomIn': 'Acercar',
+  'location.floorplans.zoomOut': 'Alejar',
+  'location.floorplans.reset': 'Encajar',
+  'location.floorplans.hint':
+    'Usa la rueda del ratón o los botones para hacer zoom, y arrastra para moverte.',
   'location.spaces.title': 'Espacios Abiertos',
   'location.spaces.gallery.title': 'Galería del Paranimf',
   'location.spaces.gallery.desc': 'Ideal para acreditaciones y pósters académicos (250 personas).',

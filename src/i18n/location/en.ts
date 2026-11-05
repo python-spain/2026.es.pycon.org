@@ -18,6 +18,19 @@ export const en = {
   'location.rooms.teaching.title': 'Teaching Classrooms',
   'location.rooms.teaching.desc':
     'At least 4 recently restored rooms with capacity for 90-120 people, fully equipped.',
+  'location.floorplans.title': 'Venue floor plans',
+  'location.floorplans.ground': 'Ground floor',
+  'location.floorplans.groundAlt':
+    'Ground floor plan of the University of Barcelona showing the layout of rooms and spaces.',
+  'location.floorplans.first': 'First floor',
+  'location.floorplans.firstAlt':
+    'First floor plan of the University of Barcelona showing the layout of rooms and spaces.',
+  'location.floorplans.expand': 'Expand floor plan',
+  'location.floorplans.close': 'Close the floor plan',
+  'location.floorplans.zoomIn': 'Zoom in',
+  'location.floorplans.zoomOut': 'Zoom out',
+  'location.floorplans.reset': 'Fit',
+  'location.floorplans.hint': 'Use the mouse wheel or the buttons to zoom, and drag to pan.',
   'location.spaces.title': 'Open Spaces',
   'location.spaces.gallery.title': 'Paranimf Gallery',
   'location.spaces.gallery.desc': 'Perfect for registrations and academic posters (250 people).',

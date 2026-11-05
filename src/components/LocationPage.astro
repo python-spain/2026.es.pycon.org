@@ -1,6 +1,7 @@
 ---
 import { locationTexts } from '../i18n/location'
 import { menuTexts } from '../i18n/menu'
+import FloorPlanLightbox from './FloorPlanLightbox.astro'
 
 interface Props {
   lang: string
@@ -182,6 +183,48 @@ const transportIcons = {
       </div>
     </div>
   </section>
+
+  <!-- Floor Plans -->
+  <div class="space-y-6 mb-12">
+    <h2 class="text-3xl font-bold text-white flex items-center gap-3">
+      <span class="w-2 h-8 bg-pycon-red rounded-full"></span>
+      {t['location.floorplans.title']}
+    </h2>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <figure
+        class="bg-white/5 backdrop-blur-md p-4 md:p-6 rounded-2xl border border-white/10 hover:border-pycon-yellow/50 transition-all flex flex-col"
+      >
+        <h3 class="text-xl font-bold text-pycon-yellow mb-4">{t['location.floorplans.ground']}</h3>
+        <FloorPlanLightbox
+          src="/venue/ground_floor.png"
+          alt={t['location.floorplans.groundAlt']}
+          title={t['location.floorplans.ground']}
+          expandLabel={t['location.floorplans.expand']}
+          closeLabel={t['location.floorplans.close']}
+          zoomInLabel={t['location.floorplans.zoomIn']}
+          zoomOutLabel={t['location.floorplans.zoomOut']}
+          resetLabel={t['location.floorplans.reset']}
+          hint={t['location.floorplans.hint']}
+        />
+      </figure>
+      <figure
+        class="bg-white/5 backdrop-blur-md p-4 md:p-6 rounded-2xl border border-white/10 hover:border-pycon-yellow/50 transition-all flex flex-col"
+      >
+        <h3 class="text-xl font-bold text-pycon-yellow mb-4">{t['location.floorplans.first']}</h3>
+        <FloorPlanLightbox
+          src="/venue/first_floor.png"
+          alt={t['location.floorplans.firstAlt']}
+          title={t['location.floorplans.first']}
+          expandLabel={t['location.floorplans.expand']}
+          closeLabel={t['location.floorplans.close']}
+          zoomInLabel={t['location.floorplans.zoomIn']}
+          zoomOutLabel={t['location.floorplans.zoomOut']}
+          resetLabel={t['location.floorplans.reset']}
+          hint={t['location.floorplans.hint']}
+        />
+      </figure>
+    </div>
+  </div>
 
   <!-- City Section -->
   <section class="mb-20 px-4 md:px-0">

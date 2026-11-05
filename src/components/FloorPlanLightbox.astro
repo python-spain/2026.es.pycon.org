@@ -1,0 +1,323 @@
+---
+interface Props {
+  src: string
+  alt: string
+  title: string
+  expandLabel: string
+  closeLabel: string
+  zoomInLabel: string
+  zoomOutLabel: string
+  resetLabel: string
+  hint: string
+}
+
+const { src, alt, title, expandLabel, closeLabel, zoomInLabel, zoomOutLabel, resetLabel, hint } = Astro.props
+
+const dialogId = `floor-plan-dialog-${Math.random().toString(36).slice(2, 9)}`
+---
+
+<button
+  type="button"
+  class="floor-plan-trigger group relative block w-full overflow-hidden rounded-lg bg-white cursor-zoom-in"
+  data-floor-plan-trigger={dialogId}
+  aria-haspopup="dialog"
+>
+  <img
+    src={src}
+    alt={alt}
+    loading="lazy"
+    decoding="async"
+    class="w-full h-auto block transition-transform duration-300 group-hover:scale-[1.03]"
+  />
+  <span
+    class="pointer-events-none absolute bottom-3 right-3 flex items-center gap-2 rounded-full bg-pycon-black/80 px-3 py-2 text-xs font-semibold text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+  >
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4M10 10h4"></path>
+    </svg>
+    {expandLabel}
+  </span>
+</button>
+
+<dialog
+  id={dialogId}
+  class="floor-plan-dialog m-auto w-screen max-w-none h-screen max-h-none p-0 bg-transparent backdrop:bg-pycon-black/95"
+  aria-label={title}
+>
+  <div class="floor-plan-viewport absolute inset-0 overflow-hidden">
+    <img
+      src={src}
+      alt={alt}
+      class="floor-plan-image absolute left-1/2 top-1/2 max-w-none select-none will-change-transform"
+      draggable="false"
+    />
+  </div>
+
+  <div class="absolute inset-x-0 top-0 flex items-start justify-between gap-4 p-4 pointer-events-none">
+    <p class="pointer-events-auto rounded-lg bg-pycon-black/80 px-4 py-2 text-sm font-semibold text-white">
+      {title}
+    </p>
+    <button
+      type="button"
+      class="pointer-events-auto rounded-lg bg-pycon-black/80 p-2 text-white hover:bg-pycon-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow"
+      data-close
+      aria-label={closeLabel}
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div
+    class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 pointer-events-none"
+  >
+    <p class="pointer-events-none rounded-lg bg-pycon-black/80 px-3 py-1 text-xs text-pycon-gray-25">
+      {hint}
+    </p>
+    <div class="pointer-events-auto flex items-center gap-2 rounded-full bg-pycon-black/80 p-2">
+      <button
+        type="button"
+        class="rounded-full bg-white/10 p-2 text-white hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow"
+        data-zoom-out
+        aria-label={zoomOutLabel}
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"></path>
+        </svg>
+      </button>
+      <output
+        class="min-w-16 text-center text-sm font-semibold text-white tabular-nums"
+        data-zoom-level
+        aria-live="polite">100%</output
+      >
+      <button
+        type="button"
+        class="rounded-full bg-white/10 p-2 text-white hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow"
+        data-zoom-in
+        aria-label={zoomInLabel}
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14"></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pycon-yellow"
+        data-zoom-reset
+        aria-label={resetLabel}
+      >
+        {resetLabel}
+      </button>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  .floor-plan-dialog::backdrop {
+    background-color: rgb(0 0 0 / 0.95);
+  }
+
+  .floor-plan-dialog[open] {
+    animation: floor-plan-fade-in 0.2s ease-out;
+  }
+
+  .floor-plan-viewport {
+    cursor: grab;
+    touch-action: none;
+  }
+
+  .floor-plan-viewport.is-panning {
+    cursor: grabbing;
+  }
+
+  @keyframes floor-plan-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  const MIN_ZOOM = 1
+  const MAX_ZOOM = 4
+  const ZOOM_STEP = 0.5
+
+  const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value))
+
+  const setupFloorPlan = (dialog: HTMLDialogElement) => {
+    const viewport = dialog.querySelector<HTMLElement>('.floor-plan-viewport')
+    const image = dialog.querySelector<HTMLImageElement>('.floor-plan-image')
+    const zoomLevel = dialog.querySelector<HTMLOutputElement>('[data-zoom-level]')
+    const closeButton = dialog.querySelector<HTMLButtonElement>('[data-close]')
+    const zoomInButton = dialog.querySelector<HTMLButtonElement>('[data-zoom-in]')
+    const zoomOutButton = dialog.querySelector<HTMLButtonElement>('[data-zoom-out]')
+    const resetButton = dialog.querySelector<HTMLButtonElement>('[data-zoom-reset]')
+
+    if (!viewport || !image || !zoomLevel) return
+
+    let zoom = MIN_ZOOM
+    let offsetX = 0
+    let offsetY = 0
+    let panning = false
+    let startX = 0
+    let startY = 0
+    let startOffsetX = 0
+    let startOffsetY = 0
+
+    const applyTransform = () => {
+      image.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px) scale(${zoom})`
+      zoomLevel.textContent = `${Math.round(zoom * 100)}%`
+    }
+
+    const fitToViewport = () => {
+      if (!image) return
+      const naturalWidth = image.naturalWidth || 1
+      const naturalHeight = image.naturalHeight || 1
+      const viewportWidth = viewport.clientWidth
+      const viewportHeight = viewport.clientHeight
+      if (!viewportWidth || !viewportHeight) {
+        // The dialog is not laid out yet: fall back to the natural size.
+        image.style.width = `${naturalWidth}px`
+        image.style.height = `${naturalHeight}px`
+        return
+      }
+      const scale = Math.min(viewportWidth / naturalWidth, viewportHeight / naturalHeight)
+      image.style.width = `${naturalWidth * scale}px`
+      image.style.height = `${naturalHeight * scale}px`
+    }
+
+    const reset = () => {
+      zoom = MIN_ZOOM
+      offsetX = 0
+      offsetY = 0
+      fitToViewport()
+      applyTransform()
+    }
+
+    // The dialog has no layout until it is open, so fit the plan once it is visible.
+    dialog.addEventListener('floor-plan:open', () => {
+      requestAnimationFrame(() => reset())
+    })
+
+    const setZoom = (nextZoom: number, originX = 0, originY = 0) => {
+      const clamped = clamp(nextZoom, MIN_ZOOM, MAX_ZOOM)
+      if (clamped === zoom) return
+      const factor = clamped / zoom
+      offsetX = originX - (originX - offsetX) * factor
+      offsetY = originY - (originY - offsetY) * factor
+      zoom = clamped
+      applyTransform()
+    }
+
+    const zoomAtCenter = (delta: number) => {
+      setZoom(zoom + delta, viewport.clientWidth / 2, viewport.clientHeight / 2)
+    }
+
+    closeButton?.addEventListener('click', () => dialog.close())
+
+    zoomInButton?.addEventListener('click', () => zoomAtCenter(ZOOM_STEP))
+    zoomOutButton?.addEventListener('click', () => zoomAtCenter(-ZOOM_STEP))
+    resetButton?.addEventListener('click', reset)
+
+    viewport.addEventListener(
+      'wheel',
+      (event: WheelEvent) => {
+        event.preventDefault()
+        const rect = viewport.getBoundingClientRect()
+        const originX = event.clientX - rect.left
+        const originY = event.clientY - rect.top
+        setZoom(zoom + (event.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP), originX, originY)
+      },
+      { passive: false },
+    )
+
+    viewport.addEventListener('pointerdown', (event: PointerEvent) => {
+      if (zoom <= MIN_ZOOM) return
+      panning = true
+      startX = event.clientX
+      startY = event.clientY
+      startOffsetX = offsetX
+      startOffsetY = offsetY
+      viewport.classList.add('is-panning')
+      viewport.setPointerCapture(event.pointerId)
+    })
+
+    viewport.addEventListener('pointermove', (event: PointerEvent) => {
+      if (!panning) return
+      offsetX = startOffsetX + (event.clientX - startX)
+      offsetY = startOffsetY + (event.clientY - startY)
+      applyTransform()
+    })
+
+    const stopPanning = (event: PointerEvent) => {
+      if (!panning) return
+      panning = false
+      viewport.classList.remove('is-panning')
+      if (viewport.hasPointerCapture(event.pointerId)) {
+        viewport.releasePointerCapture(event.pointerId)
+      }
+    }
+
+    viewport.addEventListener('pointerup', stopPanning)
+    viewport.addEventListener('pointercancel', stopPanning)
+
+    viewport.addEventListener('dblclick', (event: MouseEvent) => {
+      const rect = viewport.getBoundingClientRect()
+      const originX = event.clientX - rect.left
+      const originY = event.clientY - rect.top
+      if (zoom > MIN_ZOOM) {
+        setZoom(MIN_ZOOM, originX, originY)
+      } else {
+        setZoom(2, originX, originY)
+      }
+    })
+
+    dialog.addEventListener('click', (event: MouseEvent) => {
+      if (event.target === dialog) dialog.close()
+    })
+
+    dialog.addEventListener('close', () => {
+      zoom = MIN_ZOOM
+      offsetX = 0
+      offsetY = 0
+      applyTransform()
+    })
+  }
+
+  const bindTriggers = () => {
+    document.querySelectorAll<HTMLButtonElement>('[data-floor-plan-trigger]').forEach((trigger) => {
+      if (trigger.dataset.floorPlanBound === 'true') return
+      const dialogId = trigger.dataset.floorPlanTrigger
+      if (!dialogId) return
+      const dialog = document.getElementById(dialogId) as HTMLDialogElement | null
+      if (!dialog) return
+      trigger.dataset.floorPlanBound = 'true'
+      const open = () => {
+        dialog.showModal()
+        dialog.dispatchEvent(new CustomEvent('floor-plan:open'))
+      }
+      trigger.addEventListener('click', open)
+    })
+  }
+
+  const initFloorPlans = () => {
+    document.querySelectorAll<HTMLDialogElement>('.floor-plan-dialog').forEach((dialog) => {
+      if (dialog.dataset.floorPlanReady === 'true') return
+      dialog.dataset.floorPlanReady = 'true'
+      setupFloorPlan(dialog)
+    })
+    bindTriggers()
+  }
+
+  initFloorPlans()
+  document.addEventListener('astro:page-load', initFloorPlans)
+</script>

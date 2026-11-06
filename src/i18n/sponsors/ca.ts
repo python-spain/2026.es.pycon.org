@@ -22,11 +22,12 @@ export const ca = {
   when: {
     title: 'QUAN: 6-8 DE NOVEMBRE, 2026',
     friday: 'Divendres',
-    fridayStrong: 'Arrenquem amb els tallers. Primera presa de contacte, bon moment per trencar el gel.',
+    fridayStrong:
+      'Arrenquem amb els tallers. Primera presa de contacte, bon moment per trencar el gel. Al vespre: Sopar Oficial de Ponents.',
     fridayEm: 'Nota: Aquest dia no hi haurà zona d’stands.',
     saturday: 'Dissabte',
     saturdayBody:
-      'El dia fort. Obertura de l’esdeveniment, Keynotes, xerrades principals i la quantitat més gran d’assistents. Al vespre: Sopar Oficial de Ponents.',
+      'El dia fort. Obertura de l’esdeveniment, Keynotes, xerrades principals i la quantitat més gran d’assistents.',
     sunday: 'Diumenge',
     sundayBody: 'Més xerrades, "lightning talks" i el comiat final.',
   },

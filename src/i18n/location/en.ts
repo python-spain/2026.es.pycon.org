@@ -30,7 +30,8 @@ export const en = {
   'location.floorplans.zoomIn': 'Zoom in',
   'location.floorplans.zoomOut': 'Zoom out',
   'location.floorplans.reset': 'Fit',
-  'location.floorplans.hint': 'Use the mouse wheel or the buttons to zoom, and drag to pan.',
+  'location.floorplans.hint':
+    'Use the mouse wheel or the buttons to zoom, and drag or pinch with your fingers to pan.',
   'location.spaces.title': 'Open Spaces',
   'location.spaces.gallery.title': 'Paranimf Gallery',
   'location.spaces.gallery.desc': 'Perfect for registrations and academic posters (250 people).',

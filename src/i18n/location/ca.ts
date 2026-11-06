@@ -31,7 +31,7 @@ export const ca = {
   'location.floorplans.zoomOut': 'Allunya',
   'location.floorplans.reset': 'Encaixa',
   'location.floorplans.hint':
-    'Fes servir la roda del ratolí o els botons per fer zoom, i arrossega per moure-te.',
+    'Fes servir la roda del ratolí o els botons per fer zoom, i arrossega o pessiga amb els dits per moure-te.',
   'location.spaces.title': 'Espais Oberts',
   'location.spaces.gallery.title': 'Galeria del Paranimf',
   'location.spaces.gallery.desc': 'Ideal per a acreditacions i pòsters acadèmics (250 persones).',

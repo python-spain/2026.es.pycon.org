@@ -31,7 +31,7 @@ export const es = {
   'location.floorplans.zoomOut': 'Alejar',
   'location.floorplans.reset': 'Encajar',
   'location.floorplans.hint':
-    'Usa la rueda del ratón o los botones para hacer zoom, y arrastra para moverte.',
+    'Usa la rueda del ratón o los botones para hacer zoom, y arrastra o pellizca con los dedos para moverte.',
   'location.spaces.title': 'Espacios Abiertos',
   'location.spaces.gallery.title': 'Galería del Paranimf',
   'location.spaces.gallery.desc': 'Ideal para acreditaciones y pósters académicos (250 personas).',

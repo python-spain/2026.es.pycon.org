@@ -129,7 +129,11 @@ const dialogId = `floor-plan-dialog-${Math.random().toString(36).slice(2, 9)}`
 
   .floor-plan-viewport {
     cursor: grab;
+    /* The gestures are handled in JS: blocking the native ones keeps the
+       browser from zooming the page behind the dialog. */
     touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .floor-plan-viewport.is-panning {
@@ -150,6 +154,8 @@ const dialogId = `floor-plan-dialog-${Math.random().toString(36).slice(2, 9)}`
   const MIN_ZOOM = 1
   const MAX_ZOOM = 4
   const ZOOM_STEP = 0.5
+  const DOUBLE_TAP_DELAY = 300
+  const DOUBLE_TAP_SLOP = 30
 
   const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value))
 
@@ -167,15 +173,55 @@ const dialogId = `floor-plan-dialog-${Math.random().toString(36).slice(2, 9)}`
     let zoom = MIN_ZOOM
     let offsetX = 0
     let offsetY = 0
-    let panning = false
-    let startX = 0
-    let startY = 0
-    let startOffsetX = 0
-    let startOffsetY = 0
+
+    // Active touch/pointer points, keyed by pointerId. One point pans the
+    // plan, two points pinch-zoom it around the midpoint between them.
+    const pointers = new Map<number, { x: number; y: number }>()
+    let gestureStartPoint: { x: number; y: number } | null = null
+    let gestureStartDistance = 0
+    let gestureStartZoom = MIN_ZOOM
+    let gestureStartMidpoint: { x: number; y: number } | null = null
+    let gestureStartOffsetX = 0
+    let gestureStartOffsetY = 0
+    // Point of the plan that stays under the fingers while pinching, in
+    // coordinates relative to the centre of the unscaled image.
+    let gestureAnchorX = 0
+    let gestureAnchorY = 0
+
+    // Double tap detection, used to toggle between the fitted view and 200%.
+    let lastTapTime = 0
+    let lastTapX = 0
+    let lastTapY = 0
+    let doubleTapTimer: number | undefined
+    // Marks the moment a touch double tap was handled, so the native
+    // `dblclick` event that browsers synthesise afterwards can be ignored.
+    let touchDoubleTapAt = 0
 
     const applyTransform = () => {
       image.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px) scale(${zoom})`
       zoomLevel.textContent = `${Math.round(zoom * 100)}%`
+    }
+
+    // Keep the plan from being dragged away from the viewport. On the axes
+    // where the scaled plan is bigger than the viewport it is allowed to
+    // overflow equally on both sides, but never pulled so far that an edge of
+    // the viewport is left empty. On the axes where the plan is smaller it can
+    // be moved freely, otherwise the pinch gesture would lose its anchor.
+    const clampOffsets = () => {
+      const viewportWidth = viewport.clientWidth
+      const viewportHeight = viewport.clientHeight
+      const renderedWidth = image.offsetWidth * zoom
+      const renderedHeight = image.offsetHeight * zoom
+
+      // When the plan is at least as big as the viewport on an axis it is
+      // pinned to that axis, so the viewport is never left empty.
+      const maxOffsetX =
+        renderedWidth >= viewportWidth ? (renderedWidth - viewportWidth) / 2 : viewportWidth / 2
+      const maxOffsetY =
+        renderedHeight >= viewportHeight ? (renderedHeight - viewportHeight) / 2 : viewportHeight / 2
+
+      offsetX = clamp(offsetX, -maxOffsetX, maxOffsetX)
+      offsetY = clamp(offsetY, -maxOffsetY, maxOffsetY)
     }
 
     const fitToViewport = () => {
@@ -199,6 +245,7 @@ const dialogId = `floor-plan-dialog-${Math.random().toString(36).slice(2, 9)}`
       zoom = MIN_ZOOM
       offsetX = 0
       offsetY = 0
+      pointers.clear()
       fitToViewport()
       applyTransform()
     }
@@ -208,13 +255,20 @@ const dialogId = `floor-plan-dialog-${Math.random().toString(36).slice(2, 9)}`
       requestAnimationFrame(() => reset())
     })
 
+    // Zoom to `nextZoom` keeping the point of the plan that currently sits
+    // at (originX, originY) — in viewport coordinates — under that same
+    // place on the screen.
     const setZoom = (nextZoom: number, originX = 0, originY = 0) => {
       const clamped = clamp(nextZoom, MIN_ZOOM, MAX_ZOOM)
       if (clamped === zoom) return
-      const factor = clamped / zoom
-      offsetX = originX - (originX - offsetX) * factor
-      offsetY = originY - (originY - offsetY) * factor
+      // Point of the plan under the origin, relative to the centre of the
+      // unscaled image.
+      const anchorX = (originX - viewport.clientWidth / 2 - offsetX) / zoom
+      const anchorY = (originY - viewport.clientHeight / 2 - offsetY) / zoom
+      offsetX = originX - viewport.clientWidth / 2 - anchorX * clamped
+      offsetY = originY - viewport.clientHeight / 2 - anchorY * clamped
       zoom = clamped
+      clampOffsets()
       applyTransform()
     }
 
@@ -240,37 +294,188 @@ const dialogId = `floor-plan-dialog-${Math.random().toString(36).slice(2, 9)}`
       { passive: false },
     )
 
-    viewport.addEventListener('pointerdown', (event: PointerEvent) => {
-      if (zoom <= MIN_ZOOM) return
-      panning = true
-      startX = event.clientX
-      startY = event.clientY
-      startOffsetX = offsetX
-      startOffsetY = offsetY
-      viewport.classList.add('is-panning')
-      viewport.setPointerCapture(event.pointerId)
-    })
+    const getPoint = (event: PointerEvent) => {
+      const rect = viewport.getBoundingClientRect()
+      return { x: event.clientX - rect.left, y: event.clientY - rect.top }
+    }
 
-    viewport.addEventListener('pointermove', (event: PointerEvent) => {
-      if (!panning) return
-      offsetX = startOffsetX + (event.clientX - startX)
-      offsetY = startOffsetY + (event.clientY - startY)
-      applyTransform()
-    })
-
-    const stopPanning = (event: PointerEvent) => {
-      if (!panning) return
-      panning = false
-      viewport.classList.remove('is-panning')
-      if (viewport.hasPointerCapture(event.pointerId)) {
-        viewport.releasePointerCapture(event.pointerId)
+    const getMidpoint = () => {
+      const points = Array.from(pointers.values())
+      if (points.length < 2) return null
+      return {
+        x: (points[0].x + points[1].x) / 2,
+        y: (points[0].y + points[1].y) / 2,
       }
     }
 
-    viewport.addEventListener('pointerup', stopPanning)
-    viewport.addEventListener('pointercancel', stopPanning)
+    const getDistance = () => {
+      const points = Array.from(pointers.values())
+      if (points.length < 2) return 0
+      return Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y)
+    }
+
+    // Snapshot of the gesture, used as the reference frame for pan and pinch.
+    const startGesture = () => {
+      const points = Array.from(pointers.values())
+      gestureStartPoint = points[0] ?? null
+      gestureStartMidpoint = points.length >= 2 ? getMidpoint() : null
+      gestureStartDistance = points.length >= 2 ? getDistance() : 0
+      gestureStartZoom = zoom
+      gestureStartOffsetX = offsetX
+      gestureStartOffsetY = offsetY
+
+      if (gestureStartMidpoint) {
+        // Remember which point of the plan sits under the fingers, in
+        // coordinates relative to the centre of the unscaled image, so it can
+        // be kept in place while the plan is scaled.
+        gestureAnchorX = (gestureStartMidpoint.x - viewport.clientWidth / 2 - offsetX) / zoom
+        gestureAnchorY = (gestureStartMidpoint.y - viewport.clientHeight / 2 - offsetY) / zoom
+      }
+    }
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return
+
+      pointers.set(event.pointerId, getPoint(event))
+      viewport.classList.add('is-panning')
+
+      // A second finger turns the gesture into a pinch, so the reference
+      // frame has to take both points into account.
+      startGesture()
+      if (pointers.size > 1) cancelDoubleTap()
+    }
+
+    const handlePointerMove = (event: PointerEvent) => {
+      if (!pointers.has(event.pointerId)) return
+      pointers.set(event.pointerId, getPoint(event))
+
+      if (pointers.size >= 2) {
+        // Pinch: scale continuously around the midpoint between the fingers.
+        const midpoint = getMidpoint()
+        const distance = getDistance()
+        if (!midpoint || !gestureStartMidpoint || !gestureStartDistance) return
+
+        const scaleFactor = distance / gestureStartDistance
+        const nextZoom = clamp(gestureStartZoom * scaleFactor, MIN_ZOOM, MAX_ZOOM)
+
+        // Keep the point of the plan that was under the fingers under the
+        // fingers, following the midpoint as it moves.
+        offsetX = midpoint.x - viewport.clientWidth / 2 - gestureAnchorX * nextZoom
+        offsetY = midpoint.y - viewport.clientHeight / 2 - gestureAnchorY * nextZoom
+        zoom = nextZoom
+        clampOffsets()
+        applyTransform()
+        return
+      }
+
+      // Single finger: pan the plan.
+      const point = pointers.get(event.pointerId)
+      if (!point || !gestureStartPoint) return
+      offsetX = gestureStartOffsetX + (point.x - gestureStartPoint.x)
+      offsetY = gestureStartOffsetY + (point.y - gestureStartPoint.y)
+      clampOffsets()
+      applyTransform()
+    }
+
+    const handlePointerUp = (event: PointerEvent) => {
+      const point = pointers.get(event.pointerId)
+      pointers.delete(event.pointerId)
+
+      if (pointers.size === 0) {
+        viewport.classList.remove('is-panning')
+        gestureStartPoint = null
+        gestureStartMidpoint = null
+        gestureStartDistance = 0
+        if (event.pointerType !== 'mouse') {
+          handleTap(point, event)
+        }
+      } else {
+        // A finger was lifted mid-pinch: rebase the remaining gesture.
+        startGesture()
+      }
+    }
+
+    // Double tap toggles between the fitted view and 200%, centred on the tap.
+    const handleTap = (point: { x: number; y: number } | undefined, event: PointerEvent) => {
+      if (!point) return
+      const now = Date.now()
+      const isDoubleTap =
+        now - lastTapTime < DOUBLE_TAP_DELAY &&
+        Math.hypot(point.x - lastTapX, point.y - lastTapY) < DOUBLE_TAP_SLOP
+
+      if (!isDoubleTap) {
+        lastTapTime = now
+        lastTapX = point.x
+        lastTapY = point.y
+        doubleTapTimer = window.setTimeout(() => {
+          doubleTapTimer = undefined
+        }, DOUBLE_TAP_DELAY)
+        return
+      }
+
+      cancelDoubleTap()
+      lastTapTime = 0
+      touchDoubleTapAt = Date.now()
+      if (zoom > MIN_ZOOM) {
+        setZoom(MIN_ZOOM, point.x, point.y)
+      } else {
+        setZoom(2, point.x, point.y)
+      }
+      event.preventDefault()
+    }
+
+    const cancelDoubleTap = () => {
+      if (doubleTapTimer !== undefined) {
+        window.clearTimeout(doubleTapTimer)
+        doubleTapTimer = undefined
+      }
+      lastTapTime = 0
+    }
+
+    viewport.addEventListener('pointerdown', handlePointerDown)
+    // Listen on the window so the gesture keeps working when a finger slides
+    // outside of the viewport. Pointer capture is avoided on purpose: it
+    // misbehaves on iOS Safari once more than one pointer is involved.
+    window.addEventListener('pointermove', handlePointerMove)
+    window.addEventListener('pointerup', handlePointerUp)
+    window.addEventListener('pointercancel', handlePointerUp)
+
+    // Block the browser's own pinch and scroll gestures on the plan so they do
+    // not zoom the page behind the dialog.
+    viewport.addEventListener(
+      'touchstart',
+      (event: TouchEvent) => {
+        if (event.touches.length > 1) event.preventDefault()
+      },
+      { passive: false },
+    )
+    viewport.addEventListener(
+      'touchmove',
+      (event: TouchEvent) => {
+        if (event.touches.length > 1) event.preventDefault()
+      },
+      { passive: false },
+    )
+    viewport.addEventListener(
+      'touchend',
+      (event: TouchEvent) => {
+        if (event.touches.length > 0) event.preventDefault()
+      },
+      { passive: false },
+    )
 
     viewport.addEventListener('dblclick', (event: MouseEvent) => {
+      // Browsers synthesise a `dblclick` after a touch double tap. That one
+      // is already handled by `handleTap`, so it must not undo the zoom.
+      const sourceCapabilities = (
+        event as MouseEvent & {
+          sourceCapabilities?: { firesTouchEvents?: boolean }
+        }
+      ).sourceCapabilities
+      const isTouchGenerated = sourceCapabilities?.firesTouchEvents === true
+      if (isTouchGenerated || Date.now() - touchDoubleTapAt < 500) return
+
+      event.preventDefault()
       const rect = viewport.getBoundingClientRect()
       const originX = event.clientX - rect.left
       const originY = event.clientY - rect.top
@@ -289,6 +494,9 @@ const dialogId = `floor-plan-dialog-${Math.random().toString(36).slice(2, 9)}`
       zoom = MIN_ZOOM
       offsetX = 0
       offsetY = 0
+      pointers.clear()
+      cancelDoubleTap()
+      viewport.classList.remove('is-panning')
       applyTransform()
     })
   }
